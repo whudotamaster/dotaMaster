@@ -12,6 +12,12 @@ public interface BaseServices
       * @return
       * @throws Exception
       */
+
+     /**s
+      * 接口的默认实现
+      * @return
+      * @throws Exception
+      */
      default Map<String,String> findById()throws Exception
      {
     	 return null;
