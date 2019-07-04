@@ -17,7 +17,7 @@ public class DateTest
 		System.out.println(str_date);
 		//ÕÅîÚ
 		//ÕÅîÚ
-		
+		//19.51
 	}
 
 }
