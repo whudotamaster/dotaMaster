@@ -16,8 +16,7 @@ public class DateTest
 		String str_date=sdf.format(d);
 		System.out.println(str_date);
 		//ÕÅîÚ
-		//ÕÅîÚ
-		//19.51
+		
 	}
 
 }
