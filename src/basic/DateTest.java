@@ -15,6 +15,7 @@ public class DateTest
 		//格式化当前日期
 		String str_date=sdf.format(d);
 		System.out.println(str_date);
+		System.out.println(str_date);
 		
 	}
 
