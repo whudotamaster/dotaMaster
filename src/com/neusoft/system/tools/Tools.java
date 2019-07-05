@@ -16,6 +16,12 @@ import com.neusoft.system.db.DBUtils;
 public class Tools 
 {
 
+	public static boolean sendMessage(String text)
+	{
+		return false;
+	}
+	
+	
 	public static void main(String[] args) 
 	{
 		try 

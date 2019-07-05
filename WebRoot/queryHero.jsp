@@ -33,7 +33,7 @@
       function onDel(vaac101)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdHero.html?aab101="+vaac101;
+    	 vform.action="<%=path%>/delByIdHero.html?aac101="+vaac101;
     	 //alert(vform.action);
     	 vform.submit();
       } 

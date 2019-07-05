@@ -70,7 +70,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	public List<Map<String,String>> queryHero()throws Exception
 	  {
 	  		//还原页面查询条件
-	  		Object aab102=this.get("qaac102");     //姓名  模糊查询
+	  		Object aac102=this.get("qaac102");     //姓名  模糊查询
 	  	
 	  		
 	  		//定义SQL主体
@@ -84,10 +84,10 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	  		//参数列表
 	  		List<Object> paramList=new ArrayList<>();
 	  		//逐一判断查询条件是否录入,拼接AND条件
-	  		if(this.isNotNull(aab102))
+	  		if(this.isNotNull(aac102))
 	  		{
-	  			sql.append(" where x.aab102 like ?");
-	  			paramList.add("%"+aab102+"%");
+	  			sql.append(" where aac102 like ?");
+	  			paramList.add("%"+aac102+"%");
 	  		}
 	  				
 	  		sql.append(" order by aac102");
@@ -157,7 +157,12 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	    }
 	 
 	 
-	 private boolean modifyHero()throws Exception
+	 /**
+	  * 修改英雄数据
+	 * @return
+	 * @throws Exception
+	 */
+	private boolean modifyHero()throws Exception
 	    {
 	    	StringBuilder sql=new StringBuilder()
 	    			.append(" update ac01 set  aac102=?,aac103=?,aac104=?,aac105=?, ")
@@ -182,4 +187,9 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	    	return this.executeUpdate(sql.toString(), args)>0;
 	    	
 	    }
+	private boolean deleteByIdHero()throws Exception
+    {
+    	String sql="delete from ac01 where aac101=?";
+    	return this.executeUpdate(sql, this.get("aac101"))>0;
+    }
 }
