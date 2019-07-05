@@ -6,9 +6,48 @@ import java.util.Map;
 
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.system.tools.Tools;
+import com.sun.org.apache.bcel.internal.generic.Select;
 
 public class Ab01ServicesImpl extends JdbcServicesSupport 
 {
+	//使用虚拟货币购买或续费会员
+	public boolean buyVIP()throws Exception
+    {
+		StringBuilder sql=new StringBuilder();
+		boolean tag=this.isVIP();
+		//如果是会员 在他的到期时间后增加续费时长
+		if(tag)
+		{
+				sql.append("update ab01 a")
+					.append("   set a.aab106=a.aab106-? and a.aab109 = DATE_ADD(a.aab109, INTERVAL ? MONTH)")
+					.append(" where a.aab101=?")
+					;
+    	}
+		else//不是会员 在当前时间+他的购买时长
+		{
+			sql.append("update ab01 a")
+			.append("   set a.aab106=a.aab106-? and a.aab109 = DATE_ADD(current_date, INTERVAL ? MONTH)")
+			.append(" where a.aab101=?")
+			;
+		}
+		
+		Object args[]={
+				Integer.parseInt(this.get("month").toString())*1000,//此处填写用户扣的金额数,根据网页传来的用户购买月数*每月金额
+				this.get("month"),
+				this.get("aab101")
+		};
+    	return this.executeUpdate(sql.toString(), args)>0;
+    }
+	//辅助方法 判断是否为VIP
+	private boolean isVIP()throws Exception
+	{
+		String sql="select aab109 from ab01 where aab101=? and aab109>current_date";
+		Map<String, String> map=this.queryForMap(sql, this.get("aab101"));
+		if(map==null)
+			return false;
+		else
+			return true;
+	}
 	
     private boolean deleteById()throws Exception
     {
@@ -41,6 +80,21 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	};
     	return this.executeUpdate(sql.toString(), args)>0;
     	
+    }
+    
+    //提供一个接口便于快速修改余额
+    public boolean updateMoney(Object aab106,Object aab101)throws Exception
+    {
+    	StringBuilder sql=new StringBuilder()
+    			.append("update ab01 a")
+    			.append("   set a.aab106=a.aab106+?")
+    			.append(" where a.aab101=?")
+    			;
+    	Object args[]={
+    			aab106,
+    			aab101
+    	};
+    	return this.executeUpdate(sql.toString(), args)>0;
     }
     
     //登录判断方法
@@ -110,29 +164,25 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.batchUpdate(sql, idlist);
     }
 
-    
-    
     public Map<String,String> findById()throws Exception
     {
     	//1.编写SQL语句
     	StringBuilder sql=new StringBuilder()
-    			.append("select a.aab102,a.aab103,a.aab104,a.aab105,a.aab106,")
-    			.append("       a.aab107,a.aab108,a.aab109,a.aab110,a.aab111,")
-    			.append("       a.aab112,a.aab113")
+    			.append("select a.aab101,a.aab102,a.aab103,a.aab104,a.aab105,a.aab106,")
+    			.append("       a.aab107,a.aab108,a.aab109 ")
     			.append("  from ab01 a")
     			.append(" where a.aab101=?")
     			;
     	//执行查询
     	return this.queryForMap(sql.toString(), this.get("aab101"));
     }
-    
-    
+      
       /**
        * 不定条件查询
        * @return
        * @throws Exception
        */
-	  public List<Map<String,String>> query()throws Exception
+	public List<Map<String,String>> query()throws Exception
 	  {
 	  		//还原页面查询条件
 	  		Object aab102=this.get("qaab102");     //姓名  模糊查询
@@ -188,8 +238,4 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	  		sql.append(" order by x.aab102");
 	  		return this.queryForList(sql.toString(), paramList.toArray());
 	  }
-    
-    
-
-	
 }
