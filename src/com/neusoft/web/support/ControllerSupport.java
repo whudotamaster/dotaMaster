@@ -50,6 +50,27 @@ public abstract class ControllerSupport implements BaseController
 		}	
 	}
 	
+	/*****************************************
+	 * 	        论坛加载业务流程封装
+	 *****************************************/
+	/**
+	 * 帖子数据批量查询
+	 * @throws Exception
+	 */
+	protected final void forumOnLoad()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.queryPost();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+	
 	/**
 	 * 单一实例 查询
 	 * @throws Exception

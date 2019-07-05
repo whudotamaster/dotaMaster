@@ -16,10 +16,16 @@ public interface BaseServices
      {
     	 return null;
      }
-
      
      default List<Map<String,String>> query()throws Exception
      {
     	 return null;
      }
+
+	default List<Map<String,String>> queryPost()throws Exception
+     {
+    	 return null;
+     }
+
+
 }
