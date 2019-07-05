@@ -14,7 +14,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	private boolean buyVIP()throws Exception
     {
 		StringBuilder sql=new StringBuilder();
-		boolean tag=this.isVIP(this.get("aab101"));
+		boolean tag=this.isVIP();
 		//如果是会员 在他的到期时间后增加续费时长
 		if(tag)
 		{
@@ -39,10 +39,10 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.executeUpdate(sql.toString(), args)>0;
     }
 	//辅助方法 判断是否为VIP
-	private boolean isVIP(Object aab101)throws Exception
+	private boolean isVIP()throws Exception
 	{
 		String sql="select aab109 from ab01 where aab101=? and aab109>current_date";
-		Map<String, String> map=this.queryForMap(sql, aab101);
+		Map<String, String> map=this.queryForMap(sql, this.get("aab101"));
 		if(map==null)
 			return false;
 		else
@@ -81,7 +81,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.executeUpdate(sql.toString(), args)>0;
     	
     }
-    private boolean updateMoney()throws Exception
+    public boolean updateMoney(Object aab106,Object aab101)throws Exception
     {
     	StringBuilder sql=new StringBuilder()
     			.append("update ab01 a")
@@ -89,8 +89,8 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     			.append(" where a.aab101=?")
     			;
     	Object args[]={
-    			this.get("aab106"),
-    			this.get("aab101")
+    			aab106,
+    			aab101
     	};
     	return this.executeUpdate(sql.toString(), args)>0;
     }
@@ -141,13 +141,13 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 
     
     
+    
     public Map<String,String> findById()throws Exception
     {
     	//1.编写SQL语句
     	StringBuilder sql=new StringBuilder()
-    			.append("select a.aab102,a.aab103,a.aab104,a.aab105,a.aab106,")
-    			.append("       a.aab107,a.aab108,a.aab109,a.aab110,a.aab111,")
-    			.append("       a.aab112,a.aab113")
+    			.append("select a.aab101,a.aab102,a.aab103,a.aab104,a.aab105,a.aab106,")
+    			.append("       a.aab107,a.aab108,a.aab109 ")
     			.append("  from ab01 a")
     			.append(" where a.aab101=?")
     			;

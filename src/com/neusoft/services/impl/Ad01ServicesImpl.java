@@ -9,9 +9,23 @@ import com.neusoft.system.tools.Tools;
 
 public class Ad01ServicesImpl extends JdbcServicesSupport 
 {
-   //用户单次押注时,插入用户押注表并更新竞猜表
-    private boolean insertBetLog()throws Exception
+	//用户进入首页时,查看当前是否有可押注的比赛
+	public List<Map<String, String>> selectBet()throws Exception
     {
+		StringBuilder sql=new StringBuilder()
+  				.append("select d.aad101,d.aad102,d.aad103,c.aac1101,")
+  				.append("       c.aac1102,c.aac1103,c.aac1104,e.aac702")
+  				.append("  from ac11 c,ad01 d,ac07 e")
+  				.append(" where d.aac1101=c.aac1101 and e.aac701=c.aac701 ")
+  				.append("   and current_time>d.aad104 and current_time<d.aad105")
+  				;
+		return this.queryForList(sql.toString());
+    }
+	
+   //用户单次押注时,插入用户押注表并更新竞猜表
+    public boolean insertBetLog()throws Exception
+    {
+    	//插入单次押注信息
     	StringBuilder sql1=new StringBuilder()
     			.append("insert into ad02(aad101,aab101,aad202,aad203")
     			.append("          values(?,?,?,?")
@@ -23,6 +37,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     			this.get("aad203")
     	};
     	this.apppendSql(sql1.toString(), args1);
+    	//更新竞猜总额
     	StringBuilder sql2=new StringBuilder()
     			.append("update ad01 a")
     			.append("   set a.aad102=? and a.aad103=?")
@@ -37,7 +52,8 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	return this.executeTransaction();
     }
     
-    private Map<String,String> queryAllCount(Object aad101)throws Exception
+    //查询竞猜总额
+    private Map<String,String> queryAllCount()throws Exception
     {		
   		//定义SQL主体
   		StringBuilder sql=new StringBuilder()
@@ -45,10 +61,11 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
   				.append("  from ad01")
   				.append(" where aad101=?")
   				;
-  		return this.queryForMap(sql.toString(), aad101);
+  		return this.queryForMap(sql.toString(), this.get("aad101"));
     }
     
-    private List<Map<String,String>> queryUserCount(Object aad101)throws Exception
+    //查询每一笔指定竞猜押注
+    private List<Map<String,String>> queryUserCount()throws Exception
     {		
   		//定义SQL主体
   		StringBuilder sql=new StringBuilder()
@@ -56,11 +73,11 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
   				.append("  from ad02")
   				.append(" where aad101=?")
   				;
-  		return this.queryForList(sql.toString(), aad101);
+  		return this.queryForList(sql.toString(), this.get("aad101"));
     }
 
     //更新比赛结果时,并方法押注奖金给用户
-    private boolean grantReward()throws Exception
+    public boolean grantReward()throws Exception
     {
     	//1,更新比赛结果
     	StringBuilder sql1=new StringBuilder()
@@ -80,16 +97,16 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	}
     	
     	//2,获取押注总额
-    	Map<String, String> map=this.queryAllCount(this.get("aad101"));
+    	Map<String, String> map=this.queryAllCount();
     	int countA=Integer.parseInt(map.get("aad102"));
     	int countB=Integer.parseInt(map.get("aad103"));
     	
     	//3,根据竞猜ID获取押注用户
     	//3.1获取用户押注列表
     	//list中属性有用户ID 押注A方数量 押注B方数量 此处需要计算出用户赚的额度 并且放入每一个map中
-    	List<Map<String, String>> list=this.queryUserCount(this.get("aad101"));
+    	List<Map<String, String>> list=this.queryUserCount();
     	
-    	//根据比赛胜负来计算用户该单获得的金币,并存入map中
+    	//3.2根据比赛胜负来计算用户该单获得的金币,并存入map中
     	if(tag)
     	{
     		int tem;
@@ -109,7 +126,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     		}
     	}
     	
-    	//针对每一条押注,往用户表中更新金额
+    	//4,针对每一条押注,往用户表中更新金额
     	StringBuilder sql2=new StringBuilder()
     			.append("update ab01 a")
     			.append("   set a.aab106=a.aab106+?")
@@ -124,15 +141,8 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     				m.get("aab101")
     			};
 			this.apppendSql(sql2.toString(),args);
+			Tools.sendMessage("您有一笔押注公布结果了,您获得的金额是"+m.get("aad204"));
 		}
-    	
-
     	return this.executeTransaction();
     }
-    
-    
-    
-    
-    
-    
 }
