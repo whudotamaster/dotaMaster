@@ -16,6 +16,7 @@ public interface BaseServices
      {
     	 return null;
      }
+
      
      default List<Map<String,String>> query()throws Exception
      {
@@ -26,6 +27,10 @@ public interface BaseServices
      {
     	 return null;
      }
+
+
+
+
 
 
 }

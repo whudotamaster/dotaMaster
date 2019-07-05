@@ -215,4 +215,5 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	  		sql.append(" order by x.aab102");
 	  		return this.queryForList(sql.toString(), paramList.toArray());
 	  }
+
 }

@@ -6,6 +6,7 @@ public final class QueryEmpServlet extends EmpControllerSupport
 	public String execute() throws Exception 
 	{
 		this.savePageData();
+		System.out.println("19:38");
 		return "queryEmp";
 	}
 }
