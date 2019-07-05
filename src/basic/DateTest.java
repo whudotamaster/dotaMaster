@@ -15,13 +15,6 @@ public class DateTest
 		//格式化当前日期
 		String str_date=sdf.format(d);
 		System.out.println(str_date);
-		//张钰
 
-		//张钰
-		//19.51
-		//19.58
-		//20.00
-
-		
 	}
 }
