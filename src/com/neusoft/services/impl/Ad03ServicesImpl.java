@@ -10,6 +10,7 @@ import com.sun.org.apache.bcel.internal.generic.Select;
 
 public class Ad03ServicesImpl extends JdbcServicesSupport 
 {
+	//审核失败
 	public boolean checkDelFail() throws Exception
 	{
 		//1,更新收货状态为失败
@@ -21,6 +22,7 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 		return this.executeUpdate(sql, this.get("aad301"))>0;
 	}
 	
+	//审核成功
 	public boolean checkDelSuccess() throws Exception
 	{
 		//1,更新收货状态为已完成

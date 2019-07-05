@@ -11,7 +11,7 @@ import com.sun.org.apache.bcel.internal.generic.Select;
 public class Ab01ServicesImpl extends JdbcServicesSupport 
 {
 	//使用虚拟货币购买或续费会员
-	private boolean buyVIP()throws Exception
+	public boolean buyVIP()throws Exception
     {
 		StringBuilder sql=new StringBuilder();
 		boolean tag=this.isVIP();
@@ -81,11 +81,13 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.executeUpdate(sql.toString(), args)>0;
     	
     }
+    
+    //提供一个接口便于快速修改余额
     public boolean updateMoney(Object aab106,Object aab101)throws Exception
     {
     	StringBuilder sql=new StringBuilder()
     			.append("update ab01 a")
-    			.append("   set a.aab106=?")
+    			.append("   set a.aab106=a.aab106+?")
     			.append(" where a.aab101=?")
     			;
     	Object args[]={
@@ -139,9 +141,6 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.batchUpdate(sql, idlist);
     }
 
-    
-    
-    
     public Map<String,String> findById()throws Exception
     {
     	//1.编写SQL语句
@@ -154,14 +153,13 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	//执行查询
     	return this.queryForMap(sql.toString(), this.get("aab101"));
     }
-    
-    
+      
       /**
        * 不定条件查询
        * @return
        * @throws Exception
        */
-	  public List<Map<String,String>> query()throws Exception
+	public List<Map<String,String>> query()throws Exception
 	  {
 	  		//还原页面查询条件
 	  		Object aab102=this.get("qaab102");     //姓名  模糊查询

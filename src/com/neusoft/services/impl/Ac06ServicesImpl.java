@@ -32,7 +32,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		}
 		
 		//3,减少用户余额
-		ab01.updateMoney(Integer.parseInt(user.get("aab106"))-Integer.parseInt(acc.get("aac605")),this.get("aab101"));
+		ab01.updateMoney(-Integer.parseInt(acc.get("aac605")),this.get("aab101"));
 		
 		//4,更新饰品库存
 		String sql="update ac06 set aac606=aac606-1 where aac601=?";
@@ -56,6 +56,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		return this.executeTransaction();
     }
 	
+	//出售饰品给网站
 	public boolean sellAccessories()throws Exception
 	{
 		String sql="insert into ad03(aac601,aab101,aad302,aad303,aad304) values(?,?,?,?,?)";
@@ -72,6 +73,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		
 	}
 	
+	//根据饰品ID查找其他信息
 	public Map<String, String> findAccessories() throws Exception
 	{
 		//1.编写SQL语句
