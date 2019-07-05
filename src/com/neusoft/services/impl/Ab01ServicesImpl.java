@@ -166,7 +166,5 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	  		return this.queryForList(sql.toString(), paramList.toArray());
 	  }
     
-    
-
 	
 }
