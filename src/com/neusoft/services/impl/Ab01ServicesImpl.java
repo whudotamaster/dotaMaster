@@ -43,6 +43,29 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	
     }
     
+    //登录判断方法
+    public List<Map<String,String>> loginEmp()throws Exception
+    {
+    	Object aab103 = this.get("aab103");
+    	Object aab104 = this.get("aab104");
+    	
+    	System.out.println("loginEmp成功运行");
+    	StringBuilder sql=new StringBuilder()
+    			.append("select a.aab102,a.aab105,a.aab106,a.aab107,a.aab108")		
+    			.append("  from ab01 a")
+    			.append(" where a.aab103=? and a.aab104=?")
+    			;
+    	List<Object> paramList =new ArrayList<>();
+    	paramList.add(aab103);
+    	paramList.add(aab104);
+    	return this.queryForList(sql.toString(), paramList.toArray());
+    }
+    
+    
+    
+ 
+    
+    
     private boolean addEmp()throws Exception
     {
     	//获取当前员工编号
