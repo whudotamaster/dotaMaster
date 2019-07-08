@@ -38,6 +38,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 		};
     	return this.executeUpdate(sql.toString(), args)>0;
     }
+	
 	//辅助方法 判断是否为VIP
 	private boolean isVIP()throws Exception
 	{

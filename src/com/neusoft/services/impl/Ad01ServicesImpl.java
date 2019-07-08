@@ -10,21 +10,24 @@ import com.neusoft.system.tools.Tools;
 public class Ad01ServicesImpl extends JdbcServicesSupport 
 {
 	//用户进入首页时,查看当前是否有可押注的比赛
-	public List<Map<String, String>> selectBet()throws Exception
+	public List<Map<String, String>> query()throws Exception
     {
+		System.out.println("跳到了AD01的query");
 		StringBuilder sql=new StringBuilder()
   				.append("select d.aad101,d.aad102,d.aad103,c.aac1101,")
   				.append("       c.aac1102,c.aac1103,c.aac1104,e.aac702")
   				.append("  from ac11 c,ad01 d,ac07 e")
   				.append(" where d.aac1101=c.aac1101 and e.aac701=c.aac701 ")
-  				.append("   and current_time>d.aad104 and current_time<d.aad105")
+  				.append("   and now()>d.aad104 and now()<d.aad105")
   				;
 		return this.queryForList(sql.toString());
     }
 	
-   //用户单次押注时,插入用户押注表并更新竞猜表
+    //用户单次押注时,插入用户押注表并更新竞猜表
     public boolean insertBetLog()throws Exception
     {
+    	//
+    	this.put("aab101",1);
     	//插入单次押注信息
     	StringBuilder sql1=new StringBuilder()
     			.append("insert into ad02(aad101,aab101,aad202,aad203")
@@ -37,6 +40,8 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     			this.get("aad203")
     	};
     	this.apppendSql(sql1.toString(), args1);
+    	//扣除用户金额
+    	
     	//更新竞猜总额
     	StringBuilder sql2=new StringBuilder()
     			.append("update ad01 a")

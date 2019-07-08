@@ -44,12 +44,14 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 		return this.executeUpdate(sql, this.get("aad301"))>0;
 	}
 	
+	//查看所有待收货列表中未完成的订单
 	public List<Map<String, String>> queryAllDelivery()throws Exception
 	{
 		String sql="select aad301,aac601,aab101,aad302,aad303,aad304 from ad03 where aad303=0";
 		return this.queryForList(sql);
 	}
 	
+	//查看待收货列表订单的详细信息
 	public Map<String, String> findDelivery()throws Exception
 	{
 		String sql="select aad301,aac601,aab101,aad302,aad303,aad304 from ad03 where aad301=?";
