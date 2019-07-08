@@ -31,6 +31,7 @@ public interface BaseServices
     	 return null;
      }
 
+
 	default List<Map<String, String>> queryHero()throws Exception
 	{
 		return null;
@@ -40,4 +41,9 @@ public interface BaseServices
 	{
 		return null;
 	}
+
+	 default  List<Map<String,String>> loginEmp() throws Exception
+	 {
+		 return null;
+	 }
 }

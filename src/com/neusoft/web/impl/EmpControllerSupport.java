@@ -7,6 +7,7 @@ public abstract class EmpControllerSupport extends ControllerSupport
 {
 	public EmpControllerSupport() 
 	{
+		System.out.println("EmpControllerSupport成功运行");
 		this.setServices(new Ab01ServicesImpl());
 	}
 }

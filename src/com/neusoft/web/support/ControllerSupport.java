@@ -22,6 +22,7 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected void setServices(BaseServices services)
 	{
+		System.out.println("setServices成功运行");
 		this.services=services;
 	}
 	
@@ -66,6 +67,29 @@ public abstract class ControllerSupport implements BaseController
 			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
 		}	
 	}
+	
+	//登录判断
+	protected final boolean loginIn()throws Exception
+	{
+		List<Map<String,String> >ins=this.services.loginEmp();
+		if(ins.size()>0)
+		{
+			this.saveAttribute("ins", ins);
+			System.out.println("login true运行");
+			return true;
+		}
+		else
+		{
+			this.saveAttribute("msg", "提示：登陆失败");
+			System.out.println("login false运行");
+			return false;
+		}
+	}
+	
+	
+	
+	
+	
 	
 	/**
 	 * 通过反射执行更新方法
