@@ -4,10 +4,8 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.neusoft.services.BaseServices;
-
-public abstract class ControllerSupport implements BaseController
+public abstract class ControllerSupportForAc01 implements BaseController
 {
 
 	/*****************************************
@@ -22,7 +20,6 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected void setServices(BaseServices services)
 	{
-		System.out.println("setServices成功运行");
 		this.services=services;
 	}
 	
@@ -40,7 +37,7 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void savePageData()throws Exception
 	{
-		List<Map<String,String>> rows=this.services.query();
+		List<Map<String,String>> rows=this.services.queryHero();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
@@ -57,7 +54,7 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void savePageInstance()throws Exception
 	{
-		Map<String,String> ins=this.services.findById();
+		Map<String,String> ins=this.services.findByIdHero();
 		if(ins!=null)
 		{
 			this.saveAttribute("ins",  ins);
@@ -67,46 +64,6 @@ public abstract class ControllerSupport implements BaseController
 			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
 		}	
 	}
-	
-	//登录判断
-	protected final boolean loginIn()throws Exception
-	{
-		List<Map<String, String>> ins=this.services.loginEmp();
-		if(ins.size()>0)
-		{
-			this.saveAttribute("ins", ins);
-			System.out.println(ins);
-			return true;
-		}
-		else
-		{
-			this.saveAttribute("msg", "提示：登陆失败");
-			System.out.println("login false运行");
-			return false;
-		}
-		
-	}
-	
-	//用户注册
-	protected final boolean logonIn()throws Exception
-	{
-		int ins=this.services.logonEmp();
-		if(ins!=0)
-		{
-			this.saveAttribute("msg", "提示：注册成功，请登录");
-			System.out.println(ins);
-			return true;
-		}
-		else
-		{
-			this.saveAttribute("msg", "提示：注册失败，该用户名已存在");
-			System.out.println("login false运行");
-			return false;
-		}
-	}
-	
-	
-	
 	
 	/**
 	 * 通过反射执行更新方法
@@ -165,7 +122,7 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void savePageDataForDelete()throws Exception
 	{
-		List<Map<String,String>> rows=this.services.query();
+		List<Map<String,String>> rows=this.services.queryHero();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);

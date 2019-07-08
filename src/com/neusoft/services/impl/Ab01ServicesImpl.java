@@ -114,7 +114,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	
     	System.out.println("loginEmp成功运行");
     	StringBuilder sql=new StringBuilder()
-    			.append("select a.aab102,a.aab105,a.aab106,a.aab107,a.aab108")		
+    			.append("select a.aab102,a.aab105,a.aab106,a.aab107,a.aab108")	
     			.append("  from ab01 a")
     			.append(" where a.aab103=? and a.aab104=?")
     			;
@@ -122,6 +122,48 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	paramList.add(aab103);
     	paramList.add(aab104);
     	return this.queryForList(sql.toString(), paramList.toArray());
+    }
+    
+    //用户名查重
+    private boolean isExist()throws Exception
+    {
+    	
+    	StringBuilder sql=new StringBuilder()
+    			.append(" select *")
+    			.append("   from ab01 a")
+    			.append("  where a.aab103=?")
+    			;
+    	System.out.println("isExist成功运行");
+    	return this.queryForMap(sql.toString(), this.get("aab103"))!=null;
+    }
+    //用户注册方法
+    public int logonEmp()throws Exception
+    {
+    	if (!isExist())
+    	{    	System.out.println("!isExist成功运行");
+
+    		
+    	Object aab103 = this.get("aab103");
+    	Object aab104 = this.get("aab104");
+    	
+    	System.out.println("logonEmp运行");
+    	StringBuilder sql=new StringBuilder()
+    			.append("insert into ab01")
+    			.append("(aab102,aab103,aab104,aab105,aab106,")
+    			.append(" 						aab107,aab108,aab109)")
+    			.append("values ('未命名',?,?,'空',0,")
+    			.append("							0,1,0000-00-00)")
+    			;
+    	List<Object> paramList =new ArrayList<>();
+    	paramList.add(aab103);
+    	paramList.add(aab104);
+    	System.out.println("logonEmp成功运行");
+    	return this.executeUpdate(sql.toString(), paramList.toArray());
+    	}
+    	else
+    	{
+    		return 0;
+    	}
     }
     
     
@@ -173,6 +215,10 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.batchUpdate(sql, idlist);
     }
 
+    
+
+    
+    
     public Map<String,String> findById()throws Exception
     {
     	//1.编写SQL语句
@@ -247,4 +293,5 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	  		sql.append(" order by x.aab102");
 	  		return this.queryForList(sql.toString(), paramList.toArray());
 	  }
+
 }
