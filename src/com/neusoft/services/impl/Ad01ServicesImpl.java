@@ -23,15 +23,32 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 		return this.queryForList(sql.toString());
     }
 	
+	private boolean isEnough() throws Exception
+	{
+		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
+		Double aab106=ab01.getMoney();
+		int aad202=Integer.parseInt(this.get("aad202").toString());
+		int aad203=Integer.parseInt(this.get("aad203").toString());
+		if(aab106>aad202+aad203)
+			return true;
+		else 
+			return false;
+	}
+	
     //用户单次押注时,插入用户押注表并更新竞猜表
     public boolean insertBetLog()throws Exception
     {
-    	//
-    	this.put("aab101",1);
+    	//测试用
+    	this.put("aab101","1");
+    	
+    	if(!this.isEnough())
+    		return false;
+    	//通过前台传过来的id数据在数据库里查找到完整数据
+    	
     	//插入单次押注信息
     	StringBuilder sql1=new StringBuilder()
-    			.append("insert into ad02(aad101,aab101,aad202,aad203")
-    			.append("          values(?,?,?,?")
+    			.append("insert into ad02(aad101,aab101,aad202,aad203)")
+    			.append("          values(?,?,?,?)")
     			;
     	Object args1[]={
     			this.get("aad101"),
@@ -41,16 +58,23 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	};
     	this.apppendSql(sql1.toString(), args1);
     	//扣除用户金额
+    	int aab106=0-Integer.parseInt(this.get("aad202").toString())-Integer.parseInt(this.get("aad203").toString());
+    	Ab01ServicesImpl ab01=new Ab01ServicesImpl();
+    	ab01.updateMoney(aab106, this.get("aab101"));
+    	
+    	//通过竞猜ID查找竞猜相关信息并放入dto中
+    	this.findDataById();
+
     	
     	//更新竞猜总额
     	StringBuilder sql2=new StringBuilder()
-    			.append("update ad01 a")
-    			.append("   set a.aad102=? and a.aad103=?")
-    			.append(" where a.aad101=?")
+    			.append("update ad01 ")
+    			.append("   set aad102=aad102+?,aad103=aad103+?")
+    			.append(" where aad101=?")
     			;
     	Object args2[]={
-    			this.get("aad102"),
-    			this.get("aab103"),
+    			this.get("aad202"),
+    			this.get("aad203"),
     			this.get("aad101")
     	};
     	this.apppendSql(sql2.toString(), args2);
@@ -67,6 +91,22 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
   				.append(" where aad101=?")
   				;
   		return this.queryForMap(sql.toString(), this.get("aad101"));
+    }
+    
+    //根据ID查找完整数据并放入dto中
+    private void findDataById() throws Exception
+    {
+    	String sql="select * from ad01 where aad101=?";
+    	System.out.println(this.get("aad101"));
+    	Map<String, String> map=this.queryForMap(sql,this.get("aad101"));
+    	System.out.println(map);
+    	this.put("aac1101", map.get("aac1101"));
+    	this.put("aad102", map.get("aad102"));
+    	this.put("aad103", map.get("aad103"));
+    	this.put("aad104", map.get("aad104"));
+    	this.put("aad105", map.get("aad105"));
+    	
+    	
     }
     
     //查询每一笔指定竞猜押注

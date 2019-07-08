@@ -30,10 +30,10 @@
     	 vform.submit();
       }
       
-      function onDel(vaab101)
+      function onBet(vaad101)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdEmp.html?aab101="+vaab101;
+    	 vform.action="<%=path%>/playBet.html?aad101="+vaad101;
     	 //alert(vform.action);
     	 vform.submit();
       } 
@@ -58,6 +58,7 @@ ${msg }
 	    <td>赛事名</td>
 	    <td>押注A方</td>
 	    <td>押注B方</td>
+	    <td></td>
 	  </tr>
 	  <!--
 	         注意事项
@@ -82,10 +83,13 @@ ${msg }
 				    <td>${ins.aac1104 }</td>
 				    <td>${ins.aac702 }</td>
 				    <td>
-				      <e:text name="aad202"/>
+				      <e:text name="aad202" defval="0"/>
 				    </td>
 				    <td>
-				      <e:text name="aad203"/>
+				      <e:text name="aad203" defval="0"/>
+				    </td>
+				   <td>
+				      <a href="#" onclick="onBet('${ins.aad101}')">下注</a>
 				    </td>
 				  </tr>
 		      </c:forEach>
@@ -138,8 +142,6 @@ ${msg }
 	    </td>
 	  </tr>
 	</table>
-	<e:hidden name="aad101"/>
-	<e:hidden name="aab101"/>
 </form>
 </body>
 </html>

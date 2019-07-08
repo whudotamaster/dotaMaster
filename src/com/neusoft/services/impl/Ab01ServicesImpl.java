@@ -19,14 +19,14 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 		if(tag)
 		{
 				sql.append("update ab01 a")
-					.append("   set a.aab106=a.aab106-? and a.aab109 = DATE_ADD(a.aab109, INTERVAL ? MONTH)")
+					.append("   set a.aab106=a.aab106-?, a.aab109 = DATE_ADD(a.aab109, INTERVAL ? MONTH)")
 					.append(" where a.aab101=?")
 					;
     	}
 		else//不是会员 在当前时间+他的购买时长
 		{
 			sql.append("update ab01 a")
-			.append("   set a.aab106=a.aab106-? and a.aab109 = DATE_ADD(current_date, INTERVAL ? MONTH)")
+			.append("   set a.aab106=a.aab106-?,a.aab109 = DATE_ADD(current_date, INTERVAL ? MONTH)")
 			.append(" where a.aab101=?")
 			;
 		}
@@ -96,6 +96,14 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     			aab101
     	};
     	return this.executeUpdate(sql.toString(), args)>0;
+    }
+    
+    public Double getMoney()throws Exception
+    {
+
+    	String sql="select aab106 from ab01 where aab101=?";
+    	Map<String, String > map=this.queryForMap(sql, 1);
+    	return Double.valueOf(map.get("aab106"));
     }
     
     //登录判断方法
