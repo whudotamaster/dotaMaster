@@ -71,11 +71,11 @@ public abstract class ControllerSupport implements BaseController
 	//登录判断
 	protected final boolean loginIn()throws Exception
 	{
-		List<Map<String,String> >ins=this.services.loginEmp();
+		List<Map<String, String>> ins=this.services.loginEmp();
 		if(ins.size()>0)
 		{
 			this.saveAttribute("ins", ins);
-			System.out.println("login true运行");
+			System.out.println(ins);
 			return true;
 		}
 		else
@@ -84,9 +84,26 @@ public abstract class ControllerSupport implements BaseController
 			System.out.println("login false运行");
 			return false;
 		}
+		
 	}
 	
-	
+	//用户注册
+	protected final boolean logonIn()throws Exception
+	{
+		int ins=this.services.logonEmp();
+		if(ins!=0)
+		{
+			this.saveAttribute("msg", "提示：注册成功，请登录");
+			System.out.println(ins);
+			return true;
+		}
+		else
+		{
+			this.saveAttribute("msg", "提示：注册失败，该用户名已存在");
+			System.out.println("login false运行");
+			return false;
+		}
+	}
 	
 	
 	
