@@ -17,7 +17,7 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 		String sql="update ad03 set aad303=2 where aad301=?";
 		
 		//2,发送失败消息给用户
-		Tools.sendMessage("您的饰品未收到,请您检查是否发送错误或未发送");
+		Tools.sendMessage("您的饰品未收到,请您检查是否发送错误或未发送",this.get("aab101"));
 		
 		return this.executeUpdate(sql, this.get("aad301"))>0;
 	}
@@ -39,17 +39,19 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 		ab01.updateMoney(price,"aab101");//此处填页面传过来的出售饰品的用户ID
 		
 		//4,发送信息
-		Tools.sendMessage("您的饰品已经收到,您获得的金额是"+price);
+		Tools.sendMessage("您的饰品已经收到,您获得的金额是"+price,this.get("aab101"));
 		
 		return this.executeUpdate(sql, this.get("aad301"))>0;
 	}
 	
+	//查看所有待收货列表中未完成的订单
 	public List<Map<String, String>> queryAllDelivery()throws Exception
 	{
 		String sql="select aad301,aac601,aab101,aad302,aad303,aad304 from ad03 where aad303=0";
 		return this.queryForList(sql);
 	}
 	
+	//查看待收货列表订单的详细信息
 	public Map<String, String> findDelivery()throws Exception
 	{
 		String sql="select aad301,aac601,aab101,aad302,aad303,aad304 from ad03 where aad301=?";

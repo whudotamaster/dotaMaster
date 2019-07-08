@@ -10,25 +10,45 @@ import com.neusoft.system.tools.Tools;
 public class Ad01ServicesImpl extends JdbcServicesSupport 
 {
 	//用户进入首页时,查看当前是否有可押注的比赛
-	public List<Map<String, String>> selectBet()throws Exception
+	public List<Map<String, String>> query()throws Exception
     {
+		System.out.println("跳到了AD01的query");
 		StringBuilder sql=new StringBuilder()
   				.append("select d.aad101,d.aad102,d.aad103,c.aac1101,")
   				.append("       c.aac1102,c.aac1103,c.aac1104,e.aac702")
   				.append("  from ac11 c,ad01 d,ac07 e")
   				.append(" where d.aac1101=c.aac1101 and e.aac701=c.aac701 ")
-  				.append("   and current_time>d.aad104 and current_time<d.aad105")
+  				.append("   and now()>d.aad104 and now()<d.aad105")
   				;
 		return this.queryForList(sql.toString());
     }
 	
-   //用户单次押注时,插入用户押注表并更新竞猜表
+	private boolean isEnough() throws Exception
+	{
+		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
+		Double aab106=ab01.getMoney();
+		int aad202=Integer.parseInt(this.get("aad202").toString());
+		int aad203=Integer.parseInt(this.get("aad203").toString());
+		if(aab106>aad202+aad203)
+			return true;
+		else 
+			return false;
+	}
+	
+    //用户单次押注时,插入用户押注表并更新竞猜表
     public boolean insertBetLog()throws Exception
     {
+    	//测试用
+    	this.put("aab101","1");
+    	
+    	if(!this.isEnough())
+    		return false;
+    	//通过前台传过来的id数据在数据库里查找到完整数据
+    	
     	//插入单次押注信息
     	StringBuilder sql1=new StringBuilder()
-    			.append("insert into ad02(aad101,aab101,aad202,aad203")
-    			.append("          values(?,?,?,?")
+    			.append("insert into ad02(aad101,aab101,aad202,aad203)")
+    			.append("          values(?,?,?,?)")
     			;
     	Object args1[]={
     			this.get("aad101"),
@@ -37,15 +57,24 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     			this.get("aad203")
     	};
     	this.apppendSql(sql1.toString(), args1);
+    	//扣除用户金额
+    	int aab106=0-Integer.parseInt(this.get("aad202").toString())-Integer.parseInt(this.get("aad203").toString());
+    	Ab01ServicesImpl ab01=new Ab01ServicesImpl();
+    	ab01.updateMoney(aab106, this.get("aab101"));
+    	
+    	//通过竞猜ID查找竞猜相关信息并放入dto中
+    	this.findDataById();
+
+    	
     	//更新竞猜总额
     	StringBuilder sql2=new StringBuilder()
-    			.append("update ad01 a")
-    			.append("   set a.aad102=? and a.aad103=?")
-    			.append(" where a.aad101=?")
+    			.append("update ad01 ")
+    			.append("   set aad102=aad102+?,aad103=aad103+?")
+    			.append(" where aad101=?")
     			;
     	Object args2[]={
-    			this.get("aad102"),
-    			this.get("aab103"),
+    			this.get("aad202"),
+    			this.get("aad203"),
     			this.get("aad101")
     	};
     	this.apppendSql(sql2.toString(), args2);
@@ -62,6 +91,22 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
   				.append(" where aad101=?")
   				;
   		return this.queryForMap(sql.toString(), this.get("aad101"));
+    }
+    
+    //根据ID查找完整数据并放入dto中
+    private void findDataById() throws Exception
+    {
+    	String sql="select * from ad01 where aad101=?";
+    	System.out.println(this.get("aad101"));
+    	Map<String, String> map=this.queryForMap(sql,this.get("aad101"));
+    	System.out.println(map);
+    	this.put("aac1101", map.get("aac1101"));
+    	this.put("aad102", map.get("aad102"));
+    	this.put("aad103", map.get("aad103"));
+    	this.put("aad104", map.get("aad104"));
+    	this.put("aad105", map.get("aad105"));
+    	
+    	
     }
     
     //查询每一笔指定竞猜押注
@@ -141,7 +186,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     				m.get("aab101")
     			};
 			this.apppendSql(sql2.toString(),args);
-			Tools.sendMessage("您有一笔押注公布结果了,您获得的金额是"+m.get("aad204"));
+			Tools.sendMessage("您有一笔押注公布结果了,您获得的金额是"+m.get("aad204"),m.get("aab101"));
 		}
     	return this.executeTransaction();
     }

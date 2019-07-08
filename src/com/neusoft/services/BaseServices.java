@@ -32,13 +32,24 @@ public interface BaseServices
      }
 
 
+
 	
-	 default  List<Map<String,String>> loginEmp() throws Exception
+
+	default Map<String, String> findByIdHero()throws Exception
+	{
+		return null;
+	}
+
+	 default  List<Map<String, String>> loginEmp() throws Exception
+
 	 {
 		 return null;
 	 }
 
-	
 
-	
+	default int logonEmp() throws Exception
+	{
+		return 0;
+	}
+
 }

@@ -16,7 +16,7 @@ import com.neusoft.system.db.DBUtils;
 public class Tools 
 {
 
-	public static boolean sendMessage(String text)
+	public static boolean sendMessage(String text,Object userId)
 	{
 		return false;
 	}

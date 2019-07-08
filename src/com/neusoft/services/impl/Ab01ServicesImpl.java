@@ -19,14 +19,14 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 		if(tag)
 		{
 				sql.append("update ab01 a")
-					.append("   set a.aab106=a.aab106-? and a.aab109 = DATE_ADD(a.aab109, INTERVAL ? MONTH)")
+					.append("   set a.aab106=a.aab106-?, a.aab109 = DATE_ADD(a.aab109, INTERVAL ? MONTH)")
 					.append(" where a.aab101=?")
 					;
     	}
 		else//不是会员 在当前时间+他的购买时长
 		{
 			sql.append("update ab01 a")
-			.append("   set a.aab106=a.aab106-? and a.aab109 = DATE_ADD(current_date, INTERVAL ? MONTH)")
+			.append("   set a.aab106=a.aab106-?,a.aab109 = DATE_ADD(current_date, INTERVAL ? MONTH)")
 			.append(" where a.aab101=?")
 			;
 		}
@@ -38,6 +38,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 		};
     	return this.executeUpdate(sql.toString(), args)>0;
     }
+	
 	//辅助方法 判断是否为VIP
 	private boolean isVIP()throws Exception
 	{
@@ -97,15 +98,21 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.executeUpdate(sql.toString(), args)>0;
     }
     
+    public Double getMoney()throws Exception
+    {
+
+    	String sql="select aab106 from ab01 where aab101=?";
+    	Map<String, String > map=this.queryForMap(sql, 1);
+    	return Double.valueOf(map.get("aab106"));
+    }
+    
     //登录判断方法
     public List<Map<String,String>> loginEmp()throws Exception
     {
     	Object aab103 = this.get("aab103");
     	Object aab104 = this.get("aab104");
-    	
-    	System.out.println("loginEmp成功运行");
     	StringBuilder sql=new StringBuilder()
-    			.append("select a.aab102,a.aab105,a.aab106,a.aab107,a.aab108")		
+    			.append("select a.aab102,a.aab105,a.aab106,a.aab107,a.aab108")	
     			.append("  from ab01 a")
     			.append(" where a.aab103=? and a.aab104=?")
     			;
@@ -113,6 +120,63 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	paramList.add(aab103);
     	paramList.add(aab104);
     	return this.queryForList(sql.toString(), paramList.toArray());
+    }
+    
+    //用户名查重
+    private boolean isExist()throws Exception
+    {
+    	
+    	StringBuilder sql=new StringBuilder()
+    			.append(" select *")
+    			.append("   from ab01 a")
+    			.append("  where a.aab103=?")
+    			;
+    	return this.queryForMap(sql.toString(), this.get("aab103"))!=null;
+    }
+    //用户注册
+    public int logonEmp()throws Exception
+    {
+    	try
+    	{
+	    	if (isExist()==true)
+	    	{
+	    		return 1000;//重名用户名不允许注册
+	    	}
+	    	else
+	    	{  
+		    	Object aab103 = this.get("aab103");
+		    	Object aab104 = this.get("aab104");
+		    	//进行用户输入的数据长度判断
+		    	if(((String) aab103).length()>15||((String) aab104).length()>15)
+		    	{
+		    		return 2000;
+		    	}
+		    	else
+		    	{
+			    	StringBuilder sql=new StringBuilder()
+			    			.append("insert into ab01")
+			    			.append("(aab102,aab103,aab104,aab105,aab106,")
+			    			.append(" 						aab107,aab108,aab109)")
+			    			.append("values (?,?,?,'空',0,")
+			    			.append("							0,1,0000-00-00)")
+			       			;
+			    	List<Object> paramList =new ArrayList<>();
+			    	paramList.add(aab103);
+			    	paramList.add(aab103);
+			    	paramList.add(aab104);
+			    	this.executeUpdate(sql.toString(), paramList.toArray());
+			    	return 0;
+			    	//成功写入数据库
+			    }
+		    
+	    	}
+    	}
+    	catch(Exception e)
+    	{
+    		//未输入用户名或密码报错，输出3000
+    		e.printStackTrace();
+    		return 3000;
+    	}   	
     }
     
     
@@ -164,6 +228,10 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.batchUpdate(sql, idlist);
     }
 
+    
+
+    
+    
     public Map<String,String> findById()throws Exception
     {
     	//1.编写SQL语句
