@@ -32,9 +32,9 @@
      <td>${log.aab102 }</td>
  
  </c:forEach>
- 
+ <form action=>
  ${ins[0].aab102 }
- 
+ </form>
 </div>
 <%@include file="footer.jsp" %>
 <!-- ÒýÈëÒ³½Å -->

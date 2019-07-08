@@ -10,6 +10,7 @@ import com.sun.org.apache.bcel.internal.generic.Select;
 
 public class Ac06ServicesImpl extends JdbcServicesSupport 
 {
+	
 	//使用虚拟货币购买饰品
 	public boolean buyAccessories()throws Exception
     {

@@ -30,10 +30,10 @@
     	 vform.submit();
       }
       
-      function onBet(vaad101)
+      function onBet(vaad101,vaac1101)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/playBet.html?aad101="+vaad101;
+    	 vform.action="<%=path%>/ModifyComp.html?aac1105="+vaad101+"&aac1101="+vaac1101;
     	 //alert(vform.action);
     	 vform.submit();
       } 
@@ -44,7 +44,7 @@
 ${msg }
 <br>
 <br>
-<form id="myform" action="<%=path%>/queryBet.html" method="post">
+<form id="myform" action="<%=path%>/queryComp.html" method="post">
 	<!-- 数据迭代区 -->
 	
 	<table border="1" width="95%" align="center">
@@ -59,10 +59,7 @@ ${msg }
 	    <td>战队1</td>
 	    <td>战队2</td>
 	    <td>比赛开始时间</td>
-	    <td>A方押注数量</td>
-	    <td>B方押注数量</td>
-	    <td>押注A方</td>
-	    <td>押注B方</td>
+	    <td></td>
 	    <td></td>
 	  </tr>
 	  <!--
@@ -85,16 +82,11 @@ ${msg }
 				    <td>${ins.aac1103 }</td>
 				    <td>${ins.aac1104 }</td>
 				    <td>${ins.aac1102 }</td>
-				    <td>${ins.aad102 }</td>
-				    <td>${ins.aad103 }</td>
 				    <td>
-				      <e:text name="aad202" defval="0"/>
+				      <a href="#" onclick="onBet('1','${ins.aac1101}')">战队1获胜</a>
 				    </td>
 				    <td>
-				      <e:text name="aad203" defval="0"/>
-				    </td>
-				   <td>
-				      <a href="#" onclick="onBet('${ins.aad101}')">下注</a>
+				      <a href="#" onclick="onBet('2','${ins.aac1101}')">战队2获胜</a>
 				    </td>
 				  </tr>
 		      </c:forEach>
@@ -109,16 +101,12 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
-			            <td></td>
-			            <td></td>
 			          </tr>
 		      </c:forEach>
 	     </c:when>
 	     <c:otherwise>
 	        <c:forEach begin="1" step="1" end="15">
 	           <tr>
-	             <td></td>
-	             <td></td>
 	             <td></td>
 	             <td></td>
 	             <td></td>
@@ -144,11 +132,6 @@ ${msg }
 	    </td>
 	  </tr>
 	</table>
-</form>
-<form action="<%=path%>/buyVIP.html" method="post">
-<input type="search" name="month" placeholder="输入开通的月数"/>
-<input type="submit" name="next" value="开通">
-<input type="hidden" name="aab101" value="1">
 </form>
 </body>
 </html>

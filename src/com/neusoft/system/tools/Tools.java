@@ -11,16 +11,17 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.neusoft.services.BaseServices;
+import com.neusoft.services.impl.Ab01ServicesImpl;
 import com.neusoft.system.db.DBUtils;
 
 public class Tools 
 {
 
-	public static boolean sendMessage(String text,Object userId)
+	public static void sendMessage(String text,Object userId)
 	{
-		return false;
+		
 	}
-	
 	
 	public static void main(String[] args) 
 	{
@@ -277,5 +278,6 @@ public class Tools
    		 DBUtils.close(pstm2);
    	 }
     }
+
 
 }

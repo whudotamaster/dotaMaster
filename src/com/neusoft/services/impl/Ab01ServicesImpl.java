@@ -13,8 +13,15 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	//使用虚拟货币购买或续费会员
 	public boolean buyVIP()throws Exception
     {
+		//如果金钱不足开通的月数
+		if(this.getMoney(this.get("aab101"))<Integer.parseInt(this.get("month").toString())*1000)
+			return false;
+		
+		//进行开通或续费会员操作
 		StringBuilder sql=new StringBuilder();
-		boolean tag=this.isVIP();
+		boolean tag=this.isVIP(this.get("aab101"));
+		
+		System.out.println(tag);
 		//如果是会员 在他的到期时间后增加续费时长
 		if(tag)
 		{
@@ -36,14 +43,15 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 				this.get("month"),
 				this.get("aab101")
 		};
+		System.out.println("开通成功");
     	return this.executeUpdate(sql.toString(), args)>0;
     }
 	
 	//辅助方法 判断是否为VIP
-	private boolean isVIP()throws Exception
+	public boolean isVIP(Object aab101)throws Exception
 	{
 		String sql="select aab109 from ab01 where aab101=? and aab109>current_date";
-		Map<String, String> map=this.queryForMap(sql, this.get("aab101"));
+		Map<String, String> map=this.queryForMap(sql, aab101);
 		if(map==null)
 			return false;
 		else
@@ -98,11 +106,11 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.executeUpdate(sql.toString(), args)>0;
     }
     
-    public Double getMoney()throws Exception
+    public Double getMoney(Object aab101)throws Exception
     {
 
     	String sql="select aab106 from ab01 where aab101=?";
-    	Map<String, String > map=this.queryForMap(sql, 1);
+    	Map<String, String> map=this.queryForMap(sql, aab101);
     	return Double.valueOf(map.get("aab106"));
     }
     
