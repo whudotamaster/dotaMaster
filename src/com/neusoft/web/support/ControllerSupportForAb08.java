@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.neusoft.services.BaseServices;
-public abstract class ControllerSupportForAc01 implements BaseController
+
+
+public abstract class ControllerSupportForAb08 implements BaseController
 {
 
 	/*****************************************
@@ -38,6 +40,7 @@ public abstract class ControllerSupportForAc01 implements BaseController
 	protected final void savePageData()throws Exception
 	{
 		List<Map<String,String>> rows=this.services.query();
+		System.out.println(rows.size());
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
@@ -123,6 +126,7 @@ public abstract class ControllerSupportForAc01 implements BaseController
 	protected final void savePageDataForDelete()throws Exception
 	{
 		List<Map<String,String>> rows=this.services.query();
+		System.out.println(rows);
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
