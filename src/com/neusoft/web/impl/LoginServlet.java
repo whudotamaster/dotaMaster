@@ -9,7 +9,7 @@ public class LoginServlet  extends EmpControllerSupport {
 	{
 
 		this.loginIn();//向页面传递ins
-		System.out.println("loginIn成功运行");
+		System.out.println("loginIn运行");
 		return this.loginIn()?"mainPage":"login";
 	}
 }

@@ -28,12 +28,10 @@
 <%@ include file="header.jsp" %>
 
 <div id="main">
- <c:forEach items="${ins }" var="log" varStatus="vs">
-     <td>${log.aab102 }</td>
+
  
- </c:forEach>
+
  
- ${ins[0].aab102 }
  
 </div>
 <%@include file="footer.jsp" %>
