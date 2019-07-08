@@ -14,7 +14,6 @@ public class LogonServlet extends EmpControllerSupport
 	@Override
 	public String execute()throws Exception 
 	{
-		
 		this.logonIn();
 		System.out.println("logonIn‘À––");	
 		return "login";

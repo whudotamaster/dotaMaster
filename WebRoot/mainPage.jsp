@@ -1,5 +1,7 @@
 <%@ page language="java" 
     pageEncoding="GBK"%>
+<<<<<<< HEAD
+=======
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
     <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -12,6 +14,7 @@
 
 </script>
 
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 <html>
 <head>
 <title>Ö÷Ò³</title>
@@ -28,13 +31,18 @@
 <%@ include file="header.jsp" %>
 
 <div id="main">
- <c:forEach items="${ins }" var="log" varStatus="vs">
-     <td>${log.aab102 }</td>
+
  
+<<<<<<< HEAD
  </c:forEach>
  <form action=>
  ${ins[0].aab102 }
  </form>
+=======
+
+ 
+ 
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 </div>
 <%@include file="footer.jsp" %>
 <!-- ÒýÈëÒ³½Å -->

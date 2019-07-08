@@ -119,8 +119,6 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     {
     	Object aab103 = this.get("aab103");
     	Object aab104 = this.get("aab104");
-    	
-    	System.out.println("loginEmp成功运行");
     	StringBuilder sql=new StringBuilder()
     			.append("select a.aab102,a.aab105,a.aab106,a.aab107,a.aab108")	
     			.append("  from ab01 a")
@@ -141,37 +139,52 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     			.append("   from ab01 a")
     			.append("  where a.aab103=?")
     			;
-    	System.out.println("isExist成功运行");
     	return this.queryForMap(sql.toString(), this.get("aab103"))!=null;
     }
-    //用户注册方法
+    //用户注册
     public int logonEmp()throws Exception
     {
-    	if (!isExist())
-    	{    	System.out.println("!isExist成功运行");
-
-    		
-    	Object aab103 = this.get("aab103");
-    	Object aab104 = this.get("aab104");
-    	
-    	System.out.println("logonEmp运行");
-    	StringBuilder sql=new StringBuilder()
-    			.append("insert into ab01")
-    			.append("(aab102,aab103,aab104,aab105,aab106,")
-    			.append(" 						aab107,aab108,aab109)")
-    			.append("values ('未命名',?,?,'空',0,")
-    			.append("							0,1,0000-00-00)")
-    			;
-    	List<Object> paramList =new ArrayList<>();
-    	paramList.add(aab103);
-    	paramList.add(aab104);
-    	System.out.println("logonEmp成功运行");
-    	return this.executeUpdate(sql.toString(), paramList.toArray());
-    	}
-    	else
+    	try
     	{
-    		return 0;
+	    	if (isExist()==true)
+	    	{
+	    		return 1000;//重名用户名不允许注册
+	    	}
+	    	else
+	    	{  
+		    	Object aab103 = this.get("aab103");
+		    	Object aab104 = this.get("aab104");
+		    	//进行用户输入的数据长度判断
+		    	if(((String) aab103).length()>15||((String) aab104).length()>15)
+		    	{
+		    		return 2000;
+		    	}
+		    	else
+		    	{
+			    	StringBuilder sql=new StringBuilder()
+			    			.append("insert into ab01")
+			    			.append("(aab102,aab103,aab104,aab105,aab106,")
+			    			.append(" 						aab107,aab108,aab109)")
+			    			.append("values (?,?,?,'空',0,")
+			    			.append("							0,1,0000-00-00)")
+			       			;
+			    	List<Object> paramList =new ArrayList<>();
+			    	paramList.add(aab103);
+			    	paramList.add(aab103);
+			    	paramList.add(aab104);
+			    	this.executeUpdate(sql.toString(), paramList.toArray());
+			    	return 0;
+			    	//成功写入数据库
+			    }
+		    
+	    	}
     	}
+    	catch(Exception e)
+    	{
+    		//未输入用户名或密码报错，输出3000
+    		e.printStackTrace();
+    		return 3000;
+    	}   	
     }
     
     
