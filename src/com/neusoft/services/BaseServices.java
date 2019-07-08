@@ -28,6 +28,15 @@ public interface BaseServices
     	 return null;
      }
 
+	default List<Map<String, String>> postFindById()throws Exception
+	{
+		return null;
+	}
+
+	default List<Map<String, String>> commentFindById()throws Exception
+	{
+		return null;
+	}
 
 
 

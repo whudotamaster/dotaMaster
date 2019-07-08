@@ -70,6 +70,27 @@ public abstract class ControllerSupport implements BaseController
 		}	
 	}
 	
+	/*****************************************
+	 * 	        帖子详细頁面加载业务流程封装
+	 *****************************************/
+	/**
+	 * 帖子数据查询
+	 * @throws Exception
+	 */
+	protected final void postOnLoad()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.postFindById();
+		List<Map<String,String>> comment=this.services.commentFindById();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+			this.saveAttribute("comment", comment);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
 	
 	/**
 	 * 单一实例 查询

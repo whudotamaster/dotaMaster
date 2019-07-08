@@ -27,22 +27,22 @@ tr {
       function onSelect(vstate)
       {
     	  vstate?count++:count--;
-    	  var vdel=document.getElementById("del");
+    	  var vdel=document.getElementById("goodPost");
     	  vdel.disabled=(count==0);
       }
       
-      function onEdit(vaab101)
+      function onVisit(vaab501,vaab101)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdEmp.html?aab101="+vaab101;
+    	 vform.action="<%=path%>/post.html?aab501="+ vaab501 + "&aab101=" + vaab101;
     	 //alert(vform.action);
     	 vform.submit();
       }
       
-      function onDel(vaab501)
+      function onDel(vaab501,vaab101)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delPost.html?aab501="+vaab501;
+    	 vform.action="<%=path%>/delPost.html?aab501=" + vaab501 + "&aab101=" + vaab101;
     	 //alert(vform.action);
     	 vform.submit();
       } 
@@ -58,7 +58,7 @@ tr {
 		<!-- 查询条件区 -->
 		<table border="1" width="95%" align="center">
 			<caption>
-				员工管理
+				论坛主页
 				<hr width="160">
 			</caption>
 			<tr>
@@ -69,8 +69,21 @@ tr {
 				<td><e:text name="aab502" /></td>
 			</tr>
 			<tr>
-				<td>性别</td>
+				<td>区块</td>
 				<td><e:radio name="aab506" value="普通区:0,精华区:1" defval="0" /></td>
+				<td>
+				<c:if test="${empty param.aab101 }">
+				param.aab101是空
+				</c:if>
+				</td>
+				<c:if test="${!empty param.aab101 }">
+					<td>发帖</td>
+					<td>		
+					<input type="submit"
+					id="addPost" name="next" value="发帖" formaction="<%=path%>/addPost.html?aab101=${ param.aab101 }">
+					</td>
+				</c:if>
+				
 			</tr>
 
 		</table>
@@ -98,15 +111,19 @@ tr {
 							<td><input type="checkbox" name="idlist"
 								value="${ins.aab501 }" onclick="onSelect(this.checked)">
 							</td>
-							<td>${ins.aab502 }</td>
 							<td>
-								<!-- #  空锚 --> <a href="#" onclick="onEdit('${ins.aab101}')">${ins.aab102 }</a>
+							<!-- #  空锚 --> <a href="#" onclick="onVisit('${ins.aab501 }' , '${param.aab101 }')">	${ins.aab502 }</a>
+						
+							</td>
+							<td>
+								<!-- #  用户名及头像--> 
+								<a href="#" onclick="onEdit('${ins.aab101}')">${ins.aab102 }</a>
 								<img src=<%=path%>/images/${ins.aab105 } class="round_icon"
 								onclick="onEdit('${ins.aab101}')">
 							</td>
 							<td>${ins.aab505 }</td>
 							<td>${ins.aab504 }</td>
-							<td><a href="#" onclick="onDel('${ins.aab501}')">删除</a></td>
+							<td><a href="#" onclick="onDel('${ins.aab501}' , '${param.aab101 }')">删除</a></td>
 						</tr>
 					</c:forEach>
 					<!-- 补充空行 -->
@@ -143,10 +160,11 @@ tr {
 					<input type="submit" name="next" value="添加"
 					formaction="<%=path%>/addEmp.jsp"> 
 					<input type="submit"
-					id="del" name="next" value="加精" formaction="<%=path%>/goodPost.html"
+					id="goodPost" name="next" value="加精" formaction="<%=path%>/goodPost.html?aab101=${param.aab101 }"
 					disabled="disabled"></td>
 			</tr>
 		</table>
+			<e:hidden name="aab101" />
 	</form>
 </body>
 </html>
