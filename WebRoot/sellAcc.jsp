@@ -16,6 +16,7 @@
 </head>
 <body>
 ${msg }
+${aab101 }
 <br>
 <br>
 <form action="<%=path%>/sellAcc.html" method="post">
@@ -57,7 +58,7 @@ ${msg }
      </td>
    </tr>
 </table>
-<input type="hidden" name="aab101" value="1">
+
 <input type="hidden" name="aac601" value="1">
 <input type="hidden" name="aad301" value="${ins.aad301 }">
 </form>

@@ -31,6 +31,19 @@ public interface BaseServices
     	 return null;
      }
 
+     
+     default List<Map<String,String>> queryBuyOrder()throws Exception
+     {
+    	 return null;
+     }
+     
+     default List<Map<String,String>> querySellOrder()throws Exception
+     {
+    	 return null;
+     }
+     
+
+
 
 
 	default List<Map<String, String>> queryHero()throws Exception

@@ -116,6 +116,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	  		
 	  		//定义SQL主体
 	  		StringBuilder sql=new StringBuilder()
+
 	  				.append("select x.aac601,x.aac602,x.aac603,x.aac604,x.aac605,x.aac606")
 	  				.append("		 from ac06 x ,ac01 y")
 	  				.append("        where x.aac101=y.aac101   ")

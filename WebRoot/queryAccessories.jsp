@@ -22,56 +22,77 @@
     	  vdel.disabled=(count==0);
       }
       
-      function onEdit(vaad301)
+      function onEdit(vaac601)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findGetAcc.html?aad301="+vaad301;
+    	 vform.action="<%=path%>/findByIdAccessories.html?aac601="+vaac601;
     	 //alert(vform.action);
     	 vform.submit();
       }
       
-
+      function onDel(vaac601)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/delByIdEquipment.html?aac601="+vaac601;
+    	 //alert(vform.action);
+    	 vform.submit();
+      } 
       
    </script>
 </head>
 <body>
 ${msg }
 <br>
+<%=session.getId() %>
 <br>
-<form id="myform" action="<%=path%>/queryGetAcc.html" method="post">
-	<!-- 数据迭代区 -->
-	
-	<table border="1" width="95%" align="center">
-	 <caption>
-	               待收货列表
+<form id="myform" action="<%=path%>/queryAccessories.html" method="post">
+  <!-- 查询条件区 -->
+	<table border="1" width="35%" align="center">
+	  <caption>
+	            饰品
 	    <hr width="160">
 	  </caption>
 	  <tr>
-	    <td>序号</td>
-	    <td>收货订单ID</td>
-	    <td>饰品ID</td>
-	    <td>用户ID</td>
-	    <td>玩家编号</td>
+	    <td colspan="4">查询条件</td>
 	  </tr>
-	  <!--
-	         注意事项
-	    1.$及大括号的结束标记 }与双引号之间,不允许出现空格
-	    2.所有的属性之间至少要有一个空格,否则报错
-	    3.var 属性,相当于在页面定义变量名称,因此  ins不允许再用$ {  }
-	   -->
+	  <tr>
+	    <td>饰品名</td>
+	    <td>
+	      <e:text name="qaac602"/>
+	    </td>
+	  </tr>
+	 
+
+	</table>
+	<!-- 数据迭代区 -->
+	<table border="1" width="35%" align="center">
+	  <tr>
+	    <td></td>
+	    <td>序号</td>
+	    <td>饰品图像</td>
+	    <td>饰品名</td>
+	    <td></td>
+	  </tr>
 	   <c:choose>
 	     <c:when test="${rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
+				    <td>
+				      <input type="checkbox" name="idlist" value="${ins.aac601 }"
+				             onclick="onSelect(this.checked)" >
+				    </td>
 				    <td>${vs.count }</td>
+				     <td  align="center" style="width:15%; height:15%">
+				       <img alt="no image" src=<%=path%>/images/${ins.aac505 } style="width:100%; height:100%">
+				     </td>
 				    <td>
 				      <!-- #  空锚 -->
-				      <a href="#" onclick="onEdit('${ins.aad301 }')">${ins.aad301 }</a>
+				      <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
 				    </td>
-				    <td>${ins.aac601 }</td>
-				    <td>${ins.aab101 }</td>
-				    <td>${ins.aad302 }</td>
+				    <td>
+				      <a href="#" onclick="onDel('${ins.aac601}')">删除</a>
+				    </td>
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
@@ -82,6 +103,7 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
+			         
 			          </tr>
 		      </c:forEach>
 	     </c:when>
@@ -92,21 +114,24 @@ ${msg }
 	             <td></td>
 	             <td></td>
 	             <td></td>
-	             <td></td>
+	             <td></td>       
 	           </tr>
 	        </c:forEach>
 	     </c:otherwise>
 	   </c:choose>
 	</table>
 	<!-- 功能按钮区 -->
-	<table border="1" width="95%" align="center">
+	<table border="1" width="35%" align="center">
 	  <tr>
 	    <td align="center">
 	       <input type="submit" name="next" value="查询">
+	       <input type="submit" name="next" value="添加" 
+	              formaction="<%=path%>/addAccessories.jsp">
+	       <input type="submit" id="del" name="next" value="删除" 
+	              formaction="<%=path%>/delAccessories.html"  disabled="disabled">
 	    </td>
 	  </tr>
 	</table>
-	<input type="hidden" name="aab101" value="1">
 </form>
 </body>
 </html>

@@ -110,6 +110,18 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return Double.valueOf(map.get("aab106"));
     }
     
+    public List<Map<String,String>> queryBuyOrder()throws Exception
+    {
+    	String sql="select * from ad04 where aab101=?";                                                                                                                                                                               
+    	return this.queryForList(sql, this.get("aab101"));
+    }
+    
+    public List<Map<String,String>> querySellOrder()throws Exception
+    {
+    	String sql="select * from ad03 where aab101=?";                                                                                                                                                                               
+    	return this.queryForList(sql, this.get("aab101"));
+    }
+    
     //登录判断方法
     public Map<String, String> loginEmp()throws Exception
     {
@@ -210,6 +222,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	}
     }
     
+
     //用户修改个人信息
     public boolean personUpdateEmp()throws Exception
     {
@@ -286,7 +299,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	//3.执行
     	return this.batchUpdate(sql, idlist);
     }
-    
+
     public Map<String,String> findById()throws Exception
     {
     	//1.编写SQL语句

@@ -14,64 +14,6 @@
      color:#FF0000
   }
 </style>
-<script type="text/javascript">
-var imgcontentStr = ''；
-$("#aac505").on("change", function () {
-        var file = $("#file")[0].files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = function (e) {
-            if (reader.error) {
-                console.log(reader.error);
-            } else {
-            //判断图片大小超过1M，进行压缩
-                if (file.size > 1048576) {
-                    var img = new Image,
-                        quality = 1, //image quality
-                        canvas = document.createElement("canvas"),
-                        drawer = canvas.getContext("2d");
-                    img.src = reader.result;
-                    img.onload = function () {
-                        var scale = parseInt(file.size / 1048576);
-                        var width = parseInt(img.width / scale);
-                        canvas.width = width;
-                        canvas.height = width * (img.height / img.width);
-                        drawer.drawImage(img, 0, 0, canvas.width, canvas.height);
-                        var result = canvas.toDataURL("image/jpeg", quality);
-                        $(".img").prop("src", result)
-                        $(".img").css("display", "inline-block")
-                        imgcontentStr = result;
-                    }
-                } else {
-                    var result = reader.result;
-                    $(".img").prop("src", result)
-                    $(".img").css("display", "inline-block")
-                    imgcontentStr = result;
-                }
-            }
-        }
-    })
-    
-    $("#Btn").on("click", function () {
-        var data = $.param({
-            imgcontent: imgcontentStr
-        });
-        $.ajax({
-            url: url,
-            type: "post",
-            data: data,
-            dataType: "json",
-            success: function (result) {
-                if (result.rspcode == 1000) {
-                    alert("提交成功")
-                } else {
-                    alert("提交失败")
-                }
-            }
-        })
-        return false;
-    });
-</script>
 </head>
 <body>
 ${msg}

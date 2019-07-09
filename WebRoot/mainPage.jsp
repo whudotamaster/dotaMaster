@@ -6,16 +6,25 @@
     <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%
+	String laab102=(String)request.getAttribute("ins.aab102");
+%>
+<%
+String aab101=(String)session.getAttribute("aab101");
+%>
 <script>
-	
+
 </script>
 
 <html>
 <head>
 	<title>主页</title>
-	<style>
-	</style>
+
 </head>
+
+<%=aab101%>
+
+
 
 <body>
 <!-- 引入头部导航栏 -->
@@ -24,9 +33,8 @@
 <div id="main">
 
  
- <form>
- ${ins[0].aab102 }
- </form>
+啥都没.jpg
+
 
 </div>
 <%@include file="footer.jsp" %>

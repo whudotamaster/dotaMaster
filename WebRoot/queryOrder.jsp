@@ -26,12 +26,10 @@
       {
     	 var vform = document.getElementById("myform");
     	 vform.action="<%=path%>/findGetAcc.html?aad301="+vaad301;
+    	 vform.action="<%=path%>/${empty ins.aad301?'${ins.aad401}':'${ins.aad301}'"+vaad301;
     	 //alert(vform.action);
     	 vform.submit();
-      }
-      
-
-      
+      }      
    </script>
 </head>
 <body>
@@ -43,14 +41,12 @@ ${msg }
 	
 	<table border="1" width="95%" align="center">
 	 <caption>
-	               待收货列表
+	               历史订单
 	    <hr width="160">
 	  </caption>
 	  <tr>
 	    <td>序号</td>
-	    <td>收货订单ID</td>
 	    <td>饰品ID</td>
-	    <td>用户ID</td>
 	    <td>玩家编号</td>
 	  </tr>
 	  <!--
@@ -64,13 +60,11 @@ ${msg }
 	         <!-- 显示实际查询到的数据 -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
-				    <td>${vs.count }</td>
 				    <td>
 				      <!-- #  空锚 -->
-				      <a href="#" onclick="onEdit('${ins.aad301 }')">${ins.aad301 }</a>
+				      <a href="#" onclick="onEdit('${empty ins.aad301?'${ins.aad401}':'${ins.aad301}' }')">${vs.count }</a>
 				    </td>
 				    <td>${ins.aac601 }</td>
-				    <td>${ins.aab101 }</td>
 				    <td>${ins.aad302 }</td>
 				  </tr>
 		      </c:forEach>
@@ -106,7 +100,6 @@ ${msg }
 	    </td>
 	  </tr>
 	</table>
-	<input type="hidden" name="aab101" value="1">
 </form>
 </body>
 </html>
