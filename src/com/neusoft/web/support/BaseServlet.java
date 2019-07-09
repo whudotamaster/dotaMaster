@@ -27,15 +27,13 @@ public class BaseServlet extends HttpServlet
         	 ************************************************************/
      		//拦截请求的访问路径
      		String  uri=request.getRequestURI();
+     		System.out.println(uri);
      		//获取请求资源的主文件名
-     		String baseName=uri.substring(uri.lastIndexOf("/")+1).replace(".html", "");
-     		
+     		String baseName=uri.substring(uri.lastIndexOf("/")+1).replace(".html", "");	
      		//定义变量,描述所有业务控制器的基础包名称
      		String basePackageName="com.neusoft.web.impl.";
      		//获取控制器的前缀名
-     		String controllerFirstName=baseName.substring(0,1).toUpperCase()+baseName.substring(1);
-     		
-     		
+     		String controllerFirstName=baseName.substring(0,1).toUpperCase()+baseName.substring(1);   		
      		/***********************************************************
      		 *                        实例化目标类---业务控制器
      		 ***********************************************************/

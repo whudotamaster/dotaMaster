@@ -25,7 +25,7 @@
       function onEdit(vaac601)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdAccessories.html?aac601="+vaac601;
+    	 vform.action="<%=path%>/findByIdAcc.html?aac601="+vaac601;
     	 //alert(vform.action);
     	 vform.submit();
       }
@@ -33,7 +33,7 @@
       function onDel(vaac601)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdEquipment.html?aac601="+vaac601;
+    	 vform.action="<%=path%>/delByIdAcc.html?aac601="+vaac601;
     	 //alert(vform.action);
     	 vform.submit();
       } 
@@ -45,7 +45,7 @@ ${msg }
 <br>
 <%=session.getId() %>
 <br>
-<form id="myform" action="<%=path%>/queryAccessories.html" method="post">
+<form id="myform" action="<%=path%>/queryAcc.html" method="post">
   <!-- 查询条件区 -->
 	<table border="1" width="35%" align="center">
 	  <caption>
@@ -84,7 +84,7 @@ ${msg }
 				    </td>
 				    <td>${vs.count }</td>
 				     <td  align="center" style="width:15%; height:15%">
-				       <img alt="no image" src=<%=path%>/images/${ins.aac505 } style="width:100%; height:100%">
+				       <img alt="no image" src=<%=path%>/images/${ins.aac603 } style="width:100%; height:100%">
 				     </td>
 				    <td>
 				      <!-- #  空锚 -->
@@ -126,9 +126,9 @@ ${msg }
 	    <td align="center">
 	       <input type="submit" name="next" value="查询">
 	       <input type="submit" name="next" value="添加" 
-	              formaction="<%=path%>/addAccessories.jsp">
+	              formaction="<%=path%>/addAcc.jsp">
 	       <input type="submit" id="del" name="next" value="删除" 
-	              formaction="<%=path%>/delAccessories.html"  disabled="disabled">
+	              formaction="<%=path%>/delAcc.html"  disabled="disabled">
 	    </td>
 	  </tr>
 	</table>
