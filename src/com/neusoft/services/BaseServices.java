@@ -30,11 +30,17 @@ public interface BaseServices
      {
     	 return null;
      }
-
-
-
-	
-
+     
+     default List<Map<String,String>> queryBuyOrder()throws Exception
+     {
+    	 return null;
+     }
+     
+     default List<Map<String,String>> querySellOrder()throws Exception
+     {
+    	 return null;
+     }
+     
 	default Map<String, String> findByIdHero()throws Exception
 	{
 		return null;

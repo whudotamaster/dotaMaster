@@ -51,6 +51,24 @@ public abstract class ControllerSupport implements BaseController
 		}	
 	}
 	
+	protected final void savePageData(String methodName)throws Exception
+	{
+		List<Map<String,String>> rows=null;
+		if(methodName.equals("buy"))
+			rows=this.services.queryBuyOrder();
+		else 
+			rows=this.services.querySellOrder();
+		
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
 	/**
 	 * 单一实例 查询
 	 * @throws Exception
@@ -58,6 +76,7 @@ public abstract class ControllerSupport implements BaseController
 	protected final void savePageInstance()throws Exception
 	{
 		Map<String,String> ins=this.services.findById();
+		this.saveAttribute("aab101",this.dto.get("aab101"));
 		if(ins!=null)
 		{
 			this.saveAttribute("ins",  ins);

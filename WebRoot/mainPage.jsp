@@ -9,6 +9,9 @@
 <%
 	String laab102=(String)request.getAttribute("ins.aab102");
 %>
+<%
+String aab101=(String)session.getAttribute("aab101");
+%>
 
 </script>
 
@@ -23,6 +26,7 @@
 
 </style>
 </head>
+<%=aab101%>
 <body>
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>

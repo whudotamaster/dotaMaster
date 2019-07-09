@@ -114,13 +114,25 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return Double.valueOf(map.get("aab106"));
     }
     
+    public List<Map<String,String>> queryBuyOrder()throws Exception
+    {
+    	String sql="select * from ad04 where aab101=?";                                                                                                                                                                               
+    	return this.queryForList(sql, this.get("aab101"));
+    }
+    
+    public List<Map<String,String>> querySellOrder()throws Exception
+    {
+    	String sql="select * from ad03 where aab101=?";                                                                                                                                                                               
+    	return this.queryForList(sql, this.get("aab101"));
+    }
+    
     //登录判断方法
     public List<Map<String,String>> loginEmp()throws Exception
     {
     	Object aab103 = this.get("aab103");
     	Object aab104 = this.get("aab104");
     	StringBuilder sql=new StringBuilder()
-    			.append("select a.aab102,a.aab105,a.aab106,a.aab107,a.aab108")	
+    			.append("select a.aab101,a.aab102,a.aab105,a.aab106,a.aab107,a.aab108")	
     			.append("  from ab01 a")
     			.append(" where a.aab103=? and a.aab104=?")
     			;
@@ -187,11 +199,6 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	}   	
     }
     
-    
-    
- 
-    
-    
     private boolean addEmp()throws Exception
     {
     	//获取当前员工编号
@@ -236,10 +243,6 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.batchUpdate(sql, idlist);
     }
 
-    
-
-    
-    
     public Map<String,String> findById()throws Exception
     {
     	//1.编写SQL语句
