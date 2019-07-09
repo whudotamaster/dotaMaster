@@ -13,57 +13,33 @@
      }
    </style>
    
-   <script type="text/javascript">
-      var count=0;
-      function onSelect(vstate)
-      {
-    	  vstate?count++:count--;
-    	  var vdel=document.getElementById("del");
-    	  vdel.disabled=(count==0);
-      }
-      
-      function onEdit(vaab101)
+   <script type="text/javascript">    
+      function onEdit(vaad401)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdEmp.html?aab101="+vaab101;
+    	 vform.action="<%=path%>/findSendAcc.html?aad401="+vaad401;
     	 //alert(vform.action);
     	 vform.submit();
       }
-      
-      function onBet(vaad101)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/playBet.html?aad101="+vaad101;
-    	 //alert(vform.action);
-    	 vform.submit();
-      } 
-      
    </script>
 </head>
 <body>
 ${msg }
 <br>
 <br>
-<form id="myform" action="<%=path%>/queryBet.html" method="post">
+<form id="myform" action="<%=path%>/querySendAcc.html" method="post">
 	<!-- 数据迭代区 -->
 	
 	<table border="1" width="95%" align="center">
 	 <caption>
-	               可押注比赛
+	               待发货列表
 	    <hr width="160">
 	  </caption>
 	  <tr>
-	    <td></td>
 	    <td>序号</td>
-	    <td>赛事</td>
-	    <td>战队1</td>
-	    <td>战队2</td>
-	    <td>比赛开始时间</td>
-	    <td>A方押注数量</td>
-	    <td>B方押注数量</td>
-	    <td>押注A方</td>
-	    <td>押注B方</td>
-	    <td></td>
+	    <td>发货列表ID</td>
+	    <td>饰品名称</td>
+	    <td>玩家编号</td>
 	  </tr>
 	  <!--
 	         注意事项
@@ -76,37 +52,18 @@ ${msg }
 	         <!-- 显示实际查询到的数据 -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
-				    <td>
-				      <input type="checkbox" name="idlist" value="${ins.aad101 }"
-				             onclick="onSelect(this.checked)" >
-				    </td>
 				    <td>${vs.count }</td>
-				    <td>${ins.aac702 }</td>
-				    <td>${ins.aac1103 }</td>
-				    <td>${ins.aac1104 }</td>
-				    <td>${ins.aac1102 }</td>
-				    <td>${ins.aad102 }</td>
-				    <td>${ins.aad103 }</td>
 				    <td>
-				      <e:text name="aad202" defval="0"/>
+				      <!-- #  空锚 -->
+				      <a href="#" onclick="onEdit('${ins.aad401 }')">${ins.aad401 }</a>
 				    </td>
-				    <td>
-				      <e:text name="aad203" defval="0"/>
-				    </td>
-				   <td>
-				      <a href="#" onclick="onBet('${ins.aad101}')">下注</a>
-				    </td>
+				    <td>${ins.aac602 }</td>
+				    <td>${ins.aad402 }</td>
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
 		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
 			          <tr>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
 			            <td></td>
 			            <td></td>
 			            <td></td>
@@ -122,11 +79,6 @@ ${msg }
 	             <td></td>
 	             <td></td>
 	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
 	           </tr>
 	        </c:forEach>
 	     </c:otherwise>
@@ -137,16 +89,13 @@ ${msg }
 	  <tr>
 	    <td align="center">
 	       <input type="submit" name="next" value="查询">
+	       <input type="submit" name="next" value="添加" 
+	              formaction="<%=path%>/addEmp.jsp">
 	       <input type="submit" id="del" name="next" value="删除" 
 	              formaction="<%=path%>/delEmp.html"  disabled="disabled">
 	    </td>
 	  </tr>
 	</table>
-</form>
-<form action="<%=path%>/buyVIP.html" method="post">
-<input type="search" name="month" placeholder="输入开通的月数"/>
-<input type="submit" name="next" value="开通">
-<input type="hidden" name="aab101" value="1">
 </form>
 </body>
 </html>

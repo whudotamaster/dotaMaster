@@ -28,7 +28,6 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 		//1,更新收货状态为已完成
 		String sql="update ad03 set aad303=1 where aad301=?";
 		
-		
 		//2,查询饰品价格
 		Ac06ServicesImpl ac06=new Ac06ServicesImpl();
 		Map<String, String> acc=ac06.findAccessories();
@@ -45,7 +44,7 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 	}
 	
 	//查看所有待收货列表中未完成的订单
-	public List<Map<String, String>> queryAllDelivery()throws Exception
+	public List<Map<String, String>> query()throws Exception
 	{
 		String sql="select aad301,aac601,aab101,aad302,aad303,aad304 from ad03 where aad303=0";
 		return this.queryForList(sql);

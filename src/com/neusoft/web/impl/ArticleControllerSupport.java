@@ -5,13 +5,8 @@ import com.neusoft.web.support.ControllerSupport;
 
 public abstract class ArticleControllerSupport extends ControllerSupport 
 {
-
 	public ArticleControllerSupport()
 	{
-
 		this.setServices(new Ab08ServicesImpl());
 	}
-
-	
-
 }

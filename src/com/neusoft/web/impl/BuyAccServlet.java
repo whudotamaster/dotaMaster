@@ -1,13 +1,13 @@
 package com.neusoft.web.impl;
 
 
-public class BuyVIPServlet extends UserControllerSupport 
+public class BuyAccServlet extends AccControllerSupport 
 {
 
 	@Override
 	public String execute() throws Exception 
 	{
-		this.update("buyVIP", "¹ºÂò");
+		this.update("buyAccessories", "¹ºÂò");
 		return "queryBet";
 	}
 
