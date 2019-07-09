@@ -3,7 +3,6 @@
 
 
 <div id="foot">
-
 <p>Ò³½Å-ACVS×é³öÆ· AllrightsReserved</p>
 </div>
 

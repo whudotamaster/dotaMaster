@@ -71,10 +71,10 @@ public abstract class ControllerSupport implements BaseController
 	//登录判断
 	protected final boolean loginIn()throws Exception
 	{
-		List<Map<String, String>> ins=this.services.loginEmp();
+		Map<String, String> ins=this.services.loginEmp();
 		System.out.println("在loginIn中实例化一次");
 
-		if(ins.size()>0)
+		if(ins!=null)
 		{
 			this.saveAttribute("ins", ins);
 			System.out.println(ins);
@@ -86,7 +86,6 @@ public abstract class ControllerSupport implements BaseController
 			System.out.println("login false运行");
 			return false;
 		}
-		
 	}
 	
 	//用户注册
@@ -116,17 +115,49 @@ public abstract class ControllerSupport implements BaseController
 				return false;
 			}
 			return false;
-			
-			
-			
-			
-			
-			
-			
-			
-
 	}
 	
+	//查询用户信息
+	protected final void queryPersonIn() throws Exception
+	{
+		Map<String,String> ins=this.services.queryPersonEmp();
+		if(ins!=null)
+		{
+			this.saveAttribute("ins",  ins);
+			System.out.println(ins);
+		}
+		else
+		{
+			this.saveAttribute("msg", "提示:用户信息获取错误!");	
+		}	
+	}
+	
+	//用户数据更新
+	protected final boolean updtPsnInfIn() throws Exception
+	{
+		try
+		{
+			boolean ins = this.services.personUpdateEmp();
+			if(ins=true)
+			{
+				this.saveAttribute("ins",  ins);
+				this.saveAttribute("msg", "提示:用户信息更改成功!");	
+
+				System.out.println(ins);
+				return true;
+			}
+			else
+			{
+				this.saveAttribute("msg", "提示:用户信息更改错误!");	
+				return false;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	
 	

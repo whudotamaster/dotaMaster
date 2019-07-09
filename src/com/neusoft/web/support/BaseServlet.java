@@ -100,7 +100,7 @@ public class BaseServlet extends HttpServlet
 		int initSize=((int)(tem.size()/0.75))+1;
 		//2.导出所有键值对,形成键值对集合
 		Set<Entry<String,String[]>> entrySet=tem.entrySet();
-		//3.定义数组,表示Enetry的value部分
+		//3.定义数组,表示Entry的value部分
 		String value[]=null;
 		
 		//4.定义DTO容器
@@ -111,7 +111,7 @@ public class BaseServlet extends HttpServlet
 			//获取value部分的数组
 			value=entry.getValue();
 			//依据长度判断页面控件的类别
-			if(value.length==1)  //非checkbox类控件
+			if(value.length==1)  //非checkbooks类控件
 			{
 		        //过滤掉页面未填充项目
 				if(value[0]!=null && !value[0].equals(""))
@@ -119,7 +119,7 @@ public class BaseServlet extends HttpServlet
 					dto.put(entry.getKey(), value[0]);
 				}
 			}
-			else     //checkbox类控件
+			else     //Checkbooks类控件
 			{
 				dto.put(entry.getKey(), value);
 			}	

@@ -42,7 +42,7 @@ public interface BaseServices
 		return null;
 	}
 
-	 default  List<Map<String, String>> loginEmp() throws Exception
+	 default  Map<String, String> loginEmp() throws Exception
 	 {
 		 return null;
 	 }
@@ -50,4 +50,15 @@ public interface BaseServices
 	default int logonEmp() throws Exception{
 		return 0;
 	}
+	
+    default Map<String,String> queryPersonEmp()throws Exception
+    {
+    	return null;
+    }
+
+	default boolean personUpdateEmp()throws Exception
+	{
+		return false;
+	}
+
 }

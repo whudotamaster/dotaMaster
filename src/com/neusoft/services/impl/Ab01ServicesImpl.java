@@ -1,13 +1,10 @@
 package com.neusoft.services.impl;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.system.tools.Tools;
 import com.sun.org.apache.bcel.internal.generic.Select;
-
 public class Ab01ServicesImpl extends JdbcServicesSupport 
 {
 	//使用虚拟货币购买或续费会员
@@ -100,26 +97,33 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     
     public Double getMoney()throws Exception
     {
-
     	String sql="select aab106 from ab01 where aab101=?";
     	Map<String, String > map=this.queryForMap(sql, 1);
     	return Double.valueOf(map.get("aab106"));
     }
     
     //登录判断方法
-    public List<Map<String,String>> loginEmp()throws Exception
+    public Map<String, String> loginEmp()throws Exception
     {
-    	Object aab103 = this.get("aab103");
-    	Object aab104 = this.get("aab104");
-    	StringBuilder sql=new StringBuilder()
-    			.append("select a.aab102,a.aab105,a.aab106,a.aab107,a.aab108")	
-    			.append("  from ab01 a")
-    			.append(" where a.aab103=? and a.aab104=?")
-    			;
-    	List<Object> paramList =new ArrayList<>();
-    	paramList.add(aab103);
-    	paramList.add(aab104);
-    	return this.queryForList(sql.toString(), paramList.toArray());
+    	try
+    	{
+	    	Object aab103 = this.get("aab103");
+	    	Object aab104 = this.get("aab104");
+	    	StringBuilder sql=new StringBuilder()
+	    			.append("select a.aab101,a.aab102")	
+	    			.append("  from ab01 a")
+	    			.append(" where a.aab103=? and a.aab104=?")
+	    			;
+	    	List<Object> paramList =new ArrayList<>();
+	    	paramList.add(aab103);
+	    	paramList.add(aab104);
+	    	return this.queryForMap(sql.toString(), paramList.toArray());
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    		return null;
+    	}
     }
     
     //用户名查重
@@ -127,7 +131,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     {
     	
     	StringBuilder sql=new StringBuilder()
-    			.append(" select *")
+    			.append(" select a.aab101")
     			.append("   from ab01 a")
     			.append("  where a.aab103=?")
     			;
@@ -156,9 +160,9 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			    	StringBuilder sql=new StringBuilder()
 			    			.append("insert into ab01")
 			    			.append("(aab102,aab103,aab104,aab105,aab106,")
-			    			.append(" 						aab107,aab108,aab109)")
+			    			.append(" 						aab107,aab108)")
 			    			.append("values (?,?,?,'空',0,")
-			    			.append("							0,1,0000-00-00)")
+			    			.append("							0,1)")
 			       			;
 			    	List<Object> paramList =new ArrayList<>();
 			    	paramList.add(aab103);
@@ -173,12 +177,60 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	}
     	catch(Exception e)
     	{
-    		//未输入用户名或密码报错，输出3000
+    		//报错，输出3000
     		e.printStackTrace();
     		return 3000;
     	}   	
     }
+    //获得用户个人信息
+    public Map<String,String> queryPersonEmp()throws Exception
+    {
+    	try
+    	{
+    		StringBuilder sql = new StringBuilder()
+    				.append("select a.aab101,a.aab102,a.aab103,a.aab104,a.aab105,")	
+    				.append("						  a.aab106,a.aab107,a.aab108")
+    				.append("  from ab01 a")
+    				.append(" where a.aab101=?")
+    				;
+    		return this.queryForMap(sql.toString(), this.get("aab101"));
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    		return null;
+    	}
+    }
     
+    //用户修改个人信息
+    public boolean personUpdateEmp()throws Exception
+    {
+    	try
+    	{
+    		Object aab102=this.get("aab102");
+    		Object aab104=this.get("aab104");
+    		Object aab105=this.get("aab105");
+    		Object aab101=this.get("aab101");
+    		StringBuilder sql = new StringBuilder()
+					    		.append("update ab01 ")
+					    		.append("   set aab102 = ?,aab104=?,aab105=?")
+					    		.append(" where aab101 = ?")
+					    		;
+    		Object args[]=
+    			{
+        			aab102,
+        			aab104,
+        			aab105,
+        			aab101
+    			};
+    		return this.executeUpdate(sql.toString(), args)>0;
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    		return false;
+    	}
+    }
     
     
  
@@ -217,7 +269,6 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	};
         return this.executeUpdate(sql.toString(), args)>0;	
     }
-
     private boolean batchDelete()throws Exception
     {
     	//1.定义SQL语句
@@ -227,10 +278,6 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	//3.执行
     	return this.batchUpdate(sql, idlist);
     }
-
-    
-
-    
     
     public Map<String,String> findById()throws Exception
     {
