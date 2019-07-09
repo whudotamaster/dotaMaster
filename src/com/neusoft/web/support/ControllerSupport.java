@@ -51,6 +51,27 @@ public abstract class ControllerSupport implements BaseController
 		}	
 	}
 	
+	/*****************************************
+	 * 	        论坛加载业务流程封装
+	 *****************************************/
+	/**
+	 * 帖子数据批量查询
+	 * @throws Exception
+	 */
+	protected final void forumOnLoad()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.queryPost();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+
 	protected final void savePageData(String methodName)throws Exception
 	{
 		List<Map<String,String>> rows=null;
@@ -62,6 +83,29 @@ public abstract class ControllerSupport implements BaseController
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+
+	/*****************************************
+	 * 	        帖子详细頁面加载业务流程封装
+	 *****************************************/
+	/**
+	 * 帖子数据查询
+	 * @throws Exception
+	 */
+	protected final void postOnLoad()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.postFindById();
+		List<Map<String,String>> comment=this.services.commentFindById();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+			this.saveAttribute("comment", comment);
 		}
 		else
 		{
@@ -90,10 +134,10 @@ public abstract class ControllerSupport implements BaseController
 	//登录判断
 	protected final boolean loginIn()throws Exception
 	{
-		List<Map<String, String>> ins=this.services.loginEmp();
+		Map<String, String> ins=this.services.loginEmp();
 		System.out.println("在loginIn中实例化一次");
 
-		if(ins.size()>0)
+		if(ins!=null)
 		{
 			this.saveAttribute("ins", ins);
 			System.out.println(ins);
@@ -105,7 +149,6 @@ public abstract class ControllerSupport implements BaseController
 			System.out.println("login false运行");
 			return false;
 		}
-		
 	}
 	
 	//用户注册
@@ -135,17 +178,49 @@ public abstract class ControllerSupport implements BaseController
 				return false;
 			}
 			return false;
-			
-			
-			
-			
-			
-			
-			
-			
-
 	}
 	
+	//查询用户信息
+	protected final void queryPersonIn() throws Exception
+	{
+		Map<String,String> ins=this.services.queryPersonEmp();
+		if(ins!=null)
+		{
+			this.saveAttribute("ins",  ins);
+			System.out.println(ins);
+		}
+		else
+		{
+			this.saveAttribute("msg", "提示:用户信息获取错误!");	
+		}	
+	}
+	
+	//用户数据更新
+	protected final boolean updtPsnInfIn() throws Exception
+	{
+		try
+		{
+			boolean ins = this.services.personUpdateEmp();
+			if(ins=true)
+			{
+				this.saveAttribute("updpsnbool",  ins);
+				this.saveAttribute("msg", "提示:用户信息更改成功!");	
+
+				System.out.println(ins);
+				return true;
+			}
+			else
+			{
+				this.saveAttribute("msg", "提示:用户信息更改错误!");	
+				return false;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	
 	

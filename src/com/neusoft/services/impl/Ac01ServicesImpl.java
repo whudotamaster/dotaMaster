@@ -145,6 +145,11 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	    }
 	
 	
+	/**
+	 * µ¥Ò»ÊµÀýÉ¾³ý
+	 * @return
+	 * @throws Exception
+	 */
 	private boolean deleteByIdHero()throws Exception
     {
     	String sql="delete from ac01 where aac101=?";
