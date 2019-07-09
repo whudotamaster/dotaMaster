@@ -7,4 +7,4 @@
    该文件不存在
 </body>
 </html>
-<jsp:forward page="/queryEmp.jsp"/>
+<jsp:forward page="/mainPage.jsp"/>
