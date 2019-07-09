@@ -22,21 +22,15 @@
     	  vdel.disabled=(count==0);
       }
       
-      function onEdit(vaab101)
+      function onEdit(vaad301)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdEmp.html?aab101="+vaab101;
+    	 vform.action="<%=path%>/findGetAcc.html?aad301="+vaad301;
     	 //alert(vform.action);
     	 vform.submit();
       }
       
-      function onBet(vaad101)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/playBet.html?aad101="+vaad101;
-    	 //alert(vform.action);
-    	 vform.submit();
-      } 
+
       
    </script>
 </head>
@@ -44,7 +38,7 @@
 ${msg }
 <br>
 <br>
-<form id="myform" action="<%=path%>/queryBet.html" method="post">
+<form id="myform" action="<%=path%>/queryGetAcc.html" method="post">
 	<!-- 数据迭代区 -->
 	
 	<table border="1" width="95%" align="center">
@@ -53,13 +47,11 @@ ${msg }
 	    <hr width="160">
 	  </caption>
 	  <tr>
-	    <td></td>
 	    <td>序号</td>
+	    <td>收货订单ID</td>
 	    <td>饰品ID</td>
 	    <td>用户ID</td>
 	    <td>玩家编号</td>
-	    <td></td>
-	    <td></td>
 	  </tr>
 	  <!--
 	         注意事项
@@ -72,24 +64,19 @@ ${msg }
 	         <!-- 显示实际查询到的数据 -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
-				    <td>
-				      <input type="checkbox" name="idlist" value="${ins.aad101 }"
-				             onclick="onSelect(this.checked)" >
-				    </td>
 				    <td>${vs.count }</td>
-				    <td>${ins.aac702 }</td>
-				    <td>${ins.aac1103 }</td>
-				    <td>${ins.aac1104 }</td>
-				    <td>${ins.aac1102 }</td>
-				   <td>
-				      <a href="#" onclick="onBet('${ins.aad101}')">下注</a>
+				    <td>
+				      <!-- #  空锚 -->
+				      <a href="#" onclick="onEdit('${ins.aad301 }')">${ins.aad301 }</a>
 				    </td>
+				    <td>${ins.aac601 }</td>
+				    <td>${ins.aab101 }</td>
+				    <td>${ins.aad302 }</td>
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
 		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
 			          <tr>
-			            <td></td>
 			            <td></td>
 			            <td></td>
 			            <td></td>
@@ -106,7 +93,6 @@ ${msg }
 	             <td></td>
 	             <td></td>
 	             <td></td>
-	             <td></td>
 	           </tr>
 	        </c:forEach>
 	     </c:otherwise>
@@ -117,10 +103,6 @@ ${msg }
 	  <tr>
 	    <td align="center">
 	       <input type="submit" name="next" value="查询">
-	       <input type="submit" name="next" value="添加" 
-	              formaction="<%=path%>/addEmp.jsp">
-	       <input type="submit" id="del" name="next" value="删除" 
-	              formaction="<%=path%>/delEmp.html"  disabled="disabled">
 	    </td>
 	  </tr>
 	</table>

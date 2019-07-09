@@ -8,7 +8,7 @@ public class BuyAccServlet extends AccControllerSupport
 	public String execute() throws Exception 
 	{
 		this.update("buyAccessories", "¹ºÂò");
-		return "queryBet";
+		return "adminQuerySend";
 	}
 
 }

@@ -32,6 +32,6 @@ public class Ad04ServicesImpl extends JdbcServicesSupport
 	public Map<String, String> findById()throws Exception
 	{
 		String sql="select a.aad401,a.aac601,a.aab101,a.aad402,a.aad403,a.aad404,b.aac602,b.aac605 from ad04 a,ac06 b where a.aad401=? and a.aac601=b.aac601";
-		return this.queryForMap(sql, 1);
+		return this.queryForMap(sql, this.get("aad401"));
 	}
 }

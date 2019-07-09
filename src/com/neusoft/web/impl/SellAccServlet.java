@@ -1,11 +1,12 @@
 package com.neusoft.web.impl;
-
-public final class QueryGetAccServlet extends GetAccControllerSupport
+public class SellAccServlet extends AccControllerSupport 
 {
+
 	@Override
 	public String execute() throws Exception 
 	{
-		this.savePageData();
+		this.update("sellAccessories", "³öÊÛ");
 		return "adminQueryGet";
 	}
+
 }

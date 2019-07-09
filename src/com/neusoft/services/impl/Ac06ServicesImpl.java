@@ -18,7 +18,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		//this.put("aac601", 1);
 		//this.put("aab101", 1);
 		//1,根据饰品ID查询饰品其他信息
-		Map<String, String> acc=this.findAccessories();
+		Map<String, String> acc=this.findAccessories(this.get("aac601"));
 		
 		//没有库存购买失败
 		if(Integer.parseInt(acc.get("aac606"))==0)
@@ -39,7 +39,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		//3,减少用户余额,由于是事务性操作 只能重新编写sql语句
     	StringBuilder sql1=new StringBuilder()
     			.append("update ab01 a")
-    			.append("   set a.aab106=a.aab106+?")
+    			.append("   set a.aab106=a.aab106-?")
     			.append(" where a.aab101=?")
     			;
     	Object args[]={
@@ -79,7 +79,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 					this.get("aac601"),
 					this.get("aab101"),
 					this.get("aad302"),
-					this.get("aad303"),
+					0,
 					this.get("aad304")
 			};
 		
@@ -88,7 +88,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	}
 	
 	//根据饰品ID查找其他信息
-	public Map<String, String> findAccessories() throws Exception
+	public Map<String, String> findAccessories(Object aac601) throws Exception
 	{
 		//1.编写SQL语句
     	StringBuilder sql=new StringBuilder()
@@ -98,6 +98,6 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
     			.append(" where a.aac601=?")
     			;
     	//执行查询
-    	return this.queryForMap(sql.toString(), this.get("aac601"));
+    	return this.queryForMap(sql.toString(), aac601);
 	}
 }
