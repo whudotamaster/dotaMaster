@@ -13,8 +13,10 @@
      color:#FF0000
   }
 </style>
+
 </head>
 <body>
+${msg }
 <br>
 <br>
 <form action="<%=path%>/addEmp.html" method="post">
@@ -35,7 +37,10 @@
 	   <tr>
      <td>內容</td>
      <td>
-       <e:textarea rows="5" cols="45" name="apaab503" required="true" defval=""/>
+    <!--     <e:textarea rows="5" cols="45" name="apaab503" required="true" defval=""/>
+       -->
+      <div id="editor"></div>
+   
      </td>
    </tr>
    </c:when>
@@ -57,6 +62,36 @@
      </td>
    </tr>
 </table>
+ <input type="text" name="apaab503" id="apaab503" hidden="true">
 </form>
+
 </body>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="wangEditor.min.js"></script>
+    <script type="text/javascript">
+        var E = window.wangEditor
+        var editor = new E('#editor')
+        var $text1 = $('#apaab503')
+        editor.customConfig.onchange = function (html) {
+            // 监控变化，同步更新到 textarea
+            $text1.val(html)
+        }
+        
+        editor.customConfig.menus = [
+    'head',  // 标题
+    'bold',  // 粗体
+    'fontSize',  // 字号
+    'fontName',  // 字体
+    'italic',  // 斜体
+    'underline',  // 下划线
+    'strikeThrough',  // 删除线
+    'foreColor',  // 文字颜色
+    'backColor',  // 背景颜色
+    'list',  // 列表
+    'justify',  // 对齐方式
+];
+        editor.create()
+        // 初始化 textarea 的值
+        $text1.val(editor.txt.html())
+    </script>
 </html>

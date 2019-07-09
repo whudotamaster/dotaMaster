@@ -55,33 +55,12 @@ ${ins }
 <br>
 <%=session.getId() %>
 <br>
-<form id="myform" action="<%=path%>/queryEmp.html" method="post">
+<form id="myform" action="<%=path%>/addComment.html?aab501=${param.aab501 }&aab101=${ param.aab101 }" method="post">
   <!-- 查询条件区 -->
 	<table border="1" width="95%" align="center">
 	  <caption>
 	               帖子详细页面
 	    <hr width="160">
-	  </caption>
-	  <tr>
-	    <td colspan="4">查询条件</td>
-	  </tr>
-	  <tr>
-	    <td>姓名</td>
-	    <td>
-	      <e:text name="qaab102"/>
-	    </td>
-	    <td>员工编号</td>
-	    <td>
-	      <e:text name="qaab103"/>
-	    </td>
-	  </tr>
-	  <tr>
-	    <td>性别</td>
-	    <td>
-	      <e:radio name="qaab105" value="男:1,女:2,不确定:3,不限定:''" defval=""/>
-	    </td>
-	  </tr>
-
 	</table>
 	<!-- 数据迭代区 -->
 	<table border="1" width="95%" align="center">
@@ -139,21 +118,28 @@ ${ins }
 		      </c:forEach>
 	     </c:when>
 	   </c:choose>
+	     <tr>
+     <td>回复</td>
+     <td>
+       <textarea rows="5" cols="45" name="acaab603" required="true"></textarea>
+     </td>
+   </tr>
 	</table>
 	
 	<!-- 功能按钮区 -->
 	<table border="1" width="95%" align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="查询">
-	       <input type="submit" name="next" value="添加" 
-	              formaction="<%=path%>/addEmp.jsp">
+	       <input type="submit" name="next" value="回复">
+	             <input type="submit" name="next" value="返回" 
+              formaction="<%=path%>/forum.html?aab101=${param.aab101 }"
+              formnovalidate="formnovalidate">
 	       <input type="submit" id="del" name="next" value="删除" 
 	              formaction="<%=path%>/delEmp.html"  disabled="disabled">
 	    </td>
 	  </tr>
 	</table>
-	<e:hidden name="aab101" />
+
 </form>
 </body>
 </html>
