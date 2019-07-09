@@ -10,64 +10,14 @@ import com.neusoft.system.tools.Tools;
 public class Ac01ServicesImpl extends JdbcServicesSupport 
 {
 	
-    private boolean deleteById()throws Exception
-    {
-    	String sql="delete from ab01 where aab101=?";
-    	return this.executeUpdate(sql, this.get("aab101"))>0;
-    }
-    
-    private boolean modifyEmp()throws Exception
-    {
-    	StringBuilder sql=new StringBuilder()
-    			.append("update ab01 a")
-    			.append("   set a.aab102=?,a.aab104=?,a.aab105=?,a.aab106=?,a.aab107=?,")
-    			.append("       a.aab108=?,a.aab109=?,a.aab110=?,a.aab111=?,a.aab112=?,")
-    			.append("       a.aab113=?")
-    			.append(" where a.aab101=?")
-    			;
-    	Object args[]={
-    			this.get("aab102"),
-    			this.get("aab104"),
-    			this.get("aab105"),
-    			this.get("aab106"),
-    			this.get("aab107"),
-    			this.get("aab108"),
-    			this.get("aab109"),
-    			this.get("aab110"),
-    			Tools.joinArray(this.get("aab111")),
-    			Tools.joinArray(this.get("aab112")),
-    			this.get("aab113"),
-    			this.get("aab101")
-    	};
-    	return this.executeUpdate(sql.toString(), args)>0;
-    	
-    }
-    
-    
-    
-    public Map<String,String> findById()throws Exception
-    {
-    	//1.编写SQL语句
-    	StringBuilder sql=new StringBuilder()
-    			.append("select a.aab102,a.aab103,a.aab104,a.aab105,a.aab106,")
-    			.append("       a.aab107,a.aab108,a.aab109,a.aab110,a.aab111,")
-    			.append("       a.aab112,a.aab113")
-    			.append("  from ab01 a")
-    			.append(" where a.aab101=?")
-    			;
-    	//执行查询
-    	return this.queryForMap(sql.toString(), this.get("aab101"));
-    }
-    
-    
-      
+                           
     
 	  /**
 	   * 英雄信息按名字模糊查询
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String,String>> queryHero()throws Exception
+	public List<Map<String,String>> query()throws Exception
 	  {
 	  		//还原页面查询条件
 	  		Object aac102=this.get("qaac102");     //姓名  模糊查询
@@ -142,7 +92,13 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
     	return this.batchUpdate(sql, idlist);
     }
 	
-	 public Map<String,String> findByIdHero()throws Exception
+	
+	  /**
+	   * 英雄信息点击名字查询
+	 * @return
+	 * @throws Exception
+	 */
+	 public Map<String,String> findById()throws Exception
 	    {
 	    	//1.编写SQL语句
 	    	StringBuilder sql=new StringBuilder()
@@ -187,6 +143,8 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	    	return this.executeUpdate(sql.toString(), args)>0;
 	    	
 	    }
+	
+	
 	private boolean deleteByIdHero()throws Exception
     {
     	String sql="delete from ac01 where aac101=?";

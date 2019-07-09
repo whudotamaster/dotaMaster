@@ -23,10 +23,10 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 		return this.queryForList(sql.toString());
     }
 	
-	private boolean isEnough() throws Exception
+	private boolean isEnough(Object aab101) throws Exception
 	{
 		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
-		Double aab106=ab01.getMoney();
+		Double aab106=ab01.getMoney(aab101);
 		int aad202=Integer.parseInt(this.get("aad202").toString());
 		int aad203=Integer.parseInt(this.get("aad203").toString());
 		if(aab106>aad202+aad203)
@@ -36,12 +36,12 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 	}
 	
     //用户单次押注时,插入用户押注表并更新竞猜表
-    public boolean insertBetLog()throws Exception
+    public boolean insertBetLog()throws Exception	
     {
     	//测试用
-    	this.put("aab101","1");
+    	this.put("aab101","2");
     	
-    	if(!this.isEnough())
+    	if(!this.isEnough(this.get("aab101")))
     		return false;
     	//通过前台传过来的id数据在数据库里查找到完整数据
     	
@@ -82,7 +82,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     }
     
     //查询竞猜总额
-    private Map<String,String> queryAllCount()throws Exception
+    private Map<String,String> queryAllCount(Object aad101)throws Exception
     {		
   		//定义SQL主体
   		StringBuilder sql=new StringBuilder()
@@ -90,7 +90,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
   				.append("  from ad01")
   				.append(" where aad101=?")
   				;
-  		return this.queryForMap(sql.toString(), this.get("aad101"));
+  		return this.queryForMap(sql.toString(), aad101);
     }
     
     //根据ID查找完整数据并放入dto中
@@ -110,7 +110,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     }
     
     //查询每一笔指定竞猜押注
-    private List<Map<String,String>> queryUserCount()throws Exception
+    private List<Map<String,String>> queryUserCount(Object aad101)throws Exception
     {		
   		//定义SQL主体
   		StringBuilder sql=new StringBuilder()
@@ -118,38 +118,46 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
   				.append("  from ad02")
   				.append(" where aad101=?")
   				;
-  		return this.queryForList(sql.toString(), this.get("aad101"));
+  		return this.queryForList(sql.toString(),aad101);
     }
 
     //更新比赛结果时,并方法押注奖金给用户
-    public boolean grantReward()throws Exception
+    public boolean grantReward(Object aac1105,Object aac1101)throws Exception
     {
-    	//1,更新比赛结果
+    /*	//1,更新比赛结果
     	StringBuilder sql1=new StringBuilder()
     			.append("update ac11 a")
     			.append("   set a.aac1105=?")
     			.append(" where a.aac1101=?")
     			;
     	Object args1[]={
-    			this.get("aac1105"),
-    			this.get("aac1101")
+    			aac1105,
+    			aac1101
     	};
-    	this.apppendSql(sql1.toString(), args1);
+    	this.apppendSql(sql1.toString(), args1);*/
     	boolean tag=false;
-    	if(Integer.parseInt(this.get("aac1105").toString())==1)
+    	if(aac1105.equals("1"))
     	{
     		tag=true;
     	}
+
+    	String sql="select aad101 from ad01 where aac1101=?";
+
+    	Map<String, String> temp=this.queryForMap(sql,aac1101);
+
+    	Object aad101=temp.get("aad101");
     	
     	//2,获取押注总额
-    	Map<String, String> map=this.queryAllCount();
-    	int countA=Integer.parseInt(map.get("aad102"));
-    	int countB=Integer.parseInt(map.get("aad103"));
+    	Map<String, String> map=this.queryAllCount(aad101);
+    	double countA=Double.parseDouble(map.get("aad102"));
+    	double countB=Double.parseDouble(map.get("aad103"));
+    	System.out.println(countA);
+    	System.out.println(countB);
     	
     	//3,根据竞猜ID获取押注用户
     	//3.1获取用户押注列表
     	//list中属性有用户ID 押注A方数量 押注B方数量 此处需要计算出用户赚的额度 并且放入每一个map中
-    	List<Map<String, String>> list=this.queryUserCount();
+    	List<Map<String, String>> list=this.queryUserCount(aad101);
     	
     	//3.2根据比赛胜负来计算用户该单获得的金币,并存入map中
     	if(tag)
@@ -158,7 +166,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     		for(Map<String, String> m:list)
     		{
     			tem=Integer.parseInt(m.get("aad202"));
-    			map.put("aad204", String.valueOf((tem+tem/countA*countB)*0.95));//根据用户是否为会员扣费暂时未做
+    			m.put("aad204", String.valueOf((tem+tem*countB/countA)*0.95));//根据用户是否为会员扣费暂时未做
     		}
     	}
     	else
@@ -167,7 +175,8 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     		for(Map<String, String> m:list)
     		{
     			tem=Integer.parseInt(m.get("aad203"));
-    			map.put("aad204", String.valueOf((tem+tem/countA*countB)*0.95));
+    			m.put("aad204", String.valueOf((tem+tem*countB/countA)*0.95));
+    			
     		}
     	}
     	
@@ -186,7 +195,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     				m.get("aab101")
     			};
 			this.apppendSql(sql2.toString(),args);
-			Tools.sendMessage("您有一笔押注公布结果了,您获得的金额是"+m.get("aad204"),m.get("aab101"));
+			Tools.sendMessage("您有一笔押注公布结果了,您获得的金额是"+m.get("aad204"),(Object)m.get("aab101"));
 		}
     	return this.executeTransaction();
     }

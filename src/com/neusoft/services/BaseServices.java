@@ -32,7 +32,25 @@ public interface BaseServices
      }
 
 
+
 	default List<Map<String, String>> queryHero()throws Exception
+
+	 {
+		 return null;
+	 }
+
+	default List<Map<String,String>> queryPost()throws Exception
+     {
+    	 return null;
+     }
+
+	default List<Map<String, String>> postFindById()throws Exception
+	{
+		return null;
+	}
+
+	default List<Map<String, String>> commentFindById()throws Exception
+
 	{
 		return null;
 	}
@@ -42,14 +60,19 @@ public interface BaseServices
 		return null;
 	}
 
+
 	 default  Map<String, String> loginEmp() throws Exception
 	 {
 		 return null;
 	 }
 
-	default int logonEmp() throws Exception{
+
+
+	default int logonEmp() throws Exception
+	{
 		return 0;
 	}
+
 	
     default Map<String,String> queryPersonEmp()throws Exception
     {
@@ -60,5 +83,6 @@ public interface BaseServices
 	{
 		return false;
 	}
+
 
 }

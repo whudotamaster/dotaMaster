@@ -46,16 +46,21 @@ ${msg }
 <br>
 <form id="myform" action="<%=path%>/queryBet.html" method="post">
 	<!-- 数据迭代区 -->
+	
 	<table border="1" width="95%" align="center">
+	 <caption>
+	               可押注比赛
+	    <hr width="160">
+	  </caption>
 	  <tr>
+	    <td></td>
 	    <td>序号</td>
-	    <td>竞猜ID</td>
-	    <td>A方押注数量</td>
-	    <td>B方押注数量</td>
-	    <td>比赛开始时间</td>
+	    <td>赛事</td>
 	    <td>战队1</td>
 	    <td>战队2</td>
-	    <td>赛事名</td>
+	    <td>比赛开始时间</td>
+	    <td>A方押注数量</td>
+	    <td>B方押注数量</td>
 	    <td>押注A方</td>
 	    <td>押注B方</td>
 	    <td></td>
@@ -76,12 +81,12 @@ ${msg }
 				             onclick="onSelect(this.checked)" >
 				    </td>
 				    <td>${vs.count }</td>
-				    <td>${ins.aad102 }</td>
-				    <td>${ins.aad103 }</td>
-				    <td>${ins.aac1102 }</td>
+				    <td>${ins.aac702 }</td>
 				    <td>${ins.aac1103 }</td>
 				    <td>${ins.aac1104 }</td>
-				    <td>${ins.aac702 }</td>
+				    <td>${ins.aac1102 }</td>
+				    <td>${ins.aad102 }</td>
+				    <td>${ins.aad103 }</td>
 				    <td>
 				      <e:text name="aad202" defval="0"/>
 				    </td>
@@ -127,21 +132,21 @@ ${msg }
 	     </c:otherwise>
 	   </c:choose>
 	</table>
-	
 	<!-- 功能按钮区 -->
 	<table border="1" width="95%" align="center">
 	  <tr>
 	    <td align="center">
 	       <input type="submit" name="next" value="查询">
-	       <input type="submit" name="next" value="下注" 
-	              formaction="<%=path%>/playBet.html">
-	       <input type="submit" name="next" value="添加" 
-	              formaction="<%=path%>/addEmp.jsp">
 	       <input type="submit" id="del" name="next" value="删除" 
 	              formaction="<%=path%>/delEmp.html"  disabled="disabled">
 	    </td>
 	  </tr>
 	</table>
+</form>
+<form action="<%=path%>/buyVIP.html" method="post">
+<input type="search" name="month" placeholder="输入开通的月数"/>
+<input type="submit" name="next" value="开通">
+<input type="hidden" name="aab101" value="1">
 </form>
 </body>
 </html>
