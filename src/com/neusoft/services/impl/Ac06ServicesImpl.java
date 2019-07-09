@@ -86,4 +86,37 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
     	//执行查询
     	return this.queryForMap(sql.toString(), this.get("aac601"));
 	}
+	
+	
+	
+	/**
+	   * 饰品信息按名字模糊查询
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Map<String,String>> query()throws Exception
+	  {
+	  		//还原页面查询条件
+	  		Object aac602=this.get("qaac602");     //姓名  模糊查询
+	  	
+	  		
+	  		//定义SQL主体
+	  		StringBuilder sql=new StringBuilder()
+	  				.append("select x.aac601,x.aac602,aac603,aac604,aac605,x.aac606")
+	  				.append("		 from ac06 x ,ac01 y")
+	  				.append("        where x.aac101=y.aac101   ")
+	  				;  		
+	  		//参数列表
+	  		List<Object> paramList=new ArrayList<>();
+	  		//逐一判断查询条件是否录入,拼接AND条件
+	  		if(this.isNotNull(aac602))
+	  		{
+	  			sql.append(" where aac602 like ?");
+	  			paramList.add("%"+aac602+"%");
+	  		}				
+	  		sql.append(" order by aac602");
+	  		return this.queryForList(sql.toString(), paramList.toArray());
+	  }
+	
+	
 }
