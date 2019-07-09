@@ -182,7 +182,7 @@ public abstract class ControllerSupport implements BaseController
 			boolean ins = this.services.personUpdateEmp();
 			if(ins=true)
 			{
-				this.saveAttribute("ins",  ins);
+				this.saveAttribute("updpsnbool",  ins);
 				this.saveAttribute("msg", "提示:用户信息更改成功!");	
 
 				System.out.println(ins);

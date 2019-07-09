@@ -2,7 +2,6 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%String path=request.getContextPath();%>
 <html>
 <head>
 <title>修改个人信息</title>
@@ -11,7 +10,7 @@
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
 <br>
-<form action="<%=path%>/updtPsnInf.html" method="post">
+
 <table border="1" align="center" width="45%">
   <caption>
        个人信息修改<hr width="160">
@@ -40,17 +39,11 @@
  	       <e:text name="aab105" defval="${ins.aab105 }"/> 
 	 	</td>
 	 </tr>
-	   <tr>
-	     <td>编号</td>
-	     <td>
-	       <e:text name="aab101"  readonly="true" defval="${ins.aab101 }"/> 
-	     </td>
-	   </tr>
+	
 </table>
- <input type="submit" name="next" value="修改">
+ <input type="submit" name="next" formaction="<%=path%>/updtPsnInf.html" value="修改">
  <input type="button" name="Submit" onclick="javascript:history.back(-1);" value="返回上一页">
- 
-</form>
+
 	<%@include file="footer.jsp" %>
 	<!-- 引入页脚 -->
 </body>

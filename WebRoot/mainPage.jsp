@@ -24,9 +24,8 @@
 <div id="main">
 
  
- <form>
- ${ins[0].aab102 }
- </form>
+É¶¶¼Ã».jpg
+
 
 </div>
 <%@include file="footer.jsp" %>
