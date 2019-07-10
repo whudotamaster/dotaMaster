@@ -30,43 +30,63 @@ ${msg}
    <tr>
      <td>饰品名</td>
      <td>
-       <e:text name="aac602"  readonly="true"  defval="${ins.aac602 }"/> 
+       <e:text name="aac602"  readonly="${ param.param.equals('1')}"  required="true"  defval="${ins.aac602 }"/> 
      </td>
    </tr>
    <tr>
      <td>饰品归属英雄</td>
      <td>
-       <e:text name="aac102"    readonly="true" defval="${ins.aac102 }"/>
+       <e:text name="aac102"    readonly="${ param.param.equals('1')}" required="true" defval="${ins.aac102 }"/>
      </td>
    </tr>
-   
+   <c:if test="${ param.param.equals('1')}">
    <tr>
      <td>饰品图片</td>
      <td >
       <img alt="no image" src=<%=path%>/images/${ins.aac603 } style="width:15%; height:100%">
      </td>
    </tr>  
+   </c:if>
+   <c:if test="${ param.param.equals('2')}" >
+   <tr>
+     <td>饰品图片链接</td>
+     <td >
+       <e:text name="aac603"  required="true"  defval="${ins.aac603 }" />
+     </td>
+   </tr>  
+   </c:if>
   <tr>
      <td>回收价格</td>
      <td>
-       <e:text name="aac604"    readonly="true" defval="${ins.aac604 }"/> 
+       <e:text name="aac604"   readonly="${ param.param.equals('1')}"  required="true"  defval="${ins.aac604 }"/> 
      </td>
    </tr>  
    <tr>
      <td>兑换价格</td>
      <td>
-       <e:text name="aac605"    readonly="true" defval="${ins.aac605 }"/> 
+       <e:text name="aac605"   readonly="${ param.param.equals('1')}"  required="true"  defval="${ins.aac605 }"/> 
      </td>
    </tr>  
+   <tr>
+     <td>库存</td>
+     <td>
+       <e:text name="aac606"   readonly="${ param.param.equals('1')}"  required="true"  defval="${ins.aac606 }"/> 
+     </td>
+   </tr> 
    <tr>
      <td colspan="2" align="center">
        <input type="submit" name="next" value="返回" 
               formaction="<%=path%>/queryAcc.html"
               formnovalidate="formnovalidate">
+        <c:if test="${ param.param.equals('2')}" >      
+        <input type="submit" name="next" value="修改" formaction="<%=path%>/modifyAcc.html?param=2" formnovalidate="formnovalidate" >  
+       </c:if>
      </td>
    </tr>
 </table>
-<input type="hidden" name="aac601" value="${param.aab101 }">
+<input type="hidden" name="param" value="${param.param }">
+<input type="hidden" name="aac601" value="${param.aac601 }">
+<input type="hidden" name="aac102" value="${param.aac102 }">
 </form>
 </body>
 </html>

@@ -22,14 +22,20 @@
     	  vdel.disabled=(count==0);
       }
       
-      function onEdit(vaac601)
+      function onEdit(vaac601,param)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdAcc.html?aac601="+vaac601;
+    	 vform.action="<%=path%>/findByIdAcc.html?aac601="+vaac601+"&param="+param;
     	 //alert(vform.action);
     	 vform.submit();
       }
-      
+      function onModify(vaac601,param)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/findByIdAcc.html?aac601="+vaac601+"&param="+param;
+    	 //alert(vform.action);
+    	 vform.submit();
+      }
       function onDel(vaac601)
       {
     	 var vform = document.getElementById("myform");
@@ -72,6 +78,7 @@ ${msg }
 	    <td>ÊÎÆ·Í¼Ïñ</td>
 	    <td>ÊÎÆ·Ãû</td>
 	    <td></td>
+	    <td></td>
 	  </tr>
 	   <c:choose>
 	     <c:when test="${rows!=null }">
@@ -88,10 +95,13 @@ ${msg }
 				     </td>
 				    <td>
 				      <!-- #  ¿ÕÃª -->
-				      <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
+				      <a href="#" onclick="onEdit('${ins.aac601}',1)">${ins.aac602 }</a>
 				    </td>
 				    <td>
 				      <a href="#" onclick="onDel('${ins.aac601}')">É¾³ý</a>
+				    </td>
+				    <td>
+				      <a href="#" onclick="onModify('${ins.aac601}',2)">ÐÞ¸Ä</a>
 				    </td>
 				  </tr>
 		      </c:forEach>
@@ -103,13 +113,14 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
-			         
+			            <td></td>
 			          </tr>
 		      </c:forEach>
 	     </c:when>
 	     <c:otherwise>
 	        <c:forEach begin="1" step="1" end="15">
 	           <tr>
+	             <td></td>
 	             <td></td>
 	             <td></td>
 	             <td></td>

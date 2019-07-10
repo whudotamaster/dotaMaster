@@ -44,6 +44,12 @@ public abstract class JdbcServicesSupport  implements BaseServices
 	{
 		return element!=null && !element.equals("");
 	}
+	protected final Object findIdByNameAc01()throws Exception
+	{
+		String sql2="select aac101 from ac01 where aac102=?";
+		Object aac101=this.queryForMap(sql2, this.get("aac102")).get("aac101");
+		return aac101;
+	}
 	
 	/**
 	 * 获取数组

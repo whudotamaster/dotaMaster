@@ -1,8 +1,11 @@
 package com.neusoft.services.impl;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.system.tools.Tools;
@@ -142,14 +145,100 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	public Map<String,String> findById()throws Exception
     {
     	//1.编写SQL语句
+	//	System.out.println(this.get("aac601"));
+	//	System.out.println(this.get("param"));
     	StringBuilder sql1=new StringBuilder()
     			.append("select x.aac602,x.aac603,x.aac604,x.aac605,x.aac606,y.aac102")
   				.append("		 from ac06 x ,ac01 y")
-  				.append("        where x.aac101=y.aac101   ")
-  				.append("         and aac601= ? ")
-    			;
+  				.append("        where x.aac101=y.aac101   ")	
+  				.append("         and aac601= ? ");
+    			;  	
     	//执行查询
-    	return this.queryForMap(sql1.toString(), this.get("aac601"));
+        return this.queryForMap(sql1.toString(), this.get("aac601"));
     }
 	
+	/**
+	 * 添加一行饰品信息
+	 * @return
+	 * @throws Exception
+	 */
+	private boolean addAcc()throws Exception
+    {		
+    	//1.编写SQL语句	
+	
+		Object aac101=this.findIdByNameAc01();
+		System.out.println("aac101:"+aac101);
+    	StringBuilder sql=new StringBuilder()
+    			.append(" insert into ac06 (aac602,aac603,aac604,aac605,  ")
+    			.append("    			                   aac606,aac101)    ")
+    			.append("    			                   values(?,?,?,?,?,? )  ")
+    			;
+    	//2.编写参数数组
+    	Object args[]={
+    			this.get("aac602"),
+    			this.get("aac603"),
+    			this.get("aac604"),
+    			this.get("aac605"),
+    			this.get("aac606"),
+    			aac101
+    	         };
+        return this.executeUpdate(sql.toString(), args)>0;	
+    }
+	
+	
+	 /**
+	  * 修改饰品数据
+	 * @return
+	 * @throws Exception
+	 */
+	   private boolean modifyAcc()throws Exception
+	    {
+		
+		    Object aac101=this.findIdByNameAc01();
+		    System.out.println("aac101:"+aac101);
+	    	StringBuilder sql=new StringBuilder()
+	    			.append("	update ac06 set aac602=?,aac603=?,aac604=?,aac605=?,aac606=?,aac101=?  ")
+		            .append("   where aac601=? ")
+	    			;
+	    	System.out.println(this.get("aac601"));
+	    	Object args[]={
+	    			this.get("aac602"),
+	    			this.get("aac603"),
+	    			this.get("aac604"),
+	    			this.get("aac605"),
+	    			this.get("aac606"),
+	    			aac101,	    	
+	    			this.get("aac601")
+	    	};
+	    	return this.executeUpdate(sql.toString(), args)>0;
+	    	
+	    }
+	   
+	   
+	   /**
+		 * 饰品数据批量删除
+		 * @return
+		 * @throws Exception
+		 */
+		private boolean batchDelAcc()throws Exception
+	    {
+	    	//1.定义SQL语句
+	    	String sql="delete from ac06 where aac601=?";
+	    	//2.获取页面idlist数组
+	    	String idlist[]=this.getIdList("idlist");
+	    	//3.执行
+	    	return this.batchUpdate(sql, idlist);
+	    }
+		
+		
+		/**
+		 * 单一实例删除
+		 * @return
+		 * @throws Exception
+		 */
+		private boolean delByIdAcc()throws Exception
+	    {
+	    	String sql="delete from ac06 where aac601=?";
+	    	return this.executeUpdate(sql, this.get("aac601"))>0;
+	    }
 }
