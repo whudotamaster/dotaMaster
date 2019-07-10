@@ -9,16 +9,15 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 
 
-public class QueryPersonServlet extends EmpControllerSupport 
+
+public class UnpassArticleServlet extends ArticleControllerSupport
 {
-	@Override
-	public String execute()throws Exception
-	{
+       @Override
+       public String execute() throws Exception
+       {
+    	   this.update("unpassArticle", "…Û∫À∑Ò∂®");
+    	   return "readArticle";
+       }
 
-		this.queryPersonIn();
 
-
-
-	  return  "updatePersonInfo";
-	}
 }

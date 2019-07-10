@@ -37,6 +37,8 @@ public class LoginTest extends HttpServlet
 		{
 			request.setAttribute("ins", ins);
 			request.getSession().setAttribute("aab101", ins.get("aab101"));
+			request.getSession().setAttribute("aab108", ins.get("aab108"));
+			
 			request.getRequestDispatcher("mainPage.jsp").forward(request, response);
 		}
 		else
