@@ -146,6 +146,27 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	}
     }
     
+    public Map<String, String> loginEmp(Object aab103,Object aab104)throws Exception
+    {
+    	try
+    	{
+	    	StringBuilder sql=new StringBuilder()
+	    			.append("select a.aab101,a.aab102")	
+	    			.append("  from ab01 a")
+	    			.append(" where a.aab103=? and a.aab104=?")
+	    			;
+	    	List<Object> paramList =new ArrayList<>();
+	    	paramList.add(aab103);
+	    	paramList.add(aab104);
+	    	return this.queryForMap(sql.toString(), paramList.toArray());
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    		return null;
+    	}
+    }
+    
     //用户名查重
     private boolean isExist()throws Exception
     {
@@ -203,7 +224,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	}   	
     }
     //获得用户个人信息
-    public Map<String,String> queryPersonEmp()throws Exception
+    public Map<String,String> queryPerson()throws Exception
     {
     	try
     	{

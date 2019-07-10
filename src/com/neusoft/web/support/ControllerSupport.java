@@ -135,18 +135,18 @@ public abstract class ControllerSupport implements BaseController
 	protected final boolean loginIn()throws Exception
 	{
 		Map<String, String> ins=this.services.loginEmp();
-		System.out.println("在loginIn中实例化一次");
+		//System.out.println("在loginIn中实例化一次");
 
 		if(ins!=null)
 		{
 			this.saveAttribute("ins", ins);
-			System.out.println(ins);
+			//System.out.println(ins);
 			return true;
 		}
 		else
 		{
 			this.saveAttribute("msg", "提示：登陆失败");
-			System.out.println("login false运行");
+			//System.out.println("login false运行");
 			return false;
 		}
 	}
