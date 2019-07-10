@@ -45,6 +45,7 @@ ${msg }
 	    <td>玩家编号</td>
 	    <td>交易时间</td>
 	    <td>留言</td>
+	    <td>完成状态</td>
 	  </tr>
 	  <!--
 	         注意事项
@@ -62,15 +63,17 @@ ${msg }
 				      <a href="#" onclick="onEdit('${ins.aad301 }')">${vs.count }</a>
 				    </td>
 				    <td>${ins.aac602 }</td>
-				    <td>${ins.aad604 }</td>
+				    <td>${ins.aac604 }</td>
 				    <td>${ins.aad302 }</td>
 				    <td>${ins.aad305 }</td>
 				    <td>${ins.aad304 }</td>
+				    <td>${ins.fvalue }</td>
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
 		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
 			          <tr>
+			            <td></td>
 			            <td></td>
 			            <td></td>
 			            <td></td>
@@ -83,6 +86,7 @@ ${msg }
 	     <c:otherwise>
 	        <c:forEach begin="1" step="1" end="15">
 	           <tr>
+	             <td></td>
 	             <td></td>
 	             <td></td>
 	             <td></td>

@@ -21,10 +21,12 @@ boolean tag=(boolean)session.getAttribute("tag");
 <body>
 ${msg }
 <br>
+ins.aad403
 <br>
 aad403:${ins.aad403}
 <br>
 aab108:<%=aab108 %>
+
 <%=tag %>
 <form action="<%=path%>/buyAcc.html" method="post">
 <table  border="1" align="center" width="45%">
@@ -50,6 +52,11 @@ aab108:<%=aab108 %>
        <e:textarea rows="5" cols="45" name="aad404" defval="${ins.aad404 }" readonly="${!empty ins.aad403?'true':'false' }" />
      </td>
    </tr>
+   <c:if test="${!empty ins.aad403}">
+    <tr>
+     <td colspan="2">Íê³É×´Ì¬:${ins.fvalue }</td>
+   </tr>
+   </c:if>
    <tr>
      <td colspan="2" align="center">
      <c:choose>

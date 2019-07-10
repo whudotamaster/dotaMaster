@@ -120,7 +120,6 @@ public abstract class ControllerSupport implements BaseController
 	protected final void savePageInstance()throws Exception
 	{
 		Map<String,String> ins=this.services.findById();
-		this.saveAttribute("aab101",this.dto.get("aab101"));
 		if(ins!=null)
 		{
 			this.saveAttribute("ins",  ins);

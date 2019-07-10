@@ -112,13 +112,13 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     
     public List<Map<String,String>> queryBuyOrder()throws Exception
     {
-    	String sql="select a.aad401,a.aac601,a.aad402,a.aad403,a.aad404,a.aad405,b.aac602,b.aac605,c.aab108 from ad04 a,ac06 b,ab01 c where a.aac601=b.aac601 and c.aab101=a.aab101 and a.aab101=?";                                                                                                                                                                               
+    	String sql="select a.aad401,a.aac601,a.aad402,a.aad403,a.aad404,a.aad405,b.aac602,b.aac605 from ad04 a,ac06 b where a.aac601=b.aac601	 and a.aab101=?";                                                                                                                                                                               
     	return this.queryForList(sql, this.get("aab101"));
     }
     
     public List<Map<String,String>> querySellOrder()throws Exception
     {
-    	String sql="select a.aad301,a.aac601,a.aad302,a.aad303,a.aad304,a.aad305,b.aac602,b.aac604,c.aab108 from ad03 a,ac06 b,ab01 c where a.aac601=b.aac601 and c.aab101=a.aab101 and a.aab101=?";                                                                                                                                                                                
+    	String sql="select a.aad301,a.aac601,a.aad302,a.aad303,a.aad304,a.aad305,b.aac602,b.aac604 from ad03 a,ac06 b where a.aac601=b.aac601 and a.aab101=?";                                                                                                                                                                                
     	return this.queryForList(sql, this.get("aab101"));
     }
     
