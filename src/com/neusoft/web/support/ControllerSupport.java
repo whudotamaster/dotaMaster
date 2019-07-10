@@ -77,7 +77,7 @@ public abstract class ControllerSupport implements BaseController
 		List<Map<String,String>> rows=null;
 		if(methodName.equals("buy"))
 			rows=this.services.queryBuyOrder();
-		else 
+		else if(methodName.equals("sell"))
 			rows=this.services.querySellOrder();
 		
 		if(rows.size()>0)

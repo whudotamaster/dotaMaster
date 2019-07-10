@@ -16,7 +16,7 @@ import javax.websocket.Session;
 import com.neusoft.services.impl.Ab01ServicesImpl;
 
 
-@WebServlet(value="/login.html",loadOnStartup=1)
+@WebServlet(value="/login.html",loadOnStartup=0)
 public class LoginTest extends HttpServlet 
 {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -37,6 +37,9 @@ public class LoginTest extends HttpServlet
 		{
 			request.setAttribute("ins", ins);
 			request.getSession().setAttribute("aab101", ins.get("aab101"));
+			request.getSession().setAttribute("aab108", ins.get("aab108"));
+			boolean tag=ins.get("aab108").equals("2")?true:false;
+			request.getSession().setAttribute("tag", tag);
 			request.getRequestDispatcher("mainPage.jsp").forward(request, response);
 		}
 		else

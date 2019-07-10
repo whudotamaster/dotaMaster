@@ -14,9 +14,6 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	//使用虚拟货币购买饰品
 	public boolean buyAccessories()throws Exception
     {
-		//
-		//this.put("aac601", 1);
-		//this.put("aab101", 1);
 		//1,根据饰品ID查询饰品其他信息
 		Map<String, String> acc=this.findAccessories(this.get("aac601"));
 		
@@ -54,8 +51,8 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		
 		//5,插入待发货列表
 		StringBuilder sql3=new StringBuilder()
-    			.append("insert into ad04(aac601,aab101,aad402,aad403,aad404) ")
-    			.append("          values(?,?,?,?,?)")
+    			.append("insert into ad04(aac601,aab101,aad402,aad403,aad404,aad405) ")
+    			.append("          values(?,?,?,?,?,current_timeStamp)")
     			;
 		Object args3[]=
 			{
@@ -73,7 +70,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	//出售饰品给网站
 	public boolean sellAccessories()throws Exception
 	{
-		String sql="insert into ad03(aac601,aab101,aad302,aad303,aad304) values(?,?,?,?,?)";
+		String sql="insert into ad03(aac601,aab101,aad302,aad303,aad304,aad305) values(?,?,?,?,?,current_timeStamp)";
 		Object args[]=
 			{
 					this.get("aac601"),

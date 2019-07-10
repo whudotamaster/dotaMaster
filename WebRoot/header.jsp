@@ -8,6 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
 String aab101=(String)session.getAttribute("aab101");
+String aab108=(String)session.getAttribute("aab108");
 String path=request.getContextPath();
 %>
 

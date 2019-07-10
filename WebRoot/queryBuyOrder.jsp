@@ -22,11 +22,10 @@
     	  vdel.disabled=(count==0);
       }
       
-      function onEdit(vaad301)
+      function onEdit(vaad401)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findGetAcc.html?aad301="+vaad301;
-    	 vform.action="<%=path%>/${empty ins.aad301?'${ins.aad401}':'${ins.aad301}'"+vaad301;
+    	 vform.action="<%=path%>/findbuyAcc.html?aad401="+vaad401;
     	 //alert(vform.action);
     	 vform.submit();
       }      
@@ -41,13 +40,15 @@ ${msg }
 	
 	<table border="1" width="95%" align="center">
 	 <caption>
-	               历史订单
+	               历史购买订单
 	    <hr width="160">
 	  </caption>
 	  <tr>
 	    <td>序号</td>
-	    <td>饰品ID</td>
+	    <td>饰品名称</td>
+	    <td>价格</td>
 	    <td>玩家编号</td>
+	    <td>留言</td>
 	  </tr>
 	  <!--
 	         注意事项

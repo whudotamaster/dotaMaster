@@ -1,7 +1,11 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%String path=request.getContextPath();%>
+<%
+String path=request.getContextPath(); 
+String aab108=(String)session.getAttribute("aab108");
+boolean tag=(boolean)session.getAttribute("tag");
+%>
 <html>
 <head>
 <title>Insert title here</title>
@@ -55,6 +59,30 @@ ${aab101 }
      <td colspan="2" align="center">
        <input type="submit" name="next" value="${empty ins.aad303?'确认已发送':'已收货' }"
               formaction="<%=path%>/${empty ins.aad303?'sellAcc':'modifyGetAcc' }.html">
+     </td>
+   </tr>
+   <tr>
+     <td colspan="2" align="center">
+     <c:choose>
+     <c:when test="${empty ins.aa303}">
+     <input type="submit" name="next" value="确认已发货"
+              formaction="<%=path%>/sellAcc.html">
+     <input type="submit" name="next" value="返回" 
+              formaction="<%=path%>/queryBet.html">
+     </c:when>
+     <c:when test="${ins.aad303==0}">
+     <c:if test="<%=tag%>">
+     <input type="submit" name="next" value="确认已收货"
+              formaction="<%=path%>/modifyGetAcc.html">
+     <input type="submit" name="next" value="返回" 
+              formaction="<%=path%>/queryGetAcc.html">
+     </c:if>  
+      <c:if test="<%=!tag%>">
+     <input type="submit" name="next" value="返回" 
+              formaction="<%=path%>/querySellOrder.html">
+     </c:if>  
+     </c:when>
+     </c:choose>
      </td>
    </tr>
 </table>
