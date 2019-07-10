@@ -116,7 +116,8 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	  		
 	  		//定义SQL主体
 	  		StringBuilder sql=new StringBuilder()
-	  				.append("select x.aac601,x.aac602,aac603,aac604,aac605,x.aac606")
+
+	  				.append("select x.aac601,x.aac602,x.aac603,x.aac604,x.aac605,x.aac606")
 	  				.append("		 from ac06 x ,ac01 y")
 	  				.append("        where x.aac101=y.aac101   ")
 	  				;  		
@@ -132,5 +133,23 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	  		return this.queryForList(sql.toString(), paramList.toArray());
 	  }
 	
+	
+	/**
+	   * 饰品信息单一实例查询
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String,String> findById()throws Exception
+    {
+    	//1.编写SQL语句
+    	StringBuilder sql1=new StringBuilder()
+    			.append("select x.aac602,x.aac603,x.aac604,x.aac605,x.aac606,y.aac102")
+  				.append("		 from ac06 x ,ac01 y")
+  				.append("        where x.aac101=y.aac101   ")
+  				.append("         and aac601= ? ")
+    			;
+    	//执行查询
+    	return this.queryForMap(sql1.toString(), this.get("aac601"));
+    }
 	
 }
