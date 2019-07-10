@@ -25,7 +25,8 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	  				.append(" select  x.aab801,x.aab101,x.aab802,x.aab803,x.aab804,    ")   
 	  				.append("	  		  x.aab805,x.aab806 ,y.aab102                      ")     
 	  				.append("  		   from ab08 x ,ab01 y                          ")
-	  				.append("        where x.aab101=y.aab101    ")
+	  				.append("        where x.aab101=y.aab101 and x.aab804 = 2   ")//804审核已通过为2
+	
 	  				;
 	  		
 	  		//参数列表
@@ -37,8 +38,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	  			sql1.append("  and aab802 like ? ");
   			    paramList1.add("%"+aab802+"%");	
   		    }  				
-	  		sql1.append(" order by aab802 ");
-	  		
+	  		sql1.append(" order by aab805 desc ");//按照时间降序排列
 	  		return this.queryForList(sql1.toString(), paramList1.toArray());  	
 	  		
 	  }
@@ -69,7 +69,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
     	StringBuilder sql=new StringBuilder()
     			.append("  insert into ab08 (aab101,aab802,aab803,aab804,  ")
     			.append("                   aab805,aab806)               ")
-    			.append("                   values(?,?,?,?,            ")
+    			.append("                   values(?,?,?,1,            ")
     			.append("                   CURRENT_TIMESTAMP(),?)     ")                    
     			;
     	//2.编写参数数组
@@ -77,7 +77,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
     			this.get("aab101"),
     			this.get("aab802"),
     			this.get("aab803"),
-    			this.get("aab804"),
+    
     			this.get("aab806"),
     			
     	         };
@@ -96,6 +96,18 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
     	return this.executeUpdate(sql, this.get("aab801"))>0;
     }
 	
+	//文章审核通过和不通过
+	private boolean passArticle()throws Exception
+	{
+		String sql="update ab08 set aab804 = 2 where aab801=?";
+		return this.executeUpdate(sql, this.get("aab801"))>0;//2==通过
+	}
+	
+	private boolean unpassArticle()throws Exception
+	{
+		String sql="update ab08 set aab804 = 3 where aab801=?";
+		return this.executeUpdate(sql, this.get("aab801"))>0;//3==不通过 留给后续消息提示用
+	}
 	
 	/**
 	 * 文章批量删除

@@ -151,8 +151,9 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	try
     	{
 	    	StringBuilder sql=new StringBuilder()
-	    			.append("select a.aab101,a.aab102,a.aab108")	
-	    			.append("  from ab01 a")
+    				.append("select a.aab101,a.aab102,a.aab103,a.aab104,a.aab105,")	
+    				.append("						  a.aab106,a.aab107,a.aab108")
+    				.append("  from ab01 a")
 	    			.append(" where a.aab103=? and a.aab104=?")
 	    			;
 	    	List<Object> paramList =new ArrayList<>();
@@ -202,7 +203,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			    			.append("insert into ab01")
 			    			.append("(aab102,aab103,aab104,aab105,aab106,")
 			    			.append(" 						aab107,aab108)")
-			    			.append("values (?,?,?,'空',0,")
+			    			.append("values (?,?,?,'null.png',0,")
 			    			.append("							0,1)")
 			       			;
 			    	List<Object> paramList =new ArrayList<>();
@@ -224,7 +225,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	}   	
     }
     //获得用户个人信息
-    public Map<String,String> queryPerson()throws Exception
+    public Map<String,String> queryPersonEmp()throws Exception
     {
     	try
     	{
