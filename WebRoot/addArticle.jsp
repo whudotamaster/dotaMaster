@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%String path=request.getContextPath();%>
+
 <html>
 <head>
 <title>Insert title here</title>
@@ -16,6 +16,9 @@
 </head>
 <body>
 ${msg}
+<!-- 引入头部导航栏 -->
+<%@ include file="header.jsp" %>
+
 <br>
 <br>
 <form action="<%=path%>/findByIdArticle.html" method="post">
@@ -34,30 +37,21 @@ ${msg}
        <e:text name="aab802" required="true"   /> 
      </td>
    </tr>
-   <tr>
-     <td>用户id</td>
-     <td>
-       <e:text name="aab101"  required="true"  />
-     </td>
-   </tr>
+ 
    <tr>
      <td>文章类型</td>
      <td>
        <e:text name="aab806"  required="true"   /> 
      </td>
    </tr>  
-   <tr>
-     <td>文章审核状态</td>
-     <td>
-       <e:text name="aab804"  required="true"   /> 
-     </td>
-   </tr>  
+
    <tr>
      <td>文章内容</td>
      <td>
        <e:textarea rows="5" cols="45" name="aab803" />
      </td>
    </tr>
+   <input type="hidden" name="aab101" value="<%=aab101%>">
    <tr>
      <td colspan="2" align="center">
      <input type="submit" name="next" value="添加"

@@ -112,13 +112,13 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     
     public List<Map<String,String>> queryBuyOrder()throws Exception
     {
-    	String sql="select * from ad04 where aab101=?";                                                                                                                                                                               
+    	String sql="select a.aad401,a.aac601,a.aad402,a.aad403,a.aad404,a.aad405,b.aac602,b.aac605,c.aab108 from ad04 a,ac06 b,ab01 c where a.aac601=b.aac601 and c.aab101=a.aab101 and a.aab101=?";                                                                                                                                                                               
     	return this.queryForList(sql, this.get("aab101"));
     }
     
     public List<Map<String,String>> querySellOrder()throws Exception
     {
-    	String sql="select * from ad03 where aab101=?";                                                                                                                                                                               
+    	String sql="select a.aad301,a.aac601,a.aad302,a.aad303,a.aad304,a.aad305,b.aac602,b.aac604,c.aab108 from ad03 a,ac06 b,ab01 c where a.aac601=b.aac601 and c.aab101=a.aab101 and a.aab101=?";                                                                                                                                                                                
     	return this.queryForList(sql, this.get("aab101"));
     }
     
@@ -132,6 +132,28 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	    	StringBuilder sql=new StringBuilder()
 	    			.append("select a.aab101,a.aab102")	
 	    			.append("  from ab01 a")
+	    			.append(" where a.aab103=? and a.aab104=?")
+	    			;
+	    	List<Object> paramList =new ArrayList<>();
+	    	paramList.add(aab103);
+	    	paramList.add(aab104);
+	    	return this.queryForMap(sql.toString(), paramList.toArray());
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    		return null;
+    	}
+    }
+    
+    public Map<String, String> loginEmp(Object aab103,Object aab104)throws Exception
+    {
+    	try
+    	{
+	    	StringBuilder sql=new StringBuilder()
+    				.append("select a.aab101,a.aab102,a.aab103,a.aab104,a.aab105,")	
+    				.append("						  a.aab106,a.aab107,a.aab108")
+    				.append("  from ab01 a")
 	    			.append(" where a.aab103=? and a.aab104=?")
 	    			;
 	    	List<Object> paramList =new ArrayList<>();
@@ -181,7 +203,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			    			.append("insert into ab01")
 			    			.append("(aab102,aab103,aab104,aab105,aab106,")
 			    			.append(" 						aab107,aab108)")
-			    			.append("values (?,?,?,'空',0,")
+			    			.append("values (?,?,?,'null.png',0,")
 			    			.append("							0,1)")
 			       			;
 			    	List<Object> paramList =new ArrayList<>();
@@ -222,7 +244,6 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	}
     }
     
-
     //用户修改个人信息
     public boolean personUpdateEmp()throws Exception
     {
@@ -252,11 +273,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     		return false;
     	}
     }
-    
-    
  
-    
-    
     private boolean addEmp()throws Exception
     {
     	//获取当前员工编号
@@ -290,6 +307,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	};
         return this.executeUpdate(sql.toString(), args)>0;	
     }
+    
     private boolean batchDelete()throws Exception
     {
     	//1.定义SQL语句

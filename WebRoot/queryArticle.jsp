@@ -2,7 +2,7 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%String path=request.getContextPath(); %>
+
 <html>
 <head>
    <title>Insert title here</title>
@@ -13,35 +13,12 @@
      }
    </style>
    
-   <script type="text/javascript">
-      var count=0;
-      function onSelect(vstate)
-      {
-    	  vstate?count++:count--;
-    	  var vdel=document.getElementById("del");
-    	  vdel.disabled=(count==0);
-      }
-      
-      function onEdit(vaab801)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdArticle.html?aab801="+vaab801;
-    	 //alert(vform.action);
-    	 vform.submit();
-      }
-      
-      function onDel(vaab801)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdArticle.html?aab801="+vaab801;
-    	 alert(vform.action);
-    	 vform.submit();
-      } 
-      
-   </script>
+
 </head>
 <body>
 ${msg }
+<!-- 引入头部导航栏 -->
+<%@ include file="header.jsp" %>
 <br>
 <%=session.getId() %>
 <br>
@@ -140,4 +117,30 @@ ${msg }
 	</table>
 </form>
 </body>
+   <script type="text/javascript">
+      var count=0;
+      function onSelect(vstate)
+      {
+    	  vstate?count++:count--;
+    	  var vdel=document.getElementById("del");
+    	  vdel.disabled=(count==0);
+      }
+      
+      function onEdit(vaab801)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/findByIdArticle.html?aab801="+vaab801;
+    	 //alert(vform.action);
+    	 vform.submit();
+      }
+      
+      function onDel(vaab801)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/delByIdArticle.html?aab801="+vaab801;
+    	 alert(vform.action);
+    	 vform.submit();
+      } 
+      
+   </script>
 </html>

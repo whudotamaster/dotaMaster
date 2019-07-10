@@ -9,9 +9,6 @@
 <%
 	String laab102=(String)request.getAttribute("ins.aab102");
 %>
-<%
-String aab101=(String)session.getAttribute("aab101");
-%>
 <script>
 
 </script>
@@ -22,7 +19,6 @@ String aab101=(String)session.getAttribute("aab101");
 
 </head>
 
-<%=aab101%>
 
 
 
@@ -32,7 +28,7 @@ String aab101=(String)session.getAttribute("aab101");
 
 <div id="main">
 
- 
+ <%=aab101%>
 É¶¶¼Ã».jpg
 
 

@@ -2,7 +2,10 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%String path=request.getContextPath(); %>
+<%
+String aab101=(String)session.getAttribute("aab101");
+String path=request.getContextPath();
+%>
 <html>
 <head>
    <title>Insert title here</title>
@@ -42,6 +45,7 @@
 </head>
 <body>
 ${msg }
+<%=aab101 %>
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryBet.html" method="post">

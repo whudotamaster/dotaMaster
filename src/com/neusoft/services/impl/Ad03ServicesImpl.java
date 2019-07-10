@@ -7,6 +7,7 @@ import java.util.Map;
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.system.tools.Tools;
 import com.sun.org.apache.bcel.internal.generic.Select;
+import com.sun.org.apache.xpath.internal.operations.And;
 
 public class Ad03ServicesImpl extends JdbcServicesSupport 
 {
@@ -50,7 +51,7 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 	//查看所有待收货列表中未完成的订单
 	public List<Map<String, String>> query()throws Exception
 	{
-		String sql="select aad301,aac601,aab101,aad302,aad303,aad304 from ad03 where aad303=0";
+		String sql="select aad301,aac601,aab101,aad302,aad303,aad304,aad305 from ad03 where aad303=0";
 		return this.queryForList(sql);
 	}
 	
@@ -58,7 +59,7 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 	//查看待收货列表订单的详细信息
 	public Map<String, String> findById()throws Exception
 	{
-		String sql="select a.aad301,a.aac601,a.aab101,a.aad302,a.aad303,a.aad304,b.aac602 from ad03 a,ac06 b where a.aad301=? and a.aac601=b.aac601";
+		String sql="select a.aad301,a.aac601,a.aab101,a.aad302,a.aad303,a.aad304,a.aad305,b.aac602 from ad03 a,ac06 b where a.aad301=? and a.aac601=b.aac601" ;
 		return this.queryForMap(sql, this.get("aad301"));
 	}
 	
