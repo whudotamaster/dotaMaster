@@ -50,7 +50,7 @@ public abstract class ControllerSupport implements BaseController
 		}	
 	}
 	
-<<<<<<< HEAD
+
 	/*****************************************
 	 * 	        战队信息封装
 	 *****************************************/
@@ -65,7 +65,7 @@ public abstract class ControllerSupport implements BaseController
 		this.saveAttribute("rows", rows);
 		this.saveAttribute("ins", ins);
 	}
-=======
+
 	/**
 	 * 数据批量查询
 	 * @throws Exception
@@ -85,8 +85,7 @@ public abstract class ControllerSupport implements BaseController
 	
 	
 	
-	
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
+
 	/*****************************************
 	 * 	        论坛加载业务流程封装
 	 *****************************************/
