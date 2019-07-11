@@ -50,6 +50,26 @@ public abstract class ControllerSupport implements BaseController
 		}	
 	}
 	
+	/**
+	 * 数据批量查询
+	 * @throws Exception
+	 */
+	protected final void adminQueryArticleServ()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.adminQuery();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+	
+	
+	
 	/*****************************************
 	 * 	        论坛加载业务流程封装
 	 *****************************************/
@@ -153,7 +173,7 @@ public abstract class ControllerSupport implements BaseController
 	protected final boolean logonIn()throws Exception
 	{
 		
-			int ins=this.services.logonEmp();
+			int ins=this.services.logonPerson();
 			System.out.println("在logonIn中实例化一次");
 			
 			switch(ins)
@@ -203,6 +223,7 @@ public abstract class ControllerSupport implements BaseController
 			{
 				this.saveAttribute("updpsnbool",  ins);
 				this.saveAttribute("msg", "提示:用户信息更改成功!");	
+				
 
 				System.out.println(ins);
 				return true;
