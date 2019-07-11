@@ -134,13 +134,32 @@ public abstract class ControllerSupport implements BaseController
 	 * 	        收藏页面加载业务流程封装
 	 *****************************************/
 	/**
-	 * 帖子数据批量查询
+	 * 用戶收藏数据查询
 	 * @throws Exception
 	 */
 	protected final void collectionOnLoad()throws Exception
 	{
 		List<Map<String,String>> rows=this.services.queryCollectionList();
-		System.out.println(rows);
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+	/*****************************************
+	 * 	        用户历史发帖页面加载业务流程封装
+	 *****************************************/
+	/**
+	 * 用戶历史发帖数据查询
+	 * @throws Exception
+	 */
+	protected final void queryHistoryOnLoad()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.queryHistory();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);

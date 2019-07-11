@@ -69,7 +69,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	private boolean delPost() throws Exception 
+	private boolean delPostById() throws Exception 
 	{
 		Object aab501 = this.get("aab501");
 		String sql1 = "delete from ab06 where aab501=?";
@@ -159,6 +159,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		// 参数列表
 		List<Object> paramList = new ArrayList<>();
 		paramList.add(aab501);
+		System.out.println("aab101:" + this.get("aab101"));
 		return this.queryForList(sql.toString(), paramList.toArray());
 	}
 
@@ -326,6 +327,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
     			.append(" where a.aab101=? and a.aab501=b.aab501 and b.aab101=c.aab101")
     			.append(" order by a.aab702 desc")
     			;
+    	System.out.println("aab101:" + this.get("aab101"));
     	return queryForList(sql.toString(), aab101);
 	}
 
@@ -343,5 +345,44 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		String idlist[] = this.getIdList("idlist");
 		// 3.执行
 		return this.batchUpdate(sql, idlist);
+	}
+	
+	/**
+	 * 查找用户历史发帖
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Map<String,String>> queryHistory() throws Exception 
+	{
+		// 1.定义SQL语句
+		StringBuilder sql = new StringBuilder()
+				.append(" select a.aab501,a.aab502,a.aab504,a.aab505 ")
+				.append("   from ab05 a ")
+				.append("  where a.aab101=? ")
+				.append("  order by a.aab504 desc ")
+				;
+		return this.queryForList(sql.toString(), this.get("aab101"));
+	}
+	
+	/**
+	 * 帖子批量刪除
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	private boolean delPost() throws Exception 
+	{
+		String idlist[] = this.getIdList("idlist");
+		String sql1 = "delete from ab06 where aab501=?";
+		String sql2 = "delete from ab07 where aab501=?";
+		String sql3 = "delete from ab05 where aab501=?";
+		for (String aab501:idlist) 
+		{
+			this.apppendSql(sql1, aab501);
+			this.apppendSql(sql2, aab501);
+			this.apppendSql(sql3, aab501);
+		}
+		return executeTransaction();
 	}
 }

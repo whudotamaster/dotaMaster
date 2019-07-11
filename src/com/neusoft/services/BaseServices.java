@@ -107,4 +107,8 @@ public interface BaseServices
 		return null;
 	}
 
+	default List<Map<String,String>> queryHistory()throws Exception
+	{
+		return null;
+	}
 }

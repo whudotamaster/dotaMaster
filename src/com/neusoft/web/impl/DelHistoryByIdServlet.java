@@ -4,13 +4,13 @@ import com.sun.javafx.collections.MappingChange.Map;
 
 import sun.applet.resources.MsgAppletViewer;
 
-public final class DelCollectionServlet extends ForumControllerSupport 
+public final class DelHistoryByIdServlet extends ForumControllerSupport 
 {
 	@Override
 	public String execute() throws Exception 
 	{
-		this.update("delCollection", "É¾³ýÊÕ²Ø");
-		this.postOnLoad();
-		return "queryCollection";
+		this.update("delPostById","„h³ý");
+		this.queryHistoryOnLoad();
+		return "queryHistoryPost";
 	}
 }
