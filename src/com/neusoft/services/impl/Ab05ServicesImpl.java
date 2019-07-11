@@ -121,7 +121,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, String>> postFindById() throws Exception 
+	public Map<String, String> postFindById() throws Exception 
 	{
 		// 还原页面查询条件
 		Object aab501 = this.get("aab501"); // 帖子ID
@@ -136,7 +136,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		// 参数列表
 		List<Object> paramList = new ArrayList<>();
 		paramList.add(aab501);
-		return this.queryForList(sql.toString(), paramList.toArray());
+		return this.queryForMap(sql.toString(), paramList.toArray());
 	}
 
 	/**
@@ -309,5 +309,39 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 						this.get("aab101"),
 					  };
 		return	this.executeUpdate(sql, args)>0;
+	}
+	
+	/**
+	 * 加载时判断用户收藏状态
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Map<String,String>> queryCollectionList() throws Exception
+	{
+		Object aab101 = this.get("aab101");
+    	StringBuilder sql=new StringBuilder()
+    			.append("select a.aab701,a.aab501,a.aab101,a.aab702,b.aab502,c.aab102")
+    			.append("  from ab07 a,ab05 b,ab01 c")
+    			.append(" where a.aab101=? and a.aab501=b.aab501 and b.aab101=c.aab101")
+    			.append(" order by a.aab702 desc")
+    			;
+    	return queryForList(sql.toString(), aab101);
+	}
+
+	/**
+	 * 批量删除收藏
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	private boolean delCollection() throws Exception 
+	{
+		// 1.定义SQL语句
+		String sql = "delete from ab07 where aab701=?";
+		// 2.获取页面idlist数组
+		String idlist[] = this.getIdList("idlist");
+		// 3.执行
+		return this.batchUpdate(sql, idlist);
 	}
 }

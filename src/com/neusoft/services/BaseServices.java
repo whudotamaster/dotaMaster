@@ -57,7 +57,7 @@ public interface BaseServices
     	 return null;
      }
 
-	default List<Map<String, String>> postFindById()throws Exception
+	default Map<String, String> postFindById()throws Exception
 	{
 		return null;
 	}
@@ -98,6 +98,11 @@ public interface BaseServices
 	}
 
 	default List<Map<String,String>> queryCollection()throws Exception
+	{
+		return null;
+	}
+	
+	default List<Map<String,String>> queryCollectionList()throws Exception
 	{
 		return null;
 	}

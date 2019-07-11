@@ -102,7 +102,7 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void postOnLoad()throws Exception
 	{
-		List<Map<String,String>> rows=this.services.postFindById();
+		Map<String,String> rows=this.services.postFindById();
 		List<Map<String,String>> comment=this.services.commentFindById();
 		if (this.dto.get("aab101")!=null) 
 		{
@@ -123,6 +123,27 @@ public abstract class ControllerSupport implements BaseController
 		{
 			this.saveAttribute("rows", rows);
 			this.saveAttribute("comment", comment);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+	/*****************************************
+	 * 	        收藏页面加载业务流程封装
+	 *****************************************/
+	/**
+	 * 帖子数据批量查询
+	 * @throws Exception
+	 */
+	protected final void collectionOnLoad()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.queryCollectionList();
+		System.out.println(rows);
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
 		}
 		else
 		{
