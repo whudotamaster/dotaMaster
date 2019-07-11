@@ -2,7 +2,11 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%String path=request.getContextPath(); %>
+<%
+String aab101=(String)session.getAttribute("aab101");
+String aab108=(String)session.getAttribute("aab108");
+String path=request.getContextPath();
+%>
 <html>
 <head>
    <title>Insert title here</title>
@@ -19,7 +23,11 @@
       {
     	  vstate?count++:count--;
     	  var vdel=document.getElementById("del");
+    	  var vaad402=document.getElementById("vaad402");
+    	  var vbuy=document.getElementById("buy");
     	  vdel.disabled=(count==0);
+    	  vaad402.disabled=(count==0);
+    	  vbuy.disabled=(count==0);
       }
       
       function onEdit(vaac601)
@@ -38,12 +46,19 @@
     	 vform.submit();
       } 
       
+      function onBuy(vaac601)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/delByIdAcc.html?aac601="+vaac601;
+    	 //alert(vform.action);
+    	 vform.submit();
+      } 
+      
    </script>
 </head>
 <body>
 ${msg }
 <br>
-<%=session.getId() %>
 <br>
 <form id="myform" action="<%=path%>/queryAcc.html" method="post">
   <!-- ²éÑ¯Ìõ¼þÇø -->
@@ -90,9 +105,17 @@ ${msg }
 				      <!-- #  ¿ÕÃª -->
 				      <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
 				    </td>
+				    <c:if test="${aab108==2}">
 				    <td>
 				      <a href="#" onclick="onDel('${ins.aac601}')">É¾³ý</a>
 				    </td>
+				    </c:if>
+				    <c:if test="${aab108==1}">
+				    <td>
+				      <a href="#" onclick="onBuy('${ins.aac601}')">¹ºÂò</a>
+				    </td>
+				    </c:if>
+				    
 				  </tr>
 		      </c:forEach>
 		      <!-- ²¹³ä¿ÕÐÐ -->
@@ -129,9 +152,13 @@ ${msg }
 	              formaction="<%=path%>/addAcc.jsp">
 	       <input type="submit" id="del" name="next" value="É¾³ý" 
 	              formaction="<%=path%>/delAcc.html"  disabled="disabled">
+	       <input type="submit" id="buy" name="next" value="ÅúÁ¿¹ºÂò" 
+	              formaction="<%=path%>/buyAccList.html"  disabled="disabled">
+	       <input type="text" id="vaad402" name="aad402" placeholder="ÊäÈëÍæ¼Ò±àºÅ" disabled="disabled">
 	    </td>
 	  </tr>
 	</table>
+	<input type="hidden" name="aab101" value="<%=aab101 %>">
 </form>
 </body>
 </html>

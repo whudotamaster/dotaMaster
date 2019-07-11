@@ -10,12 +10,26 @@ import com.sun.org.apache.bcel.internal.generic.Select;
 
 public class Ac06ServicesImpl extends JdbcServicesSupport 
 {
+	public boolean buyAccessoriesList()throws Exception
+	{
+    	Object idlist[]=this.getIdList("idlist");
+    	int result=1;
+    	for(Object id:idlist)
+    	{
+    		if(this.buyAccessories(id))
+    			result=result*1;
+    		else 
+    			result=result*0;
+    	}
+    	return result>0;
+		
+	}
 	
-	//使用虚拟货币购买饰品
-	public boolean buyAccessories()throws Exception
+	//为批量购买准备的单次购买方法
+	public boolean buyAccessories(Object aac601)throws Exception
     {
 		//1,根据饰品ID查询饰品其他信息
-		Map<String, String> acc=this.findAccessories(this.get("aac601"));
+		Map<String, String> acc=this.findAccessories(aac601);
 		
 		//没有库存购买失败
 		if(Integer.parseInt(acc.get("aac606"))==0)
@@ -47,7 +61,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		
 		//4,更新饰品库存
 		String sql2="update ac06 set aac606=aac606-1 where aac601=?";
-		this.apppendSql(sql2, this.get("aac601"));
+		this.apppendSql(sql2, aac601);
 		
 		//5,插入待发货列表
 		StringBuilder sql3=new StringBuilder()
@@ -56,7 +70,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
     			;
 		Object args3[]=
 			{
-				this.get("aac601"),
+				aac601,
 				this.get("aab101"),
 				this.get("aad402"),
 				0,//完成状态默认赋值为0
@@ -64,7 +78,13 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 			};
 		this.apppendSql(sql3.toString(),args3);
 		
-		return this.executeTransaction();
+		return this.executeTransaction();		
+    }
+	
+	//使用虚拟货币购买饰品
+	public boolean buyAccessories()throws Exception
+    {
+		return this.buyAccessories(this.get("aac601"));
     }
 	
 	//出售饰品给网站
