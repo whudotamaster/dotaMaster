@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.neusoft.services.BaseServices;
+import com.neusoft.services.impl.Ab01ServicesImpl;
+import com.sun.jmx.snmp.tasks.ThreadService;
 
 public abstract class ControllerSupport implements BaseController
 {
@@ -22,6 +24,7 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected void setServices(BaseServices services)
 	{
+		System.out.println("setServices成功运行");
 		this.services=services;
 	}
 	
@@ -50,6 +53,83 @@ public abstract class ControllerSupport implements BaseController
 		}	
 	}
 	
+	/*****************************************
+	 * 	        论坛加载业务流程封装
+	 *****************************************/
+	/**
+	 * 帖子数据批量查询
+	 * @throws Exception
+	 */
+	protected final void forumOnLoad()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.queryPost();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+
+	protected final void savePageData(String methodName)throws Exception
+	{
+		List<Map<String,String>> rows=null;
+		if(methodName.equals("buy"))
+			rows=this.services.queryBuyOrder();
+		else 
+			rows=this.services.querySellOrder();
+		
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+
+	/*****************************************
+	 * 	        帖子详细頁面加载业务流程封装
+	 *****************************************/
+	/**
+	 * 帖子数据查询
+	 * @throws Exception
+	 */
+	protected final void postOnLoad()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.postFindById();
+		List<Map<String,String>> comment=this.services.commentFindById();
+		if (this.dto.get("aab101")!=null) 
+		{
+			List<Map<String,String>> collection=this.services.queryCollection();
+			if (collection.size()>0) 
+			{
+				this.saveAttribute("collection", true);
+			}
+			else
+			{
+				this.saveAttribute("collection", false);
+			}
+		    Ab01ServicesImpl ab01=new Ab01ServicesImpl();
+		    Double money=ab01.getMoney(this.dto.get("aab101"));
+			this.saveAttribute("money", money);
+		}
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+			this.saveAttribute("comment", comment);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
 	/**
 	 * 单一实例 查询
 	 * @throws Exception
@@ -57,6 +137,7 @@ public abstract class ControllerSupport implements BaseController
 	protected final void savePageInstance()throws Exception
 	{
 		Map<String,String> ins=this.services.findById();
+		this.saveAttribute("aab101",this.dto.get("aab101"));
 		if(ins!=null)
 		{
 			this.saveAttribute("ins",  ins);
@@ -66,6 +147,99 @@ public abstract class ControllerSupport implements BaseController
 			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
 		}	
 	}
+	
+	//登录判断
+	protected final boolean loginIn()throws Exception
+	{
+		Map<String, String> ins=this.services.loginEmp();
+		//System.out.println("在loginIn中实例化一次");
+
+		if(ins!=null)
+		{
+			this.saveAttribute("ins", ins);
+			//System.out.println(ins);
+			return true;
+		}
+		else
+		{
+			this.saveAttribute("msg", "提示：登陆失败");
+			//System.out.println("login false运行");
+			return false;
+		}
+	}
+	
+	//用户注册
+	protected final boolean logonIn()throws Exception
+	{
+		
+			int ins=this.services.logonEmp();
+			System.out.println("在logonIn中实例化一次");
+			
+			switch(ins)
+			{
+			case 0:
+				this.saveAttribute("msg", "提示：注册成功，请登录");
+				System.out.println("logon true运行"+ins);				
+				return true;
+			case 1000:
+				this.saveAttribute("msg", "提示：注册失败，该用户名已存在");
+				System.out.println("logon false运行"+ins);
+				return false;
+			case 2000:
+				this.saveAttribute("msg", "提示：注册失败，请输入小于15字长度的用户名或密码");
+				System.out.println("logon false运行"+ins);
+				return false;
+			case 3000:
+				this.saveAttribute("msg", "提示：注册失败，请输入用户名或密码");
+				System.out.println("logon false运行"+ins);
+				return false;
+			}
+			return false;
+	}
+	
+	//查询用户信息
+	protected final void queryPersonIn() throws Exception
+	{
+		Map<String,String> ins=this.services.queryPersonEmp();
+		if(ins!=null)
+		{
+			this.saveAttribute("ins",  ins);
+			System.out.println(ins);
+		}
+		else
+		{
+			this.saveAttribute("msg", "提示:用户信息获取错误!");	
+		}	
+	}
+	
+	//用户数据更新
+	protected final boolean updtPsnInfIn() throws Exception
+	{
+		try
+		{
+			boolean ins = this.services.personUpdateEmp();
+			if(ins=true)
+			{
+				this.saveAttribute("updpsnbool",  ins);
+				this.saveAttribute("msg", "提示:用户信息更改成功!");	
+
+				System.out.println(ins);
+				return true;
+			}
+			else
+			{
+				this.saveAttribute("msg", "提示:用户信息更改错误!");	
+				return false;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	
 	
 	/**
 	 * 通过反射执行更新方法
