@@ -26,7 +26,7 @@ public class LoginTest extends HttpServlet
 		Map<String, String> ins=null;
 		try 
 		{
-			ins = ab01.loginEmp(dto.get("aab103"),dto.get("aab104"));
+			ins = ab01.loginPerson(dto.get("aab103"),dto.get("aab104"));
 		} 
 		catch (Exception e) 
 		{
@@ -37,6 +37,7 @@ public class LoginTest extends HttpServlet
 		{
 			request.setAttribute("ins", ins);
 			request.getSession().setAttribute("aab101", ins.get("aab101"));
+			request.getSession().setAttribute("aab102", ins.get("aab102"));
 			request.getSession().setAttribute("aab108", ins.get("aab108"));
 			boolean tag=ins.get("aab108").equals("2")?true:false;
 			request.getSession().setAttribute("tag", tag);

@@ -38,7 +38,7 @@
 	 	<td>
  	       <e:text name="aab105" defval="${ins.aab105 }"/> 
 	 	</td>
-		<input  type="hidden" "aab101" value="<%=aab101%>">
+		<input  type="hidden" name="aab101" value="<%=aab101%>">
 	
 </table>
  <input type="submit" name="next"  value="ÐÞ¸Ä">

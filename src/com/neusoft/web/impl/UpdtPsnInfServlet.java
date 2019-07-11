@@ -14,6 +14,7 @@ public class UpdtPsnInfServlet extends EmpControllerSupport
 	{
 		this.updtPsnInfIn();
 		this.queryPersonIn();
+	
 		return "updatePersonInfo";
 	}
 }

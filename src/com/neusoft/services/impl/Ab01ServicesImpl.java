@@ -157,7 +157,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	}
     }
     
-    public Map<String, String> loginEmp(Object aab103,Object aab104)throws Exception
+    public Map<String, String> loginPerson(Object aab103,Object aab104)throws Exception
     {
     	try
     	{
@@ -191,7 +191,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.queryForMap(sql.toString(), this.get("aab103"))!=null;
     }
     //ÓÃ»§×¢²á
-    public int logonEmp()throws Exception
+    public int logonPerson()throws Exception
     {
     	try
     	{
@@ -213,9 +213,9 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			    	StringBuilder sql=new StringBuilder()
 			    			.append("insert into ab01")
 			    			.append("(aab102,aab103,aab104,aab105,aab106,")
-			    			.append(" 						aab107,aab108)")
+			    			.append(" 						aab107,aab108,aab109)")
 			    			.append("values (?,?,?,'null.png',0,")
-			    			.append("							0,1)")
+			    			.append("							0,1,current_timestamp())")
 			       			;
 			    	List<Object> paramList =new ArrayList<>();
 			    	paramList.add(aab103);
@@ -242,7 +242,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	{
     		StringBuilder sql = new StringBuilder()
     				.append("select a.aab101,a.aab102,a.aab103,a.aab104,a.aab105,")	
-    				.append("						  a.aab106,a.aab107,a.aab108")
+    				.append("						  a.aab106,a.aab107,a.aab108,a.aab109")
     				.append("  from ab01 a")
     				.append(" where a.aab101=?")
     				;
@@ -264,6 +264,10 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     		Object aab104=this.get("aab104");
     		Object aab105=this.get("aab105");
     		Object aab101=this.get("aab101");
+    		System.out.println("102="+aab102);
+    		System.out.println("104="+aab104);
+    		System.out.println("105="+aab105);
+    		System.out.println("101="+aab101);
     		StringBuilder sql = new StringBuilder()
 					    		.append("update ab01 ")
 					    		.append("   set aab102 = ?,aab104=?,aab105=?")
