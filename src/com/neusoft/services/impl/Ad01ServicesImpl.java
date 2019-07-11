@@ -12,7 +12,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 	//用户进入首页时,查看当前是否有可押注的比赛
 	public List<Map<String, String>> query()throws Exception
     {
-		System.out.println("跳到了AD01的query");
+		
 		StringBuilder sql=new StringBuilder()
   				.append("select d.aad101,d.aad102,d.aad103,c.aac1101,")
   				.append("       c.aac1102,c.aac1103,c.aac1104,e.aac702")

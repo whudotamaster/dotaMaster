@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
 String aab101=(String)session.getAttribute("aab101");
+String aab109=(String)session.getAttribute("aab109");
 String path=request.getContextPath();
 %>
 <html>
@@ -16,23 +17,7 @@ String path=request.getContextPath();
      }
    </style>
    
-   <script type="text/javascript">
-      var count=0;
-      function onSelect(vstate)
-      {
-    	  vstate?count++:count--;
-    	  var vdel=document.getElementById("del");
-    	  vdel.disabled=(count==0);
-      }
-      
-      function onEdit(vaab101)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdEmp.html?aab101="+vaab101;
-    	 //alert(vform.action);
-    	 vform.submit();
-      }
-      
+   <script type="text/javascript">    
       function onBet(vaad101)
       {
     	 var vform = document.getElementById("myform");
@@ -40,12 +25,25 @@ String path=request.getContextPath();
     	 //alert(vform.action);
     	 vform.submit();
       } 
+      $("#totalCnt").change(function () {
+          var totalCnt = $("#totalCnt").val();
+          if (totalCnt != parseInt(totalCnt)){
+              $.sobox.alert(
+                      '温馨提示',
+                      '请输入正确的正整数',
+                      function () {
+                          $("#totalCnt").val("");
+                      }
+              )
+              return false;
+          }
+      })
       
    </script>
 </head>
 <body>
 ${msg }
-<%=aab101 %>
+<%=aab109%>
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryBet.html" method="post">
@@ -57,7 +55,6 @@ ${msg }
 	    <hr width="160">
 	  </caption>
 	  <tr>
-	    <td></td>
 	    <td>序号</td>
 	    <td>赛事</td>
 	    <td>战队1</td>
@@ -80,10 +77,6 @@ ${msg }
 	         <!-- 显示实际查询到的数据 -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
-				    <td>
-				      <input type="checkbox" name="idlist" value="${ins.aad101 }"
-				             onclick="onSelect(this.checked)" >
-				    </td>
 				    <td>${vs.count }</td>
 				    <td>${ins.aac702 }</td>
 				    <td>${ins.aac1103 }</td>
@@ -92,10 +85,12 @@ ${msg }
 				    <td>${ins.aad102 }</td>
 				    <td>${ins.aad103 }</td>
 				    <td>
-				      <e:text name="aad202" defval="0"/>
+				      <input type="text" name="aad202" defval="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
+    onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
 				    </td>
 				    <td>
-				      <e:text name="aad203" defval="0"/>
+				      <input type="text" name="aad203" defval="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
+    onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
 				    </td>
 				   <td>
 				      <a href="#" onclick="onBet('${ins.aad101}')">下注</a>
@@ -130,7 +125,6 @@ ${msg }
 	             <td></td>
 	             <td></td>
 	             <td></td>
-	             <td></td>
 	           </tr>
 	        </c:forEach>
 	     </c:otherwise>
@@ -141,16 +135,19 @@ ${msg }
 	  <tr>
 	    <td align="center">
 	       <input type="submit" name="next" value="查询">
-	       <input type="submit" id="del" name="next" value="删除" 
-	              formaction="<%=path%>/delEmp.html"  disabled="disabled">
+	       <input type="submit" name="next" value="查看历史押注" 
+	              formaction="<%=path%>/queryUserBet.html">
 	    </td>
 	  </tr>
 	</table>
+	<input type="hidden" name="aab101" value="<%=aab101 %>">
 </form>
 <form action="<%=path%>/buyVIP.html" method="post">
-<input type="search" name="month" placeholder="输入开通的月数"/>
-<input type="submit" name="next" value="开通">
-<input type="hidden" name="aab101" value="1">
+<input type="search" name="month" placeholder="输入开通的月数" align="center" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
+    onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
+<input type="submit" name="next" value="开通" align="center">
+<input type="hidden" name="aab101" value="<%=aab101 %>">
+<input type="hidden" name="aab109" value="<%=aab109 %>">
 </form>
 </body>
 </html>

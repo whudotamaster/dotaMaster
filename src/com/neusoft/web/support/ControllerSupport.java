@@ -22,7 +22,6 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected void setServices(BaseServices services)
 	{
-		System.out.println("setServices成功运行");
 		this.services=services;
 	}
 	
@@ -269,6 +268,7 @@ public abstract class ControllerSupport implements BaseController
     	{
     		msg=msgText+"[ <msg> "+this.dto.get(key)+" </msg> ]";
     	}
+    	System.out.println(this.dto.get(key));
     	//Servlet向页面输出数据
     	this.saveAttribute("msg", msg);
 

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 String path=request.getContextPath(); 
+String aab101=(String)session.getAttribute("aab101");
 String aab108=(String)session.getAttribute("aab108");
 boolean tag=(boolean)session.getAttribute("tag");
 %>
@@ -82,7 +83,7 @@ aab108:<%=aab108 %>
      </td>
    </tr>
 </table>
-<input type="hidden" name="aab101" value="1">
+<input type="hidden" name="aab101" value="<%=aab101 %>">
 <input type="hidden" name="aac601" value="1">
 <input type="hidden" name="aad401" value="${ins.aad401 }">
 </form>

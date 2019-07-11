@@ -79,7 +79,11 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 					0,
 					this.get("aad304")
 			};
-		
+		//防止用户多次虚价出售饰品干扰网站运行
+		String sql2="select count(*)num from ad03 where aab101=? and aad303=2";
+		int count=Tools.getFailCount(sql2, this.get("aab101"));	
+		if(count>10)
+			return false;	
 		return this.executeUpdate(sql, args)>0;
 		
 	}
