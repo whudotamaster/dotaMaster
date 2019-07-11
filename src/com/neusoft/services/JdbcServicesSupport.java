@@ -47,6 +47,7 @@ public abstract class JdbcServicesSupport  implements BaseServices
 	protected final Object findIdByNameAc01()throws Exception
 	{
 		String sql2="select aac101 from ac01 where aac102=?";
+		System.out.println(this.get("aac102"));
 		Object aac101=this.queryForMap(sql2, this.get("aac102")).get("aac101");
 		return aac101;
 	}

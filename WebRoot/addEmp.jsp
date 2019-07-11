@@ -2,7 +2,6 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%String path=request.getContextPath();%>
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
 <html>
 <head>
 <title>Insert title here</title>

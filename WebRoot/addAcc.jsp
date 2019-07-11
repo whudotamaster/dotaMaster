@@ -21,8 +21,7 @@ ${msg}
 <form action="<%=path%>/findByIdAcc.html" method="post">
 <table  border="1" align="center" width="45%">
     <caption>
-               饰品${empty param.aac601?'添加':'修改' }
-       ${empty param.aac601 }
+               饰品添加
       <hr width="160">
     </caption>
    <tr>
