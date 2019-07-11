@@ -44,6 +44,17 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.executeUpdate(sql.toString(), args)>0;
     }
 	
+	public boolean updatePic(Object aab101,Object aab105) throws Exception
+	{
+		String sql="update ab01 set aab105=? where aab101=?";
+        Object args[]=
+        	{
+        		aab105,
+        		aab101
+        	};
+        return this.executeUpdate(sql, args)>0;
+	}
+	
 	//辅助方法 判断是否为VIP
 	public boolean isVIP(Object aab101)throws Exception
 	{

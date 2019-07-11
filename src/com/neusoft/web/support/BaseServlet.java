@@ -1,9 +1,11 @@
 package com.neusoft.web.support;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 
 @WebServlet("*.html")
@@ -27,9 +30,10 @@ public class BaseServlet extends HttpServlet
         	 ************************************************************/
      		//拦截请求的访问路径
      		String  uri=request.getRequestURI();
-     		System.out.println(uri);
+     		System.out.println("uri:"+uri);
      		//获取请求资源的主文件名
      		String baseName=uri.substring(uri.lastIndexOf("/")+1).replace(".html", "");	
+     		System.out.println("basename:"+baseName);
      		//定义变量,描述所有业务控制器的基础包名称
      		String basePackageName="com.neusoft.web.impl.";
      		//获取控制器的前缀名
@@ -85,13 +89,14 @@ public class BaseServlet extends HttpServlet
 		rueqestAttribute.clear();
 	}
 	
-	
 	/**
 	 *  DTO切片
 	 * @param request
 	 * @return
+	 * @throws ServletException 
+	 * @throws IOException 
 	 */
-	private  Map<String,Object> createDto(HttpServletRequest request)
+	private  Map<String,Object> createDto(HttpServletRequest request) throws IOException, ServletException
 	{
 		//1.获取页面数据
 		Map<String,String[]> tem=request.getParameterMap();
@@ -122,7 +127,6 @@ public class BaseServlet extends HttpServlet
 				dto.put(entry.getKey(), value);
 			}	
 		}
-	
 		return dto;
 	}
 
