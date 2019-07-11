@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 String path=request.getContextPath(); 
+String aab101=(String)session.getAttribute("aab101");
 String aab108=(String)session.getAttribute("aab108");
 boolean tag=(boolean)session.getAttribute("tag");
 %>
@@ -21,10 +22,12 @@ boolean tag=(boolean)session.getAttribute("tag");
 <body>
 ${msg }
 <br>
+ins.aad403
 <br>
 aad403:${ins.aad403}
 <br>
 aab108:<%=aab108 %>
+
 <%=tag %>
 <form action="<%=path%>/buyAcc.html" method="post">
 <table  border="1" align="center" width="45%">
@@ -50,6 +53,11 @@ aab108:<%=aab108 %>
        <e:textarea rows="5" cols="45" name="aad404" defval="${ins.aad404 }" readonly="${!empty ins.aad403?'true':'false' }" />
      </td>
    </tr>
+   <c:if test="${!empty ins.aad403}">
+    <tr>
+     <td colspan="2">Íê³É×´Ì¬:${ins.fvalue }</td>
+   </tr>
+   </c:if>
    <tr>
      <td colspan="2" align="center">
      <c:choose>
@@ -75,7 +83,7 @@ aab108:<%=aab108 %>
      </td>
    </tr>
 </table>
-<input type="hidden" name="aab101" value="1">
+<input type="hidden" name="aab101" value="<%=aab101 %>">
 <input type="hidden" name="aac601" value="1">
 <input type="hidden" name="aad401" value="${ins.aad401 }">
 </form>

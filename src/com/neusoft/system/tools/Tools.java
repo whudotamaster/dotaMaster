@@ -37,6 +37,33 @@ public class Tools
 	}
 	private Tools() {}
 
+	//String sql="select count(*)num from ad03 where aab101=? and aad303=2";
+	public static int getFailCount(String sql,Object...args) throws Exception
+	{
+			PreparedStatement pstm=null;
+			ResultSet rs=null;
+			try
+			{		
+				pstm=DBUtils.prepareStatement(sql);
+				int index=1;
+				for(Object param:args)
+				{
+					pstm.setObject(index++, param);
+				}
+				rs=pstm.executeQuery();
+				int number=0;
+				if(rs.next())
+				{
+					number=rs.getInt(1);
+				}			
+				return number;
+			}
+			finally
+			{
+				DBUtils.close(rs);
+				DBUtils.close(pstm);
+			}						
+	}
 	
 	/**
 	 * 获取员工流水号

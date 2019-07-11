@@ -18,6 +18,4 @@ public class UnpassArticleServlet extends ArticleControllerSupport
     	   this.update("unpassArticle", "…Û∫À∑Ò∂®");
     	   return "readArticle";
        }
-
-
 }

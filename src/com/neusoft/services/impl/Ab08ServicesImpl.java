@@ -19,7 +19,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	public List<Map<String,String>> query()throws Exception
 	  {
 	  		//还原页面查询条件
-	  		Object aab802=this.get("qaab802");     //姓名  模糊查询 	    	  		
+	  		Object aab802=this.get("qaab802");     //姓名  模糊查询
 	  		//定义SQL主体
 	  		StringBuilder sql1=new StringBuilder()
 	  				.append(" select  x.aab801,x.aab101,x.aab802,x.aab803,x.aab804,    ")   
@@ -43,6 +43,33 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	  		
 	  }
 	
+	//管理员查询待审核文章
+	public List<Map<String,String>> adminQuery()throws Exception
+	  {
+	  		//还原页面查询条件
+	  		Object aab802=this.get("qaab802");     //姓名  模糊查询
+	  		//定义SQL主体
+	  		StringBuilder sql1=new StringBuilder()
+	  				.append(" select  x.aab801,x.aab101,x.aab802,x.aab803,x.aab804,    ")   
+	  				.append("	  		  x.aab805,x.aab806 ,y.aab102                      ")     
+	  				.append("  		   from ab08 x ,ab01 y                          ")
+	  				.append("        where x.aab101=y.aab101 and x.aab804 = 1   ")//804待审核为2
+	
+	  				;
+	  		
+	  		//参数列表
+	  		List<Object> paramList1=new ArrayList<>();
+	  		
+	  		//逐一判断查询条件是否录入,拼接AND条件
+	  		if(this.isNotNull(aab802))
+	  		{
+	  			sql1.append("  and aab802 like ? ");
+			    paramList1.add("%"+aab802+"%");	
+		    }  				
+	  		sql1.append(" order by aab805 desc ");//按照时间降序排列
+	  		return this.queryForList(sql1.toString(), paramList1.toArray());  	
+	  		
+	  }
 	
 	public Map<String,String> findById()throws Exception
     {

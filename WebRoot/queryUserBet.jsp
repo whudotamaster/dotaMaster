@@ -3,8 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
-String path=request.getContextPath(); 
-String aab108=(String)session.getAttribute("aab108");
+String aab101=(String)session.getAttribute("aab101");
+String path=request.getContextPath();
 %>
 <html>
 <head>
@@ -15,37 +15,27 @@ String aab108=(String)session.getAttribute("aab108");
         height:25px;
      }
    </style>
-   
-   <script type="text/javascript">    
-      function onEdit(vaad301)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findGetAcc.html?aad301="+vaad301;
-    	 //alert(vform.action);
-    	 vform.submit();
-      }
-   </script>
 </head>
 <body>
 ${msg }
 <br>
 <br>
-<form id="myform" action="<%=path%>/querySendAcc.html" method="post">
+<form id="myform" action="<%=path%>/queryUserBet.html" method="post">
 	<!-- 数据迭代区 -->
 	
 	<table border="1" width="95%" align="center">
 	 <caption>
-	      <%=aab108.equals("1")?"历史出售列表":"待收货列表"%>
+	         历史下注
 	    <hr width="160">
 	  </caption>
 	  <tr>
 	    <td>序号</td>
-	    <td>饰品名称</td>
-	    <td>价格</td>
-	    <td>玩家编号</td>
-	    <td>交易时间</td>
-	    <td>留言</td>
-	    <td>完成状态</td>
+	    <td>战队1</td>
+	    <td>战队2</td>
+	    <td>比赛开始时间</td>
+	    <td>A方押注数量</td>
+	    <td>B方押注数量</td>
+	    <td>获得货币</td>
 	  </tr>
 	  <!--
 	         注意事项
@@ -58,16 +48,13 @@ ${msg }
 	         <!-- 显示实际查询到的数据 -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
-				    <td>
-				      <!-- #  空锚 -->
-				      <a href="#" onclick="onEdit('${ins.aad301 }')">${vs.count }</a>
-				    </td>
-				    <td>${ins.aac602 }</td>
-				    <td>${ins.aac604 }</td>
-				    <td>${ins.aad302 }</td>
-				    <td>${ins.aad305 }</td>
-				    <td>${ins.aad304 }</td>
-				    <td>${ins.fvalue }</td>
+				    <td>${vs.count }</td>
+				    <td>${ins.aac1102 }</td>
+				    <td>${ins.aac1103 }</td>
+				    <td>${ins.aac1104 }</td>
+				    <td>${ins.aad202 }</td>
+				    <td>${ins.aad203 }</td>
+				    <td>${ins.aad204 }</td>
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
@@ -101,13 +88,13 @@ ${msg }
 	<!-- 功能按钮区 -->
 	<table border="1" width="95%" align="center">
 	  <tr>
-	   <td align="center">
-	       <input type="submit" name="next" value="<%=aab108.equals("1")?"查看历史出售":"查看待收货列表"%>"
-              formaction="<%=path%>/<%=aab108.equals("1")?"querySellOrder.html":"queryGetAcc.html"%>">
+	    <td align="center">
+	       <input type="submit" name="next" value="查询">
+
 	    </td>
 	  </tr>
 	</table>
-	<input type="hidden" name="aab101" value="1">
+	<input type="hidden" name="aab101" value="<%=aab101 %>">
 </form>
 </body>
 </html>

@@ -12,7 +12,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 	//用户进入首页时,查看当前是否有可押注的比赛
 	public List<Map<String, String>> query()throws Exception
     {
-		System.out.println("跳到了AD01的query");
+		
 		StringBuilder sql=new StringBuilder()
   				.append("select d.aad101,d.aad102,d.aad103,c.aac1101,")
   				.append("       c.aac1102,c.aac1103,c.aac1104,e.aac702")
@@ -124,17 +124,6 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     //更新比赛结果时,并方法押注奖金给用户
     public boolean grantReward(Object aac1105,Object aac1101)throws Exception
     {
-    /*	//1,更新比赛结果
-    	StringBuilder sql1=new StringBuilder()
-    			.append("update ac11 a")
-    			.append("   set a.aac1105=?")
-    			.append(" where a.aac1101=?")
-    			;
-    	Object args1[]={
-    			aac1105,
-    			aac1101
-    	};
-    	this.apppendSql(sql1.toString(), args1);*/
     	boolean tag=false;
     	if(aac1105.equals("1"))
     	{
@@ -151,8 +140,6 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	Map<String, String> map=this.queryAllCount(aad101);
     	double countA=Double.parseDouble(map.get("aad102"));
     	double countB=Double.parseDouble(map.get("aad103"));
-    	System.out.println(countA);
-    	System.out.println(countB);
     	
     	//3,根据竞猜ID获取押注用户
     	//3.1获取用户押注列表

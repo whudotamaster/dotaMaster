@@ -39,6 +39,11 @@ public interface BaseServices
     	 return null;
      }
 
+     default List<Map<String,String>> adminQuery()throws Exception
+     {
+    	 return null;
+     }
+     
      
      default List<Map<String,String>> queryBuyOrder()throws Exception
      {
@@ -85,7 +90,7 @@ public interface BaseServices
 
 
 
-	default int logonEmp() throws Exception
+	default int logonPerson() throws Exception
 	{
 		return 0;
 	}

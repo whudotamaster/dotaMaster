@@ -2,6 +2,7 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <html>
 <head>
    <title>Insert title here</title>
@@ -21,6 +22,7 @@ ${msg }
 <br>
 <%=session.getId() %>
 <br>
+    <c:if test="${aab108==2}">
 <form id="myform" action="<%=path%>/queryArticle.html" method="post">
   <!-- 查询条件区 -->
 	<table border="1" width="95%" align="center">
@@ -40,12 +42,12 @@ ${msg }
 	<!-- 数据迭代区 -->
 	<table border="1" width="95%" align="center">
 	  <tr>
-	  
+	    <td></td>
 	    <td>序号</td>
 	    <td>文章标题</td>
 	    <td>用户</td>
 	    <td>发布时间</td>
-	
+	    <td></td>
 	  </tr>
 	  <!--
 	         注意事项
@@ -58,7 +60,10 @@ ${msg }
 	         <!-- 显示实际查询到的数据 -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
-				
+				    <td>
+				      <input type="checkbox" name="idlist" value="${ins.aab801 }"
+				             onclick="onSelect(this.checked)" >
+				    </td>
 				    <td>${vs.count }</td>
 				    <td>
 				      <!-- #  空锚 -->
@@ -66,7 +71,9 @@ ${msg }
 				    </td>
 				    <td>${ins.aab102 }</td>
 				    <td>${ins.aab805 }</td>
-				 
+				    <td>
+				      <a href="#" onclick="onDel('${ins.aab801}')">删除</a>
+				    </td>
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
@@ -76,7 +83,8 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
-			           
+			            <td></td>
+			            <td></td>
 			         
 			          </tr>
 		      </c:forEach>
@@ -88,7 +96,8 @@ ${msg }
 	             <td></td>
 	             <td></td>
 	             <td></td>
-	                   
+	             <td></td>
+	             <td></td>	         
 	           </tr>
 	        </c:forEach>
 	     </c:otherwise>
@@ -99,24 +108,19 @@ ${msg }
 	<table border="1" width="95%" align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="文章查询">
+	       <input type="submit" name="next" value="查询">
 	       
-	        <c:if test="${aab108!=null}">
-	       		<input type="submit" name="next" value="我要投稿" 
-	              formaction="<%=path%>/addArticle.jsp">
-	     	</c:if>
-	     	 <c:if test="${aab108==null}">
-	       		<input type="submit" name="next" value="我要投稿" 
-	              formaction="<%=path%>/login.jsp">
-	     	</c:if>
-	             <c:if test="${aab108==2}">
-					<input type="submit" formaction="<%=path%>/adminQueryArticle.html" value="审核">
-	        	</c:if>
+	       <input type="submit" id="del" name="next" value="删除" 
+	              formaction="<%=path%>/delArticle.html"  disabled="disabled">
+	             
+	            <input type="submit" id="del" name="next" value="返回" 
+	              formaction="<%=path%>/queryArticle.html">
+	        
 	    </td>
 	  </tr>
 	</table>
 </form>
-
+</c:if>
 
 <!-- 引入脚部导航栏 -->
 <%@ include file="footer.jsp" %>

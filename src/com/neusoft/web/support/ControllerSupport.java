@@ -22,7 +22,6 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected void setServices(BaseServices services)
 	{
-		System.out.println("setServices成功运行");
 		this.services=services;
 	}
 	
@@ -51,6 +50,7 @@ public abstract class ControllerSupport implements BaseController
 		}	
 	}
 	
+<<<<<<< HEAD
 	/*****************************************
 	 * 	        战队信息封装
 	 *****************************************/
@@ -65,6 +65,28 @@ public abstract class ControllerSupport implements BaseController
 		this.saveAttribute("rows", rows);
 		this.saveAttribute("ins", ins);
 	}
+=======
+	/**
+	 * 数据批量查询
+	 * @throws Exception
+	 */
+	protected final void adminQueryArticleServ()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.adminQuery();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+	
+	
+	
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 	/*****************************************
 	 * 	        论坛加载业务流程封装
 	 *****************************************/
@@ -134,7 +156,6 @@ public abstract class ControllerSupport implements BaseController
 	protected final void savePageInstance()throws Exception
 	{
 		Map<String,String> ins=this.services.findById();
-		this.saveAttribute("aab101",this.dto.get("aab101"));
 		if(ins!=null)
 		{
 			this.saveAttribute("ins",  ins);
@@ -169,7 +190,7 @@ public abstract class ControllerSupport implements BaseController
 	protected final boolean logonIn()throws Exception
 	{
 		
-			int ins=this.services.logonEmp();
+			int ins=this.services.logonPerson();
 			System.out.println("在logonIn中实例化一次");
 			
 			switch(ins)
@@ -219,6 +240,7 @@ public abstract class ControllerSupport implements BaseController
 			{
 				this.saveAttribute("updpsnbool",  ins);
 				this.saveAttribute("msg", "提示:用户信息更改成功!");	
+				
 
 				System.out.println(ins);
 				return true;
@@ -284,6 +306,7 @@ public abstract class ControllerSupport implements BaseController
     	{
     		msg=msgText+"[ <msg> "+this.dto.get(key)+" </msg> ]";
     	}
+    	System.out.println(this.dto.get(key));
     	//Servlet向页面输出数据
     	this.saveAttribute("msg", msg);
 

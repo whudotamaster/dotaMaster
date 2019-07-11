@@ -43,6 +43,7 @@ ${msg }
 	    <td>玩家编号</td>
 	    <td>交易时间</td>
 	    <td>留言</td>
+	    <td>完成状态</td>
 	  </tr>
 	  <!--
 	         注意事项
@@ -63,12 +64,14 @@ ${msg }
 				    <td>${ins.aac605 }</td>
 				    <td>${ins.aad402 }</td>
 				    <td>${ins.aad405 }</td>
-				    <td>${ins.aad404 }</td>
+					<td>${ins.aad404 }</td>
+				    <td>${ins.fvalue }</td>
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
 		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
 			          <tr>
+			            <td></td>
 			            <td></td>
 			            <td></td>
 			            <td></td>
@@ -81,6 +84,7 @@ ${msg }
 	     <c:otherwise>
 	        <c:forEach begin="1" step="1" end="15">
 	           <tr>
+	             <td></td>
 	             <td></td>
 	             <td></td>
 	             <td></td>
