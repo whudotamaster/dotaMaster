@@ -45,6 +45,7 @@ public class LoginTest extends HttpServlet
 		}
 		else
 		{
+			request.setAttribute("msg", "ÌáÊ¾£ºµÇÂ½Ê§°Ü£¡");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 	}

@@ -112,6 +112,9 @@ ${msg }
 	       
 	       <input type="submit" id="del" name="next" value="É¾³ý" 
 	              formaction="<%=path%>/delArticle.html"  disabled="disabled">
+	             
+	            <input type="submit" id="del" name="next" value="·µ»Ø" 
+	              formaction="<%=path%>/queryArticle.html">
 	        
 	    </td>
 	  </tr>

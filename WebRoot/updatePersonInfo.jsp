@@ -38,11 +38,12 @@
 	 	<td>
  	       <e:text name="aab105" defval="${ins.aab105 }"/> 
 	 	</td>
-		<input  type="hidden" name="aab101" value="<%=aab101%>">
-	
+
 </table>
+<input  type="hidden" name="aab101" value="<%=aab101%>">
+	
  <input type="submit" name="next"  value="修改">
- <input type="button" name="Submit" onclick="javascript:history.back(-1);" value="返回上一页">
+ <input type="submit" name="Submit" formaction="<%=path%>/mainPage.jsp"  formnovalidate="formnovalidate" value="返回主页">
 </form>
 	<%@include file="footer.jsp" %>
 	<!-- 引入页脚 -->
