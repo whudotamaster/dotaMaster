@@ -26,11 +26,24 @@ public interface BaseServices
      }
 
      
+     default Map<String,String> findByIdTeam()throws Exception
+     {
+    	 return null;
+     }
+     default List<Map<String,String>> findByIdPlayer()throws Exception
+     {
+    	 return null;
+     }
      default List<Map<String,String>> query()throws Exception
      {
     	 return null;
      }
 
+     default List<Map<String,String>> adminQuery()throws Exception
+     {
+    	 return null;
+     }
+     
      
      default List<Map<String,String>> queryBuyOrder()throws Exception
      {
@@ -42,10 +55,6 @@ public interface BaseServices
     	 return null;
      }
      
-
-
-
-
 	default List<Map<String, String>> queryHero()throws Exception
 
 	 {
@@ -81,7 +90,7 @@ public interface BaseServices
 
 
 
-	default int logonEmp() throws Exception
+	default int logonPerson() throws Exception
 	{
 		return 0;
 	}

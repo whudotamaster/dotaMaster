@@ -2,7 +2,7 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%String path=request.getContextPath(); %>
+
 <html>
 <head>
    <title>Insert title here</title>
@@ -12,38 +12,12 @@
         height:25px;
      }
    </style>
-   
-   <script type="text/javascript">
-      var count=0;
-      function onSelect(vstate)
-      {
-    	  vstate?count++:count--;
-    	  var vdel=document.getElementById("del");
-    	  vdel.disabled=(count==0);
-      }
-      
-      function onEdit(vaac601)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdAcc.html?aac601="+vaac601;
-    	 //alert(vform.action);
-    	 vform.submit();
-      }
-      
-      function onDel(vaac601)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdAcc.html?aac601="+vaac601;
-    	 //alert(vform.action);
-    	 vform.submit();
-      } 
-      
-   </script>
+
 </head>
 <body>
+<%@ include file="header.jsp" %>
 ${msg }
 <br>
-<%=session.getId() %>
 <br>
 <form id="myform" action="<%=path%>/queryAcc.html" method="post">
   <!-- ²éÑ¯Ìõ¼þÇø -->
@@ -72,6 +46,7 @@ ${msg }
 	    <td>ÊÎÆ·Í¼Ïñ</td>
 	    <td>ÊÎÆ·Ãû</td>
 	    <td></td>
+	   
 	  </tr>
 	   <c:choose>
 	     <c:when test="${rows!=null }">
@@ -88,11 +63,24 @@ ${msg }
 				     </td>
 				    <td>
 				      <!-- #  ¿ÕÃª -->
+<<<<<<< HEAD
+				     <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
+				    </td>				    		    
+=======
 				      <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
 				    </td>
+				    <c:if test="${aab108==2}">
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 				    <td>
 				      <a href="#" onclick="onDel('${ins.aac601}')">É¾³ý</a>
 				    </td>
+				    </c:if>
+				    <c:if test="${aab108==1}">
+				    <td>
+				      <a href="#" onclick="onBuy('${ins.aac601}')">¹ºÂò</a>
+				    </td>
+				    </c:if>
+				    
 				  </tr>
 		      </c:forEach>
 		      <!-- ²¹³ä¿ÕÐÐ -->
@@ -103,13 +91,14 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
-			         
+			            <td></td>
 			          </tr>
 		      </c:forEach>
 	     </c:when>
 	     <c:otherwise>
 	        <c:forEach begin="1" step="1" end="15">
 	           <tr>
+	             <td></td>
 	             <td></td>
 	             <td></td>
 	             <td></td>
@@ -129,9 +118,48 @@ ${msg }
 	              formaction="<%=path%>/addAcc.jsp">
 	       <input type="submit" id="del" name="next" value="É¾³ý" 
 	              formaction="<%=path%>/delAcc.html"  disabled="disabled">
+	       <input type="submit" id="buy" name="next" value="ÅúÁ¿¹ºÂò" 
+	              formaction="<%=path%>/buyAccList.html"  disabled="disabled">
+	       <input type="text" id="vaad402" name="aad402" placeholder="ÊäÈëÍæ¼Ò±àºÅ" disabled="disabled">
 	    </td>
 	  </tr>
 	</table>
+<<<<<<< HEAD
+	<input type="hidden" name="aac901" value="${param.aac901 }">
+=======
+	<input type="hidden" name="aab101" value="<%=aab101 %>">
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 </form>
 </body>
+<script type="text/javascript">
+      var count=0;
+      function onSelect(vstate)
+      {
+    	  vstate?count++:count--;
+    	  var vdel=document.getElementById("del");
+    	  vdel.disabled=(count==0);
+      }
+      
+      function onEdit(vaac601)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/findByIdAcc.html?aac601="+vaac601;
+    	 //alert(vform.action);
+    	 vform.submit();
+      }
+      function onDel(vaac601)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/delByIdAcc.html?aac601="+vaac601;
+    	 //alert(vform.action);
+    	 vform.submit();
+      }    
+      function onBuy(vaac601)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/delByIdAcc.html?aac601="+vaac601;
+    	 //alert(vform.action);
+    	 vform.submit();
+      } 
+   </script>  
 </html>

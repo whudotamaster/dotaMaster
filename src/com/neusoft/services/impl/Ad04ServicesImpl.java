@@ -25,13 +25,24 @@ public class Ad04ServicesImpl extends JdbcServicesSupport
 	//查看待发货列表
 	public List<Map<String, String>> query()throws Exception
 	{
-		String sql="select a.aad401,a.aac601,a.aab101,a.aad402,a.aad403,a.aad404,b.aac602 from ad04 a,ac06 b where a.aad403=0 and a.aac601=b.aac601";
-		return this.queryForList(sql);
+		StringBuilder sql=new StringBuilder()
+				.append("select a.aad401,a.aac601,a.aab101,a.aad402,a.aad403,")
+				.append("		a.aad404,a.aad405,b.fvalue,c.aac602,c.aac605")
+				.append(" from  ad04 a,syscode b,ac06 c ")
+				.append("where  a.aad403=0 and b.fname='aad403' and b.fcode=a.aad403 and a.aac601=c.aac601")
+				;
+		return this.queryForList(sql.toString());
 	}
 	//查看待发货订单详细信息
 	public Map<String, String> findById()throws Exception
 	{
-		String sql="select a.aad401,a.aac601,a.aab101,a.aad402,a.aad403,a.aad404,b.aac602,b.aac605 from ad04 a,ac06 b where a.aad401=? and a.aac601=b.aac601";
-		return this.queryForMap(sql, this.get("aad401"));
+		StringBuilder sql=new StringBuilder()
+				.append("select a.aad401,a.aac601,a.aab101,a.aad402,a.aad403,")
+				.append("		a.aad404,a.aad405,b.fvalue,c.aac602,c.aac605")
+				.append(" from  ad04 a,syscode b,ac06 c ")
+				.append("where  a.aad401=? and b.fname='aad403' and b.fcode=a.aad403 and a.aac601=c.aac601")
+				;
+		
+		return this.queryForMap(sql.toString(), this.get("aad401"));
 	}
 }

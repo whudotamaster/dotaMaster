@@ -1,7 +1,6 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%String path=request.getContextPath();%>
 <html>
 <head>
 <title>Insert title here</title>
@@ -16,6 +15,8 @@
 </head>
 <body>
 ${msg}
+<!-- 引入头部导航栏 -->
+<%@ include file="header.jsp" %>
 <br>
 <br>
 <form action="<%=path%>/findByIdArticle.html" method="post">
@@ -35,7 +36,7 @@ ${msg}
      </td>
    </tr>
    <tr>
-     <td>用户id</td>
+     <td>文章作者</td>
      <td>
        <e:text name="aab102"  required="true"  readonly="true" defval="${ins.aab102 }"/>
      </td>
@@ -64,11 +65,28 @@ ${msg}
    </tr>
    <tr>
      <td colspan="2" align="center">
+     <c:if test="${aab108!=2}">
        <input type="submit" name="next" value="返回" 
               formaction="<%=path%>/queryArticle.html"
               formnovalidate="formnovalidate">
+     </c:if>
+        <!-- 管理员可见的两个按钮 -->
+		<c:if test="${aab108==2}">
+			<input type="submit" name="next" value="返回" 
+              formaction="<%=path%>/adminQueryArticle.html"
+              formnovalidate="formnovalidate">
+			<input type="submit" name="pass" value="审核通过"
+					formaction="<%=path%>/passArticle.html"
+					formnovalidate="formnovalidate">
+			<input type="submit" name="unpass" value="审核不通过"
+					formaction="<%=path%>/unpassArticle.html"
+					formnovalidate="formnovalidate">
+		</c:if>
+
      </td>
    </tr>
+   		<input type="hidden" name="aab801" value="${ins.aab801 }">
+   
 </table>
 </form>
 </body>

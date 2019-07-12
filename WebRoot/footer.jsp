@@ -6,5 +6,6 @@
 
 <div id="foot">
 <p>页脚-ACVS组出品 AllrightsReserved</p>
+<a href="sendMail.jsp">向站长投诉</a>
 </div>
 

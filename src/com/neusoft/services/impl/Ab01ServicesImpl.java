@@ -13,12 +13,11 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 		//如果金钱不足开通的月数
 		if(this.getMoney(this.get("aab101"))<Integer.parseInt(this.get("month").toString())*1000)
 			return false;
-		
+		System.out.println("aab109:"+this.get("aab109"));
 		//进行开通或续费会员操作
 		StringBuilder sql=new StringBuilder();
 		boolean tag=this.isVIP(this.get("aab101"));
-		
-		System.out.println(tag);
+
 		//如果是会员 在他的到期时间后增加续费时长
 		if(tag)
 		{
@@ -40,9 +39,19 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 				this.get("month"),
 				this.get("aab101")
 		};
-		System.out.println("开通成功");
     	return this.executeUpdate(sql.toString(), args)>0;
     }
+	
+	public boolean updatePic(Object aab101,Object aab105) throws Exception
+	{
+		String sql="update ab01 set aab105=? where aab101=?";
+        Object args[]=
+        	{
+        		aab105,
+        		aab101
+        	};
+        return this.executeUpdate(sql, args)>0;
+	}
 	
 	//辅助方法 判断是否为VIP
 	public boolean isVIP(Object aab101)throws Exception
@@ -112,13 +121,13 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     
     public List<Map<String,String>> queryBuyOrder()throws Exception
     {
-    	String sql="select * from ad04 where aab101=?";                                                                                                                                                                               
+    	String sql="select a.aad401,a.aac601,a.aad402,a.aad403,a.aad404,a.aad405,b.aac602,b.aac605 from ad04 a,ac06 b where a.aac601=b.aac601	 and a.aab101=?";                                                                                                                                                                               
     	return this.queryForList(sql, this.get("aab101"));
     }
     
     public List<Map<String,String>> querySellOrder()throws Exception
     {
-    	String sql="select * from ad03 where aab101=?";                                                                                                                                                                               
+    	String sql="select a.aad301,a.aac601,a.aad302,a.aad303,a.aad304,a.aad305,b.aac602,b.aac604 from ad03 a,ac06 b where a.aac601=b.aac601 and a.aab101=?";                                                                                                                                                                                
     	return this.queryForList(sql, this.get("aab101"));
     }
     
@@ -146,14 +155,14 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	}
     }
     
-    public Map<String, String> loginEmp(Object aab103,Object aab104)throws Exception
+    public Map<String, String> loginPerson(Object aab103,Object aab104)throws Exception
     {
     	try
     	{
 	    	StringBuilder sql=new StringBuilder()
     				.append("select a.aab101,a.aab102,a.aab103,a.aab104,a.aab105,")	
-    				.append("						  a.aab106,a.aab107,a.aab108")
-	    			.append("  from ab01 a")
+    				.append("			     a.aab106,a.aab107,a.aab108,a.aab109 ")
+    				.append("  from ab01 a")
 	    			.append(" where a.aab103=? and a.aab104=?")
 	    			;
 	    	List<Object> paramList =new ArrayList<>();
@@ -180,7 +189,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.queryForMap(sql.toString(), this.get("aab103"))!=null;
     }
     //用户注册
-    public int logonEmp()throws Exception
+    public int logonPerson()throws Exception
     {
     	try
     	{
@@ -202,9 +211,9 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			    	StringBuilder sql=new StringBuilder()
 			    			.append("insert into ab01")
 			    			.append("(aab102,aab103,aab104,aab105,aab106,")
-			    			.append(" 						aab107,aab108)")
-			    			.append("values (?,?,?,'空',0,")
-			    			.append("							0,1)")
+			    			.append(" 						aab107,aab108,aab109)")
+			    			.append("values (?,?,?,'null.png',0,")
+			    			.append("							0,1,current_timestamp())")
 			       			;
 			    	List<Object> paramList =new ArrayList<>();
 			    	paramList.add(aab103);
@@ -231,7 +240,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	{
     		StringBuilder sql = new StringBuilder()
     				.append("select a.aab101,a.aab102,a.aab103,a.aab104,a.aab105,")	
-    				.append("						  a.aab106,a.aab107,a.aab108")
+    				.append("						  a.aab106,a.aab107,a.aab108,a.aab109")
     				.append("  from ab01 a")
     				.append(" where a.aab101=?")
     				;
@@ -244,7 +253,6 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	}
     }
     
-
     //用户修改个人信息
     public boolean personUpdateEmp()throws Exception
     {
@@ -254,6 +262,10 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     		Object aab104=this.get("aab104");
     		Object aab105=this.get("aab105");
     		Object aab101=this.get("aab101");
+    		System.out.println("102="+aab102);
+    		System.out.println("104="+aab104);
+    		System.out.println("105="+aab105);
+    		System.out.println("101="+aab101);
     		StringBuilder sql = new StringBuilder()
 					    		.append("update ab01 ")
 					    		.append("   set aab102 = ?,aab104=?,aab105=?")
@@ -274,11 +286,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     		return false;
     	}
     }
-    
-    
  
-    
-    
     private boolean addEmp()throws Exception
     {
     	//获取当前员工编号
@@ -312,6 +320,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	};
         return this.executeUpdate(sql.toString(), args)>0;	
     }
+    
     private boolean batchDelete()throws Exception
     {
     	//1.定义SQL语句

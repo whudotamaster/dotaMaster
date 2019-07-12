@@ -2,7 +2,6 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%String path=request.getContextPath(); %>
 <html>
 <head>
    <title>Insert title here</title>
@@ -12,87 +11,53 @@
         height:25px;
      }
    </style>
-   
-   <script type="text/javascript">
-      var count=0;
-      function onSelect(vstate)
-      {
-    	  vstate?count++:count--;
-    	  var vdel=document.getElementById("del");
-    	  vdel.disabled=(count==0);
-      }
-      
-      function onEdit(vaac601)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdAccessories.html?aac601="+vaac601;
-    	 //alert(vform.action);
-    	 vform.submit();
-      }
-      
-      function onDel(vaac601)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdEquipment.html?aac601="+vaac601;
-    	 //alert(vform.action);
-    	 vform.submit();
-      } 
-      
-   </script>
 </head>
 <body>
+<%@ include file="header.jsp" %>
 ${msg }
 <br>
 <%=session.getId() %>
 <br>
-<form id="myform" action="<%=path%>/queryAccessories.html" method="post">
+<form id="myform" action="<%=path%>/queryTeam.html" method="post">
   <!-- 查询条件区 -->
 	<table border="1" width="35%" align="center">
 	  <caption>
-	            饰品
+	            战队信息
 	    <hr width="160">
 	  </caption>
 	  <tr>
 	    <td colspan="4">查询条件</td>
 	  </tr>
 	  <tr>
-	    <td>饰品名</td>
+	    <td>战队名</td>
 	    <td>
-	      <e:text name="qaac602"/>
+	      <e:text name="qaac902"/>
 	    </td>
-	  </tr>
-	 
-
+	  </tr>	 
 	</table>
 	<!-- 数据迭代区 -->
 	<table border="1" width="35%" align="center">
 	  <tr>
-	    <td></td>
 	    <td>序号</td>
-	    <td>饰品图像</td>
-	    <td>饰品名</td>
-	    <td></td>
+	    <td>战队图像</td>
+	    <td align="center">战队名</td>
+	    
+	  
+	   
 	  </tr>
 	   <c:choose>
 	     <c:when test="${rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
-				    <td>
-				      <input type="checkbox" name="idlist" value="${ins.aac601 }"
-				             onclick="onSelect(this.checked)" >
-				    </td>
-				    <td>${vs.count }</td>
+				    <td style="width:15%; height:15%">${vs.count }</td>
 				     <td  align="center" style="width:15%; height:15%">
-				       <img alt="no image" src=<%=path%>/images/${ins.aac505 } style="width:100%; height:100%">
+				       <img alt="no image" src=<%=path%>/images/${ins.aac903 } style="width:100%; height:100%">
 				     </td>
-				    <td>
+				    <td align="center">
 				      <!-- #  空锚 -->
-				      <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
-				    </td>
-				    <td>
-				      <a href="#" onclick="onDel('${ins.aac601}')">删除</a>
-				    </td>
+				     <a  href="#" onclick="onEdit('${ins.aac901}')">${ins.aac902 }</a>
+				    </td>   
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
@@ -101,9 +66,8 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
-			            <td></td>
-			            <td></td>
-			         
+			            
+			          		            
 			          </tr>
 		      </c:forEach>
 	     </c:when>
@@ -113,8 +77,8 @@ ${msg }
 	             <td></td>
 	             <td></td>
 	             <td></td>
-	             <td></td>
-	             <td></td>       
+	             
+	                           
 	           </tr>
 	        </c:forEach>
 	     </c:otherwise>
@@ -126,12 +90,35 @@ ${msg }
 	    <td align="center">
 	       <input type="submit" name="next" value="查询">
 	       <input type="submit" name="next" value="添加" 
-	              formaction="<%=path%>/addAccessories.jsp">
-	       <input type="submit" id="del" name="next" value="删除" 
-	              formaction="<%=path%>/delAccessories.html"  disabled="disabled">
+	              formaction="<%=path%>/addTeam.jsp">
+	      
 	    </td>
 	  </tr>
 	</table>
 </form>
 </body>
+<script type="text/javascript">
+      var count=0;
+      function onSelect(vstate)
+      {
+    	  vstate?count++:count--;
+    	  var vdel=document.getElementById("del");
+    	  vdel.disabled=(count==0);
+      }
+      
+      function onEdit(vaac901)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/findByIdTeam.html?aac901="+vaac901;
+    	 //alert(vform.action);
+    	 vform.submit();
+      }
+      function onDel(vaac901)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/delByIdTeam.html?aac901="+vaac901;
+    	 //alert(vform.action);
+    	 vform.submit();
+      }    
+   </script>  
 </html>

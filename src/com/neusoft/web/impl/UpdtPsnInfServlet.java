@@ -13,7 +13,7 @@ public class UpdtPsnInfServlet extends EmpControllerSupport
 	public String execute()throws Exception
 	{
 		this.updtPsnInfIn();
-		this.queryPersonIn();
+		this.queryPersonIn();	
 		return "updatePersonInfo";
 	}
 }

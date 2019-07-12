@@ -14,9 +14,9 @@ public class QueryPersonServlet extends EmpControllerSupport
 	@Override
 	public String execute()throws Exception
 	{
-		System.out.println("QPS运行");
+
 		this.queryPersonIn();
-		System.out.println("QPI运行");
+
 
 
 	  return  "updatePersonInfo";
