@@ -21,7 +21,7 @@ String path=request.getContextPath();
 		<input type="hidden" name="aab101" value="<%=aab101%>">
 		    	<button style="submit" >╬╨╡б</button>
 		    	<button style="submit" formaction="<%=path%>/queryArticle.html">ндуб</button>
-		   
+		   		<button style="submit" formaction="<%=path%>/forum.html">бшлЁ</button>
 		    </form>
 	
 	

@@ -6,7 +6,6 @@ String aab101=(String)session.getAttribute("aab101");
 %>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
   td{

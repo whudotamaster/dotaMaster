@@ -16,7 +16,7 @@ import javax.websocket.Session;
 import com.neusoft.services.impl.Ab01ServicesImpl;
 
 
-@WebServlet(value="/login.html",loadOnStartup=1)
+@WebServlet(value="/login.html",loadOnStartup=0)
 public class LoginTest extends HttpServlet 
 {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -36,15 +36,17 @@ public class LoginTest extends HttpServlet
 		if(ins!=null)
 		{
 			request.setAttribute("ins", ins);
-			request.getSession().setAttribute("aab101", ins.get("aab101"));//用戶ID
-			request.getSession().setAttribute("aab102", ins.get("aab102"));//用戶昵称
-			request.getSession().setAttribute("aab105", ins.get("aab105"));//用戶头像
-			request.getSession().setAttribute("aab106", ins.get("aab106"));//用戶余额
-			request.getSession().setAttribute("aab108", ins.get("aab108"));//用戶权限
+			request.getSession().setAttribute("aab101", ins.get("aab101"));
+			request.getSession().setAttribute("aab108", ins.get("aab108"));
+			request.getSession().setAttribute("aab109", ins.get("aab109"));
+			request.getSession().setAttribute("aab102", ins.get("aab102"));
+			boolean tag=ins.get("aab108").equals("2")?true:false;
+			request.getSession().setAttribute("tag", tag);
 			request.getRequestDispatcher("mainPage.jsp").forward(request, response);
 		}
 		else
 		{
+			request.setAttribute("msg", "提示：登陆失败！");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 	}
