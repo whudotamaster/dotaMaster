@@ -7,7 +7,7 @@ public class ModifyTeamServlet extends TeamControllerSupport {
 	public String execute() throws Exception
 	{
 		this.update("modifyTeam", "ÐÞ¸Ä");
-		this.TAPOnLoad();
+		this.savePageData("FBIforMore");
 		return "readTeam";
 	}
 

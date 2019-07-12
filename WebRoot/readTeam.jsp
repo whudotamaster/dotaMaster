@@ -30,14 +30,14 @@ ${msg}
    <tr>
      <td>战队名</td>
      <td>
-       <e:text name="aac902"  readonly="${aab108!=2}"  required="true"  defval="${ins.aac902 }"/> 
+       <e:text name="aac902"  readonly="${aab108!=2}"  required="true"  defval="${rows[0].aac902 }"/> 
      </td>
    </tr>
    <c:if test="${aab108!=2}">
    <tr>
      <td>战队图片</td>
      <td >
-      <img alt="no image" src=<%=path%>/images/${ins.aac903 } style="width:12%; height:100%">
+      <img alt="no image" src=<%=path%>/images/${rows[0].aac903 } style="width:12%; height:100%">
      </td>
    </tr>  
    </c:if>
@@ -45,9 +45,9 @@ ${msg}
    <tr>
      <td>战队图片链接</td>
      <td >
-       <img alt="no image" src=<%=path%>/images/${ins.aac903 } style="width:12%; height:100%" >
+       <img alt="no image" src=<%=path%>/images/${rows[0].aac903 } style="width:12%; height:100%" >
        <c:if test="${aab108==2}" >
-       <e:text name="aac903"  required="true"  defval="${ins.aac903 }" />
+       <e:text name="aac903"  required="true"  defval="${rows[0].aac903 }" />
        </c:if>
      </td>
    </tr>  
@@ -55,14 +55,14 @@ ${msg}
     <tr>
      <td>战队简介</td>
      <td>
-       <e:textarea rows="5" cols="45" name="aac904" defval="${ins.aac904 }"/>
+       <e:textarea rows="5" cols="45" name="aac904" defval="${rows[0].aac904 }"/>
      </td>
    </tr>
-    <td>
-      <c:if test="${aab108==2}" >      
-        <input type="submit" name="next" value="战队修改" formaction="<%=path%>/modifyTeam.html" formnovalidate="formnovalidate" >  
-       </c:if>
+    <c:if test="${aab108==2}" >  
+    <td>  
+        <input type="submit" name="next" value="战队修改" formaction="<%=path%>/modifyTeam.html" formnovalidate="formnovalidate" >      
    </td>
+   </c:if>
    <tr>
     <tr>
      <td colspan="2">成员</td>

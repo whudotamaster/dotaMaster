@@ -169,8 +169,6 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	public Map<String,String> findById()throws Exception
     {
     	//1.±‡–¥SQL”Ôæ‰
-	//	System.out.println(this.get("aac601"));
-	//	System.out.println(this.get("param"));
     	StringBuilder sql1=new StringBuilder()
     			.append("select x.aac602,x.aac603,x.aac604,x.aac605,x.aac606,y.aac102,x.aac101")
   				.append("		 from ac06 x ,ac01 y")
@@ -218,8 +216,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	   private boolean modifyAcc()throws Exception
 	    {
 		
-		   // Object aac101=this.findIdByNameAc01();
-		   // System.out.println("aac101:"+aac101);
+		 
 	    	StringBuilder sql=new StringBuilder()
 	    			.append("	update ac06 set aac602=?,aac603=?,aac604=?,aac605=?,aac606=?,aac101=?  ")
 		            .append("   where aac601=? ")

@@ -31,7 +31,7 @@ ${msg }
 	  <tr>
 	    <td>赛事名</td>
 	    <td>
-	      <e:text name="qaac902"/>
+	      <e:text name="qaac702"/>
 	    </td>
 	  </tr>	 
 	</table>
@@ -44,7 +44,7 @@ ${msg }
 	    <td>赛事总奖金</td>
 	    <td>赛事开放时间</td>
 	    <td>赛事结束时间</td>
-	   
+	    <td></td>
 	  </tr>
 	   <c:choose>
 	     <c:when test="${rows!=null }">
@@ -57,9 +57,14 @@ ${msg }
 				     <a  href="#" onclick="onEdit('${ins.aac701}')">${ins.aac702 }</a>
 				    </td> 
 				    <td>${ins.aac703 }</td>
-				    <td>${ins.aab704 }</td>
-				    <td>${ins.aab705 }</td>
-				    <td>${ins.aab706 }</td>  
+				    <td>${ins.aac704 }</td>
+				    <td>${ins.aac705 }</td>
+				    <td>${ins.aac706 }</td>
+				    <c:if test="${aab108==2}">  
+				    <td>
+				      <a href="#" onclick="onModify('${ins.aac701}')">修改</a>
+				    </td>
+				    </c:if>
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
@@ -71,7 +76,7 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
-			          		            
+			          	<td></td>	            
 			          </tr>
 		      </c:forEach>
 	     </c:when>
@@ -84,7 +89,7 @@ ${msg }
 	             <td></td>
 			     <td></td>
 			     <td></td>
-	                           
+			     <td></td>	                           
 	           </tr>
 	        </c:forEach>
 	     </c:otherwise>
@@ -95,34 +100,27 @@ ${msg }
 	  <tr>
 	    <td align="center">
 	       <input type="submit" name="next" value="查询">
+	        <c:if test="${aab108==2}">  
 	       <input type="submit" name="next" value="添加" 
-	       formaction="<%=path%>/addTeam.jsp">
-	      
+	       formaction="<%=path%>/addEvent.jsp">   
+	       </c:if>
 	    </td>
 	  </tr>
 	</table>
 </form>
 </body>
 <script type="text/javascript">
-      var count=0;
-      function onSelect(vstate)
-      {
-    	  vstate?count++:count--;
-    	  var vdel=document.getElementById("del");
-    	  vdel.disabled=(count==0);
-      }
-      
-      function onEdit(vaac901)
+      function onEdit(vaac701)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdTeam.html?aac901="+vaac901;
+    	 vform.action="<%=path%>/findByIdEvent.html?aac701="+vaac701;
     	 //alert(vform.action);
     	 vform.submit();
       }
-      function onDel(vaac901)
+      function onModify(vaac701)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdTeam.html?aac901="+vaac901;
+    	 vform.action="<%=path%>/findByIdEvent2.html?aac701="+vaac701;
     	 //alert(vform.action);
     	 vform.submit();
       }    

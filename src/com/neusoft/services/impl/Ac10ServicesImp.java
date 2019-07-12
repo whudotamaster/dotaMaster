@@ -55,8 +55,6 @@ public class Ac10ServicesImp extends JdbcServicesSupport
 				.append("        and x.aac1001= ? ");
   			;  	
   	    //÷¥––≤È—Ø
-  	   System.out.println(this.get("aac1001"));
-  	   System.out.println(this.queryForMap(sql1.toString(), this.get("aac1001")));
        return this.queryForMap(sql1.toString(), this.get("aac1001"));
     }
 	

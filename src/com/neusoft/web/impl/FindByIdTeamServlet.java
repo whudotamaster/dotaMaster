@@ -5,7 +5,7 @@ public class FindByIdTeamServlet extends TeamControllerSupport
 	@Override
 	public String execute() throws Exception
 	{
-		this.TAPOnLoad();
+		this.savePageData("FBIforMore");
 		return "readTeam";
 	}
 

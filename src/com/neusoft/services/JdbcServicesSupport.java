@@ -51,7 +51,6 @@ public abstract class JdbcServicesSupport  implements BaseServices
 		Object aac101=this.queryForMap(sql2, this.get("aac102")).get("aac101");
 		return aac101;
 	}
-	
 	/**
 	 * 获取数组
 	 * @param key
@@ -553,8 +552,7 @@ public abstract class JdbcServicesSupport  implements BaseServices
 	         DBUtils.close(pstm);
 		}
    }	
-
-   
+ 
    /**************************************************************
     * 	                       以下为单一表非事务更新方法
     **************************************************************/

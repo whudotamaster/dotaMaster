@@ -24,16 +24,12 @@ public interface BaseServices
      {
     	 return null;
      }
-
+     default List<Map<String,String>> FBIforMore()throws Exception
+     {
+    	 return null;
+     }
      
-     default Map<String,String> findByIdTeam()throws Exception
-     {
-    	 return null;
-     }
-     default List<Map<String,String>> findByIdPlayer()throws Exception
-     {
-    	 return null;
-     }
+
      default List<Map<String,String>> query()throws Exception
      {
     	 return null;
@@ -55,11 +51,7 @@ public interface BaseServices
     	 return null;
      }
      
-	default List<Map<String, String>> queryHero()throws Exception
 
-	 {
-		 return null;
-	 }
 
 	default List<Map<String,String>> queryPost()throws Exception
      {
@@ -77,10 +69,7 @@ public interface BaseServices
 		return null;
 	}
 
-	default Map<String, String> findByIdHero()throws Exception
-	{
-		return null;
-	}
+
 
 
 	 default  Map<String, String> loginEmp() throws Exception

@@ -67,31 +67,17 @@ public class Ac09ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	   public Map<String,String> findByIdTeam()throws Exception
+	    
+	    public List<Map<String,String>> FBIforMore()throws Exception
 	    {
-	    	//1.±‡–¥SQL”Ôæ‰
 	    	StringBuilder sql=new StringBuilder()
-	    			.append(" select x.aac901,x.aac902,x.aac903,x.aac904        ")
-	    			.append("	  				 from ac09 x                    ")
-	    			.append(" where x.aac901=?")
-	    			;
-	    	//÷¥––≤È—Ø
-	    	return this.queryForMap(sql.toString(), this.get("aac901"));
-	    	
-	    }
-	 
-	     public List<Map<String,String>> findByIdPlayer()throws Exception
-	    {
-	    	//1.±‡–¥SQL”Ôæ‰
-	    	StringBuilder sql=new StringBuilder()
-	    			.append(" select y.aac1001,y.aac1002,y.aac1003,y.aac1004,y.aac1005      ")         
-	    			.append("	    				  				from ac09 x ,ac10 y             ")
-	    			.append("                        where x.aac901=y.aac901                         ")
-	    			.append("                        and y.aac901=?                                  ")
-	    			;
-	    	//÷¥––≤È—Ø
+	    	       .append(" select y.aac1001,y.aac1002,y.aac1003,y.aac1004,y.aac1005,  ")
+	    	       .append("       x.aac901,x.aac902,x.aac903,x.aac904                  ")       
+	    	       .append("       from ac09 x ,ac10 y                                 ")
+	    	       .append("       where x.aac901=y.aac901                             ")
+	    	       .append("       and y.aac901=?                                     ")  
+	    	       ;
 	    	return this.queryForList(sql.toString(), this.get("aac901"));
-	    	
 	    }
 	     
 	     

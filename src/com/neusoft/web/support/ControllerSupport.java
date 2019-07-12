@@ -51,21 +51,6 @@ public abstract class ControllerSupport implements BaseController
 	}
 	
 
-	/*****************************************
-	 * 	        战队信息封装
-	 *****************************************/
-	/**
-	 * 帖子数据查询
-	 * @throws Exception
-	 */
-	protected final void TAPOnLoad()throws Exception
-	{
-		Map<String,String> ins=this.services.findByIdTeam();
-		List<Map<String,String>> rows=this.services.findByIdPlayer();
-		this.saveAttribute("rows", rows);
-		this.saveAttribute("ins", ins);
-	}
-
 	/**
 	 * 数据批量查询
 	 * @throws Exception
@@ -114,7 +99,8 @@ public abstract class ControllerSupport implements BaseController
 			rows=this.services.queryBuyOrder();
 		else if(methodName.equals("sell"))
 			rows=this.services.querySellOrder();
-		
+		else if(methodName.equals("FBIforMore"))
+			rows=this.services.FBIforMore();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
