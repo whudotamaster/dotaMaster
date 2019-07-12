@@ -1,4 +1,10 @@
 /target/
 /.settings/
 .classpath
+<<<<<<< HEAD
 .project
+=======
+.gitignore
+.project
+*.class
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git

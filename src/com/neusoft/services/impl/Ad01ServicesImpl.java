@@ -77,7 +77,15 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     			this.get("aad101")
     	};
     	this.apppendSql(sql2.toString(), args2);
-    	return this.executeTransaction();
+    	if(this.executeTransaction())
+    	{
+    		this.setMessage("押注成功");
+    	    return true;
+    	}
+    	else 
+    	{
+    		return false;
+		}
     }
     
     //查询竞猜总额
@@ -98,7 +106,6 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	String sql="select * from ad01 where aad101=?";
     	System.out.println(this.get("aad101"));
     	Map<String, String> map=this.queryForMap(sql,this.get("aad101"));
-    	System.out.println(map);
     	this.put("aac1101", map.get("aac1101"));
     	this.put("aad102", map.get("aad102"));
     	this.put("aad103", map.get("aad103"));

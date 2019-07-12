@@ -1,3 +1,4 @@
+
 package com.neusoft.web.impl;
 
 import java.io.IOException;
@@ -99,18 +100,4 @@ public class SendMailServlet extends HttpServlet
 		this.doGet(request, response);
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

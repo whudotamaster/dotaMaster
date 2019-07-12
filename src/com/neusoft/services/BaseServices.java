@@ -24,12 +24,18 @@ public interface BaseServices
      {
     	 return null;
      }
+
+     default List<Map<String,String>> adminQueryArticle()throws Exception
+     {
+    	 return null;
+     }
      
      default  String getMessage() 
  	 {
  		return null;
  	 }
 
+     
      default Map<String,String> findByIdTeam()throws Exception
      {
     	 return null;
@@ -45,10 +51,11 @@ public interface BaseServices
     	 return null;
      }
 
-     default List<Map<String,String>> adminQueryArticle()throws Exception
+     default List<Map<String,String>> adminQuery()throws Exception
      {
     	 return null;
      }
+     
      
      default List<Map<String,String>> queryBuyOrder()throws Exception
      {
@@ -65,18 +72,12 @@ public interface BaseServices
     	 return null;
      }
 
-
 	default List<Map<String, String>> postFindById()throws Exception
 	{
 		return null;
 	}
 
-	 default List<Map<String, String>> commentFindById()throws Exception
-	 {
-		return null;
-	 }
-
-	default List<Map<String,String>> queryCollection()throws Exception
+	default Map<String, String> findByIdHero()throws Exception
 	{
 		return null;
 	}
@@ -91,30 +92,35 @@ public interface BaseServices
 		return null;
 	}
 
-	default Map<String, String> findByIdHero()throws Exception
-	{
+	 default List<Map<String, String>> commentFindById()throws Exception
+	 {
 		return null;
-	}
+	 }
 
-
-	 default  Map<String, String> loginEmp() throws Exception
+	 default Map<String, String> loginEmp() throws Exception
 	 {
 		 return null;
 	 }
 
-	default int logonPerson() throws Exception
-	{
+	 default int logonPerson() throws Exception
+	 {
 		return 0;
-	}
-	
-    default Map<String,String> queryPersonEmp()throws Exception
-    {
-    	return null;
-    }
+	 }
 
-	default boolean personUpdateEmp()throws Exception
-	{
+	
+     default Map<String,String> queryPersonEmp()throws Exception
+     {
+    	return null;
+     }
+
+	 default boolean personUpdateEmp()throws Exception
+	 {
 		return false;
+	 }
+
+	default List<Map<String,String>> queryCollection()throws Exception
+	{
+		return null;
 	}
 	
 	default List<Map<String,String>> queryCollectionList()throws Exception
