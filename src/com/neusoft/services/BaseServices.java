@@ -66,16 +66,11 @@ public interface BaseServices
     	 return null;
      }
 
-	default Map<String, String> postFindById()throws Exception
+	default List<Map<String, String>> postFindById()throws Exception
 	{
 		return null;
 	}
 
-	default List<Map<String, String>> commentFindById()throws Exception
-
-	{
-		return null;
-	}
 
 	default Map<String, String> findByIdHero()throws Exception
 	{
@@ -104,11 +99,6 @@ public interface BaseServices
 	default boolean personUpdateEmp()throws Exception
 	{
 		return false;
-	}
-
-	default List<Map<String,String>> queryCollection()throws Exception
-	{
-		return null;
 	}
 	
 	default List<Map<String,String>> queryCollectionList()throws Exception

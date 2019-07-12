@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%String path=request.getContextPath();
 String aab101=(String)session.getAttribute("aab101");
+String aab108=(String)session.getAttribute("aab108");
 %>
 <html>
 <head>
@@ -115,8 +116,11 @@ tr {
 					<!-- 显示实际查询到的数据 -->
 					<c:forEach items="${rows }" var="ins" varStatus="vs">
 						<tr>
-							<td><input type="checkbox" name="idlist"
+						<td>
+						<c:if test="${aab108 == 2 }">
+							<input type="checkbox" name="idlist"
 								value="${ins.aab501 }" onclick="onSelect(this.checked)">
+							</c:if>
 							</td>
 							<td>
 							<!-- #  空锚 --> 
@@ -130,7 +134,11 @@ tr {
 							</td>
 							<td>${ins.aab505 }</td>
 							<td>${ins.aab504 }</td>
-							<td><a href="#" onclick="onDel('${ins.aab501}')">删除</a></td>
+							<td>
+							<c:if test="${aab108 == 2 || ins.aab101 == aab101}">
+							<a href="#" onclick="onDel('${ins.aab501}')">删除</a>
+							</c:if>
+							</td>
 						</tr>
 					</c:forEach>
 					<!-- 补充空行 -->
@@ -165,9 +173,11 @@ tr {
 				<td align="center"><input type="submit" name="next" value="查询">
 					<input type="submit" name="next" value="添加"
 					formaction="<%=path%>/addEmp.jsp"> 
+					<c:if test="${aab108 == 2 }">
 					<input type="submit"
 					id="goodPost" name="next" value="加精" formaction="<%=path%>/goodPost.html"
 					disabled="disabled">
+					</c:if>
 					<c:if test="<%=aab101 !=null %>">
 					<input type="submit"
 					id="collectionPase" name="next" value="收藏页面" 

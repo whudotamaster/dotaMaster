@@ -1,6 +1,7 @@
 package com.neusoft.services.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,8 +27,11 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 
 		// 定义SQL主体
 		StringBuilder sql = new StringBuilder()
-				.append(" select b.aab501,b.aab101,a.aab102,a.aab105,b.aab502,b.aab504,b.aab505,")
-				.append("	     b.aab506").append("   from ab05 b,ab01 a").append("  where b.aab101=a.aab101  ");
+				.append(" select b.aab501,b.aab101,a.aab102,a.aab105,b.aab502,")
+				.append("	     b.aab504,b.aab505,b.aab506")
+				.append("   from ab05 b,ab01 a")
+				.append("  where b.aab101=a.aab101 ")
+				;
 
 		// 参数列表
 		List<Object> paramList = new ArrayList<>();
@@ -108,7 +112,8 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 				};
 
 			Boolean tag = this.executeUpdate(sql.toString(), args) > 0;
-			addExp(aab101, "addPost");
+			Ab01ServicesImpl ab01=new Ab01ServicesImpl();
+			ab01.addExp(aab101, "addPost");
 			return tag;
 
 		}
@@ -116,15 +121,27 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	}
 
 	/**
-	 * 指定帖子查询
+	 * 指定帖子查询加载入口
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	public Map<String, String> postFindById() throws Exception 
+	public List<Map<String, String>> postFindById() throws Exception 
 	{
 		// 还原页面查询条件
 		Object aab501 = this.get("aab501"); // 帖子ID
+		Object aab101 = this.get("aab101"); // 用戶ID
+		return postFindById(aab101 ,aab501);
+	}
+
+	/**
+	 * 指定帖子查询加载(帖子 回复 收藏状态)
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Map<String, String>> postFindById(Object aab101 , Object aab501) throws Exception 
+	{
 		// 定义SQL主体
 		StringBuilder sql = new StringBuilder()
 				.append(" select a.aab101,a.aab102,a.aab105,b.aab502,b.aab503,")
@@ -134,35 +151,21 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 				.append("  order by b.aab504")
 				;
 		// 参数列表
-		List<Object> paramList = new ArrayList<>();
-		paramList.add(aab501);
-		return this.queryForMap(sql.toString(), paramList.toArray());
+		List<Map<String, String>> rows = this.queryForList(sql.toString(), aab501);
+		Ab07ServicesImpl ab07=new Ab07ServicesImpl();
+		Boolean collection=ab07.queryCollection(aab101,aab501); //收藏状态
+		Map<String, String> map1 = new HashMap<String, String>();
+		map1.put("collection", collection.toString());
+		rows.add(map1);											//加进去
+		Ab06ServicesImpl ab06=new Ab06ServicesImpl();
+		List<Map<String, String>> commentList = ab06.commentFindById(aab501);
+		for(Map<String, String> comment:commentList)
+		{
+			rows.add(comment);
+		}
+		return rows;
 	}
-
-	/**
-	 * 指定帖子的回复查询
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public List<Map<String, String>> commentFindById() throws Exception 
-	{
-		// 还原页面查询条件
-		Object aab501 = this.get("aab501"); // 帖子ID
-		// 定义SQL主体
-		StringBuilder sql = new StringBuilder()
-				.append(" select a.aab102,a.aab105,b.aab602,b.aab603,b.aab604 ")
-				.append("   from ab01 a,ab06 b ")
-				.append("  where aab501=? and a.aab101=b.aab101 ")
-				.append("  order by b.aab604")
-				;
-		// 参数列表
-		List<Object> paramList = new ArrayList<>();
-		paramList.add(aab501);
-		System.out.println("aab101:" + this.get("aab101"));
-		return this.queryForList(sql.toString(), paramList.toArray());
-	}
-
+	
 	/**
 	 * 回复
 	 * 
@@ -194,7 +197,8 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 								aab603 
 								};
 			Boolean tag = this.executeUpdate(sql2.toString(), args1) > 0;
-			StringBuilder sql3 = new StringBuilder().append(" update ab05 ")
+			StringBuilder sql3 = new StringBuilder()
+					.append(" update ab05 ")
 					.append("    set aab505 = ? ,aab504 = current_timestamp() ")
 					.append("  where aab501= ? ")
 					;
@@ -203,77 +207,11 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 								aab501 
 								};
 			tag = this.executeUpdate(sql3.toString(), args2) > 0 && tag;
-			addExp(aab101, "addComment");
+			Ab01ServicesImpl ab01=new Ab01ServicesImpl();
+			ab01.addExp(aab101, "addComment");
 			return tag;
 		}
 		return false;
-	}
-
-	/**
-	 * 加经验值
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	private boolean addExp(Object aab101, String expType) throws Exception 
-	{
-		String sql = "update ab01 set aab107 = aab107+? where aab101=?";
-		int exp = 0;
-
-		switch (expType) {
-		case "addComment":
-			exp = 10;
-			break;
-		case "addPost":
-			exp = 5;
-			break;
-		default:
-			break;
-		}
-		Object args[] = { 
-							exp, 
-							aab101 
-						};
-		return this.executeUpdate(sql, args) > 0;
-	}
-
-	/**
-	 * 打赏扣钱和加钱
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	private boolean reward() throws Exception 
-	{
-		Object aab101 = this.get("aab101");
-		Object paab101 = this.get("paab101");
-		String sql1 = "update ab01 set aab106 = aab106-5 where aab101=?";
-		this.apppendSql(sql1, aab101);
-		String sql2 = "update ab01 set aab106 = aab106+5 where aab101=?";
-		this.apppendSql(sql2, paab101);
-		return this.executeTransaction();
-	}
-	
-	/**
-	 * 加载时判断用户收藏状态
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public List<Map<String,String>> queryCollection() throws Exception
-	{
-		Object aab101 = this.get("aab101");
-		Object aab501 = this.get("aab501");
-    	StringBuilder sql=new StringBuilder()
-    			.append("select a.aab701")
-    			.append("  from ab07 a")
-    			.append(" where a.aab101=? and a.aab501=?")
-    			;
-    	Object args[] = {
-    						aab101,
-    						aab501
-    					};
-    	return queryForList(sql.toString(), args);
 	}
 
 	/**

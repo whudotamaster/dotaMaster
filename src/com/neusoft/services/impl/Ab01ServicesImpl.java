@@ -1,5 +1,6 @@
 package com.neusoft.services.impl;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.neusoft.services.JdbcServicesSupport;
@@ -286,7 +287,75 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     		return false;
     	}
     }
+    
+
+	/**
+	 * 加经验值
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	protected final boolean addExp(Object aab101, String expType) throws Exception 
+	{
+		String sql = "update ab01 set aab107 = aab107+? where aab101=?";
+		int exp = 0;
+
+		switch (expType) {
+		case "addComment":
+			exp = 10;
+			break;
+		case "addPost":
+			exp = 5;
+			break;
+		default:
+			break;
+		}
+		Object args[] = { 
+							exp, 
+							aab101 
+						};
+		return this.executeUpdate(sql, args) > 0;
+	}
+
+	/**
+	 * 打赏扣钱和加钱
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	private boolean reward() throws Exception 
+	{
+		Object aab101 = this.get("aab101");
+		Object paab101 = this.get("paab101");
+		if (getMoney(aab101) >=5) 
+		{
+			System.out.println("夠錢:" + getMoney(aab101));
+			String sql1 = "update ab01 set aab106 = aab106-5 where aab101=?";
+			this.apppendSql(sql1, aab101);
+			String sql2 = "update ab01 set aab106 = aab106+5 where aab101=?";
+			this.apppendSql(sql2, paab101);
+			return this.executeTransaction();
+		}
+		else 
+		{
+			System.out.println("唔夠錢:" + getMoney(aab101));
+			return false;
+		}
+	
+	}
  
+	/**
+	 * 指定帖子查询的加载(帖子 回复 收藏状态)
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Map<String, String>> postFindById() throws Exception 
+	{
+		Ab05ServicesImpl ab05 = new Ab05ServicesImpl();
+		return ab05.postFindById(this.get("aab101") , this.get("aab501"));
+	}
+	
     private boolean addEmp()throws Exception
     {
     	//获取当前员工编号

@@ -4,7 +4,7 @@ import com.sun.javafx.collections.MappingChange.Map;
 
 import sun.applet.resources.MsgAppletViewer;
 
-public final class AddCollectionByIdServlet extends ForumControllerSupport 
+public final class AddCollectionByIdServlet extends CollectionControllerSupport 
 {
 	@Override
 	public String execute() throws Exception 
