@@ -63,14 +63,10 @@ ${msg }
 				     </td>
 				    <td>
 				      <!-- #  ¿ÕÃª -->
-<<<<<<< HEAD
-				     <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
-				    </td>				    		    
-=======
-				      <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
+
+				    <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
 				    </td>
 				    <c:if test="${aab108==2}">
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 				    <td>
 				      <a href="#" onclick="onDel('${ins.aac601}')">É¾³ý</a>
 				    </td>
@@ -124,11 +120,10 @@ ${msg }
 	    </td>
 	  </tr>
 	</table>
-<<<<<<< HEAD
+
 	<input type="hidden" name="aac901" value="${param.aac901 }">
-=======
 	<input type="hidden" name="aab101" value="<%=aab101 %>">
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
+
 </form>
 </body>
 <script type="text/javascript">
@@ -137,9 +132,12 @@ ${msg }
       {
     	  vstate?count++:count--;
     	  var vdel=document.getElementById("del");
+    	  var vaad402=document.getElementById("vaad402");
+    	  var vbuy=document.getElementById("buy");
     	  vdel.disabled=(count==0);
+    	  vaad402.disabled=(count==0);
+    	  vbuy.disabled=(count==0);
       }
-      
       function onEdit(vaac601)
       {
     	 var vform = document.getElementById("myform");
