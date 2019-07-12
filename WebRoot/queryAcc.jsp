@@ -20,17 +20,17 @@ ${msg }
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryAcc.html" method="post">
-  <!-- ²éÑ¯Ìõ¼şÇø -->
+  <!-- æŸ¥è¯¢æ¡ä»¶åŒº -->
 	<table border="1" width="35%" align="center">
 	  <caption>
-	            ÊÎÆ·
+	            é¥°å“
 	    <hr width="160">
 	  </caption>
 	  <tr>
-	    <td colspan="4">²éÑ¯Ìõ¼ş</td>
+	    <td colspan="4">æŸ¥è¯¢æ¡ä»¶</td>
 	  </tr>
 	  <tr>
-	    <td>ÊÎÆ·Ãû</td>
+	    <td>é¥°å“å</td>
 	    <td>
 	      <e:text name="qaac602"/>
 	    </td>
@@ -38,19 +38,19 @@ ${msg }
 	 
 
 	</table>
-	<!-- Êı¾İµü´úÇø -->
+	<!-- æ•°æ®è¿­ä»£åŒº -->
 	<table border="1" width="35%" align="center">
 	  <tr>
 	    <td></td>
-	    <td>ĞòºÅ</td>
-	    <td>ÊÎÆ·Í¼Ïñ</td>
-	    <td>ÊÎÆ·Ãû</td>
+	    <td>åºå·</td>
+	    <td>é¥°å“å›¾åƒ</td>
+	    <td>é¥°å“å</td>
 	    <td></td>
 	   
 	  </tr>
 	   <c:choose>
 	     <c:when test="${rows!=null }">
-	         <!-- ÏÔÊ¾Êµ¼Ê²éÑ¯µ½µÄÊı¾İ -->
+	         <!-- æ˜¾ç¤ºå®é™…æŸ¥è¯¢åˆ°çš„æ•°æ® -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
 				    <td>
@@ -62,28 +62,25 @@ ${msg }
 				       <img alt="no image" src=<%=path%>/images/${ins.aac603 } style="width:100%; height:100%">
 				     </td>
 				    <td>
-				      <!-- #  ¿ÕÃª -->
-<<<<<<< HEAD
+				      <!-- #  ç©ºé”š -->
 				     <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
 				    </td>				    		    
-=======
 				      <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
 				    </td>
 				    <c:if test="${aab108==2}">
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 				    <td>
-				      <a href="#" onclick="onDel('${ins.aac601}')">É¾³ı</a>
+				      <a href="#" onclick="onDel('${ins.aac601}')">åˆ é™¤</a>
 				    </td>
 				    </c:if>
 				    <c:if test="${aab108==1}">
 				    <td>
-				      <a href="#" onclick="onBuy('${ins.aac601}')">¹ºÂò</a>
+				      <a href="#" onclick="onBuy('${ins.aac601}')">è´­ä¹°</a>
 				    </td>
 				    </c:if>
 				    
 				  </tr>
 		      </c:forEach>
-		      <!-- ²¹³ä¿ÕĞĞ -->
+		      <!-- è¡¥å……ç©ºè¡Œ -->
 		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
 			          <tr>
 			            <td></td>
@@ -109,26 +106,23 @@ ${msg }
 	     </c:otherwise>
 	   </c:choose>
 	</table>
-	<!-- ¹¦ÄÜ°´Å¥Çø -->
+	<!-- åŠŸèƒ½æŒ‰é’®åŒº -->
 	<table border="1" width="35%" align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="²éÑ¯">
-	       <input type="submit" name="next" value="Ìí¼Ó" 
+	       <input type="submit" name="next" value="æŸ¥è¯¢">
+	       <input type="submit" name="next" value="æ·»åŠ " 
 	              formaction="<%=path%>/addAcc.jsp">
-	       <input type="submit" id="del" name="next" value="É¾³ı" 
+	       <input type="submit" id="del" name="next" value="åˆ é™¤" 
 	              formaction="<%=path%>/delAcc.html"  disabled="disabled">
-	       <input type="submit" id="buy" name="next" value="ÅúÁ¿¹ºÂò" 
+	       <input type="submit" id="buy" name="next" value="æ‰¹é‡è´­ä¹°" 
 	              formaction="<%=path%>/buyAccList.html"  disabled="disabled">
-	       <input type="text" id="vaad402" name="aad402" placeholder="ÊäÈëÍæ¼Ò±àºÅ" disabled="disabled">
+	       <input type="text" id="vaad402" name="aad402" placeholder="è¾“å…¥ç©å®¶ç¼–å·" disabled="disabled">
 	    </td>
 	  </tr>
 	</table>
-<<<<<<< HEAD
 	<input type="hidden" name="aac901" value="${param.aac901 }">
-=======
 	<input type="hidden" name="aab101" value="<%=aab101 %>">
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 </form>
 </body>
 <script type="text/javascript">
