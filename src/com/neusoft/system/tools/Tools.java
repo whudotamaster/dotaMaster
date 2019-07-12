@@ -37,7 +37,7 @@ public class Tools
 	}
 	private Tools() {}
 
-	//String sql="select count(*)num from ad03 where aab101=? and aad303=2";
+	//String sql="select count(*) from ad03 where aab101=? and aad303=2";
 	public static int getFailCount(String sql,Object...args) throws Exception
 	{
 			PreparedStatement pstm=null;
