@@ -35,7 +35,6 @@ ${msg }
 	      <e:text name="qaac602"/>
 	    </td>
 	  </tr>
-	 
 
 	</table>
 	<!-- Êý¾Ýµü´úÇø -->
@@ -63,9 +62,7 @@ ${msg }
 				     </td>
 				    <td>
 				      <!-- #  ¿ÕÃª -->
-
-				    <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
-				    </td>
+				     <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
 				    <c:if test="${aab108==2}">
 				    <td>
 				      <a href="#" onclick="onDel('${ins.aac601}')">É¾³ý</a>
@@ -76,7 +73,6 @@ ${msg }
 				      <a href="#" onclick="onBuy('${ins.aac601}')">¹ºÂò</a>
 				    </td>
 				    </c:if>
-				    
 				  </tr>
 		      </c:forEach>
 		      <!-- ²¹³ä¿ÕÐÐ -->
@@ -120,10 +116,8 @@ ${msg }
 	    </td>
 	  </tr>
 	</table>
-
 	<input type="hidden" name="aac901" value="${param.aac901 }">
 	<input type="hidden" name="aab101" value="<%=aab101 %>">
-
 </form>
 </body>
 <script type="text/javascript">
@@ -138,6 +132,8 @@ ${msg }
     	  vaad402.disabled=(count==0);
     	  vbuy.disabled=(count==0);
       }
+
+      
       function onEdit(vaac601)
       {
     	 var vform = document.getElementById("myform");
@@ -155,7 +151,7 @@ ${msg }
       function onBuy(vaac601)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdAcc.html?aac601="+vaac601;
+    	 vform.action="<%=path%>/buyAcc.jsp?aac601="+vaac601;
     	 //alert(vform.action);
     	 vform.submit();
       } 

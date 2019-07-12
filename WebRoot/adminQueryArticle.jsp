@@ -5,7 +5,7 @@
 
 <html>
 <head>
-   <title>Insert title here</title>
+   <title>管理员审核文章</title>
    <style type="text/css">
      tr
      {
@@ -23,7 +23,7 @@ ${msg }
 <%=session.getId() %>
 <br>
     <c:if test="${aab108==2}">
-<form id="myform" action="<%=path%>/queryArticle.html" method="post">
+<form id="myform" action="<%=path%>/adminQueryArticle.html" method="post">
   <!-- 查询条件区 -->
 	<table border="1" width="95%" align="center">
 	  <caption>

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.neusoft.system.db.DBUtils;
 
 /**
@@ -17,7 +16,6 @@ import com.neusoft.system.db.DBUtils;
 public abstract class JdbcServicesSupport  implements BaseServices
 {
 
-	
 	/**************************************************************
     * 	                       以下为属性定义
     **************************************************************/
@@ -36,6 +34,17 @@ public abstract class JdbcServicesSupport  implements BaseServices
 	    this.dto=dto;	
 	}
 	
+	public void setMessage(String msg) 
+	{
+		this.dto.put("msg", msg);
+	}
+	
+	public String getMessage() 
+	{
+		return (String)this.dto.get("msg");
+	}
+	
+	
 	
    /**************************************************************
     * 	                       辅助方法
@@ -44,6 +53,7 @@ public abstract class JdbcServicesSupport  implements BaseServices
 	{
 		return element!=null && !element.equals("");
 	}
+	
 	protected final Object findIdByNameAc01()throws Exception
 	{
 		String sql2="select aac101 from ac01 where aac102=?";
@@ -51,6 +61,7 @@ public abstract class JdbcServicesSupport  implements BaseServices
 		Object aac101=this.queryForMap(sql2, this.get("aac102")).get("aac101");
 		return aac101;
 	}
+	
 	/**
 	 * 获取数组
 	 * @param key
@@ -552,7 +563,7 @@ public abstract class JdbcServicesSupport  implements BaseServices
 	         DBUtils.close(pstm);
 		}
    }	
- 
+
    /**************************************************************
     * 	                       以下为单一表非事务更新方法
     **************************************************************/

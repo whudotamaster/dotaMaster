@@ -70,6 +70,7 @@ ${msg}
               formaction="<%=path%>/queryArticle.html"
               formnovalidate="formnovalidate">
      </c:if>
+<<<<<<< HEAD
      <c:if test="${aab108==2}">
      <input type="submit" name="next" value="返回" 
               formaction="<%=path%>/queryArticle.html"
@@ -77,6 +78,25 @@ ${msg}
      </c:if>
      </td>
    </tr>  
+=======
+        <!-- 管理员可见的两个按钮 -->
+		<c:if test="${aab108==2}">
+			<input type="submit" name="next" value="返回" 
+              formaction="<%=path%>/adminQueryArticle.html"
+              formnovalidate="formnovalidate">
+			<input type="submit" name="pass" value="审核通过"
+					formaction="<%=path%>/passArticle.html"
+					formnovalidate="formnovalidate">
+			<input type="submit" name="unpass" value="审核不通过"
+					formaction="<%=path%>/unpassArticle.html"
+					formnovalidate="formnovalidate">
+		</c:if>
+
+     </td>
+   </tr>
+   		<input type="hidden" name="aab801" value="${ins.aab801 }">
+   
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 </table>
 </form>
 </body>

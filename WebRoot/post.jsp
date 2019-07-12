@@ -2,7 +2,9 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%String path=request.getContextPath(); %>
+<%String path=request.getContextPath();
+String aab101=(String)session.getAttribute("aab101");
+%>
 <html>
 <head>
    <title>Insert title here</title>
@@ -23,39 +25,55 @@
    </style>
    
    <script type="text/javascript">
-      var count=0;
-      function onSelect(vstate)
+    function collecttion(vaab501,collection)
       {
-    	  vstate?count++:count--;
-    	  var vdel=document.getElementById("del");
-    	  vdel.disabled=(count==0);
+    	  var vform = document.getElementById("myform");
+    	  if(collection == "true")
+    	  {
+    		  vform.action="<%=path%>/delCollectionById.html?aab501="+vaab501;
+    		  alert("刪除收藏");
+    	  }
+    	  else
+    	  {
+    		  vform.action="<%=path%>/addCollectionById.html?aab501="+vaab501;
+    		  alert("增加收藏");
+    	  }
+    	  vform.submit();
       }
       
-      function onEdit(vaab101)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdEmp.html?aab101="+vaab101;
-    	 //alert(vform.action);
-    	 vform.submit();
+      function rewrad(vaab501,paab101)
+      {	
+    	  if(${money>=5 })
+      	 {
+      	 var vform = document.getElementById("myform");
+     
+      	 vform.action="<%=path%>/reward.html?aab501="+vaab501+"&paab101="+paab101;
+
+      	 //alert(vform.action);
+      	 vform.submit();
+      	 }
+      	 else
+     	{
+     		alert("余额不足");		
+     	 }
       }
-      
-      function onDel(vaab101)
+     
+      function onDel(vaab501)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdEmp.html?aab101="+vaab101;
+    	 vform.action="<%=path%>/delPost.html?aab501=" + vaab501;
     	 //alert(vform.action);
     	 vform.submit();
       } 
-      
    </script>
 </head>
 <body>
-${msg }
-${ins }
 <br>
-<%=session.getId() %>
+用戶余額
+${money }
+${collection }
 <br>
-<form id="myform" action="<%=path%>/addComment.html?aab501=${param.aab501 }&aab101=${ param.aab101 }" method="post">
+<form id="myform" action="<%=path%>/addComment.html?aab501=${param.aab501 }" method="post">
   <!-- 查询条件区 -->
 	<table border="1" width="95%" align="center">
 	  <caption>
@@ -80,18 +98,34 @@ ${ins }
 	   <c:choose>
 	     <c:when test="${rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
-		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
-				    <td>${vs.count -1 }</td>
+				    <td>1</td>
 				    <td>
 					<!-- #  用户名及头像--> 
-								<a href="#" onclick="onEdit('${ins.aab101}')">${ins.aab102 }</a>
-								<img src=<%=path%>/images/${ins.aab105 } class="round_icon"
-								onclick="onEdit('${ins.aab101}')">
+								<a href="#" onclick="onEdit('${rows.aab101}')">${rows.aab102 }</a>
+								<img src=<%=path%>/images/${rows.aab105 } class="round_icon"
+								onclick="onEdit('${rows.aab101}')">
 				    </td>
-				    <td>${ins.aab502 }</td>
-				    <td>${ins.aab503 }</td>
-				    <td>${ins.aab504 }</td>
+				    <td>${rows.aab502 }</td>
+				    <td>${rows.aab503 }
+				    <c:choose>
+				   	<c:when test="<%=aab101!=null %>">
+				       <input type="button" value="打赏" 
+				       onclick="rewrad('${param.aab501 }','${rows.aab101}')"
+				            formnovalidate="formnovalidate" >
+				 	   <input type="button" value="收藏" 
+				 	       onclick="collecttion('${param.aab501 }','${collection}')"
+				 	       formnovalidate="formnovalidate"> 
+				    </c:when>
+				    <c:otherwise>
+				      <input type="submit" value="打赏" formaction="<%=path%>/login.html"
+				          formnovalidate="formnovalidate">
+				 	   <input type="submit" value="收藏" formaction="<%=path%>/login.html"
+				 	       formnovalidate="formnovalidate"> 
+				    </c:otherwise>
+					</c:choose>
+				    </td>
+				    <td>${rows.aab504 }</td>
 				  </tr>
 				  </table>
 				  <table  border="1" width="95%" align="center">
@@ -101,11 +135,10 @@ ${ins }
 	    <td>回复內容</td>
 	    <td>时间</td>
 	  </tr>
-		      </c:forEach>
 		      <!-- 补充空行 -->
 		    <c:forEach items="${comment }" var="ins" varStatus="vs">
 			          <tr>
-			            <td>${ins.aab602 }</td>
+			            <td>${ins.aab602+1 }</td>
 			            	<td>
 								<!-- #  用户名及头像--> 
 								 <a href="#" onclick="onEdit('${ins.aab101}')">${ins.aab102 }</a>
@@ -130,16 +163,26 @@ ${ins }
 	<table border="1" width="95%" align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="回复">
+	       <c:choose>
+  			 <c:when test="<%=aab101!=null %>">
+  			  <input type="submit" name="next" value="回复 ">
+     </c:when>
+     <c:otherwise>
+       <input type="submit" name="next" value="登录 "
+              formaction="<%=path%>/login.html">
+     </c:otherwise>
+     </c:choose>
 	             <input type="submit" name="next" value="返回" 
-              formaction="<%=path%>/forum.html?aab101=${param.aab101 }"
+              formaction="<%=path%>/forum.html"
               formnovalidate="formnovalidate">
-	       <input type="submit" id="del" name="next" value="删除" 
-	              formaction="<%=path%>/delEmp.html"  disabled="disabled">
+	       <input type="button" id="del" name="next" value="删除" 
+	              onclick="onDel('${param.aab501}')" 
+	              formnovalidate="formnovalidate" >
 	    </td>
 	  </tr>
 	</table>
-
+  <e:hidden name="aab101" defval="<%=aab101 %>"/>
+  <input type="number" hidden="true" name="aab106" value="${money }">
 </form>
 </body>
 </html>
