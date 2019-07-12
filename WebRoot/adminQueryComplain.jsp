@@ -3,6 +3,14 @@
 <html>
 <head>
 <title>处理申诉</title>
+<style type="text/css">
+tr {
+	height: 25px;
+}
+
+
+}
+</style>
 </head>
 <body>
 ${msg }
@@ -19,12 +27,12 @@ ${msg }
 	<!-- 数据迭代区 -->
 	<table border="1" width="95%" align="center">
 	  <tr>
-	    <td></td>
 	    <td>序号</td>
-	    <td>文章标题</td>
-	    <td>用户</td>
-	    <td>发布时间</td>
-	    <td></td>
+	    <td>投诉标题</td>
+	    <td>用户ID</td>
+	    <td>投诉内容</td>
+	    <td>提交时间</td>
+	    
 	  </tr>
 	  <!--
 	         注意事项
@@ -37,20 +45,15 @@ ${msg }
 	         <!-- 显示实际查询到的数据 -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
-				    <td>
-				      <input type="checkbox" name="idlist" value="${ins.aab801 }"
-				             onclick="onSelect(this.checked)" >
-				    </td>
+				   
 				    <td>${vs.count }</td>
 				    <td>
-				      <!-- #  空锚 -->
-				      <a href="#" onclick="onEdit('${ins.aab801}')">${ins.aab802 }</a>
+				      <a href="#" onclick="onEdit('${ins.aad501}')">${ins.aad502}</a>
 				    </td>
-				    <td>${ins.aab102 }</td>
-				    <td>${ins.aab805 }</td>
-				    <td>
-				      <a href="#" onclick="onDel('${ins.aab801}')">删除</a>
-				    </td>
+				    <td>${ins.aab101 }</td>
+				    <td>${ins.aad503 }</td>
+				    <td>${ins.aad505 }</td>
+			
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
@@ -61,7 +64,7 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
-			            <td></td>
+			        
 			         
 			          </tr>
 		      </c:forEach>
@@ -74,7 +77,7 @@ ${msg }
 	             <td></td>
 	             <td></td>
 	             <td></td>
-	             <td></td>	         
+	                  
 	           </tr>
 	        </c:forEach>
 	     </c:otherwise>
@@ -86,9 +89,9 @@ ${msg }
 	  <tr>
 	    <td align="center">
 	         <input type="submit" id="ref" name="next" value="刷新" 
-	              formaction="<%=path%>/adminQueryComplain.html">     
+	              formaction="<%=path%>/adminQueryComp.html">     
 	            <input type="submit" id="del" name="next" value="返回" 
-	              formaction="<%=path%>/mainPage.html">        
+	              formaction="<%=path%>/adminGo.jsp">        
 	    </td>
 	  </tr>
 	</table>
@@ -98,4 +101,18 @@ ${msg }
 <%@include file="footer.jsp" %>
 <!-- 引入页脚 -->
 </body>
+   <script type="text/javascript">
+      var count=0;
+     
+      
+      function onEdit(vaad501)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/findByIdComplaint.html?aad501="+vaad501;
+    	 vform.submit();
+      }
+      
+
+      
+   </script>
 </html>

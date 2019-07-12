@@ -32,13 +32,24 @@ public class Ad05ServicesImpl extends JdbcServicesSupport
 		{
 		  		//定义SQL主体
 		  		StringBuilder sql=new StringBuilder()		  			
-		  				.append("  SELECT a.aad501,a.aad502,a.aad503,a.aad504,a.aad505    ")  
-		  				.append("    FROM ad05 a                     ")
-		  				.append("   WHERE a.aad504=1   ")//504待审核为1
-		  				.append("ORDER BY a.aad505 DESC");//按照时间降序排列
+		  				.append("  SELECT a.aad501,a.aab101,a.aad502,a.aad503,a.aad504,a.aad505  ")  
+		  				.append("    FROM ad05 a ")
+		  				.append("   WHERE a.aad504=1 ")//504待审核为1
+		  				.append("ORDER BY a.aad505 DESC");//按照投诉时间降序排列
 		  		return this.queryForList(sql.toString());  	
 		  }
-	
+	//findbyid展示投诉页面
+		public Map<String,String> findById()throws Exception
+	    {
+	    	//1.编写SQL语句
+	    	StringBuilder sql =new StringBuilder()
+	    			.append(" SELECT a.aad501,a.aab101,a.aad502,a.aad503,a.aad504,a.aad505    ")   
+	    			.append("   FROM ad05 a ")
+	  				.append("  WHERE a.aad501=?  ")//PrincessConnectionRe-dive
+	    			;
+	    	//执行查询
+	    	return this.queryForMap(sql.toString(), this.get("aad501"));
+	    }
 	
 	
 	
