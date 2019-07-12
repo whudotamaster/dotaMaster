@@ -26,7 +26,7 @@ public class LoginTest extends HttpServlet
 		Map<String, String> ins=null;
 		try 
 		{
-			ins = ab01.loginEmp(dto.get("aab103"),dto.get("aab104"));
+			ins = ab01.loginPerson(dto.get("aab103"),dto.get("aab104"));
 		} 
 		catch (Exception e) 
 		{
