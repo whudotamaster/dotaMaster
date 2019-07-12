@@ -2,11 +2,7 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%
-String aab101=(String)session.getAttribute("aab101");
-String aab108=(String)session.getAttribute("aab108");
-String path=request.getContextPath();
-%>
+
 <html>
 <head>
    <title>Insert title here</title>
@@ -16,47 +12,10 @@ String path=request.getContextPath();
         height:25px;
      }
    </style>
-   
-   <script type="text/javascript">
-      var count=0;
-      function onSelect(vstate)
-      {
-    	  vstate?count++:count--;
-    	  var vdel=document.getElementById("del");
-    	  var vaad402=document.getElementById("vaad402");
-    	  var vbuy=document.getElementById("buy");
-    	  vdel.disabled=(count==0);
-    	  vaad402.disabled=(count==0);
-    	  vbuy.disabled=(count==0);
-      }
-      
-      function onEdit(vaac601)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdAcc.html?aac601="+vaac601;
-    	 //alert(vform.action);
-    	 vform.submit();
-      }
-      
-      function onDel(vaac601)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdAcc.html?aac601="+vaac601;
-    	 //alert(vform.action);
-    	 vform.submit();
-      } 
-      
-      function onBuy(vaac601)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdAcc.html?aac601="+vaac601;
-    	 //alert(vform.action);
-    	 vform.submit();
-      } 
-      
-   </script>
+
 </head>
 <body>
+<%@ include file="header.jsp" %>
 ${msg }
 <br>
 <br>
@@ -87,6 +46,7 @@ ${msg }
 	    <td>ÊÎÆ·Í¼Ïñ</td>
 	    <td>ÊÎÆ·Ãû</td>
 	    <td></td>
+	   
 	  </tr>
 	   <c:choose>
 	     <c:when test="${rows!=null }">
@@ -103,9 +63,14 @@ ${msg }
 				     </td>
 				    <td>
 				      <!-- #  ¿ÕÃª -->
+<<<<<<< HEAD
+				     <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
+				    </td>				    		    
+=======
 				      <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
 				    </td>
 				    <c:if test="${aab108==2}">
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 				    <td>
 				      <a href="#" onclick="onDel('${ins.aac601}')">É¾³ý</a>
 				    </td>
@@ -126,13 +91,14 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
-			         
+			            <td></td>
 			          </tr>
 		      </c:forEach>
 	     </c:when>
 	     <c:otherwise>
 	        <c:forEach begin="1" step="1" end="15">
 	           <tr>
+	             <td></td>
 	             <td></td>
 	             <td></td>
 	             <td></td>
@@ -158,7 +124,42 @@ ${msg }
 	    </td>
 	  </tr>
 	</table>
+<<<<<<< HEAD
+	<input type="hidden" name="aac901" value="${param.aac901 }">
+=======
 	<input type="hidden" name="aab101" value="<%=aab101 %>">
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 </form>
 </body>
+<script type="text/javascript">
+      var count=0;
+      function onSelect(vstate)
+      {
+    	  vstate?count++:count--;
+    	  var vdel=document.getElementById("del");
+    	  vdel.disabled=(count==0);
+      }
+      
+      function onEdit(vaac601)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/findByIdAcc.html?aac601="+vaac601;
+    	 //alert(vform.action);
+    	 vform.submit();
+      }
+      function onDel(vaac601)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/delByIdAcc.html?aac601="+vaac601;
+    	 //alert(vform.action);
+    	 vform.submit();
+      }    
+      function onBuy(vaac601)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/delByIdAcc.html?aac601="+vaac601;
+    	 //alert(vform.action);
+    	 vform.submit();
+      } 
+   </script>  
 </html>

@@ -11,62 +11,61 @@
         height:25px;
      }
    </style>
-   
-
 </head>
 <body>
-${msg }
-<!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
+${msg }
 <br>
 <%=session.getId() %>
 <br>
-<form id="myform" action="<%=path%>/queryArticle.html" method="post">
+<form id="myform" action="<%=path%>/queryPlayer.html" method="post">
   <!-- 查询条件区 -->
-	<table border="1" width="95%" align="center">
+	<table border="1" width="35%" align="center">
 	  <caption>
-	              文章
+	            选手信息
 	    <hr width="160">
 	  </caption>
 	  <tr>
 	    <td colspan="4">查询条件</td>
 	  </tr>
 	  <tr>
-	    <td>文章名</td>
+	    <td>选手名</td>
 	    <td>
-	      <e:text name="qaab802"/>
+	      <e:text name="qaac1002"/>
 	    </td>
+	  </tr>	 
 	</table>
 	<!-- 数据迭代区 -->
-	<table border="1" width="95%" align="center">
+	<table border="1" width="35%" align="center">
 	  <tr>
-	  
+	    <td></td>
 	    <td>序号</td>
-	    <td>文章标题</td>
-	    <td>用户</td>
-	    <td>发布时间</td>
-	
+	    <td>选手头像</td>
+	    <td>选手名</td>
+	    <td></td>
+	    <td></td>
+	   
 	  </tr>
-	  <!--
-	         注意事项
-	    1.$及大括号的结束标记 }与双引号之间,不允许出现空格
-	    2.所有的属性之间至少要有一个空格,否则报错
-	    3.var 属性,相当于在页面定义变量名称,因此  ins不允许再用$ {  }
-	   -->
 	   <c:choose>
 	     <c:when test="${rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
-				
+				    <td>
+				      <input type="checkbox" name="idlist" value="${ins.aac1001 }"
+				             onclick="onSelect(this.checked)" >
+				    </td>
 				    <td>${vs.count }</td>
+				     <td  align="center" style="width:15%; height:15%">
+				       <img alt="no image" src=<%=path%>/images/${ins.aac1004 } style="width:100%; height:100%">
+				     </td>
 				    <td>
 				      <!-- #  空锚 -->
-				      <a href="#" onclick="onEdit('${ins.aab801}')">${ins.aab802 }</a>
+				     <a href="#" onclick="onEdit('${ins.aac1001}')">${ins.aac1002 }</a>
 				    </td>
-				    <td>${ins.aab102 }</td>
-				    <td>${ins.aab805 }</td>
-				 
+				    <td>
+				      <a href="#" onclick="onDel('${ins.aac1001}')">删除</a>
+				    </td>
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
@@ -76,8 +75,7 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
-			           
-			         
+			            <td></td>			            
 			          </tr>
 		      </c:forEach>
 	     </c:when>
@@ -88,41 +86,27 @@ ${msg }
 	             <td></td>
 	             <td></td>
 	             <td></td>
-	                   
+	             <td></td>	                 
 	           </tr>
 	        </c:forEach>
 	     </c:otherwise>
 	   </c:choose>
 	</table>
-	
 	<!-- 功能按钮区 -->
-	<table border="1" width="95%" align="center">
+	<table border="1" width="35%" align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="文章查询">
-	       
-	        <c:if test="${aab108!=null}">
-	       		<input type="submit" name="next" value="我要投稿" 
-	              formaction="<%=path%>/addArticle.jsp">
-	     	</c:if>
-	     	 <c:if test="${aab108==null}">
-	       		<input type="submit" name="next" value="我要投稿" 
-	              formaction="<%=path%>/login.jsp">
-	     	</c:if>
-	             <c:if test="${aab108==2}">
-					<input type="submit" formaction="<%=path%>/adminQueryArticle.html" value="审核">
-	        	</c:if>
+	       <input type="submit" name="next" value="查询">
+	       <input type="submit" name="next" value="添加" 
+	              formaction="<%=path%>/addPlayer.jsp">
+	       <input type="submit" id="del" name="next" value="删除" 
+	              formaction="<%=path%>/delPlayer.html"  disabled="disabled">
 	    </td>
 	  </tr>
 	</table>
 </form>
-
-
-<!-- 引入脚部导航栏 -->
-<%@ include file="footer.jsp" %>
-
 </body>
-   <script type="text/javascript">
+<script type="text/javascript">
       var count=0;
       function onSelect(vstate)
       {
@@ -131,21 +115,19 @@ ${msg }
     	  vdel.disabled=(count==0);
       }
       
-      function onEdit(vaab801)
+      function onEdit(vaac1001)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdArticle.html?aab801="+vaab801;
+    	 vform.action="<%=path%>/findByIdPlayer.html?aac1001="+vaac1001;
     	 //alert(vform.action);
     	 vform.submit();
       }
-      
-      function onDel(vaab801)
+      function onDel(vaac1001)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdArticle.html?aab801="+vaab801;
-    	 alert(vform.action);
+    	 vform.action="<%=path%>/delByIdPlayer.html?aac1001="+vaac1001;
+    	 //alert(vform.action);
     	 vform.submit();
-      } 
-      
-   </script>
+      }    
+   </script>  
 </html>

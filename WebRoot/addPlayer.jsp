@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%String path=request.getContextPath();%>
+
 <html>
 <head>
 <title>Insert title here</title>
@@ -16,64 +16,60 @@
 </head>
 <body>
 ${msg}
+<!-- 引入头部导航栏 -->
+<%@ include file="header.jsp" %>
+
 <br>
 <br>
-<form action="<%=path%>/findByIdAcc.html" method="post">
+<form action="<%=path%>/findByIdPlayer.html" method="post">
 <table  border="1" align="center" width="45%">
-    <caption>
-               饰品添加
+      <caption>
+              选手添加   
       <hr width="160">
     </caption>
    <tr>
-     <td colspan="2">饰品</td>
+     <td colspan="2">选手</td>
    </tr>
    <tr>
-     <td>饰品名</td>
+     <td>选手头像</td>
      <td>
-       <e:text name="aac602" required="true" autofocus="true" /> 
-     </td>
-   </tr>
-   <tr>
-     <td>饰品图片</td>
-     <td>
-       <e:text name="aac603"  required="true" />
-     </td>
-   </tr>
-   <tr>
-     <td>饰品归属英雄名</td>
-     <td>
-       <e:text name="aac102" required="true" />
-     </td>
-   </tr>
-   <tr>
-     <td>回收价格</td>
-     <td>
-       <e:text name="aac604"  required="true"   /> 
-     </td>
-   </tr>  
-   <tr>
-     <td>库存价格</td>
-     <td>
-       <e:text name="aac605"  required="true"   /> 
-     </td>
-   </tr>  
-    <tr>
-     <td>库存</td>
-     <td>
-       <e:text name="aac606"  required="true"   /> 
+       <e:text name="aac1004"  required="true"   /> 
      </td>
    </tr> 
    <tr>
+     <td>选手名</td>
+     <td>
+       <e:text name="aac1002" required="true"   /> 
+     </td>
+   </tr>
+   <tr>
+     <td>选手昵称</td>
+     <td>
+       <e:text name="aac1003"  required="true"   /> 
+     </td>
+   </tr>  
+   <tr>
+     <td>所属战队</td>
+     <td>
+       <e:text name="aac902"  required="true"   /> 
+     </td>
+   </tr>  
+   <tr>
+     <td>选手简介</td>
+     <td>
+       <e:textarea rows="5" cols="45" name="aac1005" />
+     </td>
+   </tr>
+   <tr>
      <td colspan="2" align="center">
      <input type="submit" name="next" value="添加"
-              formaction="<%=path%>/addAcc.html">
+              formaction="<%=path%>/addPlayer.html">
        <input type="submit" name="next" value="返回" 
-              formaction="<%=path%>/queryAcc.html"
+              formaction="<%=path%>/queryPlayer.html"
               formnovalidate="formnovalidate">
      </td>
    </tr>
 </table>
-<input type="hidden" name="aac601" value="${param.aac601 }">
 </form>
 </body>
 </html>

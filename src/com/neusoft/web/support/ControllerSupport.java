@@ -50,6 +50,22 @@ public abstract class ControllerSupport implements BaseController
 		}	
 	}
 	
+
+	/*****************************************
+	 * 	        战队信息封装
+	 *****************************************/
+	/**
+	 * 帖子数据查询
+	 * @throws Exception
+	 */
+	protected final void TAPOnLoad()throws Exception
+	{
+		Map<String,String> ins=this.services.findByIdTeam();
+		List<Map<String,String>> rows=this.services.findByIdPlayer();
+		this.saveAttribute("rows", rows);
+		this.saveAttribute("ins", ins);
+	}
+
 	/**
 	 * 数据批量查询
 	 * @throws Exception
@@ -69,7 +85,7 @@ public abstract class ControllerSupport implements BaseController
 	
 	
 	
-	
+
 	/*****************************************
 	 * 	        论坛加载业务流程封装
 	 *****************************************/
