@@ -44,7 +44,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	  }
 	
 	//管理员查询待审核文章
-	public List<Map<String,String>> adminQuery()throws Exception
+	public List<Map<String,String>> adminQueryArticle()throws Exception
 	  {
 	  		//还原页面查询条件
 	  		Object aab802=this.get("qaab802");     //姓名  模糊查询

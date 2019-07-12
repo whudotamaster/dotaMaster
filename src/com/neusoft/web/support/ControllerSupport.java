@@ -57,7 +57,7 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void adminQueryArticleServ()throws Exception
 	{
-		List<Map<String,String>> rows=this.services.adminQuery();
+		List<Map<String,String>> rows=this.services.adminQueryArticle();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
@@ -67,6 +67,26 @@ public abstract class ControllerSupport implements BaseController
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}	
 	}
+	
+
+	
+	/**
+	 * 数据批量查询
+	 * @throws Exception
+	 */
+	protected final void adminQueryComplainServ()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.adminQueryComplain();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
 	
 	
 	

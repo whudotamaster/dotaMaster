@@ -31,7 +31,7 @@ public interface BaseServices
     	 return null;
      }
 
-     default List<Map<String,String>> adminQuery()throws Exception
+     default List<Map<String,String>> adminQueryArticle()throws Exception
      {
     	 return null;
      }
@@ -100,6 +100,16 @@ public interface BaseServices
 	default boolean personUpdateEmp()throws Exception
 	{
 		return false;
+	}
+	
+	default boolean psnAddComplaint()throws Exception
+	{
+		return false;
+	}
+
+	default List<Map<String, String>> adminQueryComplain() throws Exception
+	{
+		return null;
 	}
 
 

@@ -1,44 +1,21 @@
-<%@ page  language="java" import="java.util.*" pageEncoding="GBK"%>
-<%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+<%@ page language="java"  pageEncoding="GBK"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-   <title>管理员审核文章</title>
-   <style type="text/css">
-     tr
-     {
-        height:25px;
-     }
-   </style>
-   
-
+<title>处理申诉</title>
 </head>
 <body>
 ${msg }
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
-<br>
-<%=session.getId() %>
-<br>
-    <c:if test="${aab108==2}">
-<form id="myform" action="<%=path%>/adminQueryArticle.html" method="post">
+<c:if test="${aab108==2}">
+<form id="myform" action="<%=path%>/adminQueryComp.html" method="post">
   <!-- 查询条件区 -->
-	<table border="1" width="95%" align="center">
-	  <caption>
-	              文章
+
+      <center>待处理申诉</center>
 	    <hr width="160">
-	  </caption>
-	  <tr>
-	    <td colspan="4">查询条件</td>
-	  </tr>
-	  <tr>
-	    <td>文章名</td>
-	    <td>
-	      <e:text name="qaab802"/>
-	    </td>
-	</table>
+	 
+
 	<!-- 数据迭代区 -->
 	<table border="1" width="95%" align="center">
 	  <tr>
@@ -108,48 +85,17 @@ ${msg }
 	<table border="1" width="95%" align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="查询">
-	       
-	       <input type="submit" id="del" name="next" value="删除" 
-	              formaction="<%=path%>/delArticle.html"  disabled="disabled">
-	             
+	         <input type="submit" id="ref" name="next" value="刷新" 
+	              formaction="<%=path%>/adminQueryComplain.html">     
 	            <input type="submit" id="del" name="next" value="返回" 
-	              formaction="<%=path%>/queryArticle.html">
-	        
+	              formaction="<%=path%>/mainPage.html">        
 	    </td>
 	  </tr>
 	</table>
 </form>
 </c:if>
 
-<!-- 引入脚部导航栏 -->
-<%@ include file="footer.jsp" %>
-
+<%@include file="footer.jsp" %>
+<!-- 引入页脚 -->
 </body>
-   <script type="text/javascript">
-      var count=0;
-      function onSelect(vstate)
-      {
-    	  vstate?count++:count--;
-    	  var vdel=document.getElementById("del");
-    	  vdel.disabled=(count==0);
-      }
-      
-      function onEdit(vaab801)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdArticle.html?aab801="+vaab801;
-    	 //alert(vform.action);
-    	 vform.submit();
-      }
-      
-      function onDel(vaab801)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdArticle.html?aab801="+vaab801;
-    	 alert(vform.action);
-    	 vform.submit();
-      } 
-      
-   </script>
 </html>
