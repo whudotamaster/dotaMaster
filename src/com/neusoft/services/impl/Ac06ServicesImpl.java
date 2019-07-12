@@ -72,7 +72,6 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 				this.get("aad404")				
 			};
 		this.apppendSql(sql3.toString(),args3);
-			
     }
 	
 	//虚拟货币单次购买饰品方法

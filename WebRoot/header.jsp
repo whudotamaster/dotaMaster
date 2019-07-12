@@ -7,6 +7,7 @@
 <%
 String aab101=(String)session.getAttribute("aab101");
 String aab102=(String)session.getAttribute("aab102");
+
 String aab108=(String)session.getAttribute("aab108");
 String path=request.getContextPath();
 %>
@@ -25,6 +26,8 @@ String path=request.getContextPath();
  		<button style="submit" formaction="<%=path%>/forum.html">ÂÛÌ³</button>
 
 		    </form>
+	
+	
 		    <div id="back"  onmouseover="menu.style.visibility='visible'" onmouseout="out()"style="position:absolute;top:15;right:0;width:300;height:10;z-index:1;visibility:visible;"> 
 			<span id="menubar" style="width:300" > 
 				<font color=red size=2>

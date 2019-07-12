@@ -2,7 +2,6 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
 <html>
 <head>
    <title>Insert title here</title>
@@ -35,6 +34,7 @@ ${msg }
 	      <e:text name="qaac602"/>
 	    </td>
 	  </tr>
+	 
 
 	</table>
 	<!-- Êý¾Ýµü´úÇø -->
@@ -63,6 +63,9 @@ ${msg }
 				    <td>
 				      <!-- #  ¿ÕÃª -->
 				     <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
+				    </td>				    		    
+				      <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
+				    </td>
 				    <c:if test="${aab108==2}">
 				    <td>
 				      <a href="#" onclick="onDel('${ins.aac601}')">É¾³ý</a>
@@ -73,6 +76,7 @@ ${msg }
 				      <a href="#" onclick="onBuy('${ins.aac601}')">¹ºÂò</a>
 				    </td>
 				    </c:if>
+				    
 				  </tr>
 		      </c:forEach>
 		      <!-- ²¹³ä¿ÕÐÐ -->
@@ -132,7 +136,6 @@ ${msg }
     	  vaad402.disabled=(count==0);
     	  vbuy.disabled=(count==0);
       }
-
       
       function onEdit(vaac601)
       {

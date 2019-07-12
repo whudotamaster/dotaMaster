@@ -146,6 +146,7 @@ public abstract class ControllerSupport implements BaseController
 	}
 	
 
+
 	/*****************************************
 	 * 	        帖子详细頁面加载业务流程封装
 	 *****************************************/
@@ -155,27 +156,10 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void postOnLoad()throws Exception
 	{
-		Map<String,String> rows=this.services.postFindById();
-		List<Map<String,String>> comment=this.services.commentFindById();
-		if (this.dto.get("aab101")!=null) 
-		{
-			List<Map<String,String>> collection=this.services.queryCollection();
-			if (collection.size()>0) 
-			{
-				this.saveAttribute("collection", true);
-			}
-			else
-			{
-				this.saveAttribute("collection", false);
-			}
-		    Ab01ServicesImpl ab01=new Ab01ServicesImpl();
-		    Double money=ab01.getMoney(this.dto.get("aab101"));
-			this.saveAttribute("money", money);
-		}
+		List<Map<String,String>> rows=this.services.postFindById();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
-			this.saveAttribute("comment", comment);
 		}
 		else
 		{

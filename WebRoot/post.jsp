@@ -28,7 +28,7 @@ String aab101=(String)session.getAttribute("aab101");
     function collecttion(vaab501,collection)
       {
     	  var vform = document.getElementById("myform");
-    	  if(collection == "true")
+    	  if(${rows[1].collection})
     	  {
     		  vform.action="<%=path%>/delCollectionById.html?aab501="+vaab501;
     		  alert("刪除收藏");
@@ -43,19 +43,12 @@ String aab101=(String)session.getAttribute("aab101");
       
       function rewrad(vaab501,paab101)
       {	
-    	  if(${money>=5 })
-      	 {
       	 var vform = document.getElementById("myform");
      
       	 vform.action="<%=path%>/reward.html?aab501="+vaab501+"&paab101="+paab101;
 
       	 //alert(vform.action);
       	 vform.submit();
-      	 }
-      	 else
-     	{
-     		alert("余额不足");		
-     	 }
       }
      
       function onDel(vaab501)
@@ -69,9 +62,8 @@ String aab101=(String)session.getAttribute("aab101");
 </head>
 <body>
 <br>
-用戶余額
-${money }
-${collection }
+收藏状态${rows[1].collection}
+${msg }
 <br>
 <form id="myform" action="<%=path%>/addComment.html?aab501=${param.aab501 }" method="post">
   <!-- 查询条件区 -->
@@ -102,16 +94,16 @@ ${collection }
 				    <td>1</td>
 				    <td>
 					<!-- #  用户名及头像--> 
-								<a href="#" onclick="onEdit('${rows.aab101}')">${rows.aab102 }</a>
-								<img src=<%=path%>/images/${rows.aab105 } class="round_icon"
-								onclick="onEdit('${rows.aab101}')">
+								<a href="#" onclick="onEdit('${rows[0].aab101}')">${rows[0].aab102 }</a>
+								<img src=<%=path%>/images/${rows[0].aab105 } class="round_icon"
+								onclick="onEdit('${rows[0].aab101}')">
 				    </td>
-				    <td>${rows.aab502 }</td>
-				    <td>${rows.aab503 }
+				    <td>${rows[0].aab502 }</td>
+				    <td>${rows[0].aab503 }
 				    <c:choose>
 				   	<c:when test="<%=aab101!=null %>">
 				       <input type="button" value="打赏" 
-				       onclick="rewrad('${param.aab501 }','${rows.aab101}')"
+				       onclick="rewrad('${param.aab501 }','${rows[0].aab101}')"
 				            formnovalidate="formnovalidate" >
 				 	   <input type="button" value="收藏" 
 				 	       onclick="collecttion('${param.aab501 }','${collection}')"
@@ -125,7 +117,7 @@ ${collection }
 				    </c:otherwise>
 					</c:choose>
 				    </td>
-				    <td>${rows.aab504 }</td>
+				    <td>${rows[0].aab504 }</td>
 				  </tr>
 				  </table>
 				  <table  border="1" width="95%" align="center">
@@ -136,7 +128,8 @@ ${collection }
 	    <td>时间</td>
 	  </tr>
 		      <!-- 补充空行 -->
-		    <c:forEach items="${comment }" var="ins" varStatus="vs">
+		    <c:forEach items="${rows }" var="ins" varStatus="vs">
+		    <c:if test="${vs.count >2 }">
 			          <tr>
 			            <td>${ins.aab602+1 }</td>
 			            	<td>
@@ -148,6 +141,7 @@ ${collection }
 			            <td>${ins.aab603 }</td>
 			            <td>${ins.aab604 }</td>
 			          </tr>
+			          </c:if>
 		      </c:forEach>
 	     </c:when>
 	   </c:choose>
@@ -182,7 +176,6 @@ ${collection }
 	  </tr>
 	</table>
   <e:hidden name="aab101" defval="<%=aab101 %>"/>
-  <input type="number" hidden="true" name="aab106" value="${money }">
 </form>
 </body>
 </html>

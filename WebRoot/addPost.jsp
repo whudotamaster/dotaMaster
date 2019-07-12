@@ -65,8 +65,8 @@ ${msg }
               formaction="<%=path%>/login.html">
      </c:otherwise>
      </c:choose>
-      <input type="submit" name="next" value="·µ»Ø" 
-              formaction="<%=path%>/forum.html?"
+      <input type="submit" name="next" value="·µ»Ø"
+              formaction="<%=path%>/forum.html"
               formnovalidate="formnovalidate">
      </td>
    </tr>

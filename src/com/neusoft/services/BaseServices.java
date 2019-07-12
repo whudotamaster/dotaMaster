@@ -78,7 +78,12 @@ public interface BaseServices
     	 return null;
      }
 
-	default Map<String, String> postFindById()throws Exception
+	default List<Map<String, String>> postFindById()throws Exception
+	{
+		return null;
+	}
+
+	default Map<String, String> findByIdHero()throws Exception
 	{
 		return null;
 	}

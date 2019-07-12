@@ -4,12 +4,12 @@ import com.sun.javafx.collections.MappingChange.Map;
 
 import sun.applet.resources.MsgAppletViewer;
 
-public final class DelCollectionByIdServlet extends ForumControllerSupport 
+public final class DelCollectionByIdServlet extends CollectionControllerSupport 
 {
 	@Override
 	public String execute() throws Exception 
 	{
-		this.update("delCollectionById", " ’≤ÿ");
+		this.update("delCollectionById", "…æ≥˝ ’≤ÿ");
 		this.postOnLoad();
 		return "post";
 	}
