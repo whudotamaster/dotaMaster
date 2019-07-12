@@ -45,7 +45,8 @@ public abstract class ControllerSupport implements BaseController
 			this.saveAttribute("rows", rows);
 		}
 		else
-		{
+		{	
+			this.saveAttribute("msg", this.services.getMessage());
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}	
 	}
@@ -161,6 +162,7 @@ public abstract class ControllerSupport implements BaseController
 		}
 		else
 		{
+			this.saveAttribute("msg", this.services.getMessage());
 			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
 		}	
 	}
@@ -274,6 +276,12 @@ public abstract class ControllerSupport implements BaseController
 		return  (boolean)method.invoke(services);
 	}
 	
+	//为报错信息多种情况进行了封装
+	protected final void update(String methodName)throws Exception
+	{
+		this.executeUpdateMethod(methodName);
+		this.saveAttribute("msg",this.services.getMessage());
+	}
 	
 	/**
 	 * 更新行为的总开关

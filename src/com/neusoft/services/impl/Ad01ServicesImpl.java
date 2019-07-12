@@ -37,12 +37,11 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 	
     //用户单次押注时,插入用户押注表并更新竞猜表
     public boolean insertBetLog()throws Exception	
-    {
-    	//测试用
-    	this.put("aab101","2");
-    	
+    {	
     	if(!this.isEnough(this.get("aab101")))
+    	{	this.setMessage("金钱不足");
     		return false;
+    	}
     	//通过前台传过来的id数据在数据库里查找到完整数据
     	
     	//插入单次押注信息

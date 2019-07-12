@@ -7,7 +7,7 @@ public class BuyAccServlet extends AccControllerSupport
 	@Override
 	public String execute() throws Exception 
 	{
-		this.update("buyAccessories", "¹ºÂò");
+		this.update("buyAccessories");
 		return "adminQuerySend";
 	}
 
