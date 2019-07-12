@@ -11,6 +11,7 @@ import com.sun.org.apache.bcel.internal.generic.Select;
 
 public class Ac06ServicesImpl extends JdbcServicesSupport 
 {
+	//虚拟货币批量购买饰品方法
 	public boolean buyAccessoriesList()throws Exception
 	{
     	Object idlist[]=this.getIdList("idlist");
@@ -22,11 +23,14 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
     		else 
     			result=result*0;
     	}
-    	return result>0;
+    	if(result==0)
+    		return false;
+    	else
+    		return this.executeTransaction();
 		
 	}
 	
-	//为批量购买准备的单次购买方法
+	//为批量购买和单件购买准备的插入事务方法
 	public boolean buyAccessories(Object aac601)throws Exception
     {
 		//1,根据饰品ID查询饰品其他信息
@@ -79,13 +83,14 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 			};
 		this.apppendSql(sql3.toString(),args3);
 		
-		return this.executeTransaction();		
+		return true;		
     }
 	
-	//使用虚拟货币购买饰品
+	//虚拟货币单次购买饰品方法
 	public boolean buyAccessories()throws Exception
     {
-		return this.buyAccessories(this.get("aac601"));
+		this.buyAccessories(this.get("aac601"));
+		return this.executeTransaction();
     }
 	
 	//出售饰品给网站
