@@ -24,6 +24,11 @@ public interface BaseServices
      {
     	 return null;
      }
+
+     default List<Map<String,String>> adminQueryArticle()throws Exception
+     {
+    	 return null;
+     }
      
      default  String getMessage() 
  	 {
@@ -69,6 +74,16 @@ public interface BaseServices
 
 
 	default Map<String, String> postFindById()throws Exception
+	{
+		return null;
+	}
+	
+	default boolean psnAddComplaint()throws Exception
+	{
+		return false;
+	}
+
+	default List<Map<String, String>> adminQueryComplain() throws Exception
 	{
 		return null;
 	}

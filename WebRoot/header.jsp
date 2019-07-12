@@ -1,7 +1,5 @@
-
 <%@ page language="java" 
     pageEncoding="GBK"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -21,7 +19,12 @@ String path=request.getContextPath();
 		<input type="hidden" name="aab101" value="<%=aab101%>">
 		    	<button style="submit" >竞猜</button>
 		    	<button style="submit" formaction="<%=path%>/queryArticle.html">文章</button>
-		   		<button style="submit" formaction="<%=path%>/forum.html">论坛</button>
+
+	         <c:if test="${aab108==2}">
+	            <button style="submit" formaction="<%=path%>/adminGo.jsp">网站管理</button>
+		   </c:if>
+ 		<button style="submit" formaction="<%=path%>/forum.html">论坛</button>
+
 		    </form>
 	
 	
