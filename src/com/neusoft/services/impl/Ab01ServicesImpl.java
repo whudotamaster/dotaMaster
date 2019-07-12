@@ -12,7 +12,10 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     {
 		//如果金钱不足开通的月数
 		if(this.getMoney(this.get("aab101"))<Integer.parseInt(this.get("month").toString())*1000)
+		{	
+			this.setMessage("金钱不足");
 			return false;
+		}
 		System.out.println("aab109:"+this.get("aab109"));
 		//进行开通或续费会员操作
 		StringBuilder sql=new StringBuilder();

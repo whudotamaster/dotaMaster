@@ -20,17 +20,17 @@ ${msg }
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryAcc.html" method="post">
-  <!-- æŸ¥è¯¢æ¡ä»¶åŒº -->
+  <!-- ²éÑ¯Ìõ¼şÇø -->
 	<table border="1" width="35%" align="center">
 	  <caption>
-	            é¥°å“
+	            ÊÎÆ·
 	    <hr width="160">
 	  </caption>
 	  <tr>
-	    <td colspan="4">æŸ¥è¯¢æ¡ä»¶</td>
+	    <td colspan="4">²éÑ¯Ìõ¼ş</td>
 	  </tr>
 	  <tr>
-	    <td>é¥°å“å</td>
+	    <td>ÊÎÆ·Ãû</td>
 	    <td>
 	      <e:text name="qaac602"/>
 	    </td>
@@ -38,19 +38,19 @@ ${msg }
 	 
 
 	</table>
-	<!-- æ•°æ®è¿­ä»£åŒº -->
+	<!-- Êı¾İµü´úÇø -->
 	<table border="1" width="35%" align="center">
 	  <tr>
 	    <td></td>
-	    <td>åºå·</td>
-	    <td>é¥°å“å›¾åƒ</td>
-	    <td>é¥°å“å</td>
+	    <td>ĞòºÅ</td>
+	    <td>ÊÎÆ·Í¼Ïñ</td>
+	    <td>ÊÎÆ·Ãû</td>
 	    <td></td>
 	   
 	  </tr>
 	   <c:choose>
 	     <c:when test="${rows!=null }">
-	         <!-- æ˜¾ç¤ºå®é™…æŸ¥è¯¢åˆ°çš„æ•°æ® -->
+	         <!-- ÏÔÊ¾Êµ¼Ê²éÑ¯µ½µÄÊı¾İ -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
 				    <td>
@@ -62,25 +62,25 @@ ${msg }
 				       <img alt="no image" src=<%=path%>/images/${ins.aac603 } style="width:100%; height:100%">
 				     </td>
 				    <td>
-				      <!-- #  ç©ºé”š -->
+				      <!-- #  ¿ÕÃª -->
 				     <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
 				    </td>				    		    
 				      <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
 				    </td>
 				    <c:if test="${aab108==2}">
 				    <td>
-				      <a href="#" onclick="onDel('${ins.aac601}')">åˆ é™¤</a>
+				      <a href="#" onclick="onDel('${ins.aac601}')">É¾³ı</a>
 				    </td>
 				    </c:if>
 				    <c:if test="${aab108==1}">
 				    <td>
-				      <a href="#" onclick="onBuy('${ins.aac601}')">è´­ä¹°</a>
+				      <a href="#" onclick="onBuy('${ins.aac601}')">¹ºÂò</a>
 				    </td>
 				    </c:if>
 				    
 				  </tr>
 		      </c:forEach>
-		      <!-- è¡¥å……ç©ºè¡Œ -->
+		      <!-- ²¹³ä¿ÕĞĞ -->
 		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
 			          <tr>
 			            <td></td>
@@ -106,18 +106,18 @@ ${msg }
 	     </c:otherwise>
 	   </c:choose>
 	</table>
-	<!-- åŠŸèƒ½æŒ‰é’®åŒº -->
+	<!-- ¹¦ÄÜ°´Å¥Çø -->
 	<table border="1" width="35%" align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="æŸ¥è¯¢">
-	       <input type="submit" name="next" value="æ·»åŠ " 
+	       <input type="submit" name="next" value="²éÑ¯">
+	       <input type="submit" name="next" value="Ìí¼Ó" 
 	              formaction="<%=path%>/addAcc.jsp">
-	       <input type="submit" id="del" name="next" value="åˆ é™¤" 
+	       <input type="submit" id="del" name="next" value="É¾³ı" 
 	              formaction="<%=path%>/delAcc.html"  disabled="disabled">
-	       <input type="submit" id="buy" name="next" value="æ‰¹é‡è´­ä¹°" 
+	       <input type="submit" id="buy" name="next" value="ÅúÁ¿¹ºÂò" 
 	              formaction="<%=path%>/buyAccList.html"  disabled="disabled">
-	       <input type="text" id="vaad402" name="aad402" placeholder="è¾“å…¥ç©å®¶ç¼–å·" disabled="disabled">
+	       <input type="text" id="vaad402" name="aad402" placeholder="ÊäÈëÍæ¼Ò±àºÅ" disabled="disabled">
 	    </td>
 	  </tr>
 	</table>
@@ -131,8 +131,13 @@ ${msg }
       {
     	  vstate?count++:count--;
     	  var vdel=document.getElementById("del");
+    	  var vaad402=document.getElementById("vaad402");
+    	  var vbuy=document.getElementById("buy");
     	  vdel.disabled=(count==0);
+    	  vaad402.disabled=(count==0);
+    	  vbuy.disabled=(count==0);
       }
+
       
       function onEdit(vaac601)
       {
@@ -151,7 +156,7 @@ ${msg }
       function onBuy(vaac601)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdAcc.html?aac601="+vaac601;
+    	 vform.action="<%=path%>/buyAcc.jsp?aac601="+vaac601;
     	 //alert(vform.action);
     	 vform.submit();
       } 

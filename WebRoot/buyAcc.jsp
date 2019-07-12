@@ -84,7 +84,7 @@ aab108:<%=aab108 %>
    </tr>
 </table>
 <input type="hidden" name="aab101" value="<%=aab101 %>">
-<input type="hidden" name="aac601" value="1">
+<input type="hidden" name="aac601" value="${param.aac601} ">
 <input type="hidden" name="aad401" value="${ins.aad401 }">
 </form>
 </body>

@@ -316,6 +316,24 @@ public abstract class ControllerSupport implements BaseController
 		}
 	}
 	
+	protected final List<Map<String,String>> executeQueryMethod(String methodName)throws Exception
+	{
+		//1.获取需要调用的方法对象
+		Method method=this.services.getClass().getDeclaredMethod(methodName);
+		method.setAccessible(true);
+		//2.调用方法	
+		List<Map<String,String>> rows=(List<Map<String,String>>)method.invoke(services);
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+		return rows;
+	}
+	
 	
 	
 	/**
@@ -333,12 +351,6 @@ public abstract class ControllerSupport implements BaseController
 		return  (boolean)method.invoke(services);
 	}
 	
-	//为报错信息多种情况进行了封装
-	protected final void update(String methodName)throws Exception
-	{
-		this.executeUpdateMethod(methodName);
-		this.saveAttribute("msg",this.services.getMessage());
-	}
 	
 	/**
 	 * 更新行为的总开关
@@ -349,10 +361,18 @@ public abstract class ControllerSupport implements BaseController
 	 * @param msgText
 	 * @throws Exception
 	 */
-	protected final void update(String methodName,String msgText)throws Exception
+	protected final boolean update(String methodName,String msgText)throws Exception
 	{
-		String msg=this.executeUpdateMethod(methodName)?"成功!":"失败!";
-		this.saveAttribute("msg", msgText+msg);
+		if(this.executeUpdateMethod(methodName))
+		{
+			this.saveAttribute("msg",msgText+"成功");
+			return true;
+		}
+		else
+		{
+			this.saveAttribute("msg", this.services.getMessage());
+			return false;
+		}
 	}
 	
 	/**
