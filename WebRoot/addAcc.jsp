@@ -18,46 +18,51 @@
 ${msg}
 <br>
 <br>
-<form action="<%=path%>/findByIdArticle.html" method="post">
+<form action="<%=path%>/findByIdAcc.html" method="post">
 <table  border="1" align="center" width="45%">
     <caption>
-               文章${empty param.aab801?'添加':'阅读' }
-       ${empty param.aab801 }
+               饰品添加
       <hr width="160">
     </caption>
    <tr>
-     <td colspan="2">文章</td>
+     <td colspan="2">饰品</td>
    </tr>
    <tr>
-     <td>文章标题</td>
+     <td>饰品名</td>
      <td>
-       <e:text name="aab802" required="true"   /> 
+       <e:text name="aac602" required="true" autofocus="true" /> 
      </td>
    </tr>
    <tr>
-     <td>用户id</td>
+     <td>饰品图片</td>
      <td>
-       <e:text name="aab101"  required="true"  />
+       <e:text name="aac603"  required="true" />
      </td>
    </tr>
    <tr>
-     <td>文章类型</td>
+     <td>饰品归属英雄名</td>
      <td>
-       <e:text name="aab806"  required="true"   /> 
+       <e:text name="aac102" required="true" />
+     </td>
+   </tr>
+   <tr>
+     <td>回收价格</td>
+     <td>
+       <e:text name="aac604"  required="true"   /> 
      </td>
    </tr>  
    <tr>
-     <td>文章审核状态</td>
+     <td>库存价格</td>
      <td>
-       <e:text name="aab804"  required="true"   /> 
+       <e:text name="aac605"  required="true"   /> 
      </td>
    </tr>  
-   <tr>
-     <td>文章内容</td>
+    <tr>
+     <td>库存</td>
      <td>
-       <e:textarea rows="5" cols="45" name="aab803" />
+       <e:text name="aac606"  required="true"   /> 
      </td>
-   </tr>
+   </tr> 
    <tr>
      <td colspan="2" align="center">
      <input type="submit" name="next" value="添加"

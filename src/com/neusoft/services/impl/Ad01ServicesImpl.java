@@ -12,7 +12,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 	//用户进入首页时,查看当前是否有可押注的比赛
 	public List<Map<String, String>> query()throws Exception
     {
-		System.out.println("跳到了AD01的query");
+		
 		StringBuilder sql=new StringBuilder()
   				.append("select d.aad101,d.aad102,d.aad103,c.aac1101,")
   				.append("       c.aac1102,c.aac1103,c.aac1104,e.aac702")
@@ -37,12 +37,11 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 	
     //用户单次押注时,插入用户押注表并更新竞猜表
     public boolean insertBetLog()throws Exception	
-    {
-    	//测试用
-    	this.put("aab101","2");
-    	
+    {	
     	if(!this.isEnough(this.get("aab101")))
+    	{	this.setMessage("金钱不足");
     		return false;
+    	}
     	//通过前台传过来的id数据在数据库里查找到完整数据
     	
     	//插入单次押注信息

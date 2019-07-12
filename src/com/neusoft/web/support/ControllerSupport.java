@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.neusoft.services.BaseServices;
+import com.neusoft.services.impl.Ab01ServicesImpl;
+import com.sun.jmx.snmp.tasks.ThreadService;
 
 public abstract class ControllerSupport implements BaseController
 {
@@ -22,7 +24,6 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected void setServices(BaseServices services)
 	{
-		System.out.println("setServices成功运行");
 		this.services=services;
 	}
 	
@@ -46,11 +47,28 @@ public abstract class ControllerSupport implements BaseController
 			this.saveAttribute("rows", rows);
 		}
 		else
-		{
+		{	
+			this.saveAttribute("msg", this.services.getMessage());
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}	
 	}
 	
+
+	/*****************************************
+	 * 	        战队信息封装
+	 *****************************************/
+	/**
+	 * 帖子数据查询
+	 * @throws Exception
+	 */
+	protected final void TAPOnLoad()throws Exception
+	{
+		Map<String,String> ins=this.services.findByIdTeam();
+		List<Map<String,String>> rows=this.services.findByIdPlayer();
+		this.saveAttribute("rows", rows);
+		this.saveAttribute("ins", ins);
+	}
+
 	/**
 	 * 数据批量查询
 	 * @throws Exception
@@ -90,7 +108,7 @@ public abstract class ControllerSupport implements BaseController
 	
 	
 	
-	
+
 	/*****************************************
 	 * 	        论坛加载业务流程封装
 	 *****************************************/
@@ -140,12 +158,67 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void postOnLoad()throws Exception
 	{
-		List<Map<String,String>> rows=this.services.postFindById();
+		Map<String,String> rows=this.services.postFindById();
 		List<Map<String,String>> comment=this.services.commentFindById();
+		if (this.dto.get("aab101")!=null) 
+		{
+			List<Map<String,String>> collection=this.services.queryCollection();
+			if (collection.size()>0) 
+			{
+				this.saveAttribute("collection", true);
+			}
+			else
+			{
+				this.saveAttribute("collection", false);
+			}
+		    Ab01ServicesImpl ab01=new Ab01ServicesImpl();
+		    Double money=ab01.getMoney(this.dto.get("aab101"));
+			this.saveAttribute("money", money);
+		}
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
 			this.saveAttribute("comment", comment);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+	/*****************************************
+	 * 	        收藏页面加载业务流程封装
+	 *****************************************/
+	/**
+	 * 用戶收藏数据查询
+	 * @throws Exception
+	 */
+	protected final void collectionOnLoad()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.queryCollectionList();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+	/*****************************************
+	 * 	        用户历史发帖页面加载业务流程封装
+	 *****************************************/
+	/**
+	 * 用戶历史发帖数据查询
+	 * @throws Exception
+	 */
+	protected final void queryHistoryOnLoad()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.queryHistory();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
 		}
 		else
 		{
@@ -166,6 +239,7 @@ public abstract class ControllerSupport implements BaseController
 		}
 		else
 		{
+			this.saveAttribute("msg", this.services.getMessage());
 			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
 		}	
 	}
@@ -279,6 +353,12 @@ public abstract class ControllerSupport implements BaseController
 		return  (boolean)method.invoke(services);
 	}
 	
+	//为报错信息多种情况进行了封装
+	protected final void update(String methodName)throws Exception
+	{
+		this.executeUpdateMethod(methodName);
+		this.saveAttribute("msg",this.services.getMessage());
+	}
 	
 	/**
 	 * 更新行为的总开关
@@ -310,6 +390,7 @@ public abstract class ControllerSupport implements BaseController
     	{
     		msg=msgText+"[ <msg> "+this.dto.get(key)+" </msg> ]";
     	}
+    	System.out.println(this.dto.get(key));
     	//Servlet向页面输出数据
     	this.saveAttribute("msg", msg);
 

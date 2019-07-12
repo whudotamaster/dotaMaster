@@ -13,12 +13,11 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 		//如果金钱不足开通的月数
 		if(this.getMoney(this.get("aab101"))<Integer.parseInt(this.get("month").toString())*1000)
 			return false;
-		
+		System.out.println("aab109:"+this.get("aab109"));
 		//进行开通或续费会员操作
 		StringBuilder sql=new StringBuilder();
 		boolean tag=this.isVIP(this.get("aab101"));
-		
-		System.out.println(tag);
+
 		//如果是会员 在他的到期时间后增加续费时长
 		if(tag)
 		{
@@ -40,7 +39,6 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 				this.get("month"),
 				this.get("aab101")
 		};
-		System.out.println("开通成功");
     	return this.executeUpdate(sql.toString(), args)>0;
     }
 	
@@ -163,7 +161,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	{
 	    	StringBuilder sql=new StringBuilder()
     				.append("select a.aab101,a.aab102,a.aab103,a.aab104,a.aab105,")	
-    				.append("						  a.aab106,a.aab107,a.aab108")
+    				.append("			     a.aab106,a.aab107,a.aab108,a.aab109 ")
     				.append("  from ab01 a")
 	    			.append(" where a.aab103=? and a.aab104=?")
 	    			;

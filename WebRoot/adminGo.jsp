@@ -17,6 +17,7 @@
 <li><a href=""></a></li>
 <li><a href=""></a></li>
 </ul>
+	            <input type="submit" formaction="<%=path%>/mainPage.jsp" value="·µ»Ø">
 
 
 
