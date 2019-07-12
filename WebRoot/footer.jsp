@@ -13,7 +13,3 @@
 
 
 </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
