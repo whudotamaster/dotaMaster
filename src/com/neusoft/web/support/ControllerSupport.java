@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.neusoft.services.BaseServices;
+import com.neusoft.services.impl.Ab01ServicesImpl;
+import com.sun.jmx.snmp.tasks.ThreadService;
 
 public abstract class ControllerSupport implements BaseController
 {
@@ -136,12 +138,67 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void postOnLoad()throws Exception
 	{
-		List<Map<String,String>> rows=this.services.postFindById();
+		Map<String,String> rows=this.services.postFindById();
 		List<Map<String,String>> comment=this.services.commentFindById();
+		if (this.dto.get("aab101")!=null) 
+		{
+			List<Map<String,String>> collection=this.services.queryCollection();
+			if (collection.size()>0) 
+			{
+				this.saveAttribute("collection", true);
+			}
+			else
+			{
+				this.saveAttribute("collection", false);
+			}
+		    Ab01ServicesImpl ab01=new Ab01ServicesImpl();
+		    Double money=ab01.getMoney(this.dto.get("aab101"));
+			this.saveAttribute("money", money);
+		}
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
 			this.saveAttribute("comment", comment);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+	/*****************************************
+	 * 	        收藏页面加载业务流程封装
+	 *****************************************/
+	/**
+	 * 用戶收藏数据查询
+	 * @throws Exception
+	 */
+	protected final void collectionOnLoad()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.queryCollectionList();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+	/*****************************************
+	 * 	        用户历史发帖页面加载业务流程封装
+	 *****************************************/
+	/**
+	 * 用戶历史发帖数据查询
+	 * @throws Exception
+	 */
+	protected final void queryHistoryOnLoad()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.queryHistory();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
 		}
 		else
 		{

@@ -9,4 +9,5 @@ public abstract class ForumControllerSupport extends ControllerSupport
 	{
 		this.setServices(new Ab05ServicesImpl());
 	}
+
 }
