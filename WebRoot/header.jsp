@@ -21,7 +21,12 @@ String path=request.getContextPath();
 		<input type="hidden" name="aab101" value="<%=aab101%>">
 		    	<button style="submit" >竞猜</button>
 		    	<button style="submit" formaction="<%=path%>/queryArticle.html">文章</button>
-		   		<button style="submit" formaction="<%=path%>/forum.html">论坛</button>
+
+	         <c:if test="${aab108==2}">
+	            <button style="submit" formaction="<%=path%>/adminGo.jsp">网站管理</button>
+		   </c:if>
+ 		<button style="submit" formaction="<%=path%>/forum.html">论坛</button>
+
 		    </form>
 	
 	

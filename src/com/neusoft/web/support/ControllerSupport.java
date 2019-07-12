@@ -7,7 +7,6 @@ import java.util.Map;
 
 import com.neusoft.services.BaseServices;
 import com.neusoft.services.impl.Ab01ServicesImpl;
-import com.neusoft.services.impl.Ab07ServicesImpl;
 import com.sun.jmx.snmp.tasks.ThreadService;
 
 public abstract class ControllerSupport implements BaseController
@@ -48,7 +47,8 @@ public abstract class ControllerSupport implements BaseController
 			this.saveAttribute("rows", rows);
 		}
 		else
-		{
+		{	
+			this.saveAttribute("msg", this.services.getMessage());
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}	
 	}
@@ -75,7 +75,7 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void adminQueryArticleServ()throws Exception
 	{
-		List<Map<String,String>> rows=this.services.adminQuery();
+		List<Map<String,String>> rows=this.services.adminQueryArticle();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
@@ -85,6 +85,26 @@ public abstract class ControllerSupport implements BaseController
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}	
 	}
+	
+
+	
+	/**
+	 * 数据批量查询
+	 * @throws Exception
+	 */
+	protected final void adminQueryComplainServ()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.adminQueryComplain();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
 	
 	
 	
@@ -128,6 +148,7 @@ public abstract class ControllerSupport implements BaseController
 		}	
 	}
 	
+
 
 	/*****************************************
 	 * 	        帖子详细頁面加载业务流程封装
@@ -202,6 +223,7 @@ public abstract class ControllerSupport implements BaseController
 		}
 		else
 		{
+			this.saveAttribute("msg", this.services.getMessage());
 			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
 		}	
 	}
@@ -315,6 +337,12 @@ public abstract class ControllerSupport implements BaseController
 		return  (boolean)method.invoke(services);
 	}
 	
+	//为报错信息多种情况进行了封装
+	protected final void update(String methodName)throws Exception
+	{
+		this.executeUpdateMethod(methodName);
+		this.saveAttribute("msg",this.services.getMessage());
+	}
 	
 	/**
 	 * 更新行为的总开关

@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.neusoft.system.db.DBUtils;
+
 
 /**
  *抽象类:可以包含抽象方法的类 
@@ -17,7 +17,6 @@ import com.neusoft.system.db.DBUtils;
 public abstract class JdbcServicesSupport  implements BaseServices
 {
 
-	
 	/**************************************************************
     * 	                       以下为属性定义
     **************************************************************/
@@ -36,6 +35,17 @@ public abstract class JdbcServicesSupport  implements BaseServices
 	    this.dto=dto;	
 	}
 	
+	public void setMessage(String msg) 
+	{
+		this.dto.put("msg", msg);
+	}
+	
+	public String getMessage() 
+	{
+		return (String)this.dto.get("msg");
+	}
+	
+	
 	
    /**************************************************************
     * 	                       辅助方法
@@ -44,6 +54,7 @@ public abstract class JdbcServicesSupport  implements BaseServices
 	{
 		return element!=null && !element.equals("");
 	}
+	
 	protected final Object findIdByNameAc01()throws Exception
 	{
 		String sql2="select aac101 from ac01 where aac102=?";

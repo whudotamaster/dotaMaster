@@ -50,9 +50,12 @@ public class SendMailServlet extends HttpServlet
 	        //我的邮箱，作为发件邮箱
 	        // 设置收件人邮箱地址 
 	        message.setRecipients(Message.RecipientType.TO, 
-	        		new InternetAddress[]{new InternetAddress("7005881@qq.com")
-//	        				,new InternetAddress("452181717@qq.com")
-//	        				,new InternetAddress("2368392847@qq.com")//二把手和三把手的邮箱
+	        		new InternetAddress[]{
+	        				//以下公布受害人名单
+	        				new InternetAddress("7005881@qq.com")        				
+//	        				new InternetAddress("452181717@qq.com"),
+//	        				new InternetAddress("2368392847@qq.com"),//二把手和三把手的邮箱
+//	        				new InternetAddress("623582881@qq.com")
 	        				});
 	        //小组其他三人的邮箱 他们都是boss 负责收件
 	        //message.setRecipient(Message.RecipientType.TO, new InternetAddress("xxx@qq.com"));//一个收件人

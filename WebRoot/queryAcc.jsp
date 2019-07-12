@@ -63,6 +63,8 @@ ${msg }
 				     </td>
 				    <td>
 				      <!-- #  ¿ÕÃª -->
+				     <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
+				    </td>				    		    
 				      <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
 				    </td>
 				    <c:if test="${aab108==2}">
@@ -129,7 +131,11 @@ ${msg }
       {
     	  vstate?count++:count--;
     	  var vdel=document.getElementById("del");
+    	  var vaad402=document.getElementById("vaad402");
+    	  var vbuy=document.getElementById("buy");
     	  vdel.disabled=(count==0);
+    	  vaad402.disabled=(count==0);
+    	  vbuy.disabled=(count==0);
       }
       
       function onEdit(vaac601)
@@ -149,7 +155,7 @@ ${msg }
       function onBuy(vaac601)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdAcc.html?aac601="+vaac601;
+    	 vform.action="<%=path%>/buyAcc.jsp?aac601="+vaac601;
     	 //alert(vform.action);
     	 vform.submit();
       } 

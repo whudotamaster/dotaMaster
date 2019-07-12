@@ -1,5 +1,4 @@
 package com.neusoft.services.impl;
-
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +38,8 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		//没有库存购买失败
 		if(Integer.parseInt(acc.get("aac606"))==0)
 		{
+			this.setMessage("商品库存不足");
+			System.out.println("商品库存:"+acc.get("aac606"));
 			return false;
 		}
 		
@@ -49,6 +50,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		//用户金币不足,购买失败
 		if(money<Double.parseDouble(acc.get("aac605")))
 		{
+			this.setMessage("用户金额不足");
 			return false;
 		}
 		
@@ -89,8 +91,18 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	//虚拟货币单次购买饰品方法
 	public boolean buyAccessories()throws Exception
     {
-		this.buyAccessories(this.get("aac601"));
-		return this.executeTransaction();
+		if(this.buyAccessories(this.get("aac601")))
+		{
+			if(this.executeTransaction())
+			{
+				this.setMessage("购买成功");
+				return true;
+			}
+			else
+				return false;
+		}
+		else
+			return false;
     }
 	
 	//出售饰品给网站

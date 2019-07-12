@@ -24,26 +24,31 @@ public interface BaseServices
      {
     	 return null;
      }
-
      
+     default  String getMessage() 
+ 	 {
+ 		return null;
+ 	 }
+
      default Map<String,String> findByIdTeam()throws Exception
      {
     	 return null;
      }
+     
      default List<Map<String,String>> findByIdPlayer()throws Exception
      {
     	 return null;
      }
+
      default List<Map<String,String>> query()throws Exception
      {
     	 return null;
      }
 
-     default List<Map<String,String>> adminQuery()throws Exception
+     default List<Map<String,String>> adminQueryArticle()throws Exception
      {
     	 return null;
      }
-     
      
      default List<Map<String,String>> queryBuyOrder()throws Exception
      {
@@ -55,22 +60,36 @@ public interface BaseServices
     	 return null;
      }
      
-	default List<Map<String, String>> queryHero()throws Exception
-
-	 {
-		 return null;
-	 }
-
-	default List<Map<String,String>> queryPost()throws Exception
+	 default List<Map<String,String>> queryPost()throws Exception
      {
     	 return null;
      }
+
 
 	default List<Map<String, String>> postFindById()throws Exception
 	{
 		return null;
 	}
 
+	 default List<Map<String, String>> commentFindById()throws Exception
+	 {
+		return null;
+	 }
+
+	default List<Map<String,String>> queryCollection()throws Exception
+	{
+		return null;
+	}
+	
+	default boolean psnAddComplaint()throws Exception
+	{
+		return false;
+	}
+
+	default List<Map<String, String>> adminQueryComplain() throws Exception
+	{
+		return null;
+	}
 
 	default Map<String, String> findByIdHero()throws Exception
 	{
@@ -83,13 +102,10 @@ public interface BaseServices
 		 return null;
 	 }
 
-
-
 	default int logonPerson() throws Exception
 	{
 		return 0;
 	}
-
 	
     default Map<String,String> queryPersonEmp()throws Exception
     {
