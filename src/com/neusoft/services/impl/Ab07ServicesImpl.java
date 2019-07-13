@@ -49,7 +49,9 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
 						this.get("aab501"),
 						this.get("aab101")
 					  };
-		return	this.executeUpdate(sql.toString(), args)>0;
+		boolean tag =  this.executeUpdate(sql.toString(), args)>0;
+		this.setMessage(tag ?"收藏成功":"收藏失败");
+		return	tag;
 	}
 
 	/**
@@ -65,7 +67,9 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
 						this.get("aab501"),
 						this.get("aab101"),
 					  };
-		return	this.executeUpdate(sql, args)>0;
+		boolean tag =  this.executeUpdate(sql, args)>0;
+		this.setMessage(tag ?"取消收藏成功":"收藏失败");
+		return	tag;
 	}
 	
 	/**
@@ -130,11 +134,13 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
 	private boolean delPost() throws Exception 
 	{
 		String idlist[] = this.getIdList("idlist");
+		String sql0 = "delete from ab11 where aab501=?";
 		String sql1 = "delete from ab06 where aab501=?";
 		String sql2 = "delete from ab07 where aab501=?";
 		String sql3 = "delete from ab05 where aab501=?";
 		for (String aab501:idlist) 
 		{
+			this.apppendSql(sql0, aab501);
 			this.apppendSql(sql1, aab501);
 			this.apppendSql(sql2, aab501);
 			this.apppendSql(sql3, aab501);

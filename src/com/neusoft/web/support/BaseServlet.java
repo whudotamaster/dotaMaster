@@ -3,6 +3,7 @@ package com.neusoft.web.support;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -14,6 +15,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+import com.neusoft.services.JdbcServicesSupport;
+import com.neusoft.services.impl.Ab01ServicesImpl;
+import com.neusoft.services.impl.Ad06ServicesImpl;import sun.security.util.Length;
 
 
 @WebServlet("*.html")
@@ -44,12 +49,13 @@ public class BaseServlet extends HttpServlet
      		//实例化业务控制器
      		BaseController controller=(BaseController)Class.forName(basePackageName+controllerFirstName+"Servlet").newInstance();
      		
-     		
      		/***********************************************************
      		 *                        向业务控制器,填充页面数据     i
      		 ***********************************************************/
      		//为业务控制器织入DTO切片
      		controller.setMapDto(this.createDto(request));
+     		
+     		this.updateMessage(request);
 
      		/***********************************************************
      		 *                        调用业务控制器的流程控制方法
@@ -130,6 +136,16 @@ public class BaseServlet extends HttpServlet
 		return dto;
 	}
 
+	private void updateMessage(HttpServletRequest request)throws Exception
+	{	
+		if(request.getSession().getAttribute("aab101")!=null)
+		{
+			Ad06ServicesImpl ad06=new Ad06ServicesImpl();
+			List<Map<String, String>> list=ad06.query(request.getSession().getAttribute("aab101"));
+			int length=list.size();
+			request.getSession().setAttribute("unRead", length);
+		}
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{

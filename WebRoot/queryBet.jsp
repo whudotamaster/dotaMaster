@@ -42,10 +42,17 @@
 ${msg }
 <br>
 <br>
+<<<<<<< HEAD
 <form id="myform" action="<%=path%>/queryBet.html" method="post">
 	<!-- 数据迭代区 -->
 	
 	<table border="1" width="95%" align="center">
+=======
+<form id="myform" action="<%=path%>/queryBet.html" method="post" >
+	<!-- 数据迭代区 -->
+	
+	<table border="1" width="95%" align="center" class="table table-bordered">
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 	 <caption>
 	               可押注比赛
 	    <hr width="160">

@@ -17,7 +17,7 @@ public class Ac09ServicesImpl extends JdbcServicesSupport
 	  		//还原页面查询条件
 	  		Object aac902=this.get("qaac902");     //姓名  模糊查询
 	  	
-	  		
+	  		System.out.println(aac902);
 	  		//定义SQL主体
 	  		StringBuilder sql=new StringBuilder()
 	  				.append(" select x.aac901,x.aac902,x.aac903,x.aac904    ")
@@ -29,7 +29,7 @@ public class Ac09ServicesImpl extends JdbcServicesSupport
 	  		//逐一判断查询条件是否录入,拼接AND条件
 	  		if(this.isNotNull(aac902))
 	  		{
-	  			sql.append(" and aac902 like ?");
+	  			sql.append(" where aac902 like  ? ");
 	  			paramList.add("%"+aac902+"%");
 	  		}
 	  				

@@ -70,7 +70,11 @@ ${msg}
               formaction="<%=path%>/queryArticle.html"
               formnovalidate="formnovalidate">
      </c:if>
+<<<<<<< HEAD
         <!-- 管理员可见的两个按钮 -->
+=======
+ <!-- 管理员可见的两个按钮 -->
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 		<c:if test="${aab108==2}">
 			<input type="submit" name="next" value="返回" 
               formaction="<%=path%>/adminQueryArticle.html"
@@ -85,7 +89,12 @@ ${msg}
 
      </td>
    </tr>
+<<<<<<< HEAD
    		<input type="hidden" name="aab801" value="${ins.aab801 }">  
+=======
+   		<input type="hidden" name="aab801" value="${ins.aab801 }">
+   
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 </table>
 </form>
 </body>

@@ -1,14 +1,11 @@
 package com.neusoft.web.impl;
-
-public class RewardServlet extends EmpControllerSupport 
+public final class DelLikeServlet extends LikeControllerSupport 
 {
-
 	@Override
 	public String execute() throws Exception 
 	{
-		this.update("reward");
+		this.update("delLike", "È¡ÏûµãÔÞ");
 		this.postOnLoad();
 		return "post";
 	}
-
 }

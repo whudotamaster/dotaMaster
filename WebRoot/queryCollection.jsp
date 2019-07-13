@@ -2,9 +2,6 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl" prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%String path=request.getContextPath();
-String aab101=(String)session.getAttribute("aab101");
-%>
 <html>
 <head>
 <title>Insert title here</title>
@@ -24,34 +21,9 @@ tr {
 }
 </style>
 
-<script type="text/javascript">
-      var count=0;
-      function onSelect(vstate)
-      {
-    	  vstate?count++:count--;
-    	  var vdel=document.getElementById("delCollection");
-    	  vdel.disabled=(count==0);
-      }
-      
-      function onVisit(vaab501)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/post.html?aab501="+ vaab501;
-    	 //alert(vform.action);
-    	 vform.submit();
-      }
-      
-      function onDelCollection(vaab501)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delCollectionByIdInQueryCollection.html?aab501="+vaab501;
-    	 //alert(vform.action);
-    	 vform.submit();
-      } 
-      
-   </script>
 </head>
 <body >
+<%@ include file="header.jsp" %>
 	${msg }
 	<br>
 	<%=session.getId() %>
@@ -139,5 +111,33 @@ tr {
 		</table>
 		 <e:hidden name="aab101" defval="<%=aab101 %>"/>
 	</form>
+	<%@ include file="footer.jsp" %>
 </body>
+
+<script type="text/javascript">
+      var count=0;
+      function onSelect(vstate)
+      {
+    	  vstate?count++:count--;
+    	  var vdel=document.getElementById("delCollection");
+    	  vdel.disabled=(count==0);
+      }
+      
+      function onVisit(vaab501)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/post.html?aab501="+ vaab501;
+    	 //alert(vform.action);
+    	 vform.submit();
+      }
+      
+      function onDelCollection(vaab501)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/delCollectionByIdInQueryCollection.html?aab501="+vaab501;
+    	 //alert(vform.action);
+    	 vform.submit();
+      } 
+      
+   </script>
 </html>

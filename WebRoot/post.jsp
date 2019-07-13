@@ -2,9 +2,6 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%String path=request.getContextPath();
-String aab101=(String)session.getAttribute("aab101");
-%>
 <html>
 <head>
    <title>Insert title here</title>
@@ -24,45 +21,10 @@ String aab101=(String)session.getAttribute("aab101");
 }
    </style>
    
-   <script type="text/javascript">
-    function collecttion(vaab501,collection)
-      {
-    	  var vform = document.getElementById("myform");
-    	  if(${rows[1].collection})
-    	  {
-    		  vform.action="<%=path%>/delCollectionById.html?aab501="+vaab501;
-    		  alert("刪除收藏");
-    	  }
-    	  else
-    	  {
-    		  vform.action="<%=path%>/addCollectionById.html?aab501="+vaab501;
-    		  alert("增加收藏");
-    	  }
-    	  vform.submit();
-      }
-      
-      function rewrad(vaab501,paab101)
-      {	
-      	 var vform = document.getElementById("myform");
-     
-      	 vform.action="<%=path%>/reward.html?aab501="+vaab501+"&paab101="+paab101;
-
-      	 //alert(vform.action);
-      	 vform.submit();
-      }
-     
-      function onDel(vaab501)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delPost.html?aab501=" + vaab501;
-    	 //alert(vform.action);
-    	 vform.submit();
-      } 
-   </script>
 </head>
 <body>
+<%@ include file="header.jsp" %>
 <br>
-收藏状态${rows[1].collection}
 ${msg }
 <br>
 <form id="myform" action="<%=path%>/addComment.html?aab501=${param.aab501 }" method="post">
@@ -79,7 +41,7 @@ ${msg }
 	    <td>发帖人</td>
 	    <td>标题</td>
 	    <td>內容</td>
-	    <td>时间</td>
+	    <td>最后修改时间</td>
 	  </tr>
 	  <!--
 	         注意事项
@@ -106,14 +68,21 @@ ${msg }
 				       onclick="rewrad('${param.aab501 }','${rows[0].aab101}')"
 				            formnovalidate="formnovalidate" >
 				 	   <input type="button" value="收藏" 
-				 	       onclick="collecttion('${param.aab501 }','${collection}')"
+				 	       onclick="collecttion('${param.aab501 }')"
 				 	       formnovalidate="formnovalidate"> 
+				 	       <a>点赞${rows[3].countlike }数</a>
+				 	   <input type="button" value="点赞" 
+				       	   onclick="like('${param.aab501 }')"
+				           formnovalidate="formnovalidate" >
 				    </c:when>
 				    <c:otherwise>
 				      <input type="submit" value="打赏" formaction="<%=path%>/login.html"
 				          formnovalidate="formnovalidate">
 				 	   <input type="submit" value="收藏" formaction="<%=path%>/login.html"
 				 	       formnovalidate="formnovalidate"> 
+				 	            ${rows[3].countlike }
+				 	   <input type="submit" value="点赞" formaction="<%=path%>/login.html"
+				           formnovalidate="formnovalidate" >
 				    </c:otherwise>
 					</c:choose>
 				    </td>
@@ -129,7 +98,7 @@ ${msg }
 	  </tr>
 		      <!-- 补充空行 -->
 		    <c:forEach items="${rows }" var="ins" varStatus="vs">
-		    <c:if test="${vs.count >2 }">
+		    <c:if test="${vs.count >4 }">
 			          <tr>
 			            <td>${ins.aab602+1 }</td>
 			            	<td>
@@ -163,19 +132,74 @@ ${msg }
      </c:when>
      <c:otherwise>
        <input type="submit" name="next" value="登录 "
-              formaction="<%=path%>/login.html">
+              formaction="<%=path%>/login.html"
+               formnovalidate="formnovalidate">
      </c:otherwise>
      </c:choose>
 	             <input type="submit" name="next" value="返回" 
               formaction="<%=path%>/forum.html"
               formnovalidate="formnovalidate">
+              <c:if test="${aab108 == 2 || aab101 == rows[0].aab101 }">
 	       <input type="button" id="del" name="next" value="删除" 
 	              onclick="onDel('${param.aab501}')" 
 	              formnovalidate="formnovalidate" >
+              </c:if>
 	    </td>
 	  </tr>
 	</table>
   <e:hidden name="aab101" defval="<%=aab101 %>"/>
 </form>
+<%@ include file="footer.jsp" %>
 </body>
+<script type="text/javascript">
+    function collecttion(vaab501,collection)
+      {
+    	  var vform = document.getElementById("myform");
+    	  if(${rows[1].collection})
+    	  {
+    		  vform.action="<%=path%>/delCollectionById.html?aab501="+vaab501;
+    		  alert("刪除收藏");
+    	  }
+    	  else
+    	  {
+    		  vform.action="<%=path%>/addCollectionById.html?aab501="+vaab501;
+    		  alert("增加收藏");
+    	  }
+    	  vform.submit();
+      }
+      
+      function rewrad(vaab501,paab101)
+      {	
+      	 var vform = document.getElementById("myform");
+     
+      	 vform.action="<%=path%>/reward.html?aab501="+vaab501+"&paab101="+paab101;
+
+      	 //alert(vform.action);
+      	 vform.submit();
+      }
+     
+      function onDel(vaab501)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/delPostById.html?aab501=" + vaab501;
+    	 //alert(vform.action);
+    	 vform.submit();
+      } 
+      
+      function like(vaab501)
+      {	
+    	  var vform = document.getElementById("myform");
+    	  if(${rows[2].like})
+    	  {
+    		  vform.action="<%=path%>/delLike.html?aab501="+vaab501;
+    		  alert("dislike");
+    	  }
+    	  else
+    	  {
+    		  vform.action="<%=path%>/addLike.html?aab501="+vaab501;
+    		  alert("like");
+    	  }
+    	  vform.submit();
+      }
+   </script>
 </html>

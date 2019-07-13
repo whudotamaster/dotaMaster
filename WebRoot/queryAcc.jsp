@@ -23,7 +23,7 @@ ${msg }
 	<table border="1" width="35%" align="center" >
 	  <caption>
 	            饰品
-	    <hr width="160">
+	   
 	  </caption>
 	  <tr>
 	    <td colspan="4">查询条件</td>

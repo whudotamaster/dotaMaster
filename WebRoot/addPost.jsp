@@ -1,9 +1,6 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%String path=request.getContextPath();
-String aab101=(String)session.getAttribute("aab101");
-%>
 <html>
 <head>
 <title>Insert title here</title>
@@ -18,6 +15,7 @@ String aab101=(String)session.getAttribute("aab101");
 
 </head>
 <body>
+<%@ include file="header.jsp" %>
 ${msg }
 <br>
 <br>
@@ -74,9 +72,12 @@ ${msg }
  <input type="text" name="apaab503" id="apaab503" hidden="true">
  <e:hidden name="aab101" defval="<%=aab101 %>"/>
 </form>
-
+<%@ include file="footer.jsp" %>
 </body>
     <script src="jquery-3.4.1.min.js"></script>
+<<<<<<< HEAD
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
+=======
 >>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
     <script type="text/javascript" src="wangEditor.min.js"></script>
     <script type="text/javascript">

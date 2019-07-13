@@ -1,21 +1,16 @@
 package com.neusoft.web.impl;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.Session;
-
 import com.neusoft.services.impl.Ab01ServicesImpl;
-
-
 @WebServlet(value="/login.html",loadOnStartup=0)
 public class LoginTest extends HttpServlet 
 {
@@ -89,7 +84,7 @@ public class LoginTest extends HttpServlet
 				dto.put(entry.getKey(), value);
 			}	
 		}
-		//System.out.println(dto);
+		System.out.println(dto);
 		return dto;
 	}
 

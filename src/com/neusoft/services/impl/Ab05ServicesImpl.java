@@ -74,11 +74,13 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	private boolean delPostById() throws Exception 
 	{
 		Object aab501 = this.get("aab501");
+		String sql0 = "delete from ab11 where aab501=?";
 		String sql1 = "delete from ab06 where aab501=?";
-		this.apppendSql(sql1, aab501);
 		String sql2 = "delete from ab07 where aab501=?";
-		this.apppendSql(sql2, aab501);
 		String sql3 = "delete from ab05 where aab501=?";
+		this.apppendSql(sql0, aab501);
+		this.apppendSql(sql1, aab501);
+		this.apppendSql(sql2, aab501);
 		this.apppendSql(sql3, aab501);
 		return executeTransaction();
 	}
@@ -150,11 +152,16 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 				;
 		// 参数列表
 		List<Map<String, String>> rows = this.queryForList(sql.toString(), aab501);
-		Ab07ServicesImpl ab07=new Ab07ServicesImpl();
-		Boolean collection=ab07.queryCollection(aab101,aab501); //收藏状态
 		Map<String, String> map1 = new HashMap<String, String>();
-		map1.put("collection", collection.toString());
-		rows.add(map1);											//加进去
+		Map<String, String> map2 = new HashMap<String, String>();
+		Ab07ServicesImpl ab07=new Ab07ServicesImpl();
+		Ab11ServicesImpl ab11=new Ab11ServicesImpl();
+		map1.put("collection", ab07.queryCollection(aab101,aab501).toString());				//收藏狀态
+		map2.put("like", ab11.countUserLike(aab101,aab501).toString());						//点赞狀态
+		rows.add(map1);		
+		rows.add(map2);		
+		rows.add(ab11.countLike(aab501)); 													//点赞数
+						
 		Ab06ServicesImpl ab06=new Ab06ServicesImpl();
 		List<Map<String, String>> commentList = ab06.commentFindById(aab501);
 		for(Map<String, String> comment:commentList)
@@ -213,77 +220,6 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	}
 
 	/**
-	 * 添加收藏
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	private boolean addCollectionById() throws Exception 
-	{
-		StringBuilder sql = new StringBuilder()
-				.append(" insert into ab07(aab501,aab101,aab702)")
-				.append("    values (?,?,current_timestamp())")
-				;
-				
-		Object args[]={
-						this.get("aab501"),
-						this.get("aab101")
-					  };
-		return	this.executeUpdate(sql.toString(), args)>0;
-	}
-
-	/**
-	 * 刪除收藏
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	private boolean delCollectionById() throws Exception 
-	{
-		String sql = "delete from ab07 where aab501=? and aab101=?";
-		Object args[]={
-						this.get("aab501"),
-						this.get("aab101"),
-					  };
-		return	this.executeUpdate(sql, args)>0;
-	}
-	
-	/**
-	 * 加载时判断用户收藏状态
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public List<Map<String,String>> queryCollectionList() throws Exception
-	{
-		Object aab101 = this.get("aab101");
-    	StringBuilder sql=new StringBuilder()
-    			.append("select a.aab701,a.aab501,a.aab101,a.aab702,b.aab502,c.aab102")
-    			.append("  from ab07 a,ab05 b,ab01 c")
-    			.append(" where a.aab101=? and a.aab501=b.aab501 and b.aab101=c.aab101")
-    			.append(" order by a.aab702 desc")
-    			;
-    	System.out.println("aab101:" + this.get("aab101"));
-    	return queryForList(sql.toString(), aab101);
-	}
-
-	/**
-	 * 批量删除收藏
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	private boolean delCollection() throws Exception 
-	{
-		// 1.定义SQL语句
-		String sql = "delete from ab07 where aab701=?";
-		// 2.获取页面idlist数组
-		String idlist[] = this.getIdList("idlist");
-		// 3.执行
-		return this.batchUpdate(sql, idlist);
-	}
-	
-	/**
 	 * 查找用户历史发帖
 	 * 
 	 * @return
@@ -310,11 +246,13 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	private boolean delPost() throws Exception 
 	{
 		String idlist[] = this.getIdList("idlist");
+		String sql0 = "delete from ab11 where aab501=?";
 		String sql1 = "delete from ab06 where aab501=?";
 		String sql2 = "delete from ab07 where aab501=?";
 		String sql3 = "delete from ab05 where aab501=?";
 		for (String aab501:idlist) 
 		{
+			this.apppendSql(sql0, aab501);
 			this.apppendSql(sql1, aab501);
 			this.apppendSql(sql2, aab501);
 			this.apppendSql(sql3, aab501);

@@ -331,16 +331,17 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 		Object paab101 = this.get("paab101");
 		if (getMoney(aab101) >=5) 
 		{
-			System.out.println("夠錢:" + getMoney(aab101));
 			String sql1 = "update ab01 set aab106 = aab106-5 where aab101=?";
 			this.apppendSql(sql1, aab101);
 			String sql2 = "update ab01 set aab106 = aab106+5 where aab101=?";
 			this.apppendSql(sql2, paab101);
-			return this.executeTransaction();
+			Boolean tag = this.executeTransaction();
+			this.setMessage(tag ? "打赏成功,当前余額为"+ getMoney(aab101) : "发生了未知错误,当前余額为" + getMoney(aab101));
+			return tag;
 		}
 		else 
 		{
-			System.out.println("唔夠錢:" + getMoney(aab101));
+			this.setMessage("余额不够,当前余額为" + getMoney(aab101));
 			return false;
 		}
 	
