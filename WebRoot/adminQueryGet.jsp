@@ -104,6 +104,7 @@ ${msg }
 	   <td align="center">
 	       <input type="submit" name="next" value="<%=aab108.equals("1")?"查看历史出售":"查看待收货列表"%>"
               formaction="<%=path%>/<%=aab108.equals("1")?"querySellOrder.html":"queryGetAcc.html"%>">
+               <input type="submit" formaction="<%=path%>/mainPage.jsp" value="返回">
 	    </td>
 	  </tr>
 	</table>

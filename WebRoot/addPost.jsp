@@ -1,7 +1,9 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%String path=request.getContextPath();%>
+<%String path=request.getContextPath();
+String aab101=(String)session.getAttribute("aab101");
+%>
 <html>
 <head>
 <title>Insert title here</title>
@@ -22,12 +24,11 @@ ${msg }
 <form action="<%=path%>/addEmp.html" method="post">
 <table  border="1" align="center" width="45%">
     <caption>
-       发帖
-       ${empty param.aab101 }
+       发帖<%=aab101!=null %>
       <hr width="160">
     </caption>
    <c:choose>
-   <c:when test="${!empty param.aab101 }">
+   <c:when test="<%=aab101!=null %>">
       <tr>
 	     <td>标题</td>
 	     <td>
@@ -54,19 +55,29 @@ ${msg }
 </c:choose>
    <tr>
      <td colspan="2" align="center">
-       <input type="submit" name="next" value="${empty param.aab101?'登录':'发帖' }"
-              formaction="<%=path%>/${empty param.aab101?'login':'addPost' }.html?aab101=${param.aab101 }">
-       <input type="submit" name="next" value="返回" 
-              formaction="<%=path%>/forum.html?aab101=${param.aab101 }"
+     	  <c:choose>
+  			 <c:when test="<%=aab101!=null %>">
+  			  <input type="submit" name="next" value="发帖 "
+              formaction="<%=path%>/addPost.html">
+     </c:when>
+     <c:otherwise>
+       <input type="submit" name="next" value="登录 "
+              formaction="<%=path%>/login.html">
+     </c:otherwise>
+     </c:choose>
+      <input type="submit" name="next" value="返回"
+              formaction="<%=path%>/forum.html"
               formnovalidate="formnovalidate">
      </td>
    </tr>
 </table>
  <input type="text" name="apaab503" id="apaab503" hidden="true">
+ <e:hidden name="aab101" defval="<%=aab101 %>"/>
 </form>
 
 </body>
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="jquery-3.4.1.min.js"></script>
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
     <script type="text/javascript" src="wangEditor.min.js"></script>
     <script type="text/javascript">
         var E = window.wangEditor

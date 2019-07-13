@@ -1,5 +1,4 @@
 package com.neusoft.services.impl;
-
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,37 +7,18 @@ import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.system.tools.Tools;
 import com.sun.org.apache.bcel.internal.generic.Select;
-
 public class Ac06ServicesImpl extends JdbcServicesSupport 
 {
-	//虚拟货币批量购买饰品方法
-	public boolean buyAccessoriesList()throws Exception
+	//是否能够购买饰品的判断
+	private boolean allowPurchase(Object aac601)throws Exception
 	{
-    	Object idlist[]=this.getIdList("idlist");
-    	int result=1;
-    	for(Object id:idlist)
-    	{
-    		if(this.buyAccessories(id))
-    			result=result*1;
-    		else 
-    			result=result*0;
-    	}
-    	if(result==0)
-    		return false;
-    	else
-    		return this.executeTransaction();
-		
-	}
-	
-	//为批量购买和单件购买准备的插入事务方法
-	public boolean buyAccessories(Object aac601)throws Exception
-    {
 		//1,根据饰品ID查询饰品其他信息
 		Map<String, String> acc=this.findAccessories(aac601);
 		
 		//没有库存购买失败
 		if(Integer.parseInt(acc.get("aac606"))==0)
 		{
+			this.setMessage("商品库存不足");
 			return false;
 		}
 		
@@ -49,8 +29,18 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		//用户金币不足,购买失败
 		if(money<Double.parseDouble(acc.get("aac605")))
 		{
+			this.setMessage("用户金额不足");
 			return false;
 		}
+		return true;
+	}
+	
+	
+	//为批量购买和单件购买准备的修改数据的事务代码,注---未执行事务
+	private void buyAccessories(Object aac601)throws Exception
+    {
+			
+		Map<String, String> acc=this.findAccessories(aac601);
 		
 		//3,减少用户余额,由于是事务性操作 只能重新编写sql语句
     	StringBuilder sql1=new StringBuilder()
@@ -82,16 +72,68 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 				this.get("aad404")				
 			};
 		this.apppendSql(sql3.toString(),args3);
-		
-		return true;		
     }
 	
 	//虚拟货币单次购买饰品方法
 	public boolean buyAccessories()throws Exception
     {
-		this.buyAccessories(this.get("aac601"));
-		return this.executeTransaction();
+		//先判断能不能买
+		if(allowPurchase(this.get("aac601")))
+		{
+			//插入单次购买事务语句
+			this.buyAccessories(this.get("aac601"));
+			//执行事务
+			return this.executeTransaction();
+		}
+		else//不能购买
+		{
+			return false;
+		}
     }
+	
+	//虚拟货币批量购买饰品方法
+	public boolean buyAccessoriesList()throws Exception
+	{
+		//还原页面主键
+    	Object idlist[]=this.getIdList("idlist");
+    	//查询饰品总体价格,以及是否都有货
+    	String sql="select aac605,aac606 from ac06 where aac601=?";
+    	List<Map<String, String>> accList=new ArrayList<>();
+    	Map<String, String> map=null;
+    	for(Object id:idlist)
+		{
+			map=this.queryForMap(sql, id);
+			accList.add(map);
+		}
+    	System.out.println(accList);
+    	
+    	//总价格
+    	int count=0;
+    	for(Map<String,String> m:accList)
+    	{
+    		count+=Double.parseDouble(m.get("aac605").toString());
+    		if(Integer.parseInt(m.get("aac606"))<1)
+    		{
+    			this.setMessage("库存不足");
+    			return false;
+    		}    	
+    	}
+    	Ab01ServicesImpl ab01=new Ab01ServicesImpl();
+		Double money=ab01.getMoney(this.get("aab101"));
+		//用户金币不足,购买失败
+		if(money<count)
+		{
+			this.setMessage("用户金额不足");
+			return false;
+		}
+		//对于每种不同饰品,插入事务语句
+		for(Object id:idlist)
+		{
+			this.buyAccessories(id);
+		}
+		//执行事务
+		return executeTransaction();
+	}
 	
 	//出售饰品给网站
 	public boolean sellAccessories()throws Exception
@@ -169,6 +211,8 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	public Map<String,String> findById()throws Exception
     {
     	//1.编写SQL语句
+	//	System.out.println(this.get("aac601"));
+	//	System.out.println(this.get("param"));
     	StringBuilder sql1=new StringBuilder()
     			.append("select x.aac602,x.aac603,x.aac604,x.aac605,x.aac606,y.aac102,x.aac101")
   				.append("		 from ac06 x ,ac01 y")
@@ -216,7 +260,8 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	   private boolean modifyAcc()throws Exception
 	    {
 		
-		 
+		   // Object aac101=this.findIdByNameAc01();
+		   // System.out.println("aac101:"+aac101);
 	    	StringBuilder sql=new StringBuilder()
 	    			.append("	update ac06 set aac602=?,aac603=?,aac604=?,aac605=?,aac606=?,aac101=?  ")
 		            .append("   where aac601=? ")

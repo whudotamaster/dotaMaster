@@ -27,8 +27,6 @@ ins.aad403
 aad403:${ins.aad403}
 <br>
 aab108:<%=aab108 %>
-
-<%=tag %>
 <form action="<%=path%>/buyAcc.html" method="post">
 <table  border="1" align="center" width="45%">
     <caption>
@@ -84,7 +82,7 @@ aab108:<%=aab108 %>
    </tr>
 </table>
 <input type="hidden" name="aab101" value="<%=aab101 %>">
-<input type="hidden" name="aac601" value="1">
+<input type="hidden" name="aac601" value="${param.aac601} ">
 <input type="hidden" name="aad401" value="${ins.aad401 }">
 </form>
 </body>

@@ -62,7 +62,7 @@ ${msg}
     <td>  
         <input type="submit" name="next" value="战队修改" formaction="<%=path%>/modifyTeam.html" formnovalidate="formnovalidate" >      
    </td>
-   </c:if>
+   </c:if test="${aab108==2}">
    <tr>
     <tr>
      <td colspan="2">成员</td>

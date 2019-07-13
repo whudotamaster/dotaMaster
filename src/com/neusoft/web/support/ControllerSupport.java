@@ -1,12 +1,11 @@
 package com.neusoft.web.support;
-
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.neusoft.services.BaseServices;
-
+import com.neusoft.services.impl.Ab01ServicesImpl;
+import com.sun.jmx.snmp.tasks.ThreadService;
 public abstract class ControllerSupport implements BaseController
 {
 
@@ -45,7 +44,7 @@ public abstract class ControllerSupport implements BaseController
 			this.saveAttribute("rows", rows);
 		}
 		else
-		{
+		{	
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}	
 	}
@@ -57,7 +56,7 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void adminQueryArticleServ()throws Exception
 	{
-		List<Map<String,String>> rows=this.services.adminQuery();
+		List<Map<String,String>> rows=this.services.adminQueryArticle();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
@@ -67,6 +66,26 @@ public abstract class ControllerSupport implements BaseController
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}	
 	}
+	
+
+	
+	/**
+	 * 数据批量查询
+	 * @throws Exception
+	 */
+	protected final void adminQueryComplainServ()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.adminQueryComplain();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
 	
 	
 	
@@ -91,7 +110,6 @@ public abstract class ControllerSupport implements BaseController
 		}	
 	}
 	
-
 	protected final void savePageData(String methodName)throws Exception
 	{
 		List<Map<String,String>> rows=null;
@@ -112,6 +130,7 @@ public abstract class ControllerSupport implements BaseController
 	}
 	
 
+
 	/*****************************************
 	 * 	        帖子详细頁面加载业务流程封装
 	 *****************************************/
@@ -122,11 +141,49 @@ public abstract class ControllerSupport implements BaseController
 	protected final void postOnLoad()throws Exception
 	{
 		List<Map<String,String>> rows=this.services.postFindById();
-		List<Map<String,String>> comment=this.services.commentFindById();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
-			this.saveAttribute("comment", comment);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+	/*****************************************
+	 * 	        收藏页面加载业务流程封装
+	 *****************************************/
+	/**
+	 * 用戶收藏数据查询
+	 * @throws Exception
+	 */
+	protected final void collectionOnLoad()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.queryCollectionList();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+	/*****************************************
+	 * 	        用户历史发帖页面加载业务流程封装
+	 *****************************************/
+	/**
+	 * 用戶历史发帖数据查询
+	 * @throws Exception
+	 */
+	protected final void queryHistoryOnLoad()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.queryHistory();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
 		}
 		else
 		{
@@ -147,6 +204,7 @@ public abstract class ControllerSupport implements BaseController
 		}
 		else
 		{
+			this.saveAttribute("msg", this.services.getMessage());
 			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
 		}	
 	}
@@ -173,8 +231,7 @@ public abstract class ControllerSupport implements BaseController
 	
 	//用户注册
 	protected final boolean logonIn()throws Exception
-	{
-		
+	{		
 			int ins=this.services.logonPerson();
 			System.out.println("在logonIn中实例化一次");
 			
@@ -207,7 +264,6 @@ public abstract class ControllerSupport implements BaseController
 		if(ins!=null)
 		{
 			this.saveAttribute("ins",  ins);
-			System.out.println(ins);
 		}
 		else
 		{
@@ -243,7 +299,33 @@ public abstract class ControllerSupport implements BaseController
 		}
 	}
 	
+	/**
+	 * 通过反射执行更新方法
+	 * @param methodName
+	 * @return
+	 * @throws Exception
+	 */
+	private List<Map<String,String>> executeQueryMethod(String methodName)throws Exception
+	{
+		//1.获取需要调用的方法对象
+		Method method=this.services.getClass().getDeclaredMethod(methodName);
+		method.setAccessible(true);
+		//2.调用方法
+		return  (List<Map<String, String>>)method.invoke(services);
+	}
 	
+	protected final void query(String methodName)throws Exception
+	{
+		List<Map<String,String>> rows=this.executeQueryMethod(methodName);
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{	
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
 	
 	/**
 	 * 通过反射执行更新方法
@@ -260,6 +342,12 @@ public abstract class ControllerSupport implements BaseController
 		return  (boolean)method.invoke(services);
 	}
 	
+	//为报错信息多种情况进行了封装
+	protected final void update(String methodName)throws Exception
+	{
+		this.executeUpdateMethod(methodName);
+		this.saveAttribute("msg",this.services.getMessage());
+	}
 	
 	/**
 	 * 更新行为的总开关
@@ -272,8 +360,14 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void update(String methodName,String msgText)throws Exception
 	{
-		String msg=this.executeUpdateMethod(methodName)?"成功!":"失败!";
-		this.saveAttribute("msg", msgText+msg);
+		if(this.executeUpdateMethod(methodName))
+		{
+			this.saveAttribute("msg", msgText+"成功");
+		}
+		else
+		{
+			this.saveAttribute("msg", "失败"+this.getServices().getMessage());
+		}
 	}
 	
 	/**

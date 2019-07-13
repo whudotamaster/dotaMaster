@@ -5,11 +5,8 @@ import com.neusoft.web.support.ControllerSupport;
 
 public abstract class EventControllerSupport extends ControllerSupport 
 {
-
 	public EventControllerSupport()
 	{
 		this.setServices(new Ac07ServicesImpl());
 	}
-
-
 }

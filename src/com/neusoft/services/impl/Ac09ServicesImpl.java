@@ -3,9 +3,7 @@ package com.neusoft.services.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import com.neusoft.services.JdbcServicesSupport;
-
 public class Ac09ServicesImpl extends JdbcServicesSupport
 {
 
@@ -67,6 +65,7 @@ public class Ac09ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
+
 	    
 	    public List<Map<String,String>> FBIforMore()throws Exception
 	    {

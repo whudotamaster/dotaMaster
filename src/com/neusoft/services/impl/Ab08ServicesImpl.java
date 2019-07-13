@@ -1,13 +1,10 @@
 package com.neusoft.services.impl;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.system.tools.Tools;
 import com.sun.jmx.snmp.tasks.ThreadService;
-
 public class Ab08ServicesImpl extends JdbcServicesSupport 
 {
 	
@@ -44,7 +41,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	  }
 	
 	//管理员查询待审核文章
-	public List<Map<String,String>> adminQuery()throws Exception
+	public List<Map<String,String>> adminQueryArticle()throws Exception
 	  {
 	  		//还原页面查询条件
 	  		Object aab802=this.get("qaab802");     //姓名  模糊查询

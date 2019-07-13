@@ -37,12 +37,11 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 	
     //用户单次押注时,插入用户押注表并更新竞猜表
     public boolean insertBetLog()throws Exception	
-    {
-    	//测试用
-    	this.put("aab101","2");
-    	
+    {	
     	if(!this.isEnough(this.get("aab101")))
+    	{	this.setMessage("金钱不足");
     		return false;
+    	}
     	//通过前台传过来的id数据在数据库里查找到完整数据
     	
     	//插入单次押注信息
@@ -78,7 +77,15 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     			this.get("aad101")
     	};
     	this.apppendSql(sql2.toString(), args2);
-    	return this.executeTransaction();
+    	if(this.executeTransaction())
+    	{
+    		this.setMessage("押注成功");
+    	    return true;
+    	}
+    	else 
+    	{
+    		return false;
+		}
     }
     
     //查询竞猜总额
@@ -99,7 +106,6 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	String sql="select * from ad01 where aad101=?";
     	System.out.println(this.get("aad101"));
     	Map<String, String> map=this.queryForMap(sql,this.get("aad101"));
-    	System.out.println(map);
     	this.put("aac1101", map.get("aac1101"));
     	this.put("aad102", map.get("aad102"));
     	this.put("aad103", map.get("aad103"));

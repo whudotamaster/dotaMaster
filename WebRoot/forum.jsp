@@ -2,7 +2,10 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl" prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%String path=request.getContextPath(); %>
+<%String path=request.getContextPath();
+String aab101=(String)session.getAttribute("aab101");
+String aab108=(String)session.getAttribute("aab108");
+%>
 <html>
 <head>
 <title>Insert title here</title>
@@ -31,28 +34,34 @@ tr {
     	  vdel.disabled=(count==0);
       }
       
-      function onVisit(vaab501,vaab101)
+      function onVisit(vaab501)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/post.html?aab501="+ vaab501 + "&aab101=" + vaab101;
+    	 vform.action="<%=path%>/post.html?aab501="+ vaab501;
     	 //alert(vform.action);
     	 vform.submit();
       }
       
-      function onDel(vaab501,vaab101)
+      function onDel(vaab501)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delPost.html?aab501=" + vaab501 + "&aab101=" + vaab101;
+    	 vform.action="<%=path%>/delPostById.html?aab501=" + vaab501;
     	 //alert(vform.action);
     	 vform.submit();
       } 
       
+      function onHistory()
+      { 
+    	  var vform = document.getElementById("myform");
+    	  vform.action="<%=path%>/queryHistoryById.html";
+    	  vform.submit();
+      }
+
    </script>
 </head>
 <body >
 	${msg }
 	<br>
-	<%=session.getId() %>
 	<br>
 	<form id="myform" action="<%=path%>/forum.html" method="post">
 		<!-- 查询条件区 -->
@@ -72,20 +81,18 @@ tr {
 				<td>区块</td>
 				<td><e:radio name="aab506" value="普通区:0,精华区:1" defval="0" /></td>
 				<td>
-				<c:if test="${empty param.aab101 }">
-				param.aab101是空
-				</c:if>
-				</td>
-				<c:if test="${!empty param.aab101 }">
-					<td>发帖</td>
-					<td>		
+					<c:choose>
+				<c:when test="<%= aab101!=null %>">
 					<input type="submit"
-					id="addPost" name="next" value="发帖" formaction="<%=path%>/addPost.html?aab101=${ param.aab101 }">
-					</td>
-				</c:if>
-				
+					id="addPost" name="next" value="发帖" formaction="<%=path%>/addPostOnLoad.html">
+				</c:when>
+				<c:otherwise>
+						<input type="submit"
+					id="addPost" name="next" value="发帖" formaction="<%=path%>/login.html">
+				</c:otherwise>
+				</c:choose>
+				</td>
 			</tr>
-
 		</table>
 		<!-- 数据迭代区 -->
 		<table border="1" width="95%" align="center">
@@ -93,7 +100,7 @@ tr {
 				<td></td>
 				<td>帖标题</td>
 				<td>发帖人</td>
-				<td>楼层数</td>
+				<td>回复数</td>
 				<td>时间</td>
 				<td></td>
 			</tr>
@@ -108,12 +115,15 @@ tr {
 					<!-- 显示实际查询到的数据 -->
 					<c:forEach items="${rows }" var="ins" varStatus="vs">
 						<tr>
-							<td><input type="checkbox" name="idlist"
+						<td>
+						<c:if test="${aab108 == 2 }">
+							<input type="checkbox" name="idlist"
 								value="${ins.aab501 }" onclick="onSelect(this.checked)">
+							</c:if>
 							</td>
 							<td>
-							<!-- #  空锚 --> <a href="#" onclick="onVisit('${ins.aab501 }' , '${param.aab101 }')">	${ins.aab502 }</a>
-						
+							<!-- #  空锚 --> 
+							<a href="#" onclick="onVisit('${ins.aab501 }')">${ins.aab502 }</a>
 							</td>
 							<td>
 								<!-- #  用户名及头像--> 
@@ -123,7 +133,11 @@ tr {
 							</td>
 							<td>${ins.aab505 }</td>
 							<td>${ins.aab504 }</td>
-							<td><a href="#" onclick="onDel('${ins.aab501}' , '${param.aab101 }')">删除</a></td>
+							<td>
+							<c:if test="${aab108 == 2 || ins.aab101 == aab101}">
+							<a href="#" onclick="onDel('${ins.aab501}')">删除</a>
+							</c:if>
+							</td>
 						</tr>
 					</c:forEach>
 					<!-- 补充空行 -->
@@ -152,18 +166,28 @@ tr {
 				</c:otherwise>
 			</c:choose>
 		</table>
-
 		<!-- 功能按钮区 -->
 		<table border="1" width="95%" align="center">
 			<tr>
 				<td align="center"><input type="submit" name="next" value="查询">
 					<input type="submit" name="next" value="添加"
 					formaction="<%=path%>/addEmp.jsp"> 
+					<c:if test="${aab108 == 2 }">
 					<input type="submit"
-					id="goodPost" name="next" value="加精" formaction="<%=path%>/goodPost.html?aab101=${param.aab101 }"
-					disabled="disabled"></td>
+					id="goodPost" name="next" value="加精" formaction="<%=path%>/goodPost.html"
+					disabled="disabled">
+					</c:if>
+					<c:if test="<%=aab101 !=null %>">
+					<input type="submit"
+					id="collectionPase" name="next" value="收藏页面" 
+					formaction="<%=path%>/queryCollection.html">
+					<a href="#" onclick="onHistory()">歷史發帖</a>
+					</c:if>
+					</td>
 			</tr>
 		</table>
+		 <e:hidden name="aab101" defval="<%=aab101 %>"/>
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 	</form>
 </body>
 </html>

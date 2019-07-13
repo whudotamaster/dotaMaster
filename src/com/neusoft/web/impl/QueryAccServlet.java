@@ -5,7 +5,7 @@ public class QueryAccServlet extends AccControllerSupport {
 	@Override
 	public String execute() throws Exception 
 	{
-		this.savePageData();
+		this.query("query");
 		return "queryAcc";
 	}
 
