@@ -20,7 +20,6 @@ ${msg }
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
 <br>
-<%=session.getId() %>
 <br>
     <c:if test="${aab108==2}">
 <form id="myform" action="<%=path%>/adminQueryArticle.html" method="post">
