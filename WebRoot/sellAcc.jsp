@@ -26,6 +26,7 @@ ${msg }
 用户ID<%=aab101 %>
 是否已存在订单:${ins.aad303 }
 <br>
+<%=path%>
 <form action="<%=path%>/sellAcc.html" method="post">
 <table  border="1" align="center" width="45%">
     <caption>

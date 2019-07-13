@@ -39,16 +39,6 @@ public interface BaseServices
  		return null;
  	 }
     
-     default Map<String,String> findByIdTeam()throws Exception
-     {
-    	 return null;
-     }
-     
-     default List<Map<String,String>> findByIdPlayer()throws Exception
-     {
-    	 return null;
-     }
-
      default List<Map<String,String>> query()throws Exception
      {
     	 return null;

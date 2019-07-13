@@ -20,7 +20,7 @@ ${msg }
 <br>
 <form id="myform" action="<%=path%>/queryAcc.html" method="post">
   <!-- 查询条件区 -->
-	<table border="1" width="35%" align="center">
+	<table border="1" width="35%" align="center" >
 	  <caption>
 	            饰品
 	    <hr width="160">
@@ -38,7 +38,7 @@ ${msg }
 
 	</table>
 	<!-- 数据迭代区 -->
-	<table border="1" width="35%" align="center">
+	<table border="1" width="35%" align="center" >
 	  <tr>
 	    <td></td>
 	    <td>序号</td>

@@ -50,21 +50,6 @@ public abstract class ControllerSupport implements BaseController
 	}
 	
 
-	/*****************************************
-	 * 	        战队信息封装
-	 *****************************************/
-	/**
-	 * 帖子数据查询
-	 * @throws Exception
-	 */
-	protected final void TAPOnLoad()throws Exception
-	{
-		Map<String,String> ins=this.services.findByIdTeam();
-		List<Map<String,String>> rows=this.services.findByIdPlayer();
-		this.saveAttribute("rows", rows);
-		this.saveAttribute("ins", ins);
-	}
-
 	/**
 	 * 数据批量查询
 	 * @throws Exception
@@ -246,8 +231,7 @@ public abstract class ControllerSupport implements BaseController
 	
 	//用户注册
 	protected final boolean logonIn()throws Exception
-	{
-		
+	{		
 			int ins=this.services.logonPerson();
 			System.out.println("在logonIn中实例化一次");
 			
@@ -280,7 +264,6 @@ public abstract class ControllerSupport implements BaseController
 		if(ins!=null)
 		{
 			this.saveAttribute("ins",  ins);
-			System.out.println(ins);
 		}
 		else
 		{
@@ -316,7 +299,33 @@ public abstract class ControllerSupport implements BaseController
 		}
 	}
 	
+	/**
+	 * 通过反射执行更新方法
+	 * @param methodName
+	 * @return
+	 * @throws Exception
+	 */
+	private List<Map<String,String>> executeQueryMethod(String methodName)throws Exception
+	{
+		//1.获取需要调用的方法对象
+		Method method=this.services.getClass().getDeclaredMethod(methodName);
+		method.setAccessible(true);
+		//2.调用方法
+		return  (List<Map<String, String>>)method.invoke(services);
+	}
 	
+	protected final void query(String methodName)throws Exception
+	{
+		List<Map<String,String>> rows=this.executeQueryMethod(methodName);
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{	
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
 	
 	/**
 	 * 通过反射执行更新方法
