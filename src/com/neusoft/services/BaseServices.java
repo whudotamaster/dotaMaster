@@ -34,7 +34,6 @@ public interface BaseServices
     	 return null;
      }
      
-
      default  String getMessage() 
  	 {
  		return null;

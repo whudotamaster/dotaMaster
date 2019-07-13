@@ -62,7 +62,6 @@ tr {
 <body >
 	${msg }
 	<br>
-	<%=session.getId() %>
 	<br>
 	<form id="myform" action="<%=path%>/forum.html" method="post">
 		<!-- 查询条件区 -->

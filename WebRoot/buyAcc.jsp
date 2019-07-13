@@ -84,11 +84,7 @@ aab108:<%=aab108 %>
    </tr>
 </table>
 <input type="hidden" name="aab101" value="<%=aab101 %>">
-<<<<<<< HEAD
-<input type="hidden" name="aac601" value="1">
-=======
 <input type="hidden" name="aac601" value="${param.aac601} ">
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 <input type="hidden" name="aad401" value="${ins.aad401 }">
 </form>
 </body>

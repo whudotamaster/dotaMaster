@@ -9,6 +9,7 @@ String aab101=(String)session.getAttribute("aab101");
 String aab102=(String)session.getAttribute("aab102");
 
 String aab108=(String)session.getAttribute("aab108");
+String aab109=(String)session.getAttribute("aab109");
 String path=request.getContextPath();
 %>
 
@@ -16,9 +17,10 @@ String path=request.getContextPath();
 <div id="nav" >
 	
 		    <form action="<%=path%>/queryBet.html" method="post">			
-		<input type="hidden" name="aab101" value="<%=aab101%>">
-		    	<button style="submit" >竞猜</button>
-		    	<button style="submit" formaction="<%=path%>/queryArticle.html">文章</button>
+			<input type="hidden" name="aab101" value="<%=aab101%>">
+		    <button style="submit" >竞猜</button>
+		    <button style="submit" formaction="<%=path%>/queryArticle.html">文章</button>
+		    <button style="submit" formaction="<%=path%>/queryAcc.html">饰品</button>
 
 	         <c:if test="${aab108==2}">
 	            <button style="submit" formaction="<%=path%>/adminGo.jsp">网站管理</button>

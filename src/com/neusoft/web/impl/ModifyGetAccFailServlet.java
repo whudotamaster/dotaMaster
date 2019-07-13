@@ -4,7 +4,7 @@ public class ModifyGetAccFailServlet extends GetAccControllerSupport
 {
 	@Override
 	public String execute() throws Exception {
-		this.update("checkDelFail", "收货");
+		this.update("checkDelFail", "处理");
 		this.savePageDataForDelete();
 		return "adminQueryGet";
 	}

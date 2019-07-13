@@ -112,8 +112,10 @@ ${msg }
 	       <input type="submit" name="next" value="²éÑ¯">
 	       <input type="submit" name="next" value="Ìí¼Ó" 
 	              formaction="<%=path%>/addAcc.jsp">
-	       <input type="submit" id="del" name="next" value="É¾³ý" 
+	       <c:if test="${aab108==2}">
+	       		<input type="submit" id="del" name="next" value="É¾³ý" 
 	              formaction="<%=path%>/delAcc.html"  disabled="disabled">
+	       </c:if>
 	       <input type="submit" id="buy" name="next" value="ÅúÁ¿¹ºÂò" 
 	              formaction="<%=path%>/buyAccList.html"  disabled="disabled">
 	       <input type="text" id="vaad402" name="aad402" placeholder="ÊäÈëÍæ¼Ò±àºÅ" disabled="disabled">

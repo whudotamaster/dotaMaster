@@ -2,14 +2,10 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%
-String aab101=(String)session.getAttribute("aab101");
-String aab109=(String)session.getAttribute("aab109");
-String path=request.getContextPath();
-%>
 <html>
 <head>
    <title>Insert title here</title>
+   <%@ include file="header.jsp" %>
    <style type="text/css">
      tr
      {
@@ -42,8 +38,8 @@ String path=request.getContextPath();
    </script>
 </head>
 <body>
+
 ${msg }
-<%=aab109%>
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryBet.html" method="post">

@@ -45,7 +45,6 @@ public abstract class ControllerSupport implements BaseController
 		}
 		else
 		{	
-			this.saveAttribute("msg", this.services.getMessage());
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}	
 	}
@@ -352,8 +351,14 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void update(String methodName,String msgText)throws Exception
 	{
-		String msg=this.executeUpdateMethod(methodName)?"成功!":"失败!";
-		this.saveAttribute("msg", msgText+msg);
+		if(this.executeUpdateMethod(methodName))
+		{
+			this.saveAttribute("msg", msgText+"成功");
+		}
+		else
+		{
+			this.saveAttribute("msg", "失败"+this.getServices().getMessage());
+		}
 	}
 	
 	/**

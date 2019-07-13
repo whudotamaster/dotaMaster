@@ -90,6 +90,8 @@ ${msg }
 	  <tr>
 	    <td align="center">
 	       <input type="submit" name="next" value="²éÑ¯">
+	         <input type="submit" name="next" value="·µ»Ø" 
+	              formaction="<%=path%>/queryBet.html">
 
 	    </td>
 	  </tr>

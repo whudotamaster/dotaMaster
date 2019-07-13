@@ -135,9 +135,6 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		return executeTransaction();
 	}
 	
-	
-	
-	
 	//出售饰品给网站
 	public boolean sellAccessories()throws Exception
 	{
