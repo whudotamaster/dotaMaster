@@ -1,6 +1,4 @@
 package com.neusoft.web.impl;
-
-
 public class AddComplainServlet extends ComplainControllerSupport
 {
 	  @Override
