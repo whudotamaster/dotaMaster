@@ -79,11 +79,17 @@ public abstract class ControllerSupport implements BaseController
 		{
 			this.saveAttribute("rows", rows);
 		}
+
 		else
 		{
-			this.saveAttribute("msg", "没有符合条件的数据!");
-		}	
+			this.saveAttribute("mst", "没有符合条件的数据");
+		}
+
 	}
+	
+	
+	
+	
 	
 	protected final void savePageData(String methodName)throws Exception
 	{
@@ -145,7 +151,6 @@ public abstract class ControllerSupport implements BaseController
 	//用户注册
 	protected final boolean logonIn()throws Exception{		
 			int ins=this.services.logonPerson();
-			System.out.println("在logonIn中实例化一次");
 			
 			switch(ins)
 			{

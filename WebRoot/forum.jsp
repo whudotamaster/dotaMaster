@@ -89,10 +89,10 @@ tr {
 								</c:if>
 							<td>
 							<!-- #  空锚 --> 
-							<c:if test="${(rows[0].aab107)/100 >= ins.aab507}">
+							<c:if test="${(rows[0].aab107)/100 >= ins.aab507 || ins.aab101 == aab101}">
 							<a href="#" onclick="onVisit('${ins.aab501 }','${ins.aab507 }')">${ins.aab502 }</a>
 							</c:if>
-							<c:if test="${(rows[0].aab107)/100 < ins.aab507}">
+							<c:if test="${(rows[0].aab107)/100 < ins.aab507 && ins.aab101 != aab101 }">
 							<a href="#" onclick="alert('该帖要${ins.aab507}級或以上才能观看该帖子');" style="color:#FF2222 ">------该帖要${ins.aab507}級或以上才能观看该帖子------</a>
 							</c:if>
 							</td>

@@ -60,7 +60,7 @@ ${msg }
 								<img src=<%=path%>/images/${rows[0].aab105 } class="round_icon"
 								onclick="onEdit('${rows[0].aab101}')">
 				    </td>
-				    <c:if test="${(rows[4].aab107)/100 >= rows[0].aab507+0}">
+				    <c:if test="${(rows[4].aab107)/100 >= rows[0].aab507+0 || rows[0].aab101 == aab101}">
 				    <td>${rows[0].aab502 }</td>
 				    <td>${rows[0].aab503 }
 				     <c:choose>
@@ -88,14 +88,14 @@ ${msg }
 					</c:choose>
 				    </td>
 				    </c:if>
-				    <c:if test="${(rows[4].aab107)/100 < rows[0].aab507+0}">
+				    <c:if test="${(rows[4].aab107)/100 < rows[0].aab507+0 && rows[0].aab101 != aab101}">
 				     <td><a style="color:#FF2222 ">------该帖要${rows[0].aab507}級或以上才能观看该帖子------</a></td>
 				     <td><a style="color:#FF2222 ">------该帖要${rows[0].aab507}級或以上才能观看该帖子------</a></td>
 				    </c:if>
 				    <td>${rows[0].aab504 }</td>
 				  </tr>
 				  </table>
-				  <c:if test="${(rows[4].aab107)/100 >= rows[0].aab507+0}">
+				  <c:if test="${(rows[4].aab107)/100 >= rows[0].aab507+0 || rows[0].aab101 == aab101}">
 				  <table  border="1" width="95%" align="center">
 				  	  <tr>
 	    <td>层数</td>
@@ -120,7 +120,7 @@ ${msg }
 		      </c:if>
 	     </c:when>
 	   </c:choose>
-	   <c:if test="${(rows[4].aab107)/100 >=  rows[0].aab507+0}">
+	   <c:if test="${(rows[4].aab107)/100 >=  rows[0].aab507+0 || rows[0].aab101 == aab101}">
 	     <tr>
      <td>回复</td>
      <td colspan="3">
@@ -134,7 +134,7 @@ ${msg }
 	<table border="1" width="95%" align="center">
 	  <tr>
 	    <td align="center">
-  			 <c:if test="${aab101 != null && (rows[4].aab107)/100 >= rows[0].aab507+0}">
+  			 <c:if test="${aab101 != null && (rows[4].aab107)/100 >= rows[0].aab507+0 || rows[0].aab101 == aab101}">
   			  <input type="submit" name="next" value="回复 ">
      </c:if>
      <c:if test="${aab101 == null}">

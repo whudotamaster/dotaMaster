@@ -1,5 +1,6 @@
 package com.neusoft.system.tools;
 
+import java.security.MessageDigest;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -23,12 +24,32 @@ public class Tools
 		
 	}
 	
+
 	public static void main(String[] args) 
 	{
 		try 
 		{
-			String aab103=Tools.getEmpNumber();
-			System.out.println(aab103);
+			/**
+			 * MD5二次混淆加密
+			 */
+			//得到明文
+			String pwd="0000";
+			//完成原始加密
+			String md5pwd1=Tools.MD5Encode(pwd);
+			//生成混淆明文
+			String pwd2=md5pwd1+"隐技フャゥソツ巧ΧΤΚㄕㄣˇΒ于无形:以無にはたコをっㄘㄗㄡεωぅ法為有法,以無ㄤㄆмязр限為有限"+md5pwd1;
+			String md45pwd2=Tools.MD5Encode(pwd2);
+			System.out.println(md45pwd2);
+			
+			
+			
+			/**
+			 * MD5的几个特征
+			 * 1.同一明文,加密后的密文永远相同
+			 * 2.无论明文多长,密文的长度都是32位
+			 * 3.MD5不可逆:不可以从密文再还原成明文
+			 */
+
 		}
 		catch (Exception e) 
 		{
@@ -36,6 +57,87 @@ public class Tools
 		}
 	}
 	private Tools() {}
+
+	
+	/***************************************************************************
+	 *                    MD5Begin
+	 ***************************************************************************/
+	
+	
+	   public static String getMd5(Object pwd)throws Exception
+	   {
+			/**
+			 * MD5二次混淆加密
+			 */
+			//完成原始加密
+			String md5pwd1=Tools.MD5Encode(pwd);
+			//生成混淆明文
+			String pwd2=md5pwd1+"摇曳露营Δ天下第一"+md5pwd1;
+			String md5pwd2=Tools.MD5Encode(pwd2);
+			return md5pwd2;
+
+	   }
+	
+	   
+	    private final static String[] hexDigits = {
+		     "0", "1", "2", "3", "4", "5", "6", "7",
+		     "8", "9", "a", "b", "c", "d", "e", "f"
+		     };
+
+		  /**
+		   * 转换字节数组为16进制字串
+		   * @param b 字节数组
+		   * @return 16进制字串
+		   */
+		  private static String byteArrayToHexString(byte[] b)
+		  {
+		      StringBuffer resultSb = new StringBuffer();
+		      for (int i = 0; i < b.length; i++)
+		      {
+		         resultSb.append(byteToHexString(b[i]));
+		      }
+		      return resultSb.toString();
+		  }
+		  /**
+		   * 转换字节为16进制字符串
+		   * @param b byte
+		   * @return String
+		   */
+		  private static String byteToHexString(byte b)
+		  {
+		      int n = b;
+		      if (n < 0)
+		         n = 256 + n;
+		      int d1 = n / 16;
+		      int d2 = n % 16;
+		      return hexDigits[d1] + hexDigits[d2];
+		  }
+		  /**
+		   * 得到MD5的秘文密码
+		   * @param origin String
+		   * @throws Exception
+		   * @return String
+		   */
+		  private static String MD5Encode(Object origin) throws Exception
+		  {
+		       String resultString = null;
+		       try
+		       {
+		           resultString=new String(origin.toString());
+		           MessageDigest md = MessageDigest.getInstance("MD5");
+		           resultString=byteArrayToHexString(md.digest(resultString.getBytes()));
+		           return resultString;
+		       }
+		       catch (Exception ex)
+		       {
+		          throw ex;
+		       }
+		  }	
+	/***************************************************************************
+	 *                    MD5End
+	 ***************************************************************************/
+
+
 
 	//String sql="select count(*) from ad03 where aab101=? and aad303=2";
 	public static int getFailCount(String sql,Object...args) throws Exception

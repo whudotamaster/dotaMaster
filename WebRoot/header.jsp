@@ -20,9 +20,11 @@ String path=request.getContextPath();
 	
 		    <form action="<%=path%>/queryBet.html" method="post">			
 			<input type="hidden" name="aab101" value="<%=aab101%>">
-		    <button style="submit" >竞猜</button>
-		    <button style="submit" formaction="<%=path%>/queryArticle.html">文章</button>
-		    <button style="submit" formaction="<%=path%>/queryAcc.html">饰品</button>
+
+			<button style="submit" class="btn btn-light" formaction="<%=path%>/mainPage.jsp">主页</button>
+		    <button style="submit" class="btn btn-light" >竞猜</button>
+		    <button style="submit" class="btn btn-light"formaction="<%=path%>/queryArticle.html">文章</button>
+		    <button style="submit" class="btn btn-light"formaction="<%=path%>/queryAcc.html">饰品</button>
 
 	         <c:if test="${aab108==2}">
 	            <button style="submit" formaction="<%=path%>/adminGo.jsp">网站管理</button>
@@ -64,13 +66,14 @@ aab101=<%=aab101%>
 <br>
 aab108=<%=aab108%>
 	<SCRIPT language=javascript>
-		<!-- 
-		function out() 
-		{ 
-			if(window.event.toElement.id!="menu" && window.event.toElement.id!="link") 
-			menu.style.visibility="hidden"; 
-		} 
-		//--> 
+<!-- 
+	function out() 
+	{ 
+		if(window.event.toElement.id!="menu" && window.event.toElement.id!="link") 
+		menu.style.visibility="hidden"; 
+	} 
+	//--> 
+	
 		function out1() 
 		{ 
 			if(window.event.toElement.id!="menu1" && window.event.toElement.id!="link") 
@@ -78,3 +81,4 @@ aab108=<%=aab108%>
 		} 
 		//--> 
 	</SCRIPT> 
+

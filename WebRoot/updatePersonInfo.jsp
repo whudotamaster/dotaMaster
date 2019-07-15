@@ -30,7 +30,7 @@
 	 <tr>
 	 	<td>密码</td>
 	 	<td>
- 	       <e:text name="aab104" required="true" defval="${ins.aab104 }"/> 
+ 	      <a href="changePassword.jsp">点我修改密码</a>
 	 	</td>
 	 </tr>
 	  <tr>
@@ -38,7 +38,19 @@
 	 	<td>
  	       <e:text name="aab105" defval="${ins.aab105 }"/> 
 	 	</td>
-
+</tr>
+	 <tr>
+	 	<td>当前余额</td>
+	 	<td>
+ 	       <e:text name="aab102" required="true" readonly="true" defval="${ins.aab106 }"/> 
+	 	</td>
+	 </tr>
+	 	 <tr>
+	 	<td>VIP到期时间</td>
+	 	<td>
+ 	       <e:text name="aab102" required="true" readonly="true" defval="${ins.aab109 }"/> 
+	 	</td>
+	 </tr>
 </table>
 <input  type="hidden" name="aab101" value="<%=aab101%>">
 	

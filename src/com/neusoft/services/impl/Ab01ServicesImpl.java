@@ -141,7 +141,8 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	try
     	{
 	    	Object aab103 = this.get("aab103");
-	    	Object aab104 = this.get("aab104");
+	    	Object aab104 = Tools.getMd5(this.get("aab104"));
+
 	    	StringBuilder sql=new StringBuilder()
 	    			.append("select a.aab101,a.aab102")	
 	    			.append("  from ab01 a")
@@ -159,10 +160,13 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	}
     }
     
+    
     public Map<String, String> loginPerson(Object aab103,Object aab104)throws Exception
     {
     	try
     	{
+	    	Object x104 = Tools.getMd5(aab104);
+
 	    	StringBuilder sql=new StringBuilder()
     				.append("select a.aab101,a.aab102,a.aab103,a.aab104,a.aab105,")	
     				.append("			     a.aab106,a.aab107,a.aab108,a.aab109 ")
@@ -171,7 +175,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	    			;
 	    	List<Object> paramList =new ArrayList<>();
 	    	paramList.add(aab103);
-	    	paramList.add(aab104);
+	    	paramList.add(x104);
 	    	return this.queryForMap(sql.toString(), paramList.toArray());
     	}
     	catch(Exception e)
@@ -204,14 +208,14 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	    	else
 	    	{  
 		    	Object aab103 = this.get("aab103");
-		    	Object aab104 = this.get("aab104");
-		    	//进行用户输入的数据长度判断
-		    	if(((String) aab103).length()>15||((String) aab104).length()>15)
-		    	{
-		    		return 2000;
-		    	}
-		    	else
-		    	{
+			    	Object aab104 = Tools.getMd5(this.get("aab104"));
+//		    	//进行用户输入的数据长度判断
+//		    	if(((String) aab103).length()>32||((String) aab104).length()>32)
+//		    	{
+//		    		return 2000;
+//		    	}
+//		    	else
+//		    	{
 			    	StringBuilder sql=new StringBuilder()
 			    			.append("insert into ab01")
 			    			.append("(aab102,aab103,aab104,aab105,aab106,")
@@ -228,7 +232,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			    	//成功写入数据库
 			    }
 		    
-	    	}
+//	    	}
     	}
     	catch(Exception e)
     	{
@@ -282,22 +286,17 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	try
     	{
     		Object aab102=this.get("aab102");
-    		Object aab104=this.get("aab104");
     		Object aab105=this.get("aab105");
     		Object aab101=this.get("aab101");
-    		System.out.println("102="+aab102);
-    		System.out.println("104="+aab104);
-    		System.out.println("105="+aab105);
-    		System.out.println("101="+aab101);
+
     		StringBuilder sql = new StringBuilder()
 					    		.append("update ab01 ")
-					    		.append("   set aab102 = ?,aab104=?,aab105=?")
+					    		.append("   set aab102 = ?,aab105=?")
 					    		.append(" where aab101 = ?")
 					    		;
     		Object args[]=
     			{
         			aab102,
-        			aab104,
         			aab105,
         			aab101
     			};
@@ -309,7 +308,46 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     		return false;
     	}
     }
-
+    
+    //用户修改密码
+    public boolean updatePassword()throws Exception
+    {
+    	try
+    	{
+	    	Object aab101 = this.get("aab101");
+	    	Object oaab104 = Tools.getMd5(this.get("oaab104"));
+	    	Object naab104 = Tools.getMd5(this.get("naab104"));
+	    	StringBuilder sql=new StringBuilder()
+	    			.append("select a.aab101")	
+	    			.append("  from ab01 a")
+	    			.append(" where a.aab101=? and a.aab104=?")
+	    			;
+	    	List<Object> paramList =new ArrayList<>();
+	    	paramList.add(aab101);
+	    	paramList.add(oaab104);
+	    	if(this.queryForMap(sql.toString(), paramList.toArray())!=null)
+	    	{
+	    		StringBuilder sql2 = new StringBuilder()
+			    		.append("update ab01 ")
+			    		.append("   set aab104 = ?")
+			    		.append(" where aab101 = ?")
+			    		;
+	    		List<Object> paramList2 =new ArrayList<>();
+		    	paramList2.add(naab104);
+		    	paramList2.add(aab101);
+		    	return this.executeUpdate(sql2.toString(), paramList2.toArray())>0;
+	    	}
+	    	else
+	    	{
+	    		return false;
+	    	}
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    		return false;
+    	}
+    }
 	/**
 	 * 加经验值
 	 * 

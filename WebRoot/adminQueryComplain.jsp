@@ -13,12 +13,12 @@ tr {
 </style>
 </head>
 <body>
-${msg }
-<!-- 引入头部导航栏 -->
-<%@ include file="header.jsp" %>
-<c:if test="${aab108==2}">
-<form id="myform" action="<%=path%>/adminQueryComp.html" method="post">
-  <!-- 查询条件区 -->
+	${msg }
+	<!-- 引入头部导航栏 -->
+	<%@ include file="header.jsp"%>
+	<c:if test="${aab108==2}">
+		<form id="myform" action="<%=path%>/adminQueryComp.html" method="post">
+			<!-- 查询条件区 -->
 
       <center>待处理申诉</center>
 	    <hr width="160">
