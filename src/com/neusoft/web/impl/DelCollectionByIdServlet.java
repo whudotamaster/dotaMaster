@@ -1,4 +1,5 @@
 package com.neusoft.web.impl;
+
 public final class DelCollectionByIdServlet extends CollectionControllerSupport 
 {
 	@Override

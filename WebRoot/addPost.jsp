@@ -75,10 +75,6 @@ ${msg }
 <%@ include file="footer.jsp" %>
 </body>
     <script src="jquery-3.4.1.min.js"></script>
-<<<<<<< HEAD
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
-=======
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
     <script type="text/javascript" src="wangEditor.min.js"></script>
     <script type="text/javascript">
         var E = window.wangEditor

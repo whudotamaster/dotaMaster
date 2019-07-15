@@ -139,11 +139,14 @@ tr {
 					id="goodPost" name="next" value="加精" formaction="<%=path%>/goodPost.html"
 					disabled="disabled">
 					</c:if>
+
 					<c:if test="${ aab101 !=null }">
 					<input type="submit"
 					id="collectionPase" name="next" value="收藏页面" 
 					formaction="<%=path%>/queryCollection.html">
-					<a href="#" onclick="onHistory()">歷史發帖</a>
+					<input type="submit"
+					id="historyPase" name="next" value="歷史發帖" 
+					formaction="<%=path%>/queryHistoryById.html">
 					</c:if>
 					</td>
 			</tr>
@@ -176,13 +179,6 @@ tr {
     	 //alert(vform.action);
     	 vform.submit();
       } 
-      
-      function onHistory()
-      { 
-    	  var vform = document.getElementById("myform");
-    	  vform.action="<%=path%>/queryHistoryById.html";
-    	  vform.submit();
-      }
 
    </script>
 </html>
