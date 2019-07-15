@@ -5,7 +5,7 @@ public final class PostServlet extends ForumControllerSupport
 	@Override
 	public String execute() throws Exception 
 	{
-		this.postOnLoad();
+		this.query("postFindById");
 		return "post";
 	}
 }

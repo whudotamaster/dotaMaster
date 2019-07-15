@@ -56,9 +56,6 @@ ${rows!=null }
             <td>Ê¤¸º</td>
             <td>
             <e:text name="aac1105"   readonly="true"  required="true"  defval="${ins.aac1105 }"/>
-           </td>
-            <td>
-             <e:text name="fvalue"  required="true"  readonly="true" defval="${ins.fvalue }"/> 
             </td>
         </tr>   
         </c:forEach>

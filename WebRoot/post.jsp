@@ -1,4 +1,3 @@
-
 <%@ page  language="java" import="java.util.*" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -61,9 +60,10 @@ ${msg }
 								<img src=<%=path%>/images/${rows[0].aab105 } class="round_icon"
 								onclick="onEdit('${rows[0].aab101}')">
 				    </td>
+				    <c:if test="${(rows[4].aab107)/100 >= rows[0].aab507+0}">
 				    <td>${rows[0].aab502 }</td>
 				    <td>${rows[0].aab503 }
-				    <c:choose>
+				     <c:choose>
 				   	<c:when test="<%=aab101!=null %>">
 				       <input type="button" value="打赏" 
 				       onclick="rewrad('${param.aab501 }','${rows[0].aab101}')"
@@ -87,9 +87,15 @@ ${msg }
 				    </c:otherwise>
 					</c:choose>
 				    </td>
+				    </c:if>
+				    <c:if test="${(rows[4].aab107)/100 < rows[0].aab507+0}">
+				     <td><a style="color:#FF2222 ">------该帖要${rows[0].aab507}級或以上才能观看该帖子------</a></td>
+				     <td><a style="color:#FF2222 ">------该帖要${rows[0].aab507}級或以上才能观看该帖子------</a></td>
+				    </c:if>
 				    <td>${rows[0].aab504 }</td>
 				  </tr>
 				  </table>
+				  <c:if test="${(rows[4].aab107)/100 >= rows[0].aab507+0}">
 				  <table  border="1" width="95%" align="center">
 				  	  <tr>
 	    <td>层数</td>
@@ -98,8 +104,7 @@ ${msg }
 	    <td>时间</td>
 	  </tr>
 		      <!-- 补充空行 -->
-		    <c:forEach items="${rows }" var="ins" varStatus="vs">
-		    <c:if test="${vs.count >4 }">
+		    <c:forEach items="${rows }" var="ins" varStatus="vs" begin="5">
 			          <tr>
 			            <td>${ins.aab602+1 }</td>
 			            	<td>
@@ -111,36 +116,36 @@ ${msg }
 			            <td>${ins.aab603 }</td>
 			            <td>${ins.aab604 }</td>
 			          </tr>
-			          </c:if>
 		      </c:forEach>
+		      </c:if>
 	     </c:when>
 	   </c:choose>
+	   <c:if test="${(rows[4].aab107)/100 >=  rows[0].aab507+0}">
 	     <tr>
      <td>回复</td>
-     <td>
-       <textarea rows="5" cols="45" name="acaab603" required="true"></textarea>
+     <td colspan="3">
+       <textarea rows="5" cols="135	" name="acaab603" required="true"></textarea>
      </td>
    </tr>
+   </c:if>
 	</table>
 	
 	<!-- 功能按钮区 -->
 	<table border="1" width="95%" align="center">
 	  <tr>
 	    <td align="center">
-	       <c:choose>
-  			 <c:when test="<%=aab101!=null %>">
+  			 <c:if test="${aab101 != null && (rows[4].aab107)/100 >= rows[0].aab507+0}">
   			  <input type="submit" name="next" value="回复 ">
-     </c:when>
-     <c:otherwise>
+     </c:if>
+     <c:if test="${aab101 == null}">
        <input type="submit" name="next" value="登录 "
               formaction="<%=path%>/login.html"
                formnovalidate="formnovalidate">
-     </c:otherwise>
-     </c:choose>
+     </c:if>
 	             <input type="submit" name="next" value="返回" 
               formaction="<%=path%>/forum.html"
               formnovalidate="formnovalidate">
-              <c:if test="${aab108 == 2 || aab101 == rows[0].aab101 }">
+              <c:if test="${tag || aab101 == rows[0].aab101 }">
 	       <input type="button" id="del" name="next" value="删除" 
 	              onclick="onDel('${param.aab501}')" 
 	              formnovalidate="formnovalidate" >

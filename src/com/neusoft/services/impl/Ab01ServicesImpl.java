@@ -257,6 +257,25 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	}
     }
     
+    public Map<String,String> queryPersonEmp(Object aab101)throws Exception
+    {
+    	try
+    	{
+    		StringBuilder sql = new StringBuilder()
+    				.append("select a.aab101,a.aab102,a.aab103,a.aab104,a.aab105,")	
+    				.append("						  a.aab106,a.aab107,a.aab108,a.aab109")
+    				.append("  from ab01 a")
+    				.append(" where a.aab101=?")
+    				;
+    		return this.queryForMap(sql.toString(), aab101);
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    		return null;
+    	}
+    }
+    
     //用户修改个人信息
     public boolean personUpdateEmp()throws Exception
     {

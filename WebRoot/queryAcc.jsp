@@ -11,44 +11,10 @@
         height:25px;
      }
    </style>
+
 </head>
 <body>
 <%@ include file="header.jsp" %>
-<script type="text/javascript">
-      var count=0;
-      function onSelect(vstate)
-      {
-    	  vstate?count++:count--;
-    	  var vdel=document.getElementById("del");
-    	  var vaad402=document.getElementById("vaad402");
-    	  var vbuy=document.getElementById("buy");
-    	  vdel.disabled=(count==0);
-    	  vaad402.disabled=(count==0);
-    	  vbuy.disabled=(count==0);
-      }
-      
-      function onEdit(vaac601)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdAcc.html?aac601="+vaac601;
-    	 //alert(vform.action);
-    	 vform.submit();
-      }
-      function onDel(vaac601)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdAcc.html?aac601="+vaac601;
-    	 //alert(vform.action);
-    	 vform.submit();
-      }    
-      function onBuy(vaac601)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/buyAcc.jsp?aac601="+vaac601;
-    	 //alert(vform.action);
-    	 vform.submit();
-      } 
-   </script>  
 ${msg }
 <br>
 <br>
@@ -148,7 +114,7 @@ ${msg }
 	              formaction="<%=path%>/addAcc.jsp">
 	       <c:if test="${aab108==2}">
 	       		<input type="submit" id="del" name="next" value="É¾³ý" 
-	              formaction="<%=path%>/delAcc.html" disabled="disabled">
+	              formaction="<%=path%>/delAcc.html"  disabled="disabled">
 	       </c:if>
 	       <input type="submit" id="buy" name="next" value="ÅúÁ¿¹ºÂò" 
 	              formaction="<%=path%>/buyAccList.html"  disabled="disabled">
@@ -156,7 +122,43 @@ ${msg }
 	    </td>
 	  </tr>
 	</table>
+	<input type="hidden" name="aac901" value="${param.aac901 }">
 	<input type="hidden" name="aab101" value="<%=aab101 %>">
 </form>
 </body>
+<script type="text/javascript">
+      var count=0;
+      function onSelect(vstate)
+      {
+    	  vstate?count++:count--;
+    	  var vdel=document.getElementById("del");
+    	  var vaad402=document.getElementById("vaad402");
+    	  var vbuy=document.getElementById("buy");
+    	  vdel.disabled=(count==0);
+    	  vaad402.disabled=(count==0);
+    	  vbuy.disabled=(count==0);
+      }
+      
+      function onEdit(vaac601)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/findByIdAcc.html?aac601="+vaac601;
+    	 //alert(vform.action);
+    	 vform.submit();
+      }
+      function onDel(vaac601)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/delByIdAcc.html?aac601="+vaac601;
+    	 //alert(vform.action);
+    	 vform.submit();
+      }    
+      function onBuy(vaac601)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/buyAcc.jsp?aac601="+vaac601;
+    	 //alert(vform.action);
+    	 vform.submit();
+      } 
+   </script>  
 </html>

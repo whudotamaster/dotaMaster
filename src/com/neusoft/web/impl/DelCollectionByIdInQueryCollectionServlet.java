@@ -5,7 +5,7 @@ public final class DelCollectionByIdInQueryCollectionServlet extends CollectionC
 	public String execute() throws Exception 
 	{
 		this.update("delCollectionById", "É¾³ýÊÕ²Ø");
-		this.collectionOnLoad();
+		this.query("queryCollectionList");
 		return "queryCollection";
 	}
 }

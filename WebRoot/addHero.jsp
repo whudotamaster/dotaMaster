@@ -22,6 +22,7 @@ ${msg}
 <table  border="1" align="center" width="45%">
     <caption>
        Ó¢ÐÛ${empty param.aac101?'Ìí¼Ó':'ÐÞ¸Ä' }
+       ${empty param.aac101 }
       <hr width="160">
     </caption>
    <tr>

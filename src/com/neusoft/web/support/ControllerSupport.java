@@ -79,26 +79,6 @@ public abstract class ControllerSupport implements BaseController
 		{
 			this.saveAttribute("rows", rows);
 		}
-	}
-	
-	
-	
-	
-
-	/*****************************************
-	 * 	        论坛加载业务流程封装
-	 *****************************************/
-	/**
-	 * 帖子数据批量查询
-	 * @throws Exception
-	 */
-	protected final void forumOnLoad()throws Exception
-	{
-		List<Map<String,String>> rows=this.services.queryPost();
-		if(rows.size()>0)
-		{
-			this.saveAttribute("rows", rows);
-		}
 		else
 		{
 			this.saveAttribute("msg", "没有符合条件的数据!");
@@ -114,68 +94,6 @@ public abstract class ControllerSupport implements BaseController
 			rows=this.services.querySellOrder();
 		else if(methodName.equals("FBIforMore"))
 			rows=this.services.FBIforMore();
-		if(rows.size()>0)
-		{
-			this.saveAttribute("rows", rows);
-		}
-		else
-		{
-			this.saveAttribute("msg", "没有符合条件的数据!");
-		}	
-	}
-	
-
-
-	/*****************************************
-	 * 	        帖子详细頁面加载业务流程封装
-	 *****************************************/
-	/**
-	 * 帖子数据查询
-	 * @throws Exception
-	 */
-	protected final void postOnLoad()throws Exception
-	{
-		List<Map<String,String>> rows=this.services.postFindById();
-		if(rows.size()>0)
-		{
-			this.saveAttribute("rows", rows);
-		}
-		else
-		{
-			this.saveAttribute("msg", "没有符合条件的数据!");
-		}	
-	}
-	
-	/*****************************************
-	 * 	        收藏页面加载业务流程封装
-	 *****************************************/
-	/**
-	 * 用戶收藏数据查询
-	 * @throws Exception
-	 */
-	protected final void collectionOnLoad()throws Exception
-	{
-		List<Map<String,String>> rows=this.services.queryCollectionList();
-		if(rows.size()>0)
-		{
-			this.saveAttribute("rows", rows);
-		}
-		else
-		{
-			this.saveAttribute("msg", "没有符合条件的数据!");
-		}	
-	}
-	
-	/*****************************************
-	 * 	        用户历史发帖页面加载业务流程封装
-	 *****************************************/
-	/**
-	 * 用戶历史发帖数据查询
-	 * @throws Exception
-	 */
-	protected final void queryHistoryOnLoad()throws Exception
-	{
-		List<Map<String,String>> rows=this.services.queryHistory();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
@@ -225,8 +143,7 @@ public abstract class ControllerSupport implements BaseController
 	}
 	
 	//用户注册
-	protected final boolean logonIn()throws Exception
-	{		
+	protected final boolean logonIn()throws Exception{		
 			int ins=this.services.logonPerson();
 			System.out.println("在logonIn中实例化一次");
 			
@@ -312,6 +229,34 @@ public abstract class ControllerSupport implements BaseController
 	protected final void query(String methodName)throws Exception
 	{
 		List<Map<String,String>> rows=this.executeQueryMethod(methodName);
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{	
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+	/**
+	 * 通过反射执行更新方法 return Map
+	 * @param methodName
+	 * @return
+	 * @throws Exception
+	 */
+	private Map<String,String> executeQueryMethodMap(String methodName)throws Exception
+	{
+		//1.获取需要调用的方法对象
+		Method method=this.services.getClass().getDeclaredMethod(methodName);
+		method.setAccessible(true);
+		//2.调用方法
+		return  (Map<String, String>)method.invoke(services);
+	}
+	
+	protected final void queryMap(String methodName)throws Exception
+	{
+		Map<String,String> rows=this.executeQueryMethodMap(methodName);
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);

@@ -15,45 +15,6 @@ String aab108=(String)session.getAttribute("aab108");
         height:25px;
      }
    </style>
-    <style type="text/css">
-   body
-  {
-  color:black;
-  }
-       .demo{
-
-                position:fixed;
-
-                top: 0;
-
-                left: 0;
-
-                width:100%;
-
-                height:100%;
-
-                min-width: 1000px;
-
-                z-index:-10;
-
-                zoom: 1;
-
-                background-color: #fff;
-
-                background: url(images/bg.png);
-
-                background-repeat: no-repeat;
-
-                background-size: cover;
-
-                -webkit-background-size: cover;
-
-                -o-background-size: cover;
-
-                background-position: center 0;
-
-            }
-    </style>
    
    <script type="text/javascript">    
       function onEdit(vaad301)
@@ -69,7 +30,6 @@ String aab108=(String)session.getAttribute("aab108");
 ${msg }
 <br>
 <br>
-<div class="demo"></div>
 <form id="myform" action="<%=path%>/querySendAcc.html" method="post">
 	<!-- 数据迭代区 -->
 	
