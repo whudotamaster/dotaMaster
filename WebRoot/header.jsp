@@ -9,6 +9,46 @@
 <link rel="stylesheet" href="css/style.css"/>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+   body
+  {
+  color:black;
+  }
+       .demo{
+                position:fixed;
+                top: 0;
+                left: 0;
+                width:100%;
+                height:100%;
+                min-width: 1000px;
+                z-index:-10;
+                zoom: 1;
+                background-color: #fff;
+                background: url(images/bg.png);
+                background-repeat: no-repeat;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                background-position: center 0;
+            }
+        .demo2{
+                position:fixed;
+                top: 0;
+                left: 0;
+                width:100%;
+                height:100%;
+                min-width: 1000px;
+                z-index:-10;
+                zoom: 1;
+                background-color: #fff;
+                background: url(images/huonv.png);
+                background-repeat: no-repeat;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                background-position: center 0;
+            }
+    </style>
 </head>
 <%
 String aab101=(String)session.getAttribute("aab101");
@@ -63,18 +103,10 @@ aab101=<%=aab101%>
 <br>
 aab108=<%=aab108%>
 	<SCRIPT language=javascript>
-		<!-- 
-		function out() 
-		{ 
-			if(window.event.toElement.id!="menu" && window.event.toElement.id!="link") 
-			menu.style.visibility="hidden"; 
-		} 
-		//--> 
+	
 		function out1() 
 		{ 
 			if(window.event.toElement.id!="menu1" && window.event.toElement.id!="link") 
 			menu1.style.visibility="hidden"; 
 		} 
-		//--> 
 	</SCRIPT> 
-

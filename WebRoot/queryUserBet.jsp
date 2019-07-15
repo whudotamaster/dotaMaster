@@ -18,6 +18,7 @@ String path=request.getContextPath();
 </head>
 <body>
 ${msg }
+ <div class="demo" ></div>
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryUserBet.html" method="post">
