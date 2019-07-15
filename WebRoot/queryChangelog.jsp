@@ -18,20 +18,19 @@ ${msg }
 <br>
 <%=session.getId() %>
 <br>
-<form id="myform" action="<%=path%>/queryPlayer.html" method="post">
+<form id="myform" action="<%=path%>/queryChangelog.html" method="post">
   <!-- 查询条件区 -->
 	<table border="1" width="35%" align="center">
 	  <caption>
-	            选手信息
-	    <hr width="160">
+	                更新日志
 	  </caption>
 	  <tr>
 	    <td colspan="4">查询条件</td>
 	  </tr>
 	  <tr>
-	    <td>选手名</td>
+	    <td>更新版本号</td>
 	    <td>
-	      <e:text name="qaac1002"/>
+	      <e:text name="qaac1202"/>
 	    </td>
 	  </tr>	 
 	</table>
@@ -40,9 +39,8 @@ ${msg }
 	  <tr>
 	    <td></td>
 	    <td>序号</td>
-	    <td>选手头像</td>
-	    <td>选手名</td>
-	    <td></td>
+	    <td>更新版本号</td>
+	    <td>更新时间</td>
 	   
 	  </tr>
 	   <c:choose>
@@ -51,20 +49,15 @@ ${msg }
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
 				    <td>
-				      <input type="checkbox" name="idlist" value="${ins.aac1001 }"
+				      <input type="checkbox" name="idlist" value="${ins.aac1201 }"
 				             onclick="onSelect(this.checked)" >
 				    </td>
 				    <td>${vs.count }</td>
-				     <td  align="center" style="width:15%; height:15%">
-				       <img alt="no image" src=<%=path%>/images/${ins.aac1004 } style="width:100%; height:100%">
-				     </td>
 				    <td>
 				      <!-- #  空锚 -->
-				     <a href="#" onclick="onEdit('${ins.aac1001}')">${ins.aac1002 }</a>
+				     <a href="#" onclick="onEdit('${ins.aac1201}')">${ins.aac1202 }</a>
 				    </td>
-				    <td>
-				      <a href="#" onclick="onDel('${ins.aac1001}')">删除</a>
-				    </td>
+				     <td>${ins.aac1204 }</td>
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
@@ -74,7 +67,7 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
-			            <td></td>			            
+			            
 			          </tr>
 		      </c:forEach>
 	     </c:when>
@@ -85,7 +78,7 @@ ${msg }
 	             <td></td>
 	             <td></td>
 	             <td></td>
-	             <td></td>	                 
+	             
 	           </tr>
 	        </c:forEach>
 	     </c:otherwise>
@@ -96,10 +89,10 @@ ${msg }
 	  <tr>
 	    <td align="center">
 	       <input type="submit" name="next" value="查询">
+	       <c:if test="${aab108==2}">
 	       <input type="submit" name="next" value="添加" 
-	              formaction="<%=path%>/addPlayer.jsp">
-	       <input type="submit" id="del" name="next" value="删除" 
-	              formaction="<%=path%>/delPlayer.html"  disabled="disabled">
+	              formaction="<%=path%>/addChangelog.jsp">
+	       </c:if>
 	    </td>
 	  </tr>
 	</table>
@@ -114,19 +107,13 @@ ${msg }
     	  vdel.disabled=(count==0);
       }
       
-      function onEdit(vaac1001)
+      function onEdit(vaac1201)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdPlayer.html?aac1001="+vaac1001;
+    	 vform.action="<%=path%>/findByIdChangelog.html?aac1201="+vaac1201;
     	 //alert(vform.action);
     	 vform.submit();
-      }
-      function onDel(vaac1001)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdPlayer.html?aac1001="+vaac1001;
-    	 //alert(vform.action);
-    	 vform.submit();
-      }    
+      }   
+  
    </script>  
 </html>

@@ -43,7 +43,6 @@ ${msg }
 	    <td>比赛开始时间</td>
 	    <td>战队1名称</td>
 	    <td>战队2名称</td>
-	    <td></td>
 	   
 	  </tr>
 	   <c:choose>
@@ -52,22 +51,17 @@ ${msg }
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
 				    <td>
-				      <input type="checkbox" name="idlist" value="${ins.aac1001 }"
+				      <input type="checkbox" name="idlist" value="${ins.aac1101 }"
 				             onclick="onSelect(this.checked)" >
 				    </td>
 				    <td>${vs.count }</td>
 				    <td>${ins.aac702 }</td>
 				    <td>
 				      <!-- #  空锚 -->
-				     <a href="#" onclick="onEdit('${ins.aac1001}')">${ins.aac1102 }</a>
+				     <a href="#" onclick="onEdit('${ins.aac1101}')">${ins.aac1102 }</a>
 				    </td>
 				     <td>${ins.aac1103 }</td>
 				     <td>${ins.aac1104 }</td>
-				     <c:if test="${aab108==2 }">
-				    <td>
-				      <a href="#" onclick="onModify('${ins.aac1001}')">修改</a>
-				    </td>
-				     </c:if>
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
@@ -79,7 +73,6 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
-			            <td></td>				            
 			          </tr>
 		      </c:forEach>
 	     </c:when>
@@ -92,7 +85,6 @@ ${msg }
 	             <td></td>
 	             <td></td>
 	             <td></td>
-	             <td></td>		                 
 	           </tr>
 	        </c:forEach>
 	     </c:otherwise>
@@ -127,14 +119,7 @@ ${msg }
     	 vform.action="<%=path%>/findByIdMatch.html?aac1101="+vaac1101;
     	 //alert(vform.action);
     	 vform.submit();
-      }
-      function onModify(vaac1101)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdMatch2.html?aac1101="+vaac1101;
-    	 //alert(vform.action);
-    	 vform.submit();
-      }    
+      }   
   
    </script>  
 </html>
