@@ -65,38 +65,6 @@ ${msg}
    </tr>
    <tr>
      <td colspan="2" align="center">
-     <c:if test="${aab108!=2}">
-       <input type="submit" name="next" value="返回" 
-              formaction="<%=path%>/queryArticle.html"
-              formnovalidate="formnovalidate">
-     </c:if>
-<<<<<<< HEAD
-<<<<<<< HEAD
-     <c:if test="${aab108==2}">
-     <input type="submit" name="next" value="返回" 
-              formaction="<%=path%>/queryArticle.html"
-=======
-        <!-- 管理员可见的两个按钮 -->
-=======
- <!-- 管理员可见的两个按钮 -->
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
-		<c:if test="${aab108==2}">
-			<input type="submit" name="next" value="返回" 
-              formaction="<%=path%>/adminQueryArticle.html"
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
-              formnovalidate="formnovalidate">
-			<input type="submit" name="pass" value="审核通过"
-					formaction="<%=path%>/passArticle.html"
-					formnovalidate="formnovalidate">
-			<input type="submit" name="unpass" value="审核不通过"
-					formaction="<%=path%>/unpassArticle.html"
-					formnovalidate="formnovalidate">
-		</c:if>
-
-     </td>
-<<<<<<< HEAD
-   </tr>  
-=======
         <!-- 管理员可见的两个按钮 -->
 		<c:if test="${aab108==2}">
 			<input type="submit" name="next" value="返回" 
@@ -112,15 +80,7 @@ ${msg}
 
      </td>
    </tr>
-=======
-   </tr>
-<<<<<<< HEAD
    		<input type="hidden" name="aab801" value="${ins.aab801 }">  
-=======
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
-   		<input type="hidden" name="aab801" value="${ins.aab801 }">
-   
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 </table>
 </form>
 </body>

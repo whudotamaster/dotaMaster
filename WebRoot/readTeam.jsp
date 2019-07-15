@@ -62,11 +62,7 @@ ${msg}
     <td>  
         <input type="submit" name="next" value="战队修改" formaction="<%=path%>/modifyTeam.html" formnovalidate="formnovalidate" >      
    </td>
-<<<<<<< HEAD
-   </c:if test="${aab108==2}">
-=======
    </c:if >
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
    <tr>
     <tr>
      <td colspan="2">成员</td>

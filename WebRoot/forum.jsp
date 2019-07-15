@@ -2,13 +2,6 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl" prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<<<<<<< HEAD
-<%String path=request.getContextPath();
-String aab101=(String)session.getAttribute("aab101");
-String aab108=(String)session.getAttribute("aab108");
-%>
-=======
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 <html>
 <head>
 <title>Insert title here</title>
@@ -28,42 +21,6 @@ tr {
 }
 </style>
 
-<<<<<<< HEAD
-<script type="text/javascript">
-      var count=0;
-      function onSelect(vstate)
-      {
-    	  vstate?count++:count--;
-    	  var vdel=document.getElementById("goodPost");
-    	  vdel.disabled=(count==0);
-      }
-      
-      function onVisit(vaab501)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/post.html?aab501="+ vaab501;
-    	 //alert(vform.action);
-    	 vform.submit();
-      }
-      
-      function onDel(vaab501)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delPostById.html?aab501=" + vaab501;
-    	 //alert(vform.action);
-    	 vform.submit();
-      } 
-      
-      function onHistory()
-      { 
-    	  var vform = document.getElementById("myform");
-    	  vform.action="<%=path%>/queryHistoryById.html";
-    	  vform.submit();
-      }
-
-   </script>
-=======
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 </head>
 <body >
 	${msg }
@@ -177,21 +134,14 @@ tr {
 		<table border="1" width="95%" align="center">
 			<tr>
 				<td align="center"><input type="submit" name="next" value="查询">
-<<<<<<< HEAD
-					<input type="submit" name="next" value="添加"
-					formaction="<%=path%>/addEmp.jsp"> 
-=======
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 					<c:if test="${aab108 == 2 }">
 					<input type="submit"
 					id="goodPost" name="next" value="加精" formaction="<%=path%>/goodPost.html"
 					disabled="disabled">
 					</c:if>
-<<<<<<< HEAD
-					<c:if test="<%=aab101 !=null %>">
-=======
+
 					<c:if test="${ aab101 !=null }">
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
+
 					<input type="submit"
 					id="collectionPase" name="next" value="收藏页面" 
 					formaction="<%=path%>/queryCollection.html">
@@ -201,10 +151,6 @@ tr {
 			</tr>
 		</table>
 		 <e:hidden name="aab101" defval="<%=aab101 %>"/>
-<<<<<<< HEAD
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
-=======
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 	</form>
 <%@include file="footer.jsp" %>
 </body>
