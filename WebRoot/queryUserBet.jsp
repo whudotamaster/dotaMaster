@@ -49,9 +49,9 @@ ${msg }
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
 				    <td>${vs.count }</td>
-				    <td>${ins.aac1102 }</td>
 				    <td>${ins.aac1103 }</td>
 				    <td>${ins.aac1104 }</td>
+				    <td>${ins.aac1102 }</td>
 				    <td>${ins.aad202 }</td>
 				    <td>${ins.aad203 }</td>
 				    <td>${ins.aad204 }</td>
