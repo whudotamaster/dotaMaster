@@ -18,7 +18,7 @@ import javax.servlet.http.Part;
 
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.services.impl.Ab01ServicesImpl;
-import com.neusoft.services.impl.Ad06ServicesImpl;import sun.security.util.Length;
+import com.neusoft.services.impl.Ad06ServicesImpl;
 
 
 @WebServlet("*.html")
