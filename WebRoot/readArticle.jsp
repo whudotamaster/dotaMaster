@@ -23,7 +23,6 @@ ${msg}
 <table  border="1" align="center" width="45%">
     <caption>
                ндуб${empty param.aab801?'лМ╪с':'тд╤а' }
-       ${empty param.aab801 }
       <hr width="160">
     </caption>
    <tr>

@@ -64,8 +64,6 @@ public class Ad05ServicesImpl extends JdbcServicesSupport
 	    	return this.queryForMap(sql.toString(), this.get("aad501"));
 	    }
 	
-	
-	
 //管理员处理投诉意见 update
 	public boolean doneById()throws Exception
 	{

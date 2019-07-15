@@ -55,7 +55,7 @@ ${msg}
     <tr>
      <td>Õ½¶Ó¼ò½é</td>
      <td>
-       <e:textarea rows="5" cols="45" name="aac904" defval="${rows[0].aac904 }"/>
+       <e:textarea rows="5" cols="45" name="aac904" readonly="${aab108!=2}" defval="${rows[0].aac904 }"/>
      </td>
    </tr>
     <c:if test="${aab108==2}" >  

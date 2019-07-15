@@ -11,7 +11,11 @@ tr {
 </style>
 </head>
 <body>
+<<<<<<< HEAD
 	${mst }
+=======
+	${msg }
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 	<!-- 引入头部导航栏 -->
 	<%@ include file="header.jsp"%>
 	<c:if test="${aab108==2}">
