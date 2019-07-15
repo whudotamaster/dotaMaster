@@ -77,4 +77,8 @@ aab108=<%=aab108%>
 			menu1.style.visibility="hidden"; 
 		} 
 		//--> 
+<<<<<<< HEAD
 	</SCRIPT> 
+=======
+	</SCRIPT> 
+>>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git

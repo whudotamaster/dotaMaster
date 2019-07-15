@@ -6,7 +6,8 @@ public class RewardServlet extends EmpControllerSupport
 	@Override
 	public String execute() throws Exception 
 	{
-		this.update("reward", "¥Ú…Õ");
+
+		this.update("reward");
 		this.postOnLoad();
 		return "post";
 	}

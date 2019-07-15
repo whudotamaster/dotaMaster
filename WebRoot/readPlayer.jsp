@@ -64,7 +64,7 @@ ${msg}
    <tr>
      <td>—° ÷ºÚΩÈ</td>
      <td>
-       <e:textarea rows="5" cols="45" name="aac1005" readonly="true"  defval="${ins.aac1005 }"/>
+       <e:textarea rows="5" cols="45" name="aac1005" readonly="${aab108!=2}"  defval="${ins.aac1005 }"/>
      </td>
    </tr>
    <tr>
@@ -78,7 +78,7 @@ ${msg}
      </td>
    </tr>
 </table>
-<input type="hidden" name="aac901" value="${param.aac901 }">
+<input type="hidden" name="aac1001" value="${param.aac1001 }">
 </form>
 </body>
 </html>

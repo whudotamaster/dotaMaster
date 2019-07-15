@@ -6,7 +6,7 @@ public class QueryTeamServlet extends TeamControllerSupport {
 	@Override
 	public String execute() throws Exception
 	{
-		this.savePageData();
+		this.query("query");
 		return "queryTeam";
 	}
 

@@ -21,6 +21,7 @@ import com.neusoft.services.impl.Ab01ServicesImpl;
 import com.neusoft.services.impl.Ad06ServicesImpl;
 
 
+
 @WebServlet("*.html")
 public class BaseServlet extends HttpServlet 
 {
