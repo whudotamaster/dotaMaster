@@ -4,10 +4,11 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
-<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
-<script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet"  href="css/bootstrap.min.css"/>
+<link rel="stylesheet" href="css/style.css"/>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </head>
 <%
 String aab101=(String)session.getAttribute("aab101");
@@ -20,15 +21,15 @@ String path=request.getContextPath();
 	
 		    <form action="<%=path%>/queryBet.html" method="post">			
 			<input type="hidden" name="aab101" value="<%=aab101%>">
-			<button style="submit" formaction="<%=path%>/mainPage.jsp">主页</button>
-		    <button style="submit" >竞猜</button>
-		    <button style="submit" formaction="<%=path%>/queryArticle.html">文章</button>
-		    <button style="submit" formaction="<%=path%>/queryAcc.html">饰品</button>
+			<button style="submit" class="btn btn-light" formaction="<%=path%>/mainPage.jsp">主页</button>
+		    <button style="submit" class="btn btn-light" >竞猜</button>
+		    <button style="submit" class="btn btn-light"formaction="<%=path%>/queryArticle.html">文章</button>
+		    <button style="submit" class="btn btn-light"formaction="<%=path%>/queryAcc.html">饰品</button>
 
 	         <c:if test="${aab108==2}">
-	            <button style="submit" formaction="<%=path%>/adminGo.jsp">网站管理</button>
+	            <button style="submit" class="btn btn-light" formaction="<%=path%>/adminGo.jsp">网站管理</button>
 		   </c:if>
- 		<button style="submit" formaction="<%=path%>/forum.html">论坛</button>
+ 		<button style="submit" class="btn btn-light" formaction="<%=path%>/forum.html">论坛</button>
 
 		    </form>
 	

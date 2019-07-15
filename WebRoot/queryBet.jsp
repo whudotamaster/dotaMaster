@@ -7,17 +7,55 @@
    <title>Insert title here</title>
    <%@ include file="header.jsp" %>
    <style type="text/css">
-     tr
-     {
-        height:25px;
-     }
-   </style>
+   body
+  {
+  color:black;
+  }
+       .demo{
+
+                position:fixed;
+
+                top: 0;
+
+                left: 0;
+
+                width:100%;
+
+                height:100%;
+
+                min-width: 1000px;
+
+                z-index:-10;
+
+                zoom: 1;
+
+                background-color: #fff;
+
+                background: url(images/bg.png);
+
+                background-repeat: no-repeat;
+
+                background-size: cover;
+
+                -webkit-background-size: cover;
+
+                -o-background-size: cover;
+
+                background-position: center 0;
+
+            }
+            
+
+ 
+    </style>
+            
+
    
    <script type="text/javascript">    
-      function onBet(vaad101)
+      function onBet(vaad101,count)
       {
     	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/playBet.html?aad101="+vaad101;
+    	 vform.action="<%=path%>/playBet.html?aad101="+vaad101+"&count="+count;
     	 //alert(vform.action);
     	 vform.submit();
       } 
@@ -39,17 +77,17 @@
 </head>
 <body>
 
+ <div class="demo" ></div>
+
 ${msg }
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryBet.html" method="post" >
 	<!-- 数据迭代区 -->
-	
-	<table border="1" width="95%" align="center" class="table table-bordered">
-	 <caption>
-	               可押注比赛
-	    <hr width="160">
-	  </caption>
+		
+	<table align="center" class="table table-striped" style="background-color:#C8FFFF;opacity: 0.9;width:90%">
+	   <caption align="left"><font color="#000000" size="5px">可押注比赛</font> </caption>
+
 	  <tr>
 	    <td>序号</td>
 	    <td>赛事</td>
@@ -72,7 +110,7 @@ ${msg }
 	     <c:when test="${rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
-	    	   	  <tr>
+	    	   	  <tr style="height:40px">
 				    <td>${vs.count }</td>
 				    <td>${ins.aac702 }</td>
 				    <td>${ins.aac1103 }</td>
@@ -81,21 +119,21 @@ ${msg }
 				    <td>${ins.aad102 }</td>
 				    <td>${ins.aad103 }</td>
 				    <td>
-				      <input type="text" name="aad202"  value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
+				      <input type="text" name="aad202${vs.count }"  value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
     onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
 				    </td>
 				    <td>
-				      <input type="text" name="aad203"  value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
+				      <input type="text" name="aad203${vs.count }"  value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
     onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
 				    </td>
 				   <td>
-				      <a href="#" onclick="onBet('${ins.aad101}')">下注</a>
+				      <a href="#" onclick="onBet('${ins.aad101}','${vs.count }')">下注</a>
 				    </td>
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
 		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
-			          <tr>
+			           <tr style="height:40px">
 			            <td></td>
 			            <td></td>
 			            <td></td>
@@ -111,7 +149,7 @@ ${msg }
 	     </c:when>
 	     <c:otherwise>
 	        <c:forEach begin="1" step="1" end="15">
-	           <tr>
+	            <tr style="height:40px">
 	             <td></td>
 	             <td></td>
 	             <td></td>
@@ -126,12 +164,13 @@ ${msg }
 	     </c:otherwise>
 	   </c:choose>
 	</table>
+	</div>
 	<!-- 功能按钮区 -->
-	<table border="1" width="95%" align="center">
+	<table border="1"  align="center" >
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="查询">
-	       <input type="submit" name="next" value="查看历史押注" 
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="查询">
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="查看历史押注" 
 	              formaction="<%=path%>/queryUserBet.html">
 	    </td>
 	  </tr>

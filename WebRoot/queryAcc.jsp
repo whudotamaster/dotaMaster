@@ -117,7 +117,7 @@ ${msg }
 	              formaction="<%=path%>/delAcc.html"  disabled="disabled">
 	       </c:if>
 	       <input type="submit" id="buy" name="next" value="批量购买" 
-	              formaction="<%=path%>/buyAccList.html"  disabled="disabled">
+	              formaction="<%=path%>/buyAccList.html"  disabled="disable">
 	       <input type="text" id="vaad402" name="aad402" placeholder="输入玩家编号" disabled="disabled">
 	    </td>
 	  </tr>
