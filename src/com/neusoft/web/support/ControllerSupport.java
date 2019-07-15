@@ -79,10 +79,6 @@ public abstract class ControllerSupport implements BaseController
 		{
 			this.saveAttribute("rows", rows);
 		}
-		else
-		{
-			this.saveAttribute("msg", "没有符合条件的数据!");
-		}	
 	}
 	
 	

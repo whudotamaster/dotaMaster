@@ -26,13 +26,12 @@ tr {
 	<%@ include file="header.jsp" %>
 	${msg }
 	<br>
-	<%=session.getId() %>
 	<br>
 	<form id="myform" action="<%=path%>/forum.html" method="post">
 		<!-- 查询条件区 -->
 		<table border="1" width="95%" align="center">
 			<caption>
-				收藏页面
+				历史发帖页面
 				<hr width="160">
 			</caption>
 		</table>
@@ -97,7 +96,7 @@ tr {
 			<tr>
 				<td align="center">
 				<input type="submit"
-					id="delPost" name="next" value="删除收藏" 
+					id="delPost" name="next" value="删除发帖" 
 					disabled="disabled"
 					formaction="<%=path%>/delHistory.html">
 				  <input type="submit" name="next" value="返回" 

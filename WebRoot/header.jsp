@@ -20,6 +20,7 @@ String path=request.getContextPath();
 	
 		    <form action="<%=path%>/queryBet.html" method="post">			
 			<input type="hidden" name="aab101" value="<%=aab101%>">
+			<button style="submit" formaction="<%=path%>/mainPage.jsp">主页</button>
 		    <button style="submit" >竞猜</button>
 		    <button style="submit" formaction="<%=path%>/queryArticle.html">文章</button>
 		    <button style="submit" formaction="<%=path%>/queryAcc.html">饰品</button>
@@ -37,8 +38,7 @@ String path=request.getContextPath();
 				<font color=red size=2>
 				   <c:if test="${aab108==2}">管理员  <%=aab102%></c:if>
 			 	   <c:if test="${aab108==1}">用户  <%=aab102%></c:if>
-				   <c:if test="${aab108==null}">游客</c:if>
-				 
+				   <c:if test="${aab108==null}">游客</c:if>		 
 				</font>
 			</span> 
 			<!--实现鼠标悬停出现菜单  -->
@@ -57,8 +57,6 @@ String path=request.getContextPath();
 
 				</div> 
 			</div> 
-
-
 </div>
 aab101=<%=aab101%>
 <br>
