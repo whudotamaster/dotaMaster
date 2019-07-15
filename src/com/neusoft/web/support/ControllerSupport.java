@@ -231,7 +231,6 @@ public abstract class ControllerSupport implements BaseController
 	//用户注册
 	protected final boolean logonIn()throws Exception
 	{		
-
 			int ins=this.services.logonPerson();
 			System.out.println("在logonIn中实例化一次");
 			

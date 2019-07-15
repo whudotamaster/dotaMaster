@@ -203,5 +203,4 @@ ${msg }
     	  vform.submit();
       }
    </script>
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 </html>

@@ -140,5 +140,4 @@ tr {
       } 
       
    </script>
->>>>>>> branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 </html>

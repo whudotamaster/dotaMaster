@@ -74,7 +74,6 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	private boolean delPostById() throws Exception 
 	{
 		Object aab501 = this.get("aab501");
-
 		String sql0 = "delete from ab11 where aab501=?";
 		String sql1 = "delete from ab06 where aab501=?";
 		String sql2 = "delete from ab07 where aab501=?";

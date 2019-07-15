@@ -1,5 +1,4 @@
 package com.neusoft.web.impl;
-
 public final class AddCollectionByIdServlet extends CollectionControllerSupport 
 {
 	@Override

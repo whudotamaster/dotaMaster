@@ -141,7 +141,6 @@ tr {
 					</c:if>
 
 					<c:if test="${ aab101 !=null }">
-
 					<input type="submit"
 					id="collectionPase" name="next" value="ÊÕ²ØÒ³Ãæ" 
 					formaction="<%=path%>/queryCollection.html">
