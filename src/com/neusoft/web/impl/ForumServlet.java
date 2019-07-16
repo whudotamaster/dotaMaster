@@ -5,7 +5,7 @@ public final class ForumServlet extends ForumControllerSupport
 	@Override
 	public String execute() throws Exception 
 	{
-		this.forumOnLoad();
+		this.query("queryPost");
 		return "forum";
 	}
 }

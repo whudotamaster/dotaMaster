@@ -5,7 +5,7 @@ public final class DelLikeServlet extends LikeControllerSupport
 	public String execute() throws Exception 
 	{
 		this.update("delLike", "È¡ÏûµãÔÞ");
-		this.postOnLoad();
+		this.query("postFindById");
 		return "post";
 	}
 }

@@ -6,7 +6,7 @@ public class QueryHistoryByIdServlet extends ForumControllerSupport
 	@Override
 	public String execute() throws Exception 
 	{
-		this.queryHistoryOnLoad();
+		this.query("queryHistory");
 		return "queryHistoryPost";
 	}
 

@@ -5,7 +5,7 @@ public final class AddLikeServlet extends LikeControllerSupport
 	public String execute() throws Exception 
 	{
 		this.update("addLike", "µãÔÞ");
-		this.postOnLoad();
+		this.query("postFindById");
 		return "post";
 	}
 }

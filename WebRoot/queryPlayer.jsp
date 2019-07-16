@@ -43,6 +43,7 @@ ${msg }
 	    <td>选手头像</td>
 	    <td>选手名</td>
 	    <td></td>
+	    <td></td>
 	   
 	  </tr>
 	   <c:choose>

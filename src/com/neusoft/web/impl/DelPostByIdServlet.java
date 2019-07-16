@@ -6,7 +6,7 @@ public final class DelPostByIdServlet extends ForumControllerSupport
 	public String execute() throws Exception 
 	{
 		this.update("delPostById","„h³ý");
-		this.forumOnLoad();
+		this.query("queryPost");
 		return "forum";
 	}
 }

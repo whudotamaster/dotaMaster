@@ -30,16 +30,12 @@ tr {
 	<form id="myform" action="<%=path%>/forum.html" method="post">
 		<!-- 查询条件区 -->
 		<table border="1" width="95%" align="center">
-			<caption>
-				论坛主页
-				<hr width="160">
-			</caption>
 			<tr>
 				<td colspan="4">查询条件</td>
 			</tr>
 			<tr>
-				<td>标签名称</td>
-				<td><e:text name="aab502" /></td>
+				<td>查询內容</td>
+				<td colspan="2"><e:text name="aab502" /></td>
 			</tr>
 			<tr>
 				<td>区块</td>
@@ -61,12 +57,17 @@ tr {
 		<!-- 数据迭代区 -->
 		<table border="1" width="95%" align="center">
 			<tr>
+				<c:if test="${tag}">
 				<td></td>
+				</c:if>
 				<td>帖标题</td>
 				<td>发帖人</td>
 				<td>回复数</td>
-				<td>时间</td>
-				<td></td>
+				<td>时间</td>	
+				<c:if test="${tag}">
+				<td>
+				</td>
+				</c:if>	
 			</tr>
 			<!--
 	         注意事项
@@ -77,17 +78,23 @@ tr {
 			<c:choose>
 				<c:when test="${rows!=null }">
 					<!-- 显示实际查询到的数据 -->
-					<c:forEach items="${rows }" var="ins" varStatus="vs">
+					<c:forEach items="${rows }" var="ins" varStatus="vs" begin="1">
 						<tr>
+						<c:if test="${tag}">
 						<td>
-						<c:if test="${aab108 == 2 }">
 							<input type="checkbox" name="idlist"
 								value="${ins.aab501 }" onclick="onSelect(this.checked)">
-							</c:if>
+						
 							</td>
+								</c:if>
 							<td>
 							<!-- #  空锚 --> 
-							<a href="#" onclick="onVisit('${ins.aab501 }')">${ins.aab502 }</a>
+							<c:if test="${(rows[0].aab107)/100 >= ins.aab507 || ins.aab101 == aab101}">
+							<a href="#" onclick="onVisit('${ins.aab501 }','${ins.aab507 }')">${ins.aab502 }</a>
+							</c:if>
+							<c:if test="${(rows[0].aab107)/100 < ins.aab507 && ins.aab101 != aab101 }">
+							<a href="#" onclick="alert('该帖要${ins.aab507}級或以上才能观看该帖子');" style="color:#FF2222 ">------该帖要${ins.aab507}級或以上才能观看该帖子------</a>
+							</c:if>
 							</td>
 							<td>
 								<!-- #  用户名及头像--> 
@@ -97,34 +104,44 @@ tr {
 							</td>
 							<td>${ins.aab505 }</td>
 							<td>${ins.aab504 }</td>
+							<c:if test="${tag}">
 							<td>
-							<c:if test="${aab108 == 2 || ins.aab101 == aab101}">
 							<a href="#" onclick="onDel('${ins.aab501}')">删除</a>
-							</c:if>
 							</td>
+							</c:if>	
 						</tr>
 					</c:forEach>
 					<!-- 补充空行 -->
 					<c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
 						<tr>
+							<c:if test="${tag }">
+							<td></td>
+							</c:if>
 							<td></td>
 							<td></td>
 							<td></td>
 							<td></td>
-							<td></td>
-							<td></td>
+							<c:if test="${tag }">
+							<td>
+							</td>
+							</c:if>	
 						</tr>
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
 					<c:forEach begin="1" step="1" end="15">
 						<tr>
+							<c:if test="${tag}">
+							<td></td>
+							</c:if>
 							<td></td>
 							<td></td>
 							<td></td>
 							<td></td>
-							<td></td>
-							<td></td>
+							<c:if test="${tag }">
+							<td>
+							</td>
+							</c:if>	
 						</tr>
 					</c:forEach>
 				</c:otherwise>
@@ -134,12 +151,14 @@ tr {
 		<table border="1" width="95%" align="center">
 			<tr>
 				<td align="center"><input type="submit" name="next" value="查询">
-					<c:if test="${aab108 == 2 }">
+					<c:if test="${tag }">
 					<input type="submit"
 					id="goodPost" name="next" value="加精" formaction="<%=path%>/goodPost.html"
 					disabled="disabled">
+					<input type="submit"
+					id="delPost" name="next" value="删除" formaction="<%=path%>/delPost.html"
+					disabled="disabled">
 					</c:if>
-
 					<c:if test="${ aab101 !=null }">
 					<input type="submit"
 					id="collectionPase" name="next" value="收藏页面" 
@@ -161,15 +180,19 @@ tr {
       {
     	  vstate?count++:count--;
     	  var vdel=document.getElementById("goodPost");
+    	  var vde2=document.getElementById("delPost");
     	  vdel.disabled=(count==0);
+    	  vde2.disabled=(count==0);
       }
       
-      function onVisit(vaab501)
+      function onVisit(vaab501,vaab507)
       {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/post.html?aab501="+ vaab501;
-    	 //alert(vform.action);
-    	 vform.submit();
+    	 if(${aab507/100 >= vaab507+0}){
+    		 var vform = document.getElementById("myform");
+        	 vform.action="<%=path%>/post.html?aab501="+ vaab501;
+        	 //alert(vform.action);
+        	 vform.submit();
+    	 }
       }
       
       function onDel(vaab501)
@@ -179,6 +202,6 @@ tr {
     	 //alert(vform.action);
     	 vform.submit();
       } 
-
+      
    </script>
 </html>

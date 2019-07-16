@@ -43,13 +43,10 @@ public interface BaseServices
     	 return null;
      }
 
-
-
      default List<Map<String,String>> adminQuery()throws Exception
      {
     	 return null;
      }
-     
      
      default List<Map<String,String>> queryBuyOrder()throws Exception
      {
@@ -60,16 +57,6 @@ public interface BaseServices
      {
     	 return null;
      }
-     
-	 default List<Map<String,String>> queryPost()throws Exception
-     {
-    	 return null;
-     }
-
-	default List<Map<String, String>> postFindById()throws Exception
-	{
-		return null;
-	}
 	
 	default boolean psnAddComplaint()throws Exception
 	{
@@ -80,11 +67,6 @@ public interface BaseServices
 	{
 		return null;
 	}
-
-	 default List<Map<String, String>> commentFindById()throws Exception
-	 {
-		return null;
-	 }
 
 	 default Map<String, String> loginEmp() throws Exception
 	 {
@@ -106,18 +88,4 @@ public interface BaseServices
 		return false;
 	 }
 
-	default List<Map<String,String>> queryCollection()throws Exception
-	{
-		return null;
-	}
-	
-	default List<Map<String,String>> queryCollectionList()throws Exception
-	{
-		return null;
-	}
-
-	default List<Map<String,String>> queryHistory()throws Exception
-	{
-		return null;
-	}
 }

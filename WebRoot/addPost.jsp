@@ -33,12 +33,18 @@ ${msg }
 	       <e:text name="apaab502"  required="true" defval=""/> 
 	     </td>
 	   </tr>
+	    <tr>
+	     <td>观看权限</td>
+	     <td>
+	       <e:select name="apaab507" value="不限:0,1级会员:1,2级会员:2,3级会员:3,4级会员:4,5级会员:5,管理員:9" defval="0" />
+	     </td>
+	   </tr>
 	   <tr>
      <td>內容</td>
      <td>
     <!--     <e:textarea rows="5" cols="45" name="apaab503" required="true" defval=""/>
        -->
-      <div id="editor"></div>
+      <div id="editor" style="width:75%,max-width:750px,min-width:500px"></div>
    
      </td>
    </tr>
@@ -84,7 +90,9 @@ ${msg }
             // 监控变化，同步更新到 textarea
             $text1.val(html)
         }
+        if(${rows.aab107 > 200}){
         
+       
         editor.customConfig.menus = [
     'head',  // 标题
     'bold',  // 粗体
@@ -98,6 +106,15 @@ ${msg }
     'list',  // 列表
     'justify',  // 对齐方式
 ];
+        }
+        else
+        	{
+        	  editor.customConfig.menus = [
+        		    'bold',  // 粗体
+        		    'fontSize',  // 字号
+        		    'foreColor',  // 文字颜色
+        		];
+        	}
         editor.create()
         // 初始化 textarea 的值
         $text1.val(editor.txt.html())

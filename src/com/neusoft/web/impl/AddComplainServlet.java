@@ -4,7 +4,7 @@ public class AddComplainServlet extends ComplainControllerSupport
 	  @Override
 	  public String execute()throws Exception
 	  {
-		  this.update("psnAddComplain","Í¶Ëß");
+		  this.update("psnAddComplaint","Í¶Ëß");
 		  return "compToAdmin";
 	  }
   

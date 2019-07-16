@@ -7,7 +7,7 @@ public class RewardServlet extends EmpControllerSupport
 	public String execute() throws Exception 
 	{
 		this.update("reward");
-		this.postOnLoad();
+		this.query("postFindById");
 		return "post";
 	}
 

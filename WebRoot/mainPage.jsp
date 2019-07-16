@@ -25,7 +25,7 @@
 <body>
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
-<div class="demo2" style="opacity: 0.9"></div>
+
 <div id="main">
 
  <%=aab101%>
