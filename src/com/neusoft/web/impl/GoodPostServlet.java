@@ -6,7 +6,7 @@ public final class GoodPostServlet extends ForumControllerSupport
 	public String execute() throws Exception 
 	{
 		this.update("modifyGoodPost","¼Ó¾«");
-		this.forumOnLoad();
+		this.query("queryPost");
 		return "forum";
 	}
 }

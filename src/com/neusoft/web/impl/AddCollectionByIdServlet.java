@@ -5,7 +5,7 @@ public final class AddCollectionByIdServlet extends CollectionControllerSupport
 	public String execute() throws Exception 
 	{
 		this.update("addCollectionById");
-		this.postOnLoad();
+		this.query("postFindById");
 		return "post";
 	}
 }

@@ -4,12 +4,11 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
-<link rel="stylesheet"  href="css/bootstrap.min.css"/>
-<link rel="stylesheet" href="css/style.css"/>
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-    <style type="text/css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <style type="text/css">
    body
   {
   color:black;
@@ -98,15 +97,16 @@ String path=request.getContextPath();
 	       			<input type="submit" name="psgToNotice" formaction="<%=path%>/login.jsp" value="查看系统消息"><BR>
 	     	    </c:if>
 			</form>
+			</div>
+			</div>
+			
 
-		</div> 
-	</div> 
 </div>
 aab101=<%=aab101%>
 <br>
 aab108=<%=aab108%>
 	<SCRIPT language=javascript>
-	<!-- 
+<!-- 
 	function out() 
 	{ 
 		if(window.event.toElement.id!="menu" && window.event.toElement.id!="link") 
@@ -119,9 +119,13 @@ aab108=<%=aab108%>
 			if(window.event.toElement.id!="menu1" && window.event.toElement.id!="link") 
 			menu1.style.visibility="hidden"; 
 		} 
+
 		//--> 
 		
 	
 
 
 	</SCRIPT> 
+
+
+

@@ -23,6 +23,7 @@ ${msg}
 <table  border="1" align="center" width="45%">
     <caption>
                文章${empty param.aab801?'添加':'阅读' }
+       ${empty param.aab801 }
       <hr width="160">
     </caption>
    <tr>
@@ -64,7 +65,12 @@ ${msg}
    </tr>
    <tr>
      <td colspan="2" align="center">
-        <!-- 管理员可见的两个按钮 -->
+     <c:if test="${aab108!=2}">
+       <input type="submit" name="next" value="返回" 
+              formaction="<%=path%>/queryArticle.html"
+              formnovalidate="formnovalidate">
+     </c:if>
+ <!-- 管理员可见的两个按钮 -->
 		<c:if test="${aab108==2}">
 			<input type="submit" name="next" value="返回" 
               formaction="<%=path%>/adminQueryArticle.html"
@@ -79,8 +85,7 @@ ${msg}
 
      </td>
    </tr>
-   		<input type="hidden" name="aab801" value="${ins.aab801 }">  
-
+   		<input type="hidden" name="aab801" value="${ins.aab801 }">
 </table>
 </form>
 </body>

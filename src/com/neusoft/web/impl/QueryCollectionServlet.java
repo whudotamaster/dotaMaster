@@ -5,7 +5,7 @@ public final class QueryCollectionServlet extends CollectionControllerSupport
 	@Override
 	public String execute() throws Exception 
 	{
-		this.collectionOnLoad();
+		this.query("queryCollectionList");
 		return "queryCollection";
 	}
 }

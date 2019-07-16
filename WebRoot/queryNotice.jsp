@@ -69,6 +69,8 @@ ${msg }
 	
 	<!-- 功能按钮区 -->
 	<table border="1" width="95%" align="center">
+		<input type="hidden" name="aab101" value="<%=aab101%>">
+	
 	  <tr>
 	    <td align="center">
 	       <input type="submit" name="next" value="刷新">

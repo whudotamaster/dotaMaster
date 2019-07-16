@@ -1,3 +1,4 @@
+
 package com.neusoft.services.impl;
 
 import java.util.ArrayList;
@@ -45,52 +46,6 @@ public class Ad06ServicesImpl extends JdbcServicesSupport
 		return this.queryForList(sql,aab101);
 	}
 	
-	//管理员按照时间顺序列表待审核投诉
-//		public List<Map<String,String>> adminQueryComplain()throws Exception
-//		{
-//		  		//定义SQL主体
-//		  		StringBuilder sql=new StringBuilder()		  			
-//		  				.append("  SELECT a.aad601,a.aab101,a.aad602,a.aad603,a.aad604,a.aad605,b.aab102  ")  
-//		  				.append("    FROM ad06 a ,ab01 b")
-//		  				.append("   WHERE a.aad604=1 and b.aab101=a.aab101 ")//504待审核为1
-//	  			    	.append(" ORDER BY a.aad605 DESC")//按照投诉时间降序排列
-//		  				;
-//		  		return this.queryForList(sql.toString());  	
-//		  }
-//	//findbyid展示投诉页面
-//		public Map<String,String> findById()throws Exception
-//	    {
-//	    	//1.编写SQL语句
-//	    	StringBuilder sql =new StringBuilder()
-//	    			.append(" SELECT a.aad601,a.aab101,a.aad602,a.aad603,a.aad604,a.aad605 ,b.aab102   ")   
-//	    			.append("   FROM ad06 a ,ab01 b")
-//	  				.append("  WHERE a.aad601=? and b.aab101=a.aab101 ")//PrincessConnectionRe-dive
-//	    			;
-//	    	//执行查询
-//	    	return this.queryForMap(sql.toString(), this.get("aad601"));
-//	    }
-//	
-//	
-//	
-////管理员处理投诉意见 update
-//	public boolean doneById()throws Exception
-//	{
-//		StringBuilder sql=new StringBuilder()
-//				.append("UPDATE ad06 ")
-//				.append("   SET aad604 = 2 , aad606 = current_timestamp()")
-//				.append(" WHERE aad601 = ?")//通过
-//				;
-//  		return this.executeUpdate(sql.toString(),this.get("aad601"))>0;
-//	}
-//	
-//	public boolean undoneById()throws Exception
-//	{
-//		StringBuilder sql=new StringBuilder()
-//				.append("UPDATE ad06 ")
-//				.append("   SET aad604 = 3 , aad606 = current_timestamp()")
-//				.append(" WHERE aad601 = ?")//不通过
-//				;
-//  		return this.executeUpdate(sql.toString(),this.get("aad601"))>0;
-//	}
-//	
+
 }
+

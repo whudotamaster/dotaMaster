@@ -6,7 +6,7 @@ public final class DelPostServlet extends ForumControllerSupport
 	public String execute() throws Exception 
 	{
 		this.update("delPost","„h³ý");
-		this.forumOnLoad();
+		this.query("queryPost");
 		return "forum";
 	}
 }

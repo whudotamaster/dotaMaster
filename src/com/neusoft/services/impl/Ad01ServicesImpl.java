@@ -24,9 +24,8 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 	{
 		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
 		Double aab106=ab01.getMoney(aab101);
-		String count=this.get("count").toString();
-		int aad202=Integer.parseInt(this.get("aad202"+count).toString());
-		int aad203=Integer.parseInt(this.get("aad203"+count).toString());
+		int aad202=Integer.parseInt(this.get("aad202").toString());
+		int aad203=Integer.parseInt(this.get("aad203").toString());
 		if(aab106>aad202+aad203)
 			return true;
 		else 
@@ -47,28 +46,15 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     			.append("insert into ad02(aad101,aab101,aad202,aad203)")
     			.append("          values(?,?,?,?)")
     			;
-    	int aad202=0;
-    	int aad203=0;
-    	String count=this.get("count").toString();
-    	if(Integer.parseInt(this.get("aad202"+count).toString())!=0)
-    	{
-    		aad202=Integer.parseInt(this.get("aad202"+count).toString());
-    	}
-    	if(Integer.parseInt(this.get("aad203"+count).toString())!=0)
-    	{
-    		aad203=Integer.parseInt(this.get("aad203"+count).toString());
-    	}
-    	System.out.println(aad202);
-    	System.out.println(aad203);
     	Object args1[]={
     			this.get("aad101"),
     			this.get("aab101"),
-    			aad202,
-    			aad203
+    			this.get("aad202"),
+    			this.get("aad203")
     	};
     	this.apppendSql(sql1.toString(), args1);
     	//¿Û³ýÓÃ»§½ð¶î
-    	int aab106=0-aad202-aad203;
+    	int aab106=0-Integer.parseInt(this.get("aad202").toString())-Integer.parseInt(this.get("aad203").toString());
     	Ab01ServicesImpl ab01=new Ab01ServicesImpl();
     	ab01.updateMoney(aab106, this.get("aab101"));
     	
@@ -83,8 +69,8 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     			.append(" where aad101=?")
     			;
     	Object args2[]={
-    			aad202,
-    			aad203,
+    			this.get("aad202"),
+    			this.get("aad203"),
     			this.get("aad101")
     	};
     	this.apppendSql(sql2.toString(), args2);

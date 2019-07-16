@@ -6,7 +6,7 @@ public final class AddCommentServlet extends ForumControllerSupport
 	public String execute() throws Exception 
 	{
 		this.update("addComment", "»Ø¸´");
-		this.postOnLoad();
+		this.query("postFindById");
 		return "post";
 	}
 }
