@@ -1,5 +1,4 @@
 package com.neusoft.web.impl;
-
 public class AdminQueryCompServlet extends ComplainControllerSupport
 {
 

@@ -12,7 +12,7 @@
 <form method="post">
 <ul>
 <li><a href="adminQueryArticle.html">审核文章</a></li>
-<li><a href="">管理帖子</a></li>
+<li><a href="forum.html">管理帖子</a></li>
 <li><a href="adminQueryComp.html">处理申诉</a></li>
 <li><a href="querySendAcc.html">收货处理</a></li>
 <li><a href="queryGetAcc.html">发货处理</a></li>

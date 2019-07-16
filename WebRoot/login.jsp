@@ -26,7 +26,7 @@ ${msg }
 			<tr>
 				<td>УмТы</td>
 				<td>
-					<e:text name="aab104" required="true"/> 
+					<input type="password" name="aab104" required="true"/> 
 				</td>
 			</tr>
 			<tr>

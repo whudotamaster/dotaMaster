@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.system.tools.Tools;
+import com.sun.scenario.effect.impl.prism.ps.PPSPhongLighting_SPOTPeer;
+
 import jdk.nashorn.internal.ir.Flags;
 
 public class Ab05ServicesImpl extends JdbcServicesSupport 
@@ -22,11 +24,11 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		// 还原页面查询条件
 		Object aab502 = this.get("aab502"); // 标题 模糊查询
 		Object aab506 = this.get("aab506"); // 普通区或精华区
-
+		Object aab101 = this.get("aab101");
 		// 定义SQL主体
 		StringBuilder sql = new StringBuilder()
 				.append(" select b.aab501,b.aab101,a.aab102,a.aab105,b.aab502,")
-				.append("	     b.aab504,b.aab505,b.aab506")
+				.append("	     b.aab504,b.aab505,b.aab506,b.aab507")
 				.append("   from ab05 b,ab01 a")
 				.append("  where b.aab101=a.aab101 ")
 				;
@@ -46,7 +48,25 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 			paramList.add(aab506);
 		}
 		sql.append(" order by b.aab504 desc ");
-		return this.queryForList(sql.toString(), paramList.toArray());
+		List<Map<String, String>> list = this.queryForList(sql.toString(), paramList.toArray());
+		List<Map<String, String>> rows = new ArrayList<Map<String, String>>();
+		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
+		Map<String, String> map1 = new HashMap<String, String>();
+		if (aab101 != null) 
+		{
+			map1.put("aab107", ab01.queryPersonEmp(aab101).get("aab107"));
+		}
+		else 
+		{
+			map1.put("aab107", "0");
+		}
+		rows.add(map1);
+		for(Map<String, String> post:list)
+		{
+			rows.add(post);
+		}
+		
+		return rows;
 	}
 
 	/**
@@ -97,18 +117,21 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		Object aab101 = this.get("aab101");
 		Object aab502 = this.get("apaab502");
 		Object aab503 = this.get("apaab503");
+		Object aab507 = this.get("apaab507");
+		System.out.println(aab507);
 		if (this.isNotNull(aab101) && this.isNotNull(aab502) && this.isNotNull(aab503)
 				&& !aab503.equals("<p><br></p>")) 
 		{
 			StringBuilder sql = new StringBuilder()
 					.append(" insert into ab05(aab101,aab502,aab503,aab504,aab505,")
-					.append("                  aab506)")
+					.append("                  aab506,aab507)")
 					.append("           values(?,?,?, current_timestamp(),'0',")
-					.append("                  '0')");
+					.append("                  '0',?)");
 			Object args[] = 
 				{ 		aab101,
 						aab502, 
-						aab503 
+						aab503,
+						aab507
 				};
 
 			Boolean tag = this.executeUpdate(sql.toString(), args) > 0;
@@ -145,7 +168,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		// 定义SQL主体
 		StringBuilder sql = new StringBuilder()
 				.append(" select a.aab101,a.aab102,a.aab105,b.aab502,b.aab503,")
-				.append("        b.aab504")
+				.append("        b.aab504,b.aab507")
 				.append("   from ab01 a,ab05 b")
 				.append("  where b.aab501=? and a.aab101=b.aab101")
 				.append("  order by b.aab504")
@@ -154,14 +177,24 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		List<Map<String, String>> rows = this.queryForList(sql.toString(), aab501);
 		Map<String, String> map1 = new HashMap<String, String>();
 		Map<String, String> map2 = new HashMap<String, String>();
+		Map<String, String> map3 = new HashMap<String, String>();
 		Ab07ServicesImpl ab07=new Ab07ServicesImpl();
 		Ab11ServicesImpl ab11=new Ab11ServicesImpl();
+		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
 		map1.put("collection", ab07.queryCollection(aab101,aab501).toString());				//收藏狀态
 		map2.put("like", ab11.countUserLike(aab101,aab501).toString());						//点赞狀态
+		if(this.get("aab101") != null)
+		{
+			map3.put("aab107", ab01.queryPersonEmp(aab101).get("aab107"));					//经验值
+		}
+		else
+		{
+			map3.put("aab107", "0");
+		}
 		rows.add(map1);		
 		rows.add(map2);		
 		rows.add(ab11.countLike(aab501)); 													//点赞数
-						
+		rows.add(map3);
 		Ab06ServicesImpl ab06=new Ab06ServicesImpl();
 		List<Map<String, String>> commentList = ab06.commentFindById(aab501);
 		for(Map<String, String> comment:commentList)

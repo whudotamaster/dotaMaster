@@ -5,7 +5,7 @@ public final class DelHistoryServlet extends ForumControllerSupport
 	public String execute() throws Exception 
 	{
 		this.update("delPost","„h³ý");
-		this.queryHistoryOnLoad();
+		this.query("queryHistory");
 		return "queryHistoryPost";
 	}
 }
