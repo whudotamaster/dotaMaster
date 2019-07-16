@@ -7,16 +7,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Custom styles for this template -->
+    <link href="css/signin.css" rel="stylesheet">
 <title>µÇÂ¼</title>
 </head>
-<body>
+<body  class="text-center">
+
 ${msg }
-	<form action="<%=path%>/login.html" method="post">
-		<table  border="1" align="center" width="30%">
-			<caption>
-			ÓÃ»§µÇÂ¼/×¢²á
-			</caption>
+<div id="login" >
+	<form action="<%=path%>/login.html" method="post" class="form-signin">
+		<table>
+		    <h1 class="h3 mb-3 font-weight-normal">µÇÂ¼/×¢²á</h1>
+			
 			<tr>
 				<td>ÕËºÅ</td>
 				<td>
@@ -31,13 +36,16 @@ ${msg }
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" name="next" value="µÇÂ¼">
-					<input type="submit" name="next" formaction="<%=path%>/logon.html" 
+					<input   class="btn btn-lg btn-primary btn-block" type="submit" name="next" value="µÇÂ¼">
+					<input  class="btn btn-lg btn-primary btn-block"  type="submit" name="next" formaction="<%=path%>/logon.html" 
 					value="×¢²á" formnovalidate="formnovalidate">
 				</td>			
 			</tr>
 		</table>
-	</form>
 
+</div>
 </body>
 </html>
+
+
+
