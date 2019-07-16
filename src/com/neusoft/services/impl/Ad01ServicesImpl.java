@@ -148,6 +148,12 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	//3.1获取用户押注列表
     	//list中属性有用户ID 押注A方数量 押注B方数量 此处需要计算出用户赚的额度 并且放入每一个map中
     	List<Map<String, String>> list=this.queryUserCount(aad101);
+    	Ab01ServicesImpl ab01=new Ab01ServicesImpl();
+    	for(Map<String, String> t:list)
+    	{
+    		String bool=ab01.isVIP(t.get("aab101"))?"true":"false";
+    		t.put("vip", bool);
+    	}
     	
     	//3.2根据比赛胜负来计算用户该单获得的金币,并存入map中
     	if(tag)
@@ -156,7 +162,10 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     		for(Map<String, String> m:list)
     		{
     			tem=Integer.parseInt(m.get("aad202"));
-    			m.put("aad204", String.valueOf((tem+tem*countB/countA)*0.95));//根据用户是否为会员扣费暂时未做
+    			if(m.get("vip")=="true")
+    				m.put("aad204", String.valueOf(tem+tem*countB/countA*0.99));
+    			else
+    				m.put("aad204", String.valueOf(tem+tem*countB/countA*0.95));
     		}
     	}
     	else
@@ -165,7 +174,10 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     		for(Map<String, String> m:list)
     		{
     			tem=Integer.parseInt(m.get("aad203"));
-    			m.put("aad204", String.valueOf((tem+tem*countB/countA)*0.95));
+    			if(m.get("vip")=="true")
+    				m.put("aad204", String.valueOf(tem+tem*countB/countA*0.99));
+    			else
+    				m.put("aad204", String.valueOf(tem+tem*countB/countA*0.95));
     			
     		}
     	}

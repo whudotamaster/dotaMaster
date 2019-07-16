@@ -1,18 +1,13 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-String path=request.getContextPath(); 
-String aab101=(String)session.getAttribute("aab101");
-String aab108=(String)session.getAttribute("aab108");
-boolean tag=(boolean)session.getAttribute("tag");
-%>
+<%@ include file="header.jsp" %>
 <html>
 <head>
 <title>Insert title here</title>
 <style type="text/css">
   td{
-      height:30px;
+      height:40px;
   }
   msg{
      color:#FF0000
@@ -22,17 +17,13 @@ boolean tag=(boolean)session.getAttribute("tag");
 <body>
 ${msg }
 <br>
-ins.aad403
 <br>
-aad403:${ins.aad403}
 <br>
-aab108:<%=aab108 %>
+
+<div class="demoTa" style="opacity: 0.9"></div>
 <form action="<%=path%>/buyAcc.html" method="post">
-<table  border="1" align="center" width="45%">
-    <caption>
-      	 ${empty ins.aad403?'购买饰品':'订单详情' }
-      <hr width="160">
-    </caption>
+<table border=3 align="center" class="table" style="background-color:white;opacity: 0.95;width:45%">
+      	 <caption align="left"><font color="#000000" size="5px">${empty ins.aad403?'购买饰品':'订单详情' }</font> </caption>
    <tr>
      <td colspan="2">饰品名称:  ${ins.aac602 }</td>
    </tr>
@@ -66,13 +57,13 @@ aab108:<%=aab108 %>
               formaction="<%=path%>/queryBet.html">
      </c:when>
      <c:when test="${ins.aad403==0}">
-     <c:if test="<%=tag%>">
+     <c:if test="${aab108==2} ">
      <input type="submit" name="next" value="已发货"
               formaction="<%=path%>/modifySendAcc.html">
      <input type="submit" name="next" value="返回" 
               formaction="<%=path%>/querySendAcc.html">
      </c:if>  
-      <c:if test="<%=!tag%>">
+      <c:if test="${aab108!=2}">
      <input type="submit" name="next" value="返回" 
               formaction="<%=path%>/queryBuyOrder.html">
      </c:if>  
@@ -82,7 +73,7 @@ aab108:<%=aab108 %>
    </tr>
 </table>
 <input type="hidden" name="aab101" value="<%=aab101 %>">
-<input type="hidden" name="aac601" value="${param.aac601} ">
+<input type="hidden" name="aac601" value="${ins.aac601} ">
 <input type="hidden" name="aad401" value="${ins.aad401 }">
 </form>
 </body>
