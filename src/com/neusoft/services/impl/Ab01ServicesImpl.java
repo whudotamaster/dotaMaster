@@ -46,6 +46,37 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.executeUpdate(sql.toString(), args)>0;
     }
 	
+	//使用人民币购买或续费会员
+		public boolean buyVIP(String aab101,String total_amount)throws Exception
+	    {
+		
+			StringBuilder sql=new StringBuilder();
+			boolean tag=this.isVIP(aab101);
+
+			//如果是会员 在他的到期时间后增加续费时长
+			if(tag)
+			{
+					sql.append("update ab01 a")
+						.append("   set  a.aab109 = DATE_ADD(a.aab109, INTERVAL ? MONTH)")
+						.append(" where a.aab101=?")
+						;
+	    	}
+			else//不是会员 在当前时间+他的购买时长
+			{
+				sql.append("update ab01 a")
+				.append("   set a.aab109 = DATE_ADD(current_date, INTERVAL ? MONTH)")
+				.append(" where a.aab101=?")
+				;
+			}
+			
+			Object args[]={
+					Double.parseDouble(total_amount)/10,//此处填写用户扣的金额数,根据网页传来的用户购买月数*每月金额
+					aab101
+			};
+			System.out.println("会员购买时长："+	Double.parseDouble(total_amount)/10+"个月");
+	    	return this.executeUpdate(sql.toString(), args)>0;
+	    }
+	
 	public boolean updatePic(Object aab101,Object aab105) throws Exception
 	{
 		String sql="update ab01 set aab105=? where aab101=?";

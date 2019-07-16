@@ -23,8 +23,8 @@ String path=request.getContextPath();
 
 			<button style="submit" class="btn btn-light" formaction="<%=path%>/mainPage.jsp">主页</button>
 		    <button style="submit" class="btn btn-light" >竞猜</button>
-		    <button style="submit" class="btn btn-light"formaction="<%=path%>/queryArticle.html">文章</button>
-		    <button style="submit" class="btn btn-light"formaction="<%=path%>/queryAcc.html">饰品</button>
+		    <button style="submit" class="btn btn-light" formaction="<%=path%>/queryArticle.html">文章</button>
+		    <button style="submit" class="btn btn-light" formaction="<%=path%>/queryAcc.html">饰品</button>
 
 	         <c:if test="${aab108==2}">
 	            <button style="submit" formaction="<%=path%>/adminGo.jsp">网站管理</button>
