@@ -136,6 +136,7 @@ public class BaseServlet extends HttpServlet
 		return dto;
 	}
 
+	//消息提示
 	private void updateMessage(HttpServletRequest request)throws Exception
 	{	
 		if(request.getSession().getAttribute("aab101")!=null)

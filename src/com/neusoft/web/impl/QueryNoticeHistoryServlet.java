@@ -1,7 +1,7 @@
 package com.neusoft.web.impl;
 
 
-public class QueryNoticeHistoryServlert extends NoticeControllerSupport
+public class QueryNoticeHistoryServlet extends NoticeControllerSupport
 {
        @Override
        public String execute() throws Exception

@@ -5,7 +5,7 @@
 
 <html>
 <head>
-   <title>待读消息</title>
+   <title>全部消息</title>
    <style type="text/css">
      tr
      {
@@ -22,7 +22,7 @@ ${msg }
 <br>
 <br>
     
-<form id="myform" action="<%=path%>/queryNotice.html" method="post">
+<form id="myform"  method="post">
 	<!-- 数据迭代区 -->
 	<table border="1" width="95%" align="center">
 	  <tr>
@@ -70,14 +70,9 @@ ${msg }
 	<!-- 功能按钮区 -->
 	<table border="1" width="95%" align="center">
 	
-	
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="刷新">
-	       
-	        <input type="submit" id="del" name="next" value="查看全部消息" 
-	              formaction="<%=path%>/queryNoticeHistory.html">
-	        
+	       <input type="submit" name="next" value="刷新" formaction="<%=path%>/queryNoticeHistory.html">
 	        <input type="submit" id="del" name="next" value="返回主页" 
 	              formaction="<%=path%>/mainPage.jsp">
 	        
