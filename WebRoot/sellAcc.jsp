@@ -20,7 +20,7 @@ ${msg }
 <br>
 <div class="demoTa" style="opacity: 0.9"></div>
 <form action="<%=path%>/sellAcc.html" method="post">
-<table border=3 align="center" class="table" style="background-color:white;opacity: 0.95;width:45%">
+<table border=2 align="center" class="table" style="background-color:white;opacity: 0.95;width:45%">
       	 <caption align="left"><font color="#000000" size="5px">${empty ins.aad303?'出售饰品':'订单详情' }</font> </caption>
    <tr>
      <td colspan="2">饰品名称:  ${ins.aac602 }</td>
@@ -62,7 +62,7 @@ ${msg }
      <input type="submit" name="next" value="确认已发货"
               formaction="<%=path%>/sellAcc.html">
      <input type="submit" name="next" value="返回" 
-              formaction="<%=path%>/queryBet.html">
+              formaction="<%=path%>/findByIdAcc.html?aac601=${ins.aac601}">
      </c:when>
      <c:when test="${ins.aad303==0}">
      <c:if test="${aab108==2}">
@@ -71,11 +71,11 @@ ${msg }
      <input type="submit" name="next" value="收货失败"
               formaction="<%=path%>/modifyGetAcc.html">
      <input type="submit" name="next" value="返回" 
-              formaction="<%=path%>/queryGetAcc.html">
+              formaction="<%=path%>/findByIdAcc.html?aac601=${ins.aac601}">
      </c:if>  
       <c:if test="${aab108!=2}">
      <input type="submit" name="next" value="返回" 
-              formaction="<%=path%>/querySellOrder.html">
+              formaction="<%=path%>/findByIdAcc.html?aac601=${ins.aac601}">
      </c:if>  
      </c:when>
      </c:choose>

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.neusoft.services.BaseServices;
 import com.neusoft.services.impl.Ab01ServicesImpl;
+import com.neusoft.services.impl.Ac06ServicesImpl;
+import com.neusoft.services.impl.Ad06ServicesImpl;
 import com.neusoft.system.db.DBUtils;
 
 public class Tools 
@@ -21,8 +23,17 @@ public class Tools
 
 	public static void sendMessage(String text,Object userId)
 	{
-		
+		try
+		{
+			Ad06ServicesImpl ad06=new Ad06ServicesImpl();
+			ad06.insertNotice(text, userId);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
+	
 	
 
 	public static void main(String[] args) 
