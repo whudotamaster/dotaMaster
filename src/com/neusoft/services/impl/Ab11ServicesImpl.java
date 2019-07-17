@@ -34,7 +34,7 @@ public class Ab11ServicesImpl extends JdbcServicesSupport
 		return executeUpdate(sql, args)>0;
 	}
 	
-	public Map<String,String> countLike(Object aab501) throws Exception
+	public Map<String, Object> countLike(Object aab501) throws Exception
 	{
     	String sql="select count(1) countlike from ab11 where aab501 = ?";	
     	return queryForMap(sql, aab501);
@@ -56,7 +56,7 @@ public class Ab11ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, String>> postFindById() throws Exception 
+	public List<Map<String, Object>> postFindById() throws Exception 
 	{
 		Ab05ServicesImpl ab05 = new Ab05ServicesImpl();
 		return ab05.postFindById(this.get("aab101") , this.get("aab501"));

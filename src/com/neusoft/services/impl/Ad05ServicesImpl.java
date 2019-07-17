@@ -26,7 +26,7 @@ public class Ad05ServicesImpl extends JdbcServicesSupport
 	}
 	
 	//管理员按照时间顺序列表待审核投诉
-		public List<Map<String,String>> adminQueryComplain()throws Exception
+		public List<Map<String,Object>> adminQueryComplain()throws Exception
 		{
 		  		//定义SQL主体
 		  		StringBuilder sql=new StringBuilder()		  			
@@ -37,7 +37,7 @@ public class Ad05ServicesImpl extends JdbcServicesSupport
 		  		return this.queryForList(sql.toString());  	
 		  }
 	//findbyid展示投诉页面
-		public Map<String,String> findById()throws Exception
+		public Map<String,Object> findById()throws Exception
 	    {
 	    	//1.编写SQL语句
 	    	StringBuilder sql =new StringBuilder()

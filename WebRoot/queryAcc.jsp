@@ -1,8 +1,8 @@
-
 <%@ page  language="java" import="java.util.*" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ include file="header.jsp" %>
 <html>
 <head>
    <title>Insert title here</title>
@@ -13,9 +13,9 @@
      }
    </style>
 
+
 </head>
 <body>
-<%@ include file="header.jsp" %>
 ${msg }
 <br>
 <br>

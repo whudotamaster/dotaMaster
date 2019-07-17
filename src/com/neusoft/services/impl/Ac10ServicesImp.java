@@ -14,7 +14,7 @@ public class Ac10ServicesImp extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String,String>> query()throws Exception
+	public List<Map<String,Object>> query()throws Exception
 	  {
 	  		//还原页面查询条件
 	  		Object aac1002=this.get("qaac1002");     //姓名  模糊查询
@@ -45,7 +45,7 @@ public class Ac10ServicesImp extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public Map<String,String> findById()throws Exception
+	public Map<String,Object> findById()throws Exception
     {
   	    //1.编写SQL语句
   	    StringBuilder sql1=new StringBuilder()

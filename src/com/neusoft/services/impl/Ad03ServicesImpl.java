@@ -31,7 +31,7 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 		
 		//2,查询饰品价格
 		Ac06ServicesImpl ac06=new Ac06ServicesImpl();
-		Map<String, String> acc=ac06.findAccessories(this.get("aac601"));
+		Map<String, Object> acc=ac06.findAccessories(this.get("aac601"));
 		Object price=acc.get("aac604");
 		
 		//3,更新用户金额
@@ -49,7 +49,7 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 	}
 	
 	//查看所有待收货列表中未完成的订单
-	public List<Map<String, String>> query()throws Exception
+	public List<Map<String, Object>> query()throws Exception
 	{
 		StringBuilder sql=new StringBuilder()
 						.append("select a.aad301,a.aac601,a.aab101,a.aad302,a.aad303,")
@@ -64,7 +64,7 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 	
 	
 	//查看待收货列表订单的详细信息
-	public Map<String, String> findById()throws Exception
+	public Map<String, Object> findById()throws Exception
 	{
 		StringBuilder sql=new StringBuilder()
 				.append("select a.aad301,a.aac601,a.aab101,a.aad302,a.aad303,")
