@@ -17,7 +17,7 @@ public class Ab06ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	protected final List<Map<String, String>> commentFindById(Object aab501) throws Exception 
+	protected final List<Map<String, Object>> commentFindById(Object aab501) throws Exception 
 	{
 		StringBuilder sql = new StringBuilder()
 				.append(" select a.aab102,a.aab105,b.aab602,b.aab603,b.aab604 ")
@@ -43,12 +43,12 @@ public class Ab06ServicesImpl extends JdbcServicesSupport
 		if (this.isNotNull(aab101) && this.isNotNull(aab501) && this.isNotNull(aab603)) 
 		{
 			String sql1 = " select aab505 from ab05 where aab501=?";
-			List<Map<String, String>> aab505_1 = this.queryForList(sql1, aab501);
-			String floor = null;
-			for (Map<String, String> aObject : aab505_1) {
+			List<Map<String, Object>> aab505_1 = this.queryForList(sql1, aab501);
+			Object floor = null;
+			for (Map<String, Object> aObject : aab505_1) {
 				floor = aObject.get("aab505");
 			}
-			int aab505 = Integer.parseInt(floor) + 1;
+			int aab505 = Integer.parseInt(floor.toString()) + 1;
 			StringBuilder sql2 = new StringBuilder()
 					.append(" insert into ab06(aab101,aab501,aab602,aab603,aab604)")
 					.append("    values (?,?,?,?,current_timestamp())")

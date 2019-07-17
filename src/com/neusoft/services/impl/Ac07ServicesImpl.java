@@ -15,7 +15,7 @@ public class Ac07ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, String>> query() throws Exception 
+	public List<Map<String, Object>> query() throws Exception 
 	{
 		// 还原页面查询条件
 		Object aac702 = this.get("qaac702"); // 姓名 模糊查询
@@ -69,7 +69,7 @@ public class Ac07ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public Map<String, String> findById() throws Exception 
+	public Map<String, Object> findById() throws Exception 
 	{
 		StringBuilder sql = new StringBuilder()
 				.append(" select  aac702,aac703,aac704,aac705,aac706 ,aac701 ")
@@ -84,7 +84,7 @@ public class Ac07ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, String>> FBIforMore() throws Exception
+	public List<Map<String, Object>> FBIforMore() throws Exception
 	{
 		// 1.编写SQL语句
 		StringBuilder sql = new StringBuilder()

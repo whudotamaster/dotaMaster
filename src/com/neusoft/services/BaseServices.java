@@ -17,17 +17,17 @@ public interface BaseServices
       * @return
       * @throws Exception
       */
-     default Map<String,String> findById()throws Exception
+     default Map<String,Object> findById()throws Exception
      {
     	 return null;
      }
 
-     default List<Map<String,String>> FBIforMore()throws Exception
+     default List<Map<String,Object>> FBIforMore()throws Exception
      {
     	 return null;
      }
      
-     default List<Map<String,String>> adminQueryArticle()throws Exception
+     default List<Map<String,Object>> adminQueryArticle()throws Exception
 
      {
     	 return null;
@@ -38,22 +38,22 @@ public interface BaseServices
  		return null;
  	 }
     
-     default List<Map<String,String>> query()throws Exception
+     default List<Map<String,Object>> query()throws Exception
      {
     	 return null;
      }
 
-     default List<Map<String,String>> adminQuery()throws Exception
+     default List<Map<String,Object>> adminQuery()throws Exception
      {
     	 return null;
      }
      
-     default List<Map<String,String>> queryBuyOrder()throws Exception
+     default List<Map<String,Object>> queryBuyOrder()throws Exception
      {
     	 return null;
      }
      
-     default List<Map<String,String>> querySellOrder()throws Exception
+     default List<Map<String,Object>> querySellOrder()throws Exception
      {
     	 return null;
      }
@@ -63,12 +63,12 @@ public interface BaseServices
 		return false;
 	}
 
-	default List<Map<String, String>> adminQueryComplain() throws Exception
+	default List<Map<String, Object>> adminQueryComplain() throws Exception
 	{
 		return null;
 	}
 
-	 default Map<String, String> loginEmp() throws Exception
+	 default Map<String, Object> loginEmp() throws Exception
 	 {
 		 return null;
 	 }
@@ -78,7 +78,7 @@ public interface BaseServices
 	 }
 
 	
-     default Map<String,String> queryPersonEmp()throws Exception
+     default Map<String,Object> queryPersonEmp()throws Exception
      {
     	return null;
      }

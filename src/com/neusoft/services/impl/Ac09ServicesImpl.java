@@ -12,7 +12,7 @@ public class Ac09ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String,String>> query()throws Exception
+	public List<Map<String,Object>> query()throws Exception
 	  {
 	  		//还原页面查询条件
 	  		Object aac902=this.get("qaac902");     //姓名  模糊查询
@@ -67,7 +67,7 @@ public class Ac09ServicesImpl extends JdbcServicesSupport
 	 */
 
 	    
-	    public List<Map<String,String>> FBIforMore()throws Exception
+	    public List<Map<String,Object>> FBIforMore()throws Exception
 	    {
 	    	StringBuilder sql=new StringBuilder()
 	    	       .append(" select y.aac1001,y.aac1002,y.aac1003,y.aac1004,y.aac1005,  ")

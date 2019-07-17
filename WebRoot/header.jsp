@@ -127,8 +127,9 @@ String aab101=(String)session.getAttribute("aab101");
 String aab102=(String)session.getAttribute("aab102");
 String aab108=(String)session.getAttribute("aab108");
 String aab109=(String)session.getAttribute("aab109");
-int unRead = (int)session.getAttribute("unRead");
-
+int unRead=0;
+if(session.getAttribute("unRead")!=null)
+ unRead=Integer.parseInt(session.getAttribute("unRead").toString());
 String path=request.getContextPath();
 %>
 <div id="nav" >	

@@ -13,7 +13,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String,String>> query()throws Exception
+	public List<Map<String,Object>> query()throws Exception
 	  {
 	  		//还原页面查询条件
 	  		Object aab802=this.get("qaab802");     //姓名  模糊查询
@@ -41,7 +41,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	  }
 	
 	//管理员查询待审核文章
-	public List<Map<String,String>> adminQueryArticle()throws Exception
+	public List<Map<String,Object>> adminQueryArticle()throws Exception
 	  {
 	  		//还原页面查询条件
 	  		Object aab802=this.get("qaab802");     //姓名  模糊查询
@@ -68,7 +68,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	  		
 	  }
 	
-	public Map<String,String> findById()throws Exception
+	public Map<String,Object> findById()throws Exception
     {
     	//1.编写SQL语句
     	StringBuilder sql1=new StringBuilder()

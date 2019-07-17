@@ -9,7 +9,7 @@ import com.neusoft.system.tools.Tools;
 
 public class Ac11ServicesImpl extends JdbcServicesSupport 
 {
-	public List<Map<String, String>> query()throws Exception
+	public List<Map<String, Object>> query()throws Exception
     {
 		StringBuilder sql=new StringBuilder()
   				.append("select a.aac1101,b.aac702,a.aac1102,a.aac1103,a.aac1104")
@@ -40,7 +40,7 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, String>> queryMatch()throws Exception
+	public List<Map<String, Object>> queryMatch()throws Exception
     {
 		//还原页面查询条件
   		Object aac702=this.get("qaac702");     //姓名  模糊查询
