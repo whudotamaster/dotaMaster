@@ -119,7 +119,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	 public List<Map<String, String>> FBIforMore()throws Exception
 	 {
 		 StringBuilder sql=new StringBuilder()
-				 .append("select x.aac101,x.aac102,y.aac201,y.aac202,y.aac203  ")
+				 .append("select x.aac101,x.aac102,x.aac112,y.aac201,y.aac202,y.aac203  ")
 				 .append("	  	 from ac01 x, ac02 y                          ")
 				 .append("	     where x.aac101=y.aac101                     ")
 				 .append("         and x.aac101=?                             ")

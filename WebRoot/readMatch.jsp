@@ -25,7 +25,6 @@ ${msg}
 <table  border="1" align="center" width="45%">
     <caption>
                比赛${aab108==2?'浏览':'修改' }
-      ${aab108==2}
       <hr width="160">
     </caption>
    <tr>
@@ -34,7 +33,7 @@ ${msg}
    <tr>
      <td>赛事名</td>
      <td>
-       <e:text name="aac702" required="true" readonly="${aab108!=2 }"  defval="${ins.aac702 }"/> 
+       <e:text name="aac702" required="true" readonly="readonly"  defval="${ins.aac702 }"/> 
      </td>
    </tr>
    <tr>

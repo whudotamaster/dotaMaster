@@ -58,11 +58,56 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
   			paramList.add("%"+aac702+"%");
   		}
   				
-  		sql.append(" order by aac1102");
+  		sql.append(" order by aac1102 desc");
   		return this.queryForList(sql.toString(), paramList.toArray());
     }
 	
+	/**
+	   * 比赛信息点击名字查询
+	 * @return
+	 * @throws Exception
+	 */
+	 public Map<String,String> findById()throws Exception
+	    {
+	    	//1.编写SQL语句
+	    	StringBuilder sql=new StringBuilder()
+	    			.append("select x.aac1102,x.aac1103,x.aac1104,x.aac1105,s.fvalue,  ")
+	    			.append("	  				       y.aac701,y.aac702               ")
+	    			.append("	  						   from ac11 x ,ac07 y, syscode s   ")
+	    			.append("	    			       where x.aac1105=s.fcode and s.fname='aac1105'   ")     
+	    			.append("	    			       and x.aac701=y.aac701    ")           
+	    			.append("	    			       and x.aac1101=?       ")        
+	    			;
+	    	//执行查询
+	    	System.out.println(this.queryForMap(sql.toString(), this.get("aac1101")));
+	    	return this.queryForMap(sql.toString(), this.get("aac1101"));
+	    }
+	 
+	 
+	 
+	 /**
+	  * 修改比赛数据
+	 * @return
+	 * @throws Exception
+	 */
+	private boolean modifyMatch()throws Exception
+	    {
+	    	StringBuilder sql=new StringBuilder()
+	    			.append(" update ac11 set aac1102=?,aac1103=?,aac1104=?,aac1105=?  ")
+	    			.append("                  where aac1101=?                       ")
+	    			;
+	    	Object args[]={
+	    			this.get("aac1102"),
+	    			this.get("aac1103"),
+	    			this.get("aac1104"),
+	    			this.get("aac1105"),
+	    			this.get("aac1101")
+	    	};
+	    	return this.executeUpdate(sql.toString(), args)>0;
+	    	
+	    }
 	
+	 
 	/**
 	 * 添加比赛信息并同时插入相应的一条初始化的押注信息
 	 * @return
@@ -85,8 +130,15 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
     			0,
     			aac701
     	         };
-    	int aac1101=Tools.getSequence("aac1102");
-    	System.out.println(aac1101);
-        return this.executeUpdate(sql.toString(), args)>0;	
+    	int aac1101=Tools.getSequence("aac1101");
+    	StringBuilder sql3=new StringBuilder()
+    			.append(" insert into ad01 (aac1101,aad102,aad103,aad104,aad105)        ")
+    			.append("            values (?,0,0, date_sub(now(), interval 48 hour),  ")
+    			.append("                   DATE_ADD(NOW(), INTERVAL 1 Hour))          ")
+    			;
+    	int n1=this.executeUpdate(sql.toString(), args);
+    	int n2=this.executeUpdate(sql3.toString(), aac1101);
+    	System.out.println("插入竞猜成功");
+        return n1+n2>n1;	
     }
 }

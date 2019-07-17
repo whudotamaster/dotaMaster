@@ -245,6 +245,26 @@ public abstract class ControllerSupport implements BaseController
 	}
 	
 	/**
+	 * 通过反射执行findById方法
+	 * @param methodName
+	 * @return
+	 * @throws Exception
+	 */
+
+	protected final void findById(String methodName)throws Exception
+	{
+		List<Map<String,String>> rows2=this.executeQueryMethod(methodName);
+		if(rows2.size()>0)
+		{
+			this.saveAttribute("rows2", rows2);
+		}
+		else
+		{	
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+	/**
 	 * 通过反射执行更新方法 return Map
 	 * @param methodName
 	 * @return
