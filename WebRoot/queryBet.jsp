@@ -71,6 +71,17 @@
           }
       })
       
+		function show(){
+		    obj = document.getElementsByName("test");
+		    check_val = [];
+		    for(k in obj){
+		        if(obj[k].checked)
+		            check_val.push(obj[k].value);
+		    }
+		    alert(check_val);
+		    var userList = "${rows}";
+		}
+      
    </script>
 </head>
 <body>
