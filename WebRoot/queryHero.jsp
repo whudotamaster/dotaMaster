@@ -2,7 +2,6 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%String path=request.getContextPath(); %>
 <html>
 <head>
    <title>Insert title here</title>
@@ -12,36 +11,10 @@
         height:25px;
      }
    </style>
-   
-   <script type="text/javascript">
-      var count=0;
-      function onSelect(vstate)
-      {
-    	  vstate?count++:count--;
-    	  var vdel=document.getElementById("del");
-    	  vdel.disabled=(count==0);
-      }
-      
-      function onEdit(vaac101)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdHero.html?aac101="+vaac101;
-    	 //alert(vform.action);
-    	 vform.submit();
-      }
-      
-      function onDel(vaac101)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/delByIdHero.html?aac101="+vaac101;
-    	 //alert(vform.action);
-    	 vform.submit();
-      } 
-      
-   </script>
 </head>
 <body>
 ${msg }
+<%@ include file="header.jsp" %>
 <br>
 <%=session.getId() %>
 <br>
@@ -66,6 +39,7 @@ ${msg }
 	  <tr>
 	    <td></td>
 	    <td>ÐòºÅ</td>
+	    <td>Ó¢ÐÛÍ¼Ïñ</td>
 	    <td>Ó¢ÐÛÃû</td>
 	    <td>Á¦Á¿³É³¤</td>
 	    <td>Ãô½Ý³É³¤</td>
@@ -94,6 +68,10 @@ ${msg }
 				             onclick="onSelect(this.checked)" >
 				    </td>
 				    <td>${vs.count }</td>
+				    <td style="width:5%; height:5%">
+				       <a href="#" onclick="onRead('${ins.aac101}')">
+				        <img alt="no image" src=<%=path%>/images/${ins.aac112 }></a>
+				     </td>
 				    <td>
 				      <!-- #  ¿ÕÃª -->
 				      <a href="#" onclick="onEdit('${ins.aac101}')">${ins.aac102 }</a>
@@ -107,9 +85,11 @@ ${msg }
 				    <td>${ins.aac109 }</td>
 				    <td>${ins.aac110 }</td>
 				    <td>${ins.aac111 }</td>
+				    <c:if test="${aab108==2}">
 				    <td>
 				      <a href="#" onclick="onDel('${ins.aac101}')">É¾³ý</a>
 				    </td>
+				    </c:if>
 				  </tr>
 		      </c:forEach>
 		      <!-- ²¹³ä¿ÕÐÐ -->
@@ -169,4 +149,38 @@ ${msg }
 	</table>
 </form>
 </body>
+   <script type="text/javascript">
+      var count=0;
+      function onSelect(vstate)
+      {
+    	  vstate?count++:count--;
+    	  var vdel=document.getElementById("del");
+    	  vdel.disabled=(count==0);
+      }
+      
+      function onEdit(vaac101)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/findByIdHero.html?aac101="+vaac101;
+    	 //alert(vform.action);
+    	 vform.submit();
+      }
+      
+      function onRead(vaac101)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/findByIdHeroFM.html?aac101="+vaac101;
+    	 //alert(vform.action);
+    	 vform.submit();
+      }
+      
+      function onDel(vaac101)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/delByIdHero.html?aac101="+vaac101;
+    	 //alert(vform.action);
+    	 vform.submit();
+      } 
+      
+   </script>
 </html>

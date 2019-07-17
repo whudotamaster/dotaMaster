@@ -7,11 +7,14 @@ import java.util.Map;
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.system.tools.Tools;
 
+/**
+ * @author Recardox
+ *
+ */
 public class Ac01ServicesImpl extends JdbcServicesSupport 
 {
 	
                            
-    
 	  /**
 	   * 英雄信息按名字模糊查询
 	 * @return
@@ -112,6 +115,25 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	    	return this.queryForMap(sql.toString(), this.get("aac101"));
 	    }
 	 
+	 //查找英雄的天赋
+	 public List<Map<String, String>> FBIforMore()throws Exception
+	 {
+		 StringBuilder sql=new StringBuilder()
+				 .append("select x.aac101,x.aac102,y.aac201,y.aac202,y.aac203  ")
+				 .append("	  	 from ac01 x, ac02 y                          ")
+				 .append("	     where x.aac101=y.aac101                     ")
+				 .append("         and x.aac101=?                             ")
+				 .append("         ORDER BY y.aac202                            ")
+				 ;
+	
+		 return this.queryForList(sql.toString(), this.get("aac101"));
+	 }
+	 //查找英雄的技能
+	 public List<Map<String, String>> findByIdSkill()throws Exception
+	 {
+		 String sql ="select aac302,aac303,aac304,aac305,aac306 from ac03 where aac101=? ";
+		 return this.queryForList(sql, this.get("aac101"));
+	 }
 	 
 	 /**
 	  * 修改英雄数据

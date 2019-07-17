@@ -21,7 +21,7 @@ ${msg}
 <form action="<%=path%>/addHero.html" method="post">
 <table  border="1" align="center" width="45%">
     <caption>
-       Ó¢ÐÛ${empty param.aac101?'Ìí¼Ó':'ÐÞ¸Ä' }
+          Ó¢ÐÛÏêÇé
       <hr width="160">
     </caption>
    <tr>
