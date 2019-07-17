@@ -1,6 +1,5 @@
 <%@ page language="java" 
     pageEncoding="GBK"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -148,8 +147,8 @@ String path=request.getContextPath();
     <div id="back"  onmouseover="menu.style.visibility='visible'" onmouseout="out()"style="position:absolute;top:15;right:0;width:300;height:10;z-index:1;visibility:visible;"> 
 		<span id="menubar" style="width:300" > 
 			<font color=red size=2>
-			   <c:if test="${aab108==2}">管理员  <%=aab102%> 未读消息<%=unRead%>条 </c:if>
-		 	   <c:if test="${aab108==1}">用户  <%=aab102%> 未读消息<%=unRead%>条</c:if>
+			   <c:if test="${aab108==2}">管理呿  <%=aab102%> 未读消息<%=unRead%>板 </c:if>
+		 	   <c:if test="${aab108==1}">用户  <%=aab102%> 未读消息<%=unRead%>板</c:if>
 			   <c:if test="${aab108==null}">游客</c:if>		 
 			</font>
 		</span> 
@@ -157,7 +156,7 @@ String path=request.getContextPath();
 		<div id="menu" style="position:absolute;top:15;right:0;width:300;height:10;z-index:2;visibility:hidden;"> 
 			<form action ="<%=path%>/queryPerson.html" method="post">
 				<input type="hidden" name="aab101" value="<%=aab101%>">
-				<input type="submit" name="toLog" formaction="<%=path%>/login.jsp" value="登录与注册"><BR>
+				<input type="submit" name="toLog" formaction="<%=path%>/login.jsp" value="登录与注冿"><BR>
 				
 				<c:if test="${aab108!=null}">
 					<input type="submit"  name="toQpi" formnovalidate="formnovalidate" value="个人信息">

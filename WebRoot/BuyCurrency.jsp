@@ -12,7 +12,7 @@
 					
 					<dt>商品名称 ：</dt>
 					<dd>
-						<input id="WIDsubject" name="WIDsubject" value="vip"  readonly="readonly"/>
+						<input id="WIDsubject" name="WIDsubject" value="虚拟货币"  readonly="readonly"/>
 					</dd>
 					<dt>付款金额 ：</dt>
 					<dd>
@@ -20,7 +20,7 @@
 					</dd>
 					<dt>商品描述：</dt>
 					<dd>
-						<input id="WIDbody" name="WIDbody" value="这是一个vip购买测试用例，会员价10元一个月"  style="width:700px;" />
+						<input id="WIDbody" name="WIDbody" value="这是一个虚拟货币购买测试用例，比例为1：100"  style="width:700px;" />
 					</dd>
 					<dt></dt>
 					<dd id="btn-dd">

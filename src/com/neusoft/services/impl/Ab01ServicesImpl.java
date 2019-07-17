@@ -46,7 +46,14 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.executeUpdate(sql.toString(), args)>0;
     }
 	
-	//使用人民币购买或续费会员
+		/**
+		 * 
+		 * 使用人民币购买或续费会员
+		 * @param aab101
+		 * @param total_amount
+		 * @return
+		 * @throws Exception
+		 */
 		public boolean buyVIP(String aab101,String total_amount)throws Exception
 	    {
 		
@@ -70,12 +77,35 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			}
 			
 			Object args[]={
-					Double.parseDouble(total_amount)/10,//此处填写用户扣的金额数,根据网页传来的用户购买月数*每月金额
+					Double.parseDouble(total_amount)/10,//根据充值金额判断会员月数
 					aab101
 			};
 			System.out.println("会员购买时长："+	Double.parseDouble(total_amount)/10+"个月");
 	    	return this.executeUpdate(sql.toString(), args)>0;
 	    }
+		
+	/**
+	 * 购买虚拟货币
+	 * @param aab101
+	 * @param total_amount
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean buyCurrency(String aab101,String total_amount)throws Exception
+	{
+		StringBuilder sql=new StringBuilder()
+				.append("update ab01 a")
+				.append("   set  a.aab106 = a.aab106+?")
+				.append(" where a.aab101=?")
+				;
+
+		Object args[]={
+				Double.parseDouble(total_amount)*100,//根据充值金额判断虚拟货币数
+				aab101
+		};
+		System.out.println("购买虚拟货币数："+	Double.parseDouble(total_amount)*100);
+		return this.executeUpdate(sql.toString(), args)>0;
+	}
 	
 	public boolean updatePic(Object aab101,Object aab105) throws Exception
 	{
