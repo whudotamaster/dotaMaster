@@ -75,6 +75,12 @@ ${msg}
    </tr> 
    <tr>
      <td colspan="2" align="center">
+       <input type="submit" name="next" value="¹ºÂò" 
+              formaction="<%=path%>/findForBuyAcc.html"
+              formnovalidate="formnovalidate">
+       <input type="submit" name="next" value="³öÊÛ" 
+              formaction="<%=path%>/findForSellAcc.html"
+              formnovalidate="formnovalidate">
        <input type="submit" name="next" value="·µ»Ø" 
               formaction="<%=path%>/queryAcc.html"
               formnovalidate="formnovalidate">
@@ -85,6 +91,7 @@ ${msg}
    </tr>
 </table>
 <input type="hidden" name="aac601" value="${param.aac601 }">
+<input type="hidden" name="aab101" value="<%=aab101 %>">
 </form>
 </body>
 </html>

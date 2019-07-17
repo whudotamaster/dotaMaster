@@ -1,15 +1,15 @@
-	<%@ page  language="java" import="java.util.*" pageEncoding="GBK"%>
+<%@ page  language="java" import="java.util.*" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%String path=request.getContextPath(); %>
+<%@ include file="header.jsp" %>
 <html>
 <head>
    <title>Insert title here</title>
    <style type="text/css">
      tr
      {
-        height:25px;
+        height:40px;
      }
    </style>
    
@@ -44,14 +44,12 @@
 ${msg }
 <br>
 <br>
+<div class="demoLina2"></div>
 <form id="myform" action="<%=path%>/queryComp.html" method="post">
 	<!-- 数据迭代区 -->
 	
-	<table border="1" width="95%" align="center">
-	 <caption>
-	               可押注比赛
-	    <hr width="160">
-	  </caption>
+<table align="center" class="table table-striped" style="background-color:#DCDCDC;opacity: 0.85;width:90%">
+	   <caption align="left"><font color="white" size="5px">比赛</font> </caption>
 	  <tr>
 	    <td></td>
 	    <td>序号</td>
@@ -121,13 +119,13 @@ ${msg }
 	   </c:choose>
 	</table>
 	<!-- 功能按钮区 -->
-	<table border="1" width="95%" align="center">
+	<table align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="查询">
-	       <input type="submit" name="next" value="添加" 
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="查询">
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
 	              formaction="<%=path%>/addEmp.jsp">
-	       <input type="submit" id="del" name="next" value="删除" 
+	       <input type="submit" class="btn btn-secondary  active" id="del" name="next" value="删除" 
 	              formaction="<%=path%>/delEmp.html"  disabled="disabled">
 	    </td>
 	  </tr>

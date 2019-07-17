@@ -3,6 +3,8 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.naming.java.javaURLContextFactory;
 import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.system.tools.Tools;
@@ -214,13 +216,23 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	//	System.out.println(this.get("aac601"));
 	//	System.out.println(this.get("param"));
     	StringBuilder sql1=new StringBuilder()
-    			.append("select x.aac602,x.aac603,x.aac604,x.aac605,x.aac606,y.aac102,x.aac101")
+    			.append("select x.aac601,x.aac602,x.aac603,x.aac604,x.aac605,x.aac606,y.aac102,x.aac101")
   				.append("		 from ac06 x ,ac01 y")
   				.append("        where x.aac101=y.aac101   ")	
   				.append("         and x.aac601= ? ");
     			;  	
+    			String aac601=null;
+    			if(this.get("aac601") instanceof java.lang.String[])
+    			{
+    				String[] array=(String[])this.get("aac601");
+    				aac601=array[0];
+    			}
+    			else
+    			{
+    				aac601=this.get("aac601").toString();
+    			}
     	//÷¥––≤È—Ø
-        return this.queryForMap(sql1.toString(), this.get("aac601"));
+        return this.queryForMap(sql1.toString(), aac601);
     }
 	
 	/**

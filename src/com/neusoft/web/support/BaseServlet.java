@@ -138,8 +138,11 @@ public class BaseServlet extends HttpServlet
 		{
 			Ad06ServicesImpl ad06=new Ad06ServicesImpl();
 			List<Map<String, String>> list=ad06.query(request.getSession().getAttribute("aab101"));
-			int length=list.size();
-			request.getSession().setAttribute("unRead", length);
+			if(list!=null)
+			{
+				int length=list.size();
+				request.getSession().setAttribute("unRead", length);
+			}
 		}
 	}
 
