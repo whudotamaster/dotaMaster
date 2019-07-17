@@ -54,8 +54,8 @@ String aab101=(String)session.getAttribute("aab101");
 String aab102=(String)session.getAttribute("aab102");
 String aab108=(String)session.getAttribute("aab108");
 String aab109=(String)session.getAttribute("aab109");
-int unRead = (int)session.getAttribute("unRead");
-
+Object c = session.getAttribute("unRead");
+int unRead = c!=null?Integer.parseInt(String.valueOf(c)):0; 
 String path=request.getContextPath();
 %>
 <div id="nav" >
