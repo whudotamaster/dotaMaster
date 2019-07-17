@@ -26,6 +26,7 @@
 <%@ include file="header.jsp" %>
 <br>
 ${msg }
+${rows }
 <br>
 <form id="myform" action="<%=path%>/addComment.html?aab501=${param.aab501 }" method="post">
   <!-- 查询条件区 -->
@@ -56,22 +57,22 @@ ${msg }
 				    <td>1</td>
 				    <td>
 					<!-- #  用户名及头像--> 
-								<a href="#" onclick="onEdit('${rows[0].aab101}')">${rows[0].aab102 }</a>
-								<img src=<%=path%>/images/${rows[0].aab105 } class="round_icon"
-								onclick="onEdit('${rows[0].aab101}')">
+								<a href="#" onclick="onEdit('${rows[1].aab101}')">${rows[1].aab102 }</a>
+								<img src=<%=path%>/images/${rows[1].aab105 } class="round_icon"
+								onclick="onEdit('${rows[1].aab101}')">
 				    </td>
-				    <c:if test="${(rows[4].aab107)/100 >= rows[0].aab507+0 || rows[0].aab101 == aab101}">
-				    <td>${rows[0].aab502 }</td>
-				    <td>${rows[0].aab503 }
+				    <c:if test="${(rows[0].aab107)/100 >= rows[1].aab507+0 || rows[1].aab101 == aab101}">
+				    <td>${rows[1].aab502 }</td>
+				    <td>${rows[1].aab503 }
 				     <c:choose>
 				   	<c:when test="<%=aab101!=null %>">
 				       <input type="button" value="打赏" 
-				       onclick="rewrad('${param.aab501 }','${rows[0].aab101}')"
+				       onclick="rewrad('${param.aab501 }','${rows[1].aab101}')"
 				            formnovalidate="formnovalidate" >
 				 	   <input type="button" value="收藏" 
 				 	       onclick="collecttion('${param.aab501 }')"
 				 	       formnovalidate="formnovalidate"> 
-				 	       <a>点赞${rows[3].countlike }数</a>
+				 	       <a>点赞${rows[0].countlike }数</a>
 				 	   <input type="button" value="点赞" 
 				       	   onclick="like('${param.aab501 }')"
 				           formnovalidate="formnovalidate" >
@@ -88,15 +89,15 @@ ${msg }
 					</c:choose>
 				    </td>
 				    </c:if>
-				    <c:if test="${(rows[4].aab107)/100 < rows[0].aab507+0 && rows[0].aab101 != aab101}">
+				    <c:if test="${(rows[0].aab107)/100 < rows[1].aab507+0 && rows[1].aab101 != aab101}">
 				     <td><a style="color:#FF2222 ">------该帖要${rows[0].aab507}級或以上才能观看该帖子------</a></td>
 				     <td><a style="color:#FF2222 ">------该帖要${rows[0].aab507}級或以上才能观看该帖子------</a></td>
 				    </c:if>
-				    <td>${rows[0].aab504 }</td>
+				    <td>${rows[1].aab504 }</td>
 				  </tr>
 				  </table>
-				  <c:if test="${(rows[4].aab107)/100 >= rows[0].aab507+0 || rows[0].aab101 == aab101}">
-				  <table  border="1" width="95%" align="center">
+				  <c:if test="${(rows[0].aab107)/100 >= rows[1].aab507+0 || rows[1].aab101 == aab101}">
+				  <table  border="1" width="95%" align="center" class="table table-striped">
 				  	  <tr>
 	    <td>层数</td>
 	    <td>回复人</td>
@@ -104,7 +105,7 @@ ${msg }
 	    <td>时间</td>
 	  </tr>
 		      <!-- 补充空行 -->
-		    <c:forEach items="${rows }" var="ins" varStatus="vs" begin="5">
+		    <c:forEach items="${rows }" var="ins" varStatus="vs" begin="2" end="11">
 			          <tr>
 			            <td>${ins.aab602+1 }</td>
 			            	<td>
@@ -120,7 +121,7 @@ ${msg }
 		      </c:if>
 	     </c:when>
 	   </c:choose>
-	   <c:if test="${(rows[4].aab107)/100 >=  rows[0].aab507+0 || rows[0].aab101 == aab101}">
+	   <c:if test="${(rows[0].aab107)/100 >=  rows[1].aab507+0 || rows[1].aab101 == aab101}">
 	     <tr>
      <td>回复</td>
      <td colspan="3">
@@ -134,7 +135,7 @@ ${msg }
 	<table border="1" width="95%" align="center">
 	  <tr>
 	    <td align="center">
-  			 <c:if test="${aab101 != null && (rows[4].aab107)/100 >= rows[0].aab507+0 || rows[0].aab101 == aab101}">
+  			 <c:if test="${aab101 != null && (rows[0].aab107)/100 >= rows[1].aab507+0 || rows[1].aab101 == aab101}">
   			  <input type="submit" name="next" value="回复 ">
      </c:if>
      <c:if test="${aab101 == null}">
@@ -142,14 +143,18 @@ ${msg }
               formaction="<%=path%>/login.html"
                formnovalidate="formnovalidate">
      </c:if>
-	             <input type="submit" name="next" value="返回" 
-              formaction="<%=path%>/forum.html"
-              formnovalidate="formnovalidate">
-              <c:if test="${tag || aab101 == rows[0].aab101 }">
+              <c:if test="${tag || aab101 == rows[1].aab101 }">
 	       <input type="button" id="del" name="next" value="删除" 
 	              onclick="onDel('${param.aab501}')" 
 	              formnovalidate="formnovalidate" >
               </c:if>
+               <input type="submit" onclick="back()" name="next" value="返回" 
+              formaction="<%=path%>/forum.html"
+              formnovalidate="formnovalidate">
+              	<input type="button" onclick="onBack()" id="backFloor" value="上一页">
+					<input type="button" onclick="onNext()" id="nextFloor" value="下一页">
+					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
+					<e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>
 	  </tr>
 	</table>
@@ -161,7 +166,7 @@ ${msg }
     function collecttion(vaab501,collection)
       {
     	  var vform = document.getElementById("myform");
-    	  if(${rows[1].collection})
+    	  if(${rows[0].collection})
     	  {
     		  vform.action="<%=path%>/delCollectionById.html?aab501="+vaab501;
     		  alert("刪除收藏");
@@ -195,7 +200,7 @@ ${msg }
       function like(vaab501)
       {	
     	  var vform = document.getElementById("myform");
-    	  if(${rows[2].like})
+    	  if(${rows[0].like})
     	  {
     		  vform.action="<%=path%>/delLike.html?aab501="+vaab501;
     		  alert("dislike");
@@ -207,5 +212,6 @@ ${msg }
     	  }
     	  vform.submit();
       }
+      
    </script>
 </html>

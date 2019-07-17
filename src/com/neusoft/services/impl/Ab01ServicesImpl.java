@@ -444,7 +444,12 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	public List<Map<String, String>> postFindById() throws Exception 
 	{
 		Ab05ServicesImpl ab05 = new Ab05ServicesImpl();
-		return ab05.postFindById(this.get("aab101") , this.get("aab501"));
+		int nowFloor =  1;
+		if (isNotNull(this.get("nowFloor"))) 
+		{
+			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+		}
+		return ab05.postFindById(this.get("aab101") , this.get("aab501"),nowFloor);
 	}
 	
     private boolean addEmp()throws Exception

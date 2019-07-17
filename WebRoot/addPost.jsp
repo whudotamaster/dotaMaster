@@ -90,7 +90,7 @@ ${msg }
             // 监控变化，同步更新到 textarea
             $text1.val(html)
         }
-        if(${rows.aab107 > 200}){
+        if(${ins.aab107 > 200}){
         
        
         editor.customConfig.menus = [

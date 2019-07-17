@@ -1,6 +1,5 @@
 <%@ page language="java" 
     pageEncoding="GBK"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -135,37 +134,37 @@ String path=request.getContextPath();
 <div id="nav" >	
 <form>	
 	<input type="hidden" name="aab101" value="<%=aab101%>">
-			<input type="submit" class="btn btn-light" formaction="<%=path%>/mainPage.jsp" value="‰∏ªÈ°µ"/>
+			<input type="submit" class="btn btn-light" formaction="<%=path%>/mainPage.jsp" value="÷˜“≥"/>
 
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryBet.html" value="Á´ûÁåú"/>
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryArticle.html" value="ÊñáÁ´†"/>
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryAcc.html" value="È•∞ÂìÅ"/>
-			<input type="submit" class="btn btn-light" formaction="<%=path%>/forum.html" value="ËÆ∫Âùõ"/>
+		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryBet.html" value="æ∫≤¬"/>
+		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryArticle.html" value="Œƒ’¬"/>
+		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryAcc.html" value=" Œ∆∑"/>
+			<input type="submit" class="btn btn-light" formaction="<%=path%>/forum.html" value="¬€Ã≥"/>
 			<c:if test="${aab108==2}">
-	            <input type="submit" class="btn btn-light" formaction="<%=path%>/adminGo.jsp"  value="ÁΩëÁ´ôÁÆ°ÁêÜ"/>
+	            <input type="submit" class="btn btn-light" formaction="<%=path%>/adminGo.jsp"  value="Õ¯’æπ‹¿Ì"/>
 		    </c:if>
 </form>
     <div id="back"  onmouseover="menu.style.visibility='visible'" onmouseout="out()"style="position:absolute;top:15;right:0;width:300;height:10;z-index:1;visibility:visible;"> 
 		<span id="menubar" style="width:300" > 
 			<font color=red size=2>
-			   <c:if test="${aab108==2}">ÁÆ°ÁêÜÂëò  <%=aab102%> Êú™ËØªÊ∂àÊÅØ<%=unRead%>Êù° </c:if>
-		 	   <c:if test="${aab108==1}">Áî®Êà∑  <%=aab102%> Êú™ËØªÊ∂àÊÅØ<%=unRead%>Êù°</c:if>
-			   <c:if test="${aab108==null}">Ê∏∏ÂÆ¢</c:if>		 
+			   <c:if test="${aab108==2}">π‹¿ÌÖÌ  <%=aab102%> Œ¥∂¡œ˚œ¢<%=unRead%>∞Â </c:if>
+		 	   <c:if test="${aab108==1}">”√ªß  <%=aab102%> Œ¥∂¡œ˚œ¢<%=unRead%>∞Â</c:if>
+			   <c:if test="${aab108==null}">”ŒøÕ</c:if>		 
 			</font>
 		</span> 
-		<!--ÂÆûÁé∞Èº†Ê†áÊÇ¨ÂÅúÂá∫Áé∞ËèúÂçï  -->
+		<!-- µœ÷ Û±Í–¸Õ£≥ˆœ÷≤Àµ•  -->
 		<div id="menu" style="position:absolute;top:15;right:0;width:300;height:10;z-index:2;visibility:hidden;"> 
 			<form action ="<%=path%>/queryPerson.html" method="post">
 				<input type="hidden" name="aab101" value="<%=aab101%>">
-				<input type="submit" name="toLog" formaction="<%=path%>/login.jsp" value="ÁôªÂΩï‰∏éÊ≥®ÂÜå"><BR>
+				<input type="submit" name="toLog" formaction="<%=path%>/login.jsp" value="µ«¬º”Î◊¢ÉÔ"><BR>
 				
 				<c:if test="${aab108!=null}">
-					<input type="submit"  name="toQpi" formnovalidate="formnovalidate" value="‰∏™‰∫∫‰ø°ÊÅØ">
-					<input type="submit" name="toNotice" formaction="<%=path%>/queryNotice.html" value="Êü•ÁúãÁ≥ªÁªüÊ∂àÊÅØ"><BR>
+					<input type="submit"  name="toQpi" formnovalidate="formnovalidate" value="∏ˆ»À–≈œ¢">
+					<input type="submit" name="toNotice" formaction="<%=path%>/queryNotice.html" value="≤Èø¥œµÕ≥œ˚œ¢"><BR>
 				</c:if>
 			  	<c:if test="${aab108==null}">
-	       			<input type="submit" name="psgToLog" value="‰∏™‰∫∫‰ø°ÊÅØ" formaction="<%=path%>/login.jsp">
-	       			<input type="submit" name="psgToNotice" formaction="<%=path%>/login.jsp" value="Êü•ÁúãÁ≥ªÁªüÊ∂àÊÅØ"><BR>
+	       			<input type="submit" name="psgToLog" value="∏ˆ»À–≈œ¢" formaction="<%=path%>/login.jsp">
+	       			<input type="submit" name="psgToNotice" formaction="<%=path%>/login.jsp" value="≤Èø¥œµÕ≥œ˚œ¢"><BR>
 	     	    </c:if>
 			</form>
 			</div>
@@ -182,5 +181,34 @@ aab108=<%=aab108%>
 			menu1.style.visibility="hidden"; 
 		} 
 
+	 	 function onNext()
+	 	 {
+	 		 document.getElementById("nowFloor").value = parseInt(document.getElementById("nowFloor").value) +1 ;
+	 		 document.getElementById("myform").submit();
+	 	 }
+	 	 
+	 	function onBack()
+		 {
+			 document.getElementById("nowFloor").value = parseInt(document.getElementById("nowFloor").value) -1 ;
+			 document.getElementById("myform").submit();
+		 }
+	 	
+	 	function onQuery()
+	 	{
+	 		var vform = document.getElementById("myform");
+	 		document.getElementById("nowFloor").value = 1;
+	 		vform.submit();
+	 	}
+	 	
+	     function back()
+	     {
+	   	 	document.getElementById("nowFloor").value = 1;
+	     }
+
+	 	 window.onload = function()
+	 	 {
+			document.getElementById("nextFloor").disabled = ${!(rows[0].nowFloor < rows[0].floor)}; 
+	 		document.getElementById("backFloor").disabled = ${!(rows[0].nowFloor > 1)}
+	 	 }
 	</SCRIPT> 
 
