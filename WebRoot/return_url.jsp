@@ -1,15 +1,17 @@
+<%@page import="com.neusoft.services.impl.Ac01ServicesImpl"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>电脑网站支付return_url</title>
+<title>return_url</title>
 </head>
 <%@ page import="java.util.*"%>
 <%@ page import="java.util.Map"%>
 <%@ page import="com.alipay.config.*"%>
 <%@ page import="com.alipay.api.*"%>
 <%@ page import="com.alipay.api.internal.util.*"%>
+<%@ page import="com.neusoft.services.impl.Ab01ServicesImpl"  %>
 <%
 /* *
  * 功能：支付宝服务器同步通知页面
@@ -48,16 +50,22 @@
 	
 		//支付宝交易号
 		String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"GBK");
-	
 		//付款金额
 		String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"GBK");
-		
-		out.println("trade_no:"+trade_no+"<br/>out_trade_no:"+out_trade_no+"<br/>total_amount:"+total_amount);
-	}else {
-		out.println("验签失败");
+		//商品名称
+		//String subject=new String(request.getParameter("subject").getBytes("ISO-8859-1"),"GBK");
+		//out.print("subject:"+subject);
+		String a=session.getAttribute("aab101").toString();
+		Ab01ServicesImpl services=new Ab01ServicesImpl();
+		if(services.buyVIP(a,total_amount))
+		{
+			out.print("购买成功");
+		}
+	
 	}
 	//——请在这里编写您的程序（以上代码仅作参考）——
 %>
 <body>
+<%@ include file="header.jsp" %>
 </body>
 </html>

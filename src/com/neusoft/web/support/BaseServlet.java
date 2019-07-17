@@ -1,5 +1,4 @@
 package com.neusoft.web.support;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -8,19 +7,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.Map.Entry;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.services.impl.Ab01ServicesImpl;
 import com.neusoft.services.impl.Ad06ServicesImpl;import sun.security.util.Length;
-
-
 @WebServlet("*.html")
 public class BaseServlet extends HttpServlet 
 {
@@ -136,6 +131,7 @@ public class BaseServlet extends HttpServlet
 		return dto;
 	}
 
+	//消息提示
 	private void updateMessage(HttpServletRequest request)throws Exception
 	{	
 		if(request.getSession().getAttribute("aab101")!=null)

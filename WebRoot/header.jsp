@@ -127,12 +127,15 @@ String aab101=(String)session.getAttribute("aab101");
 String aab102=(String)session.getAttribute("aab102");
 String aab108=(String)session.getAttribute("aab108");
 String aab109=(String)session.getAttribute("aab109");
+int unRead = (int)session.getAttribute("unRead");
+
 String path=request.getContextPath();
 %>
 <div id="nav" >	
 <form>	
 	<input type="hidden" name="aab101" value="<%=aab101%>">
 			<input type="submit" class="btn btn-light" formaction="<%=path%>/mainPage.jsp" value="主页"/>
+
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryBet.html" value="竞猜"/>
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryArticle.html" value="文章"/>
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryAcc.html" value="饰品"/>
@@ -144,8 +147,8 @@ String path=request.getContextPath();
     <div id="back"  onmouseover="menu.style.visibility='visible'" onmouseout="out()"style="position:absolute;top:15;right:0;width:300;height:10;z-index:1;visibility:visible;"> 
 		<span id="menubar" style="width:300" > 
 			<font color=red size=2>
-			   <c:if test="${aab108==2}">管理员  <%=aab102%></c:if>
-		 	   <c:if test="${aab108==1}">用户  <%=aab102%></c:if>
+			   <c:if test="${aab108==2}">管理员  <%=aab102%> 未读消息<%=unRead%>条 </c:if>
+		 	   <c:if test="${aab108==1}">用户  <%=aab102%> 未读消息<%=unRead%>条</c:if>
 			   <c:if test="${aab108==null}">游客</c:if>		 
 			</font>
 		</span> 
