@@ -85,11 +85,11 @@ ${msg }
 	<table border="1" width="95%" align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" onclick="back()" value="查询">
-	         <input type="submit" name="next" onclick="back()" value="返回" 
+	        <input type="submit" name="next"  class="btn btn-secondary" onclick="back()" value="查询">
+	         <input type="submit" name="next"  class="btn btn-secondary" onclick="back()" value="返回" 
 	              formaction="<%=path%>/queryBet.html">
-	              	<input type="button" onclick="onBack()" id="backFloor" value="上一页">
-					<input type="button" onclick="onNext()" id="nextFloor" value="下一页">
+	              	<input type="button"  class="btn btn-secondary" onclick="onBack()" id="backFloor" value="上一页">
+					<input type="button"  class="btn btn-secondary" onclick="onNext()" id="nextFloor" value="下一页">
 					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
 					<e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>

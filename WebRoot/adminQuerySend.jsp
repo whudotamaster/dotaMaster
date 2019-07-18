@@ -24,7 +24,9 @@
    </script>
 </head>
 <body>
+<font color="white">
 ${msg }
+</font>
 <br>
 <br>
 <div class="demoDOTA2"></div>
@@ -94,7 +96,7 @@ ${msg }
 	   </c:choose>
 	</table>
 	<!-- 功能按钮区 -->
-	<table border="1" width="95%" align="center">
+	<table align="center">
 	  <tr>
 	    <td align="center">
 	       <input type="submit" class="btn btn-secondary  active" name="next" value="<%=aab108.equals("1")?"查看历史购买":"查看待发货列表"%>"

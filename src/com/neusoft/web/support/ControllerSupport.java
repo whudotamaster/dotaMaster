@@ -123,7 +123,7 @@ public abstract class ControllerSupport implements BaseController
 		}
 		else
 		{
-			this.saveAttribute("msg", this.services.getMessage());
+			//this.saveAttribute("msg", this.services.getMessage());
 			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
 		}	
 	}
@@ -330,7 +330,7 @@ public abstract class ControllerSupport implements BaseController
 		}
 		else
 		{
-			this.saveAttribute("msg", "失败"+this.getServices().getMessage());
+			this.saveAttribute("msg", "失败  : "+this.getServices().getMessage());
 		}
 	}
 	

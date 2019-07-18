@@ -61,7 +61,6 @@ ${msg }
 				       <img alt="no image" src=<%=path%>/images/${ins.aac603 } style="width:50%; height:100%">
 				     </td>
 				    <td>
-				      <!-- #  空锚 -->			    		    
 				      <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
 				    </td>
 				    <c:if test="${aab108==2}">
@@ -107,11 +106,16 @@ ${msg }
 	<table border="0" cellpadding="0" cellspacing="0" align="center" >
 	  <tr>
 	    <td align="center">
+	    <div class="btn-group" role="group" aria-label="Basic example" style="text-align:center;">
 	       <input type="submit" class="btn btn-secondary  active" onclick="back()" name="next" value="查询">
 	       <c:if test="${aab108==2}">
 	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
 	              formaction="<%=path%>/addAcc.jsp">
-	              </c:if>
+	       </c:if>
+		   <input type="submit"  class="btn btn-secondary" name="next" value="查看历史购买" 
+			              formaction="<%=path%>/queryBuyOrder.html">
+		   <input type="submit"  class="btn btn-secondary" name="next" value="查看历史出售" 
+			              formaction="<%=path%>/querySellOrder.html">		       
 	       <c:if test="${aab108==2}">
 	       		<input type="submit" id="del" class="btn btn-secondary  active"  name="next" value="删除" 
 	              formaction="<%=path%>/delAcc.html"  disabled="disabled">
@@ -124,6 +128,7 @@ ${msg }
 					<input type="button" class="btn btn-secondary  active" onclick="onNext()" class="btn btn-secondary  active" id="nextFloor" value="下一页">
 					<input hidden="true" type="text" name="nowFloor" class="btn btn-secondary  active" id="nowFloor" value="${rows[0].nowFloor }">
 					<e:hidden name="floor" defval="${rows[0].floor }"/>
+			</div>
 	    </td>
 	  </tr>
 	</table>

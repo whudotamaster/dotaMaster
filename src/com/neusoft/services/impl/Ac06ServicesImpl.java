@@ -156,7 +156,11 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		String sql2="select count(*)num from ad03 where aab101=? and aad303=2";
 		int count=Tools.getFailCount(sql2, this.get("aab101"));	
 		if(count>10)
+		{
+			this.setMessage("交易失败数量过大,禁止继续发起交易");
 			return false;	
+		}
+
 		return this.executeUpdate(sql, args)>0;
 		
 	}

@@ -33,7 +33,7 @@ ${msg }
    <tr>
      <td>dota2游戏ID</td>
      <td>
-       <e:text name="aad402" defval="${ins.aad402 }" readonly="${!empty ins.aad403?'true':'false' }"  />
+       <e:text name="aad402" defval="${ins.aad402 }" readonly="${!empty ins.aad403?'true':'false' }" required="true" />
      </td>
    </tr>
    <tr>
@@ -51,21 +51,24 @@ ${msg }
      <td colspan="2" align="center">
      <c:choose>
      <c:when test="${empty ins.aad403}">
-     <input type="submit" name="next" value="购买"
+     <input type="submit"  class="btn btn-secondary" name="next" value="购买"
               formaction="<%=path%>/buyAcc.html">
-     <input type="submit" name="next" value="返回" 
-              formaction="<%=path%>/findByIdAcc.html?aac601=${ins.aac601 }">
+     <input type="submit"  class="btn btn-secondary" name="next" value="返回" 
+              formaction="<%=path%>/findByIdAcc.html?aac601=${ins.aac601 }"
+              formnovalidate="formnovalidate">
      </c:when>
      <c:when test="${ins.aad403==0}">
-     <c:if test="${aab108==2} ">
-     <input type="submit" name="next" value="已发货"
+     <c:if test="${aab108==2}">
+     <input type="submit"  class="btn btn-secondary" name="next" value="已发货"
               formaction="<%=path%>/modifySendAcc.html">
-     <input type="submit" name="next" value="返回" 
-              formaction="<%=path%>/findByIdAcc.html?aac601=${ins.aac601 }">
-     </c:if>  
-      <c:if test="${aab108!=2}">
-     <input type="submit" name="next" value="返回" 
-             formaction="<%=path%>/findByIdAcc.html?aac601=${ins.aac601 }">
+     <input type="submit"  class="btn btn-secondary" name="next" value="返回" 
+              formaction="<%=path%>/querySendAcc.html"
+              formnovalidate="formnovalidate">
+     </c:if>
+     <c:if test="${aab108!=2}">
+     <input type="submit"  class="btn btn-secondary" name="next" value="返回" 
+             formaction="<%=path%>/queryBuyOrder.html"
+             formnovalidate="formnovalidate">
      </c:if>  
      </c:when>
      </c:choose>
