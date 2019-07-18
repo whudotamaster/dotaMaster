@@ -6,6 +6,7 @@ public final class QueryBetServlet extends BetControllerSupport
 	public String execute() throws Exception 
 	{
 		this.savePageData();
+		//return "bet";
 		return "queryBet";
 	}
 }

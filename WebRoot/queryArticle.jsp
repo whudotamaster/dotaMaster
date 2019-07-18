@@ -2,6 +2,7 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ include file="header.jsp" %>
 <html>
 <head>
    <title>Insert title here</title>
@@ -16,10 +17,7 @@
 </head>
 <body>
 ${msg }
-<!-- 引入头部导航栏 -->
-<%@ include file="header.jsp" %>
 <br>
-<%=session.getId() %>
 <br>
 <form id="myform" action="<%=path%>/queryArticle.html" method="post">
   <!-- 查询条件区 -->

@@ -156,7 +156,7 @@ String path=request.getContextPath();
 		<div id="menu" style="position:absolute;top:15;right:0;width:300;height:10;z-index:2;visibility:hidden;"> 
 			<form action ="<%=path%>/queryPerson.html" method="post">
 				<input type="hidden" name="aab101" value="<%=aab101%>">
-				<input type="submit" name="toLog" formaction="<%=path%>/login.jsp" value="登录与注冿"><BR>
+				<input type="submit" name="toLog" formaction="<%=path%>/login.jsp" value="登录与注册"><BR>
 				
 				<c:if test="${aab108!=null}">
 					<input type="submit"  name="toQpi" formnovalidate="formnovalidate" value="个人信息">

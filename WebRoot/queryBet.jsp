@@ -95,7 +95,7 @@ ${msg }
 	<!-- 数据迭代区 -->
 		
 	<table align="center" class="table table-striped" style="background-color:#CCFFFF;opacity: 0.9;width:90%">
-	   <caption align="left"><font color="#000000" size="5px">可押注比赛</font> </caption>
+	   <caption align="left"><font color="white" size="5px">可押注比赛</font> </caption>
 
 	  <tr>
 	    <td>序号</td>
@@ -103,10 +103,10 @@ ${msg }
 	    <td>战队1</td>
 	    <td>战队2</td>
 	    <td>比赛开始时间</td>
-	    <td>A方押注数量</td>
-	    <td>B方押注数量</td>
-	    <td>押注A方</td>
-	    <td>押注B方</td>
+	    <td>战队1押注总额</td>
+	    <td>战队2押注总额</td>
+	    <td>押注战队1</td>
+	    <td>押注战队2</td>
 	    <td></td>
 	  </tr>
 	  <!--

@@ -15,7 +15,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
   				.append("       c.aac1102,c.aac1103,c.aac1104,e.aac702")
   				.append("  from ac11 c,ad01 d,ac07 e")
   				.append(" where d.aac1101=c.aac1101 and e.aac701=c.aac701 ")
-  				.append("   and now()>d.aad104 and now()<d.aad105")
+  				.append("   and now()>d.aad104 and now()<d.aad105 and c.aac1105=0")
   				;
 		return this.queryForList(sql.toString());
     }
@@ -24,8 +24,9 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 	{
 		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
 		Double aab106=ab01.getMoney(aab101);
-		int aad202=Integer.parseInt(this.get("aad202").toString());
-		int aad203=Integer.parseInt(this.get("aad203").toString());
+		String count=this.get("count").toString();
+		int aad202=Integer.parseInt(this.get("aad202"+count).toString());
+		int aad203=Integer.parseInt(this.get("aad203"+count).toString());
 		if(aab106>aad202+aad203)
 			return true;
 		else 
@@ -46,15 +47,28 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     			.append("insert into ad02(aad101,aab101,aad202,aad203)")
     			.append("          values(?,?,?,?)")
     			;
+    	int aad202=0;
+    	int aad203=0;
+    	String count=this.get("count").toString();
+    	if(Integer.parseInt(this.get("aad202"+count).toString())!=0)
+    	{
+    		aad202=Integer.parseInt(this.get("aad202"+count).toString());
+    	}
+    	if(Integer.parseInt(this.get("aad203"+count).toString())!=0)
+    	{
+    		aad203=Integer.parseInt(this.get("aad203"+count).toString());
+    	}
+    	System.out.println(aad202);
+    	System.out.println(aad203);
     	Object args1[]={
     			this.get("aad101"),
     			this.get("aab101"),
-    			this.get("aad202"),
-    			this.get("aad203")
+    			aad202,
+    			aad203
     	};
     	this.apppendSql(sql1.toString(), args1);
     	//扣除用户金额
-    	int aab106=0-Integer.parseInt(this.get("aad202").toString())-Integer.parseInt(this.get("aad203").toString());
+    	int aab106=0-aad202-aad203;
     	Ab01ServicesImpl ab01=new Ab01ServicesImpl();
     	ab01.updateMoney(aab106, this.get("aab101"));
     	
@@ -69,8 +83,8 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     			.append(" where aad101=?")
     			;
     	Object args2[]={
-    			this.get("aad202"),
-    			this.get("aad203"),
+    			aad202,
+    			aad203,
     			this.get("aad101")
     	};
     	this.apppendSql(sql2.toString(), args2);
@@ -113,11 +127,11 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     }
     
     //查询每一笔指定竞猜押注
-    private List<Map<String, Object>> queryUserCount(Object aad101)throws Exception
+    private List<Map<String,Object>> queryUserCount(Object aad101)throws Exception
     {		
   		//定义SQL主体
   		StringBuilder sql=new StringBuilder()
-  				.append("select aab101,aad202,aad203")
+  				.append("select aad201,aab101,aad202,aad203")
   				.append("  from ad02")
   				.append(" where aad101=?")
   				;
@@ -135,7 +149,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 
     	String sql="select aad101 from ad01 where aac1101=?";
 
-    	Map<String, Object> temp=this.queryForMap(sql,aac1101);
+    	Map<String,Object> temp=this.queryForMap(sql,aac1101);
 
     	Object aad101=temp.get("aad101");
     	
@@ -148,12 +162,6 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	//3.1获取用户押注列表
     	//list中属性有用户ID 押注A方数量 押注B方数量 此处需要计算出用户赚的额度 并且放入每一个map中
     	List<Map<String, Object>> list=this.queryUserCount(aad101);
-    	Ab01ServicesImpl ab01=new Ab01ServicesImpl();
-    	for(Map<String, Object> t:list)
-    	{
-    		String bool=ab01.isVIP(t.get("aab101"))?"true":"false";
-    		t.put("vip", bool);
-    	}
     	
     	//3.2根据比赛胜负来计算用户该单获得的金币,并存入map中
     	if(tag)
@@ -162,10 +170,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     		for(Map<String, Object> m:list)
     		{
     			tem=Integer.parseInt(m.get("aad202").toString());
-    			if(m.get("vip")=="true")
-    				m.put("aad204", String.valueOf(tem+tem*countB/countA*0.99));
-    			else
-    				m.put("aad204", String.valueOf(tem+tem*countB/countA*0.95));
+    			m.put("aad204", String.valueOf((tem+tem*countB/countA)*0.95));//根据用户是否为会员扣费暂时未做
     		}
     	}
     	else
@@ -174,20 +179,35 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     		for(Map<String, Object> m:list)
     		{
     			tem=Integer.parseInt(m.get("aad203").toString());
-    			if(m.get("vip")=="true")
-    				m.put("aad204", String.valueOf(tem+tem*countB/countA*0.99));
-    			else
-    				m.put("aad204", String.valueOf(tem+tem*countB/countA*0.95));
+    			m.put("aad204", String.valueOf((tem+tem*countB/countA)*0.95));
     			
     		}
     	}
     	
-    	//4,针对每一条押注,往用户表中更新金额
     	StringBuilder sql2=new StringBuilder()
+    						.append(" update ad02 ")
+    						.append("    set aad204=?")
+    						.append("  where aad201=?")
+    						;
+    	
+    	for(Map<String, Object> m:list)
+		{
+    		Object args[]=
+    			{
+    				m.get("aad204"),
+    				m.get("aad201")
+    			};
+			this.apppendSql(sql2.toString(),args);
+		}
+    	
+    	//4,针对每一条押注,往用户表中更新金额
+    	StringBuilder sql3=new StringBuilder()
     			.append("update ab01 a")
     			.append("   set a.aab106=a.aab106+?")
     			.append(" where a.aab101=?")
     			;
+    	
+    	
 
     	for(Map<String, Object> m:list)
 		{
@@ -196,8 +216,8 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     				m.get("aad204"),
     				m.get("aab101")
     			};
-			this.apppendSql(sql2.toString(),args);
-			Tools.sendMessage("您有一笔押注公布结果了,您获得的金额是"+m.get("aad204"),(Object)m.get("aab101"));
+			this.apppendSql(sql3.toString(),args);
+			Tools.sendMessage("您有一笔押注公布结果了,您获得的金额是: "+m.get("aad204"),(Object)m.get("aab101"));
 		}
     	return this.executeTransaction();
     }
