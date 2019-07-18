@@ -20,7 +20,6 @@ MultipartConfig
 multipart/form-data 的 POST 请求封装成 Part，通过 Part 对文件进行上传。
 Servlet3 没有提供直接获取文件名的方法,需要从请求头中解析出来
  */
-@WebServlet(name = "UploadUserServlet",value = "/uploadUser.htm",loadOnStartup=0)
 @MultipartConfig
 public class UploadUserServlet extends HttpServlet 
 {
@@ -51,6 +50,7 @@ public class UploadUserServlet extends HttpServlet
         	}
         //换新的
         	ab01.updatePic(request.getSession().getAttribute("aab101"),uuid+name);
+
 			request.setAttribute("msg", "提示：上传头像成功！");
 			request.getRequestDispatcher("queryPerson.html").forward(request, response);
 		} 
@@ -64,12 +64,13 @@ public class UploadUserServlet extends HttpServlet
      * 删除单个文件 
      * @param   sPath    被删除文件的文件名 
      * @return 单个文件删除成功返回true，否则返回false 
-     */   
+     */  
     public boolean deleteFile(String sPath) 
     {  
        boolean flag = false;  
         File file = new File(sPath);  
-         // 路径为文件且不为空则进行删除   
+        // 路径为文件且不为空则进行删除  
+
         if (file.isFile() && file.exists()) 
         {
         	

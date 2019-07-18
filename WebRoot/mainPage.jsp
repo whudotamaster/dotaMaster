@@ -23,7 +23,6 @@ function refresh(){
 }
  
 setTimeout('refresh()', 1);
-  
 </script>
 
 <html>

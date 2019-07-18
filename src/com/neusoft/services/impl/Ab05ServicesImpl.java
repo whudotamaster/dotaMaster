@@ -14,32 +14,32 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 {
 
 	/**
-	 * è®ºå›ä¸»é¡µå¸–å­ä¸å®šæ¡ä»¶æŸ¥è¯¢
+	 * ÂÛÌ³Ö÷Ò³Ìû×Ó²»¶¨Ìõ¼ş²éÑ¯
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public List<Map<String, Object>> queryPost() throws Exception 
 	{
-		// è¿˜åŸé¡µé¢æŸ¥è¯¢æ¡ä»¶
-		Object aab502 = this.get("aab502"); // æ ‡é¢˜ æ¨¡ç³ŠæŸ¥è¯¢
-		Object aab506 = this.get("aab506"); // æ™®é€šåŒºæˆ–ç²¾ååŒº
+		// »¹Ô­Ò³Ãæ²éÑ¯Ìõ¼ş
+		Object aab502 = this.get("aab502"); // ±êÌâ Ä£ºı²éÑ¯
+		Object aab506 = this.get("aab506"); // ÆÕÍ¨Çø»ò¾«»ªÇø
 		Object aab101 = this.get("aab101");
 		int nowFloor =  1;
 		if (isNotNull(this.get("nowFloor"))) 
 		{
 			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
 		}
-		// å®šä¹‰SQLä¸»ä½“
+		// ¶¨ÒåSQLÖ÷Ìå
 		StringBuilder sql = new StringBuilder()
 				.append(" select b.aab501,b.aab101,a.aab102,a.aab105,b.aab502,")
 				.append("	     b.aab504,b.aab505,b.aab506,b.aab507")
 				.append("   from ab05 b,ab01 a")
 				.append("  where b.aab101=a.aab101 ")
 				;
-		// å‚æ•°åˆ—è¡¨
+		// ²ÎÊıÁĞ±í
 		List<Object> paramList = new ArrayList<>();
-		// é€ä¸€åˆ¤æ–­æŸ¥è¯¢æ¡ä»¶æ˜¯å¦å½•å…¥,æ‹¼æ¥ANDæ¡ä»¶
+		// ÖğÒ»ÅĞ¶Ï²éÑ¯Ìõ¼şÊÇ·ñÂ¼Èë,Æ´½ÓANDÌõ¼ş
 		StringBuilder whereSql = new StringBuilder();
 		if (this.isNotNull(aab502)) 
 		{
@@ -58,7 +58,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
 		Map<String, Object> map1 = new HashMap<String, Object>();
-		if (!isNotNull(aab101)) 
+		if (isNotNull(aab101)) 
 		{
 			map1.put("aab107", ab01.queryPersonEmp(aab101).get("aab107"));
 		}
@@ -80,23 +80,23 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	}
 	
 	/**
-	 * è®ºå›ä¸»é¡µå¸–å­åŠ ç²¾
+	 * ÂÛÌ³Ö÷Ò³Ìû×Ó¼Ó¾«
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	private boolean modifyGoodPost() throws Exception 
 	{
-		// 1.å®šä¹‰SQLè¯­å¥
+		// 1.¶¨ÒåSQLÓï¾ä
 		String sql = "update ab05 a set aab506='1' where a.aab501=?";
-		// 2.è·å–é¡µé¢idlistæ•°ç»„
+		// 2.»ñÈ¡Ò³ÃæidlistÊı×é
 		String idlist[] = this.getIdList("idlist");
-		// 3.æ‰§è¡Œ
+		// 3.Ö´ĞĞ
 		return this.batchUpdate(sql, idlist);
 	}
 
 	/**
-	 * è®ºå›ä¸»é¡µå¸–å­åˆªé™¤
+	 * ÂÛÌ³Ö÷Ò³Ìû×Ó„h³ı
 	 * 
 	 * @return
 	 * @throws Exception
@@ -116,7 +116,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	}
 
 	/**
-	 * å‘å¸–
+	 * ·¢Ìû
 	 * 
 	 * @return
 	 * @throws Exception
@@ -154,16 +154,16 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	}
 
 	/**
-	 * æŒ‡å®šå¸–å­æŸ¥è¯¢åŠ è½½å…¥å£
+	 * Ö¸¶¨Ìû×Ó²éÑ¯¼ÓÔØÈë¿Ú
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public List<Map<String, Object>> postFindById() throws Exception 
 	{
-		// è¿˜åŸé¡µé¢æŸ¥è¯¢æ¡ä»¶
-		Object aab501 = this.get("aab501"); // å¸–å­ID
-		Object aab101 = this.get("aab101"); // ç”¨æˆ¶ID
+		// »¹Ô­Ò³Ãæ²éÑ¯Ìõ¼ş
+		Object aab501 = this.get("aab501"); // Ìû×ÓID
+		Object aab101 = this.get("aab101"); // ÓÃ‘ôID
 		int nowFloor =  1;
 		if (isNotNull(this.get("nowFloor"))) 
 		{
@@ -173,14 +173,14 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	}
 
 	/**
-	 * æŒ‡å®šå¸–å­æŸ¥è¯¢åŠ è½½(å¸–å­ å›å¤ æ”¶è—çŠ¶æ€)
+	 * Ö¸¶¨Ìû×Ó²éÑ¯¼ÓÔØ(Ìû×Ó »Ø¸´ ÊÕ²Ø×´Ì¬)
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public List<Map<String, Object>> postFindById(Object aab101 , Object aab501, int nowFloor) throws Exception 
 	{
-		// å®šä¹‰SQLä¸»ä½“
+		// ¶¨ÒåSQLÖ÷Ìå
 		StringBuilder sql = new StringBuilder()
 				.append(" select a.aab101,a.aab102,a.aab105,b.aab502,b.aab503,")
 				.append("        b.aab504,b.aab507")
@@ -188,25 +188,25 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 				.append("  where b.aab501=? and a.aab101=b.aab101")
 				.append("  order by b.aab504")
 				;
-		// å‚æ•°åˆ—è¡¨
+		// ²ÎÊıÁĞ±í
 		List<Map<String, Object>> rows =  new ArrayList<Map<String, Object>>();
 		Map<String, Object> map1 = new HashMap<String, Object>();
 		Ab07ServicesImpl ab07=new Ab07ServicesImpl();
 		Ab11ServicesImpl ab11=new Ab11ServicesImpl();
 		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
-		map1.put("collection", ab07.queryCollection(aab101,aab501).toString());				//æ”¶è—ç‹€æ€
-		map1.put("like", ab11.countUserLike(aab101,aab501).toString());						//ç‚¹èµç‹€æ€
+		map1.put("collection", ab07.queryCollection(aab101,aab501).toString());				//ÊÕ²Ø îÌ¬
+		map1.put("like", ab11.countUserLike(aab101,aab501).toString());						//µãÔŞ îÌ¬
 		map1.put("nowFloor", String.valueOf(nowFloor));
 		if(aab101 != null)
 		{
-			map1.put("aab107", ab01.queryPersonEmp(aab101).get("aab107"));					//ç»éªŒå€¼
+			map1.put("aab107", ab01.queryPersonEmp(aab101).get("aab107"));					//¾­ÑéÖµ
 		}
 		else
 		{
 			map1.put("aab107", "0");
 		}
 				
-		map1.put("countlike",ab11.countLike(aab501).get("countlike")); 						//ç‚¹èµæ•°
+		map1.put("countlike",ab11.countLike(aab501).get("countlike")); 						//µãÔŞÊı
 		String whereSql = " and b.aab501=?";
 		map1.put("floor", String.valueOf(countFloor("ab06 b",whereSql,aab501)));
 		rows.add(map1);
@@ -221,7 +221,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	}
 	
 	/**
-	 * å›å¤
+	 * »Ø¸´
 	 * 
 	 * @return
 	 * @throws Exception
@@ -269,14 +269,14 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	}
 
 	/**
-	 * æŸ¥æ‰¾ç”¨æˆ·å†å²å‘å¸–
+	 * ²éÕÒÓÃ»§ÀúÊ··¢Ìû
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public List<Map<String,Object>> queryHistory() throws Exception 
 	{
-		// 1.å®šä¹‰SQLè¯­å¥
+		// 1.¶¨ÒåSQLÓï¾ä
 		StringBuilder sql = new StringBuilder()
 				.append(" select a.aab501,a.aab502,a.aab504,a.aab505 ")
 				.append("   from ab05 a ")
@@ -304,19 +304,9 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 				}
 				return rows;
 	}
-		public List<Map<String,Object>> queryHistory(Object aab101) throws Exception 
-	{
-		// 1.å®šä¹‰SQLè¯­å¥
-		StringBuilder sql = new StringBuilder()
-				.append(" select a.aab501,a.aab502,a.aab504,a.aab505 ")
-				.append("   from ab05 a ")
-				.append("  where a.aab101=? ")
-				.append("  order by a.aab504 desc ")
-				;
-		return this.queryForList(sql.toString(), aab101);
-	}
+	
 	/**
-	 * å¸–å­æ‰¹é‡åˆªé™¤
+	 * Ìû×ÓÅúÁ¿„h³ı
 	 * 
 	 * @return
 	 * @throws Exception
@@ -338,3 +328,4 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		return executeTransaction();
 	}
 }
+

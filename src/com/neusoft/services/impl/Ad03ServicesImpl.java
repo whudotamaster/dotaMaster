@@ -17,8 +17,12 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 		//1,更新收货状态为失败
 		String sql="update ad03 set aad303=2 where aad301=?";
 		
+		String sql2="select aab101 from ad03 where aad301=?";
+		
+		Map<String, Object> map=this.queryForMap(sql2, this.get("aad301"));
+		
 		//2,发送失败消息给用户
-		Tools.sendMessage("您的饰品未收到,请您检查是否发送错误或未发送",this.get("aab101"));
+		Tools.sendMessage("您的饰品未收到,请您检查是否发送错误或未发送",map.get("aab101"));
 		
 		return this.executeUpdate(sql, this.get("aad301"))>0;
 	}
@@ -27,7 +31,13 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 	public boolean checkDelSuccess() throws Exception
 	{
 		//1,更新收货状态为已完成
-		String sql="update ad03 set aad303=1 where aad301=?";
+		String sql="update ad03 set aad303=1 where aad301=? ";
+		
+		
+		//1.2根据订单找到用户id
+		String sql2="select aab101 from ad03 where aad301=?";
+		
+		Map<String, Object> map=this.queryForMap(sql2, this.get("aad301"));
 		
 		//2,查询饰品价格
 		Ac06ServicesImpl ac06=new Ac06ServicesImpl();
@@ -36,14 +46,14 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 		
 		//3,更新用户金额
 		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
-		ab01.updateMoney(price,this.get("aab101"));//此处填页面传过来的出售饰品的用户ID
+		ab01.updateMoney(price,map.get("aab101"));
 		
 		//4,更新库存
-		String sql2="update ac06 set aac606=aac606+1 where aac601=?";
-		this.apppendSql(sql2, this.get("aac601"));
+		String sql3="update ac06 set aac606=aac606+1 where aac601=?";
+		this.apppendSql(sql3, this.get("aac601"));
 		
 		//4,发送信息
-		Tools.sendMessage("您的饰品已经收到,您获得的金额是"+price,this.get("aab101"));
+		Tools.sendMessage("您的饰品已经收到,您获得的金额是"+price,map.get("aab101"));
 		
 		return this.executeUpdate(sql, this.get("aad301"))>0;
 	}
@@ -55,7 +65,7 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 						.append("select a.aad301,a.aac601,a.aab101,a.aad302,a.aad303,")
 						.append("		a.aad304,a.aad305,b.fvalue,c.aac602,c.aac604")
 						.append(" from  ad03 a,syscode b,ac06 c ")
-						.append("where  a.aad303=0 and b.fname='aad303' and b.fcode=a.aad303 and a.aac601=c.aac601")
+						.append("where  a.aad303=0 and b.fname='aad303' and b.fcode=a.aad303 and a.aac601=c.aac601 order by a.aad305")
 						;
 						
 

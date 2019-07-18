@@ -200,13 +200,14 @@ tr {
         	 vform.submit();
     	 }
       }
-            function onCheck(qaab101)
+     function onCheck(qaab101)
       {
     	  var vform = document.getElementById("myform");
      	 vform.action="<%=path%>/queryOtherPerson.htm?qaab101="+ qaab101;
      	 //alert(vform.action);
      	 vform.submit();
       }
+      
       function onDel(vaab501)
       {
     	 var vform = document.getElementById("myform");

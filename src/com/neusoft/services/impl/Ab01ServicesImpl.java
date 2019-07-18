@@ -347,18 +347,16 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	try
     	{
     		Object aab102=this.get("aab102");
-    		Object aab105=this.get("aab105");
     		Object aab101=this.get("aab101");
 
     		StringBuilder sql = new StringBuilder()
 					    		.append("update ab01 ")
-					    		.append("   set aab102 = ?,aab105=?")
+					    		.append("   set aab102 = ?")
 					    		.append(" where aab101 = ?")
 					    		;
     		Object args[]=
     			{
         			aab102,
-        			aab105,
         			aab101
     			};
     		return this.executeUpdate(sql.toString(), args)>0;
@@ -465,6 +463,12 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	
 	}
  
+	/**
+	 * 指定帖子查询的加载(帖子 回复 收藏状态)
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	/**
 	 * 指定帖子查询的加载(帖子 回复 收藏状态)
 	 * 

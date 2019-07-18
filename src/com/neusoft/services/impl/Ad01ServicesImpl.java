@@ -3,6 +3,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
+
+
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.system.tools.Tools;
 public class Ad01ServicesImpl extends JdbcServicesSupport 
@@ -44,8 +49,17 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
 		Double aab106=ab01.getMoney(aab101);
 		String count=this.get("count").toString();
-		int aad202=Integer.parseInt(this.get("aad202"+count).toString());
-		int aad203=Integer.parseInt(this.get("aad203"+count).toString());
+		int aad202=0;
+		int aad203=0;
+		
+		if(this.get("aad202"+count)!=null)
+    	{
+    		aad202=Integer.parseInt(this.get("aad202"+count).toString());
+    	}
+    	if(this.get("aad203"+count)!=null)
+    	{
+    		aad203=Integer.parseInt(this.get("aad203"+count).toString());
+    	}
 		if(aab106>aad202+aad203)
 			return true;
 		else 
@@ -69,16 +83,19 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	int aad202=0;
     	int aad203=0;
     	String count=this.get("count").toString();
-    	if(Integer.parseInt(this.get("aad202"+count).toString())!=0)
+    	if(this.get("aad202"+count)!=null)
     	{
     		aad202=Integer.parseInt(this.get("aad202"+count).toString());
     	}
-    	if(Integer.parseInt(this.get("aad203"+count).toString())!=0)
+    	if(this.get("aad203"+count)!=null)
     	{
     		aad203=Integer.parseInt(this.get("aad203"+count).toString());
     	}
-    	System.out.println(aad202);
-    	System.out.println(aad203);
+    	if(aad202==0&&aad203==0)
+    	{
+    		this.setMessage("  请至少在一方押注");
+    		return false;
+    	}
     	Object args1[]={
     			this.get("aad101"),
     			this.get("aab101"),

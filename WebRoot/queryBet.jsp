@@ -54,7 +54,6 @@
       {
     	 var vform = document.getElementById("myform");
     	 vform.action="<%=path%>/playBet.html?aad101="+vaad101+"&count="+count;
-    	 //alert(vform.action);
     	 vform.submit();
       } 
       $("#totalCnt").change(function () {
@@ -128,11 +127,11 @@ ${msg }
 				    <td>${ins.aad102 }</td>
 				    <td>${ins.aad103 }</td>
 				    <td>
-				      <input type="text" name="aad202${vs.count }"  value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
+				      <input type="text" name="aad202${vs.count }" required="true" value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
     onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
 				    </td>
 				    <td>
-				      <input type="text" name="aad203${vs.count }"  value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
+				      <input type="text" name="aad203${vs.count }"  required="true" value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
     onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
 				    </td>
 				   <td>
