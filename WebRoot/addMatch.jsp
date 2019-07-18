@@ -38,7 +38,7 @@ ${msg}
    <tr>
      <td>比赛开始时间</td>
      <td>
-      <e:text name="aac1102"  required="true"   /> 
+        <input type="datetime-local" value=""/>
      </td>
    </tr>
    <tr>

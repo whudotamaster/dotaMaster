@@ -119,6 +119,57 @@
                 -o-background-size: cover;
                 background-position: center 0;
             }
+            .demoAcc{
+                position:fixed;
+                top: 0;
+                left: 0;
+                width:100%;
+                height:100%;
+                min-width: 1000px;
+                z-index:-10;
+                zoom: 1;
+                background-color: #fff;
+                background: url(images/AccBg.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                background-position: center 0;
+            }
+             .demoEquipment{
+                position:fixed;
+                top: 0;
+                left: 0;
+                width:100%;
+                height:100%;
+                min-width: 1000px;
+                z-index:-10;
+                zoom: 1;
+                background-color: #fff;
+                background: url(images/EBg.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                background-position: center 0;
+            }
+            .demoEvent{
+                position:fixed;
+                top: 0;
+                left: 0;
+                width:100%;
+                height:100%;
+                min-width: 1000px;
+                z-index:-10;
+                zoom: 1;
+                background-color: #fff;
+                background: url(images/EventBg.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                background-position: center 0;
+            }
     </style>
 </head>
 <%
@@ -135,11 +186,12 @@ String path=request.getContextPath();
 <form>	
 	<input type="hidden" name="aab101" value="<%=aab101%>">
 			<input type="submit" class="btn btn-light" formaction="<%=path%>/mainPage.jsp" value="主页"/>
-
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryBet.html" value="竞猜"/>
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryArticle.html" value="文章"/>
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryAcc.html" value="饰品"/>
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryHero.html" value="英雄"/>
+		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryEquipment.html" value="装备"/>
+		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryEvent.html" value="赛事"/>
 			<input type="submit" class="btn btn-light" formaction="<%=path%>/forum.html" value="论坛"/>
 			<c:if test="${aab108==2}">
 	            <input type="submit" class="btn btn-light" formaction="<%=path%>/adminGo.jsp"  value="网站管理"/>

@@ -11,21 +11,20 @@
      {
         height:25px;
      }
+   
+
    </style>
 
 
 </head>
 <body>
 ${msg }
+<div class="demoAcc" style="opacity: 0.9"></div>
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryAcc.html" method="post">
   <!-- 查询条件区 -->
-	<table border="1" width="35%" align="center" >
-	  <caption>
-	            饰品
-	   
-	  </caption>
+	<table align="center" class="table table-striped" style="background-color:#ABCDE7;opacity: 0.9;width:65%" >
 	  <tr>
 	    <td colspan="4">查询条件</td>
 	  </tr>
@@ -39,7 +38,7 @@ ${msg }
 
 	</table>
 	<!-- 数据迭代区 -->
-	<table border="1" width="35%" align="center" >
+	<table align="center" class="table table-striped" style="background-color:#ABCDE7;opacity: 0.9;width:65%" >
 	  <tr>
 	    <td></td>
 	    <td>序号</td>
@@ -58,13 +57,11 @@ ${msg }
 				             onclick="onSelect(this.checked)" >
 				    </td>
 				    <td>${vs.count }</td>
-				     <td  align="center" style="width:15%; height:15%">
-				       <img alt="no image" src=<%=path%>/images/${ins.aac603 } style="width:100%; height:100%">
+				     <td  style="width:15%; height:15%">
+				       <img alt="no image" src=<%=path%>/images/${ins.aac603 } style="width:50%; height:100%">
 				     </td>
 				    <td>
 				      <!-- #  空锚 -->
-				     <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
-				    </td>				    		    
 				      <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
 				    </td>
 				    <c:if test="${aab108==2}">
@@ -107,19 +104,21 @@ ${msg }
 	   </c:choose>
 	</table>
 	<!-- 功能按钮区 -->
-	<table border="1" width="35%" align="center">
+	<table border="0" cellpadding="0" cellspacing="0" align="center" >
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="查询">
-	       <input type="submit" name="next" value="添加" 
-	              formaction="<%=path%>/addAcc.jsp">
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="查询">
 	       <c:if test="${aab108==2}">
-	       		<input type="submit" id="del" name="next" value="删除" 
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
+	              formaction="<%=path%>/addAcc.jsp">
+	              </c:if>
+	       <c:if test="${aab108==2}">
+	       		<input type="submit" id="del" class="btn btn-secondary  active"  name="next" value="删除" 
 	              formaction="<%=path%>/delAcc.html"  disabled="disabled">
 	       </c:if>
-	       <input type="submit" id="buy" name="next" value="批量购买" 
+	       <input type="submit" id="buy" class="btn btn-secondary  active" name="next" value="批量购买" 
 	              formaction="<%=path%>/buyAccList.html"  disabled="disabled">
-	       <input type="text" id="vaad402" name="aad402" placeholder="输入玩家编号" disabled="disabled">
+	       <input type="text" id="vaad402" class="btn btn-secondary  active" name="aad402" placeholder="输入玩家编号" disabled="disabled">
 	    </td>
 	  </tr>
 	</table>

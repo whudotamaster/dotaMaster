@@ -87,6 +87,12 @@ ${msg}
         <e:text name="aac111" required="true"  defval="${ins.aac111 }"/> 
      </td>
    </tr>
+     <tr>
+     <td>”¢–€Õº∆¨¡¥Ω”</td>
+     <td>
+        <e:text name="aac112" required="true"  defval="${ins.aac112 }"/> 
+     </td>
+   </tr>
    
    <tr>
      <td colspan="2" align="center">

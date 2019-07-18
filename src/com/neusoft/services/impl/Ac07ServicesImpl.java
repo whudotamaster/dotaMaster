@@ -25,6 +25,7 @@ public class Ac07ServicesImpl extends JdbcServicesSupport
 				.append("select aac701,aac702,aac703,aac704,aac705,")
 				.append("		aac706")
 				.append("		 from ac07 ")
+				.append("		 order by aac705 desc ")
 				;
 
 		// 参数列表
@@ -35,7 +36,6 @@ public class Ac07ServicesImpl extends JdbcServicesSupport
 			paramList.add("%" + aac702 + "%");
 		}
 
-		sql.append(" order by aac702");
 		return this.queryForList(sql.toString(), paramList.toArray());
 	}
 

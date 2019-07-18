@@ -18,15 +18,13 @@
 ${msg }
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
+<div class="demoTa" style="opacity: 0.9"></div>
 <br>
-<%=session.getId() %>
 <br>
 <form id="myform" action="<%=path%>/queryArticle.html" method="post">
   <!-- 查询条件区 -->
-	<table border="1" width="95%" align="center">
-	  <caption>
-	              文章
-	    <hr width="160">
+	<table align="center" class="table table-striped" style="background-color:#7F8BB3;opacity: 0.9;width:85%">
+	  
 	  </caption>
 	  <tr>
 	    <td colspan="4">查询条件</td>
@@ -38,7 +36,7 @@ ${msg }
 	    </td>
 	</table>
 	<!-- 数据迭代区 -->
-	<table border="1" width="95%" align="center">
+	<table align="center" class="table table-striped" style="background-color:#7F8BB3;opacity: 0.9;width:85%">
 	  <tr>
 	  
 	    <td>序号</td>
@@ -62,7 +60,7 @@ ${msg }
 				    <td>${vs.count }</td>
 				    <td>
 				      <!-- #  空锚 -->
-				      <a href="#" onclick="onEdit('${ins.aab801}')">${ins.aab802 }</a>
+				      <a style="color:#D5A5D9" href="#" onclick="onEdit('${ins.aab801}')">${ins.aab802 }</a>
 				    </td>
 				    <td>${ins.aab102 }</td>
 				    <td>${ins.aab805 }</td>
@@ -96,22 +94,22 @@ ${msg }
 	</table>
 	
 	<!-- 功能按钮区 -->
-	<table border="1" width="95%" align="center">
+	<table border="0" cellpadding="0" cellspacing="0"  align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="文章查询">
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="文章查询">
 	       
 	        <c:if test="${aab108!=null}">
-	       		<input type="submit" name="next" value="我要投稿" 
+	       		<input type="submit" class="btn btn-secondary  active" name="next" value="我要投稿" 
 	              formaction="<%=path%>/addArticle.jsp">
 	     	</c:if>
 	     	 <c:if test="${aab108==null}">
-	       		<input type="submit" name="next" value="我要投稿" 
+	       		<input type="submit" class="btn btn-secondary  active" name="next" value="我要投稿" 
 	              formaction="<%=path%>/login.jsp">
 	     	</c:if>
-	             <c:if test="${aab108==2}">
-					<input type="submit" formaction="<%=path%>/adminQueryArticle.html" value="审核">
-	        	</c:if>
+	        <c:if test="${aab108==2}">
+			<input type="submit" class="btn btn-secondary  active" formaction="<%=path%>/adminQueryArticle.html" value="审核">
+	       </c:if>
 	    </td>
 	  </tr>
 	</table>

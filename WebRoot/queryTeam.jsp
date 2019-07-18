@@ -41,9 +41,6 @@ ${msg }
 	    <td>序号</td>
 	    <td>战队图像</td>
 	    <td align="center">战队名</td>
-	    
-	  
-	   
 	  </tr>
 	   <c:choose>
 	     <c:when test="${rows!=null }">

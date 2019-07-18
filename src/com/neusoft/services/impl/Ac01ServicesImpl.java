@@ -59,8 +59,8 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
     	StringBuilder sql=new StringBuilder()
     			.append(" insert into ac01 (aac102,aac103,aac104,aac105,")
     			.append("                   aac106,aac107,aac108,aac109,aac110,")
-    			.append("				    aac111) ")
-    			.append("                   values(?,?,?,?, ")
+    			.append("				    aac111,aac112) ")
+    			.append("                   values(?,?,?,?,?,")
     			.append("				           ?,?,?,?,?, ")
     			.append("						   ?) ")	            
     			;
@@ -75,7 +75,8 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
     			this.get("aac108"),
     			this.get("aac109"),
     			this.get("aac110"),
-    			this.get("aac111")
+    			this.get("aac111"),
+    			this.get("aac112")
     	         };
         return this.executeUpdate(sql.toString(), args)>0;	
     }
@@ -116,7 +117,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	    }
 	 
 	 //查找英雄的天赋
-	 public List<Map<String, String>> FBIforMore()throws Exception
+	 public List<Map<String, Object>> FBIforMore()throws Exception
 	 {
 		 StringBuilder sql=new StringBuilder()
 				 .append("select x.aac101,x.aac102,x.aac112,y.aac201,y.aac202,y.aac203  ")
@@ -129,7 +130,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 		 return this.queryForList(sql.toString(), this.get("aac101"));
 	 }
 	 //查找英雄的技能
-	 public List<Map<String, String>> findByIdSkill()throws Exception
+	 public List<Map<String, Object>> findByIdSkill()throws Exception
 	 {
 		 String sql ="select aac302,aac303,aac304,aac305,aac306 from ac03 where aac101=? ";
 		 return this.queryForList(sql, this.get("aac101"));
@@ -145,7 +146,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	    	StringBuilder sql=new StringBuilder()
 	    			.append(" update ac01 set  aac102=?,aac103=?,aac104=?,aac105=?, ")
 	    			.append("                  aac106=?,aac107=?,aac108=?,aac109=?,aac110=?, ")
-	    			.append("			       aac111=?,aac112=? ")
+	    			.append("			       aac111=? ")
 	    			.append("                  where aac101=? ")
 	    			;
 	    	Object args[]={
@@ -159,7 +160,6 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	    			this.get("aac109"),
 	    			this.get("aac110"),
 	    			this.get("aac111"),
-	    			this.get("aac112"),	    	
 	    			this.get("aac101")
 	    	};
 	    	return this.executeUpdate(sql.toString(), args)>0;

@@ -15,16 +15,12 @@
 <body>
 <%@ include file="header.jsp" %>
 ${msg }
+<div class="demoEvent" style="opacity: 0.9"></div>
 <br>
-<%=session.getId() %>
 <br>
 <form id="myform" action="<%=path%>/queryEvent.html" method="post">
   <!-- 查询条件区 -->
-	<table border="1" width="35%" align="center">
-	  <caption>
-	            赛事信息
-	    <hr width="160">
-	  </caption>
+	<table align="center" class="table table-striped" style="background-color:#BABABA;opacity: 0.9;width:85%">
 	  <tr>
 	    <td colspan="4">查询条件</td>
 	  </tr>
@@ -36,7 +32,7 @@ ${msg }
 	  </tr>	 
 	</table>
 	<!-- 数据迭代区 -->
-	<table border="1" width="35%" align="center">
+	<table align="center" class="table table-striped" style="background-color:#BABABA;opacity: 0.9;width:85%">
 	  <tr>
 	    <td>序号</td>
 	    <td>赛事名</td>
@@ -52,7 +48,7 @@ ${msg }
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
 				    <td style="width:15%; height:15%">${vs.count }</td>
-				    <td align="center">
+				    <td >
 				      <!-- #  空锚 -->
 				     <a  href="#" onclick="onEdit('${ins.aac701}')">${ins.aac702 }</a>
 				    </td> 
@@ -96,12 +92,12 @@ ${msg }
 	   </c:choose>
 	</table>
 	<!-- 功能按钮区 -->
-	<table border="1" width="35%" align="center">
+	<table border="0" cellpadding="0" cellspacing="0" align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="查询">
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="查询">
 	        <c:if test="${aab108==2}">  
-	       <input type="submit" name="next" value="添加" 
+	       <input type="submit"class="btn btn-secondary  active"  name="next" value="添加" 
 	       formaction="<%=path%>/addEvent.jsp">   
 	       </c:if>
 	    </td>

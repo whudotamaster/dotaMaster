@@ -1,6 +1,6 @@
 package com.neusoft.web.impl;
 
-public class AddEventServlet extends EquipmentControllerSupport {
+public class AddEventServlet extends EventControllerSupport {
 
 
 	@Override
