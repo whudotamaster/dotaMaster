@@ -200,9 +200,16 @@ String path=request.getContextPath();
     <div id="back"  onmouseover="menu.style.visibility='visible'" onmouseout="out()"style="position:absolute;top:15;right:0;width:300;height:10;z-index:1;visibility:visible;"> 
 		<span id="menubar" style="width:300" > 
 			<font color=red size=2>
-			   <c:if test="${aab108==2}">管理员  <%=aab102%> 未读消息<%=unRead%>条 </c:if>
-		 	   <c:if test="${aab108==1}">用户  <%=aab102%> 未读消息<%=unRead%>条</c:if>
-			   <c:if test="${aab108==null}">游客</c:if>		 
+			   <c:if test="${aab108==2}">
+			   		 <img id="havatar" src="/Avatar/${pic}" onclick="changeAvatar()" style="height:50px;width:50px;" >
+			 		  管理员  <%=aab102%> 未读消息<%=unRead%>条 
+			   </c:if>
+		 	   <c:if test="${aab108==1}">  	      
+		 	 		  <img id="havatar" src="/Avatar/${pic}" onclick="changeAvatar()" style="height:50px;width:50px;" >
+		 	   		用户  <%=aab102%> 未读消息<%=unRead%>条
+		 	   </c:if>
+			   		<c:if test="${aab108==null}">游客
+			   </c:if>		 
 			</font>
 		</span> 
 		<!--实现鼠标悬停出现菜单  -->
@@ -227,12 +234,49 @@ aab101=<%=aab101%>
 <br>
 aab108=<%=aab108%>
 	<SCRIPT language=javascript>
+<!-- 
+	function out() 
+	{ 
+		if(window.event.toElement.id!="menu" && window.event.toElement.id!="link") 
+		menu.style.visibility="hidden"; 
+	} 
+	//--> 
 	
 		function out1() 
 		{ 
 			if(window.event.toElement.id!="menu1" && window.event.toElement.id!="link") 
 			menu1.style.visibility="hidden"; 
 		} 
+
+	 	 function onNext()
+	 	 {
+	 		 document.getElementById("nowFloor").value = parseInt(document.getElementById("nowFloor").value) +1 ;
+	 		 document.getElementById("myform").submit();
+	 	 }
+	 	 
+	 	function onBack()
+		 {
+			 document.getElementById("nowFloor").value = parseInt(document.getElementById("nowFloor").value) -1 ;
+			 document.getElementById("myform").submit();
+		 }
+	 	
+	 	function onQuery()
+	 	{
+	 		var vform = document.getElementById("myform");
+	 		document.getElementById("nowFloor").value = 1;
+	 		vform.submit();
+	 	}
+	 	
+	     function back()
+	     {
+	   	 	document.getElementById("nowFloor").value = 1;
+	     }
+
+	 	 window.onload = function()
+	 	 {
+			document.getElementById("nextFloor").disabled = ${!(rows[0].nowFloor < rows[0].floor)}; 
+	 		document.getElementById("backFloor").disabled = ${!(rows[0].nowFloor > 1)}
+	 	 }
 
 	</SCRIPT> 
 

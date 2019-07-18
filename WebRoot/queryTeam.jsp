@@ -16,7 +16,6 @@
 <%@ include file="header.jsp" %>
 ${msg }
 <br>
-<%=session.getId() %>
 <br>
 <form id="myform" action="<%=path%>/queryTeam.html" method="post">
   <!-- 查询条件区 -->
@@ -45,7 +44,7 @@ ${msg }
 	   <c:choose>
 	     <c:when test="${rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
-		     <c:forEach items="${rows }" var="ins" varStatus="vs">
+		     <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="11">
 	    	   	  <tr>
 				    <td style="width:15%; height:15%">${vs.count }</td>
 				     <td  align="center" style="width:15%; height:15%">
@@ -58,7 +57,7 @@ ${msg }
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
-		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
+		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="11">
 			          <tr>
 			            <td></td>
 			            <td></td>
@@ -69,7 +68,7 @@ ${msg }
 		      </c:forEach>
 	     </c:when>
 	     <c:otherwise>
-	        <c:forEach begin="1" step="1" end="15">
+	        <c:forEach begin="1" step="1" end="11">
 	           <tr>
 	             <td></td>
 	             <td></td>
@@ -85,10 +84,13 @@ ${msg }
 	<table border="1" width="35%" align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="查询">
+	       <input type="submit" name="next" onclick="back()" value="查询">
 	       <input type="submit" name="next" value="添加" 
 	              formaction="<%=path%>/addTeam.jsp">
-	      
+	         <input type="button" onclick="onBack()" id="backFloor" value="上一页">
+					<input type="button" onclick="onNext()" id="nextFloor" value="下一页">
+					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
+					<e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>
 	  </tr>
 	</table>

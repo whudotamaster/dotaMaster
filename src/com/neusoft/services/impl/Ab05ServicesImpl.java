@@ -25,6 +25,11 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		Object aab502 = this.get("aab502"); // 标题 模糊查询
 		Object aab506 = this.get("aab506"); // 普通区或精华区
 		Object aab101 = this.get("aab101");
+		int nowFloor =  1;
+		if (isNotNull(this.get("nowFloor"))) 
+		{
+			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+		}
 		// 定义SQL主体
 		StringBuilder sql = new StringBuilder()
 				.append(" select b.aab501,b.aab101,a.aab102,a.aab105,b.aab502,")
@@ -32,27 +37,28 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 				.append("   from ab05 b,ab01 a")
 				.append("  where b.aab101=a.aab101 ")
 				;
-
 		// 参数列表
 		List<Object> paramList = new ArrayList<>();
 		// 逐一判断查询条件是否录入,拼接AND条件
-
+		StringBuilder whereSql = new StringBuilder();
 		if (this.isNotNull(aab502)) 
 		{
 			sql.append(" and b.aab502 like ?");
+			whereSql.append(" and b.aab502 like ?");
 			paramList.add("%" + aab502 + "%");
 		}
 		if (this.isNotNull(aab506) && aab506.equals("1")) 
 		{
 			sql.append(" and b.aab506=?");
+			whereSql.append(" and b.aab506=?");
 			paramList.add(aab506);
 		}
 		sql.append(" order by b.aab504 desc ");
-		List<Map<String, Object>> list = this.queryForList(sql.toString(), paramList.toArray());
+		
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
 		Map<String, Object> map1 = new HashMap<String, Object>();
-		if (aab101 != null) 
+		if (!isNotNull(aab101)) 
 		{
 			map1.put("aab107", ab01.queryPersonEmp(aab101).get("aab107"));
 		}
@@ -60,15 +66,19 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		{
 			map1.put("aab107", "0");
 		}
+		map1.put("floor", String.valueOf(countFloor("ab05 b",whereSql.toString(),paramList.toArray())));
+		map1.put("nowFloor", String.valueOf(nowFloor));
 		rows.add(map1);
+		sql.append(" limit ?,10 ");
+		paramList.add((nowFloor-1)*10);
+		List<Map<String, Object>> list = this.queryForList(sql.toString(), paramList.toArray());
 		for(Map<String, Object> post:list)
 		{
 			rows.add(post);
 		}
-		
 		return rows;
 	}
-
+	
 	/**
 	 * 论坛主页帖子加精
 	 * 
@@ -154,7 +164,12 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		// 还原页面查询条件
 		Object aab501 = this.get("aab501"); // 帖子ID
 		Object aab101 = this.get("aab101"); // 用戶ID
-		return postFindById(aab101 ,aab501);
+		int nowFloor =  1;
+		if (isNotNull(this.get("nowFloor"))) 
+		{
+			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+		}
+		return postFindById(aab101 ,aab501 ,nowFloor);
 	}
 
 	/**
@@ -163,7 +178,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, Object>> postFindById(Object aab101 , Object aab501) throws Exception 
+	public List<Map<String, Object>> postFindById(Object aab101 , Object aab501, int nowFloor) throws Exception 
 	{
 		// 定义SQL主体
 		StringBuilder sql = new StringBuilder()
@@ -174,29 +189,30 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 				.append("  order by b.aab504")
 				;
 		// 参数列表
-		List<Map<String, Object>> rows = this.queryForList(sql.toString(), aab501);
+		List<Map<String, Object>> rows =  new ArrayList<Map<String, Object>>();
 		Map<String, Object> map1 = new HashMap<String, Object>();
-		Map<String, Object> map2 = new HashMap<String, Object>();
-		Map<String, Object> map3 = new HashMap<String, Object>();
 		Ab07ServicesImpl ab07=new Ab07ServicesImpl();
 		Ab11ServicesImpl ab11=new Ab11ServicesImpl();
 		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
 		map1.put("collection", ab07.queryCollection(aab101,aab501).toString());				//收藏狀态
-		map2.put("like", ab11.countUserLike(aab101,aab501).toString());						//点赞狀态
-		if(this.get("aab101") != null)
+		map1.put("like", ab11.countUserLike(aab101,aab501).toString());						//点赞狀态
+		map1.put("nowFloor", String.valueOf(nowFloor));
+		if(aab101 != null)
 		{
-			map3.put("aab107", ab01.queryPersonEmp(aab101).get("aab107"));					//经验值
+			map1.put("aab107", ab01.queryPersonEmp(aab101).get("aab107"));					//经验值
 		}
 		else
 		{
-			map3.put("aab107", "0");
+			map1.put("aab107", "0");
 		}
-		rows.add(map1);		
-		rows.add(map2);		
-		rows.add(ab11.countLike(aab501)); 													//点赞数
-		rows.add(map3);
+				
+		map1.put("countlike",ab11.countLike(aab501).get("countlike")); 						//点赞数
+		String whereSql = " and b.aab501=?";
+		map1.put("floor", String.valueOf(countFloor("ab06 b",whereSql,aab501)));
+		rows.add(map1);
+		rows.add(queryForMap(sql.toString(), aab501));
 		Ab06ServicesImpl ab06=new Ab06ServicesImpl();
-		List<Map<String, Object>> commentList = ab06.commentFindById(aab501);
+		List<Map<String, Object>> commentList = ab06.commentFindById(aab501,(nowFloor-1)*10);
 		for(Map<String, Object> comment:commentList)
 		{
 			rows.add(comment);
@@ -266,8 +282,27 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 				.append("   from ab05 a ")
 				.append("  where a.aab101=? ")
 				.append("  order by a.aab504 desc ")
+				.append(" limit ?,10 ");
 				;
-		return this.queryForList(sql.toString(), this.get("aab101"));
+				List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+				Map<String, Object> map1 = new HashMap<String, Object>();
+				int nowFloor =  1;
+				if (isNotNull(this.get("nowFloor"))) 
+				{
+					nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+				}
+		    	map1.put("floor", String.valueOf(countFloor("ab05 a"," and a.aab101=?",this.get("aab101"))));
+				map1.put("nowFloor", String.valueOf(nowFloor));
+				rows.add(map1);
+				Object args[]={
+								this.get("aab101"),
+								(nowFloor-1)*10
+								};
+				for(Map<String, Object> comment:this.queryForList(sql.toString(), args))
+				{
+					rows.add(comment);
+				}
+				return rows;
 	}
 	
 	/**

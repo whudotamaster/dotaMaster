@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import com.neusoft.system.db.DBUtils;
 
+import sun.util.locale.provider.AvailableLanguageTags;
+
 /**
  *抽象类:可以包含抽象方法的类 
  *
@@ -60,6 +62,37 @@ public abstract class JdbcServicesSupport  implements BaseServices
 		System.out.println(this.get("aac102"));
 		Object aac101=this.queryForMap(sql2, this.get("aac102")).get("aac101");
 		return aac101;
+	}
+	
+	/**
+	 * 查找一共有多少个分页(以10个为单位)
+	 * table 要查的表
+	 * @return
+	 * @throws Exception
+	 */
+	public int countFloor(final String table,final String whereSql,final Object...args) throws Exception 
+	{
+		StringBuilder sql= new StringBuilder()
+					.append(" select count(1) count from " + table)
+					.append(" where true " + whereSql)
+					;
+		int floor = 0;
+		if(args != null) 
+		{
+			floor = Integer.parseInt(this.queryForMap(sql.toString(),args).get("count").toString());
+		}
+		else 
+		{
+			floor = Integer.parseInt(this.queryForMap(sql.toString()).get("count").toString());
+		}
+		if (floor % 10 == 0) 
+		{
+			return floor/10;
+		}
+		else 
+		{
+			return (floor/10)+1;
+		}
 	}
 	
 	/**

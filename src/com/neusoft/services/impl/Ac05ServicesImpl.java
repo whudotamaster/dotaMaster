@@ -1,6 +1,7 @@
 package com.neusoft.services.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ public class Ac05ServicesImpl extends JdbcServicesSupport
 	  	
 	  		
 	  		//定义SQL主体
+	  		StringBuilder whereSql=new StringBuilder();
 	  		StringBuilder sql=new StringBuilder()
 	  				.append("select aac501,aac502,aac503,aac504,aac505")
 	  				.append("		 from ac05 ")
@@ -30,11 +32,31 @@ public class Ac05ServicesImpl extends JdbcServicesSupport
 	  		//逐一判断查询条件是否录入,拼接AND条件
 	  		if(this.isNotNull(aac502))
 	  		{
+	  			whereSql.append(" and aac502 like ?");
 	  			sql.append(" where aac502 like ?");
 	  			paramList.add("%"+aac502+"%");
 	  		}				
 	  		sql.append(" order by aac502");
-	  		return this.queryForList(sql.toString(), paramList.toArray());
+	  		
+	  		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+			Map<String, Object> map1 = new HashMap<String, Object>();
+	    	int nowFloor =  1;
+			if (isNotNull(this.get("nowFloor"))) 
+			{
+				nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+			}
+			map1.put("floor", String.valueOf(countFloor("ac05 ",whereSql.toString(),paramList.toArray())));
+			map1.put("nowFloor", String.valueOf(nowFloor));
+			rows.add(map1);
+			
+			
+			sql.append(" limit ?,10 ");
+			paramList.add((nowFloor-1)*10);
+			for(Map<String, Object> list:this.queryForList(sql.toString(), paramList.toArray()))
+			{
+				rows.add(list);
+			}
+	  		return rows;
 	  }
 	
 	

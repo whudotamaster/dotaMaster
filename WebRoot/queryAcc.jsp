@@ -50,7 +50,7 @@ ${msg }
 	   <c:choose>
 	     <c:when test="${rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
-		     <c:forEach items="${rows }" var="ins" varStatus="vs">
+		     <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="11">
 	    	   	  <tr>
 				    <td>
 				      <input type="checkbox" name="idlist" value="${ins.aac601 }"
@@ -61,7 +61,7 @@ ${msg }
 				       <img alt="no image" src=<%=path%>/images/${ins.aac603 } style="width:50%; height:100%">
 				     </td>
 				    <td>
-				      <!-- #  空锚 -->
+				      <!-- #  空锚 -->			    		    
 				      <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
 				    </td>
 				    <c:if test="${aab108==2}">
@@ -78,7 +78,7 @@ ${msg }
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
-		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
+		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="11">
 			          <tr>
 			            <td></td>
 			            <td></td>
@@ -90,7 +90,7 @@ ${msg }
 		      </c:forEach>
 	     </c:when>
 	     <c:otherwise>
-	        <c:forEach begin="1" step="1" end="15">
+	        <c:forEach begin="1" step="1" end="11">
 	           <tr>
 	             <td></td>
 	             <td></td>
@@ -107,7 +107,7 @@ ${msg }
 	<table border="0" cellpadding="0" cellspacing="0" align="center" >
 	  <tr>
 	    <td align="center">
-	       <input type="submit" class="btn btn-secondary  active" name="next" value="查询">
+	       <input type="submit" class="btn btn-secondary  active" onclick="back()" name="next" value="查询">
 	       <c:if test="${aab108==2}">
 	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
 	              formaction="<%=path%>/addAcc.jsp">
@@ -118,7 +118,12 @@ ${msg }
 	       </c:if>
 	       <input type="submit" id="buy" class="btn btn-secondary  active" name="next" value="批量购买" 
 	              formaction="<%=path%>/buyAccList.html"  disabled="disabled">
-	       <input type="text" id="vaad402" class="btn btn-secondary  active" name="aad402" placeholder="输入玩家编号" disabled="disabled">
+
+	       <input type="text" id="vaad402"  class="btn btn-secondary  active" name="aad402" placeholder="输入玩家编号" disabled="disabled">
+	       <input type="button" class="btn btn-secondary  active" onclick="onBack()" id="backFloor" value="上一页">
+					<input type="button" class="btn btn-secondary  active" onclick="onNext()" class="btn btn-secondary  active" id="nextFloor" value="下一页">
+					<input hidden="true" type="text" name="nowFloor" class="btn btn-secondary  active" id="nowFloor" value="${rows[0].nowFloor }">
+					<e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>
 	  </tr>
 	</table>

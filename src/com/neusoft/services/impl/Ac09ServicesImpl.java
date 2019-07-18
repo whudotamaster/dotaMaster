@@ -1,6 +1,7 @@
 package com.neusoft.services.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.neusoft.services.JdbcServicesSupport;
@@ -17,8 +18,8 @@ public class Ac09ServicesImpl extends JdbcServicesSupport
 	  		//还原页面查询条件
 	  		Object aac902=this.get("qaac902");     //姓名  模糊查询
 	  	
-	  		System.out.println(aac902);
 	  		//定义SQL主体
+	  		StringBuilder whereSql=new StringBuilder();
 	  		StringBuilder sql=new StringBuilder()
 	  				.append(" select x.aac901,x.aac902,x.aac903,x.aac904    ")
 	  				.append("	  				 from ac09 x                ")
@@ -29,12 +30,32 @@ public class Ac09ServicesImpl extends JdbcServicesSupport
 	  		//逐一判断查询条件是否录入,拼接AND条件
 	  		if(this.isNotNull(aac902))
 	  		{
+	  			whereSql.append(" and aac902 like  ? ");
 	  			sql.append(" where aac902 like  ? ");
 	  			paramList.add("%"+aac902+"%");
 	  		}
 	  				
 	  		sql.append(" order by aac902");
-	  		return this.queryForList(sql.toString(), paramList.toArray());
+	  		
+	  		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+			Map<String, Object> map1 = new HashMap<String, Object>();
+	    	int nowFloor =  1;
+			if (isNotNull(this.get("nowFloor"))) 
+			{
+				nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+			}
+			map1.put("floor", String.valueOf(countFloor(" ac09 ",whereSql.toString(),paramList.toArray())));
+			map1.put("nowFloor", String.valueOf(nowFloor));
+			rows.add(map1);
+			
+			
+			sql.append(" limit ?,10 ");
+			paramList.add((nowFloor-1)*10);
+			for(Map<String, Object> list:this.queryForList(sql.toString(), paramList.toArray()))
+			{
+				rows.add(list);
+			}
+			return rows;
 	  }
 
 
@@ -76,6 +97,8 @@ public class Ac09ServicesImpl extends JdbcServicesSupport
 	    	       .append("       where x.aac901=y.aac901                             ")
 	    	       .append("       and y.aac901=?                                     ")  
 	    	       ;
+	    	System.out.println(this.get("aac901"));
+	    	System.out.println(this.queryForList(sql.toString(), this.get("aac901")));
 	    	return this.queryForList(sql.toString(), this.get("aac901"));
 	    }
 	     

@@ -27,7 +27,7 @@ tr {
 	${msg }
 	<br>
 	<br>
-	<form id="myform" action="<%=path%>/forum.html" method="post">
+	<form id="myform" action="<%=path%>/queryCollection.html" method="post">
 		<!-- 查询条件区 -->
 		<table border="1" width="95%" align="center">
 			<caption>
@@ -53,7 +53,7 @@ tr {
 			<c:choose>
 				<c:when test="${rows!=null }">
 					<!-- 显示实际查询到的数据 -->
-					<c:forEach items="${rows }" var="ins" varStatus="vs">
+					<c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="11">
 						<tr>
 							<td><input type="checkbox" name="idlist"
 								value="${ins.aab701 }" onclick="onSelect(this.checked)">
@@ -71,7 +71,7 @@ tr {
 						</tr>
 					</c:forEach>
 					<!-- 补充空行 -->
-					<c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
+					<c:forEach begin="${fn:length(rows)+1 }" step="1" end="11">
 						<tr>
 							<td></td>
 							<td></td>
@@ -82,7 +82,7 @@ tr {
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
-					<c:forEach begin="1" step="1" end="15">
+					<c:forEach begin="1" step="1" end="11">
 						<tr>
 							<td></td>
 							<td></td>
@@ -102,9 +102,13 @@ tr {
 					id="delCollection" name="next" value="删除收藏" 
 					disabled="disabled"
 					formaction="<%=path%>/delCollection.html">
-				  <input type="submit" name="next" value="返回" 
+				  <input type="submit" name="next" onclick="back()" value="返回" 
               formaction="<%=path%>/forum.html"
               formnovalidate="formnovalidate">
+                   	<input type="button" onclick="onBack()" id="backFloor" value="上一页">
+					<input type="button" onclick="onNext()" id="nextFloor" value="下一页">
+					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
+					<e:hidden name="floor" defval="${rows[0].floor }"/>
 					</td>
 			</tr>
 		</table>
