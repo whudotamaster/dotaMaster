@@ -55,9 +55,8 @@ public class UploadUserServlet extends HttpServlet
         	}
         //换新的
         	ab01.updatePic(request.getSession().getAttribute("aab101"),uuid+name);
-
 			request.setAttribute("msg", "提示：上传头像成功！");
-			request.getRequestDispatcher("updtPsnInf.html").forward(request, response);
+			request.getRequestDispatcher("queryPerson.html").forward(request, response);
 		} 
         catch (Exception e) 
         {			

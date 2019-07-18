@@ -16,12 +16,10 @@
 <form action="<%=path%>/updtPsnInf.html" method="post">
 <table border="1" align="center" width="45%">
   <caption>
-  <c:if test="${aab101==ins.aab101}">
+
        修改我的信息
-       </c:if>
-      <c:if test="${aab101!=ins.aab101}">
-       查看${ins.aab102}的信息
-       </c:if>
+  
+ 
        <hr width="160">
   </caption>
 	 <tr>
@@ -33,23 +31,21 @@
 	 <tr>
 	 	<td>昵称</td>
 	 	<td>
-	 	   <c:if test="${aab101!=ins.aab101}">
- 	       <e:text name="aab102" required="true" autofocus="true" defval="${ins.aab102 }" readonly="true"/> 
- 	       </c:if>
+	
  	       
- 	       <c:if test="${aab101==ins.aab101}">
+ 	     
  	       <e:text name="aab102" required="true" autofocus="true" defval="${ins.aab102 }" /> 
- 	       </c:if>
+ 	     
 	 	</td>
 	 </tr>
-	 <c:if test="${aab101==ins.aab101}">
+
 	 <tr>
 	 	<td>密码</td>
 	 	<td>
  	      <a href="changePassword.jsp">点我修改密码</a>
 	 	</td>
 	 </tr>
-	 </c:if>
+
 	 
 	  <tr>
 	 	<td>头像</td>

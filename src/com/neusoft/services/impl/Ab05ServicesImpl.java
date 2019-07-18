@@ -260,6 +260,12 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	 */
 	public List<Map<String,Object>> queryHistory() throws Exception 
 	{
+		Object aab101= this.get("aab101");
+		return this.queryHistory(aab101);
+	}
+	
+	public List<Map<String,Object>> queryHistory(Object aab101) throws Exception 
+	{
 		// 1.定义SQL语句
 		StringBuilder sql = new StringBuilder()
 				.append(" select a.aab501,a.aab502,a.aab504,a.aab505 ")
@@ -267,9 +273,8 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 				.append("  where a.aab101=? ")
 				.append("  order by a.aab504 desc ")
 				;
-		return this.queryForList(sql.toString(), this.get("aab101"));
+		return this.queryForList(sql.toString(), aab101);
 	}
-	
 	/**
 	 * 帖子批量刪除
 	 * 

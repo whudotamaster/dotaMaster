@@ -9,9 +9,24 @@
 <%
 	String laab102=(String)request.getAttribute("ins.aab102");
 %>
-<script>
 
+<Script>
+//刷新一次页面
+function refresh(){
+    url = location.href;
+ console.log(url);
+    var once = url.split("#");
+    if (once[1] != 1) {
+        url += "#1";
+        self.location.replace(url);
+       window.location.reload();
+    }
+}
+ 
+setTimeout('refresh()', 1);
+  
 </script>
+
 
 <html>
 <head>

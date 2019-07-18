@@ -313,6 +313,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     				.append("  from ab01 a")
     				.append(" where a.aab101=?")
     				;
+    		System.out.println("queryPersonEmp() aab101="+this.get("aab101"));
     		return this.queryForMap(sql.toString(), this.get("aab101"));
     	}
     	catch(Exception e)

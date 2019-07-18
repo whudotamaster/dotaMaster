@@ -155,11 +155,11 @@ String pic = (String)session.getAttribute("pic");
 		<span id="menubar" style="width:300" > 
 			<font color=red size=2>
 			   <c:if test="${aab108==2}">
-			   		 <img id="havatar" src="/Avatar/${pic}" onclick="changeAvatar()" style="height:50px;width:50px;" >
+			   		 <img id="havatar" src="/Avatar/${pic}" class="round_icon" onclick="changeAvatar()" style="height:50px;width:50px;" >
 			 		  管理员  <%=aab102%> 未读消息<%=unRead%>条 
 			   </c:if>
 		 	   <c:if test="${aab108==1}">  	      
-		 	 		  <img id="havatar" src="/Avatar/${pic}" onclick="changeAvatar()" style="height:50px;width:50px;" >
+		 	 		  <img id="havatar" src="/Avatar/${pic}" class="round_icon" onclick="changeAvatar()" style="height:50px;width:50px;" >
 		 	   		用户  <%=aab102%> 未读消息<%=unRead%>条
 		 	   </c:if>
 			   		<c:if test="${aab108==null}">游客
