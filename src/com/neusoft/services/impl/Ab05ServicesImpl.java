@@ -58,7 +58,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
 		Map<String, Object> map1 = new HashMap<String, Object>();
-		if (aab101 != null) 
+		if (!isNotNull(aab101)) 
 		{
 			map1.put("aab107", ab01.queryPersonEmp(aab101).get("aab107"));
 		}
