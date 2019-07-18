@@ -9,7 +9,7 @@ import com.neusoft.services.JdbcServicesSupport;
 public class Ac12ServicesImpl extends JdbcServicesSupport
 {
 
-	public List<Map<String, String>> query()throws Exception
+	public List<Map<String, Object>> query()throws Exception
 	{
 		Object aac1202=this.get("qaac1202");
 		System.out.println(aac1202);
@@ -57,7 +57,7 @@ public class Ac12ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	 public Map<String,String> findById()throws Exception
+	 public Map<String,Object> findById()throws Exception
 	 {
 	    	//1.±‡–¥SQL”Ôæ‰
 	    	StringBuilder sql=new StringBuilder()

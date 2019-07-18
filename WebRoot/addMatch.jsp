@@ -27,7 +27,7 @@ ${msg}
               比赛添加   
     </caption>
    <tr>
-     <td colspan="2">选手</td>
+     <td colspan="2">比赛</td>
    </tr>
    <tr>
      <td>赛事名称</td>

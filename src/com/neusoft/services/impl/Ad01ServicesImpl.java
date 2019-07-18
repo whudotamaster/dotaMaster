@@ -1,5 +1,6 @@
 package com.neusoft.services.impl;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.neusoft.services.JdbcServicesSupport;
@@ -7,9 +8,9 @@ import com.neusoft.system.tools.Tools;
 public class Ad01ServicesImpl extends JdbcServicesSupport 
 {
 	//用户进入首页时,查看当前是否有可押注的比赛
-	public List<Map<String, String>> query()throws Exception
+	public List<Map<String, Object>> query()throws Exception
     {
-		
+		StringBuilder whereSql=new StringBuilder();
 		StringBuilder sql=new StringBuilder()
   				.append("select d.aad101,d.aad102,d.aad103,c.aac1101,")
   				.append("       c.aac1102,c.aac1103,c.aac1104,e.aac702")
@@ -17,7 +18,25 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
   				.append(" where d.aac1101=c.aac1101 and e.aac701=c.aac701 ")
   				.append("   and now()>d.aad104 and now()<d.aad105")
   				;
-		return this.queryForList(sql.toString());
+		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map1 = new HashMap<String, Object>();
+    	int nowFloor =  1;
+		if (isNotNull(this.get("nowFloor"))) 
+		{
+			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+		}
+		whereSql.append("and d.aac1101=c.aac1101 and e.aac701=c.aac701 and now()>d.aad104 and now()<d.aad105");
+		map1.put("floor", String.valueOf(countFloor(" ac11 c,ad01 d,ac07 e ",whereSql.toString(),null)));
+		map1.put("nowFloor", String.valueOf(nowFloor));
+		rows.add(map1);
+		
+		
+		sql.append(" limit ?,10 ");
+		for(Map<String, Object> list:this.queryForList(sql.toString(),(nowFloor-1)*10))
+		{
+			rows.add(list);
+		}
+		return rows;
     }
 	
 	private boolean isEnough(Object aab101) throws Exception
@@ -86,7 +105,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     }
     
     //查询竞猜总额
-    private Map<String,String> queryAllCount(Object aad101)throws Exception
+    private Map<String,Object> queryAllCount(Object aad101)throws Exception
     {		
   		//定义SQL主体
   		StringBuilder sql=new StringBuilder()
@@ -102,7 +121,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     {
     	String sql="select * from ad01 where aad101=?";
     	System.out.println(this.get("aad101"));
-    	Map<String, String> map=this.queryForMap(sql,this.get("aad101"));
+    	Map<String, Object> map=this.queryForMap(sql,this.get("aad101"));
     	this.put("aac1101", map.get("aac1101"));
     	this.put("aad102", map.get("aad102"));
     	this.put("aad103", map.get("aad103"));
@@ -113,7 +132,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     }
     
     //查询每一笔指定竞猜押注
-    private List<Map<String,String>> queryUserCount(Object aad101)throws Exception
+    private List<Map<String, Object>> queryUserCount(Object aad101)throws Exception
     {		
   		//定义SQL主体
   		StringBuilder sql=new StringBuilder()
@@ -135,21 +154,21 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 
     	String sql="select aad101 from ad01 where aac1101=?";
 
-    	Map<String, String> temp=this.queryForMap(sql,aac1101);
+    	Map<String, Object> temp=this.queryForMap(sql,aac1101);
 
     	Object aad101=temp.get("aad101");
     	
     	//2,获取押注总额
-    	Map<String, String> map=this.queryAllCount(aad101);
-    	double countA=Double.parseDouble(map.get("aad102"));
-    	double countB=Double.parseDouble(map.get("aad103"));
+    	Map<String, Object> map=this.queryAllCount(aad101);
+    	double countA=Double.parseDouble(map.get("aad102").toString());
+    	double countB=Double.parseDouble(map.get("aad103").toString());
     	
     	//3,根据竞猜ID获取押注用户
     	//3.1获取用户押注列表
     	//list中属性有用户ID 押注A方数量 押注B方数量 此处需要计算出用户赚的额度 并且放入每一个map中
-    	List<Map<String, String>> list=this.queryUserCount(aad101);
+    	List<Map<String, Object>> list=this.queryUserCount(aad101);
     	Ab01ServicesImpl ab01=new Ab01ServicesImpl();
-    	for(Map<String, String> t:list)
+    	for(Map<String, Object> t:list)
     	{
     		String bool=ab01.isVIP(t.get("aab101"))?"true":"false";
     		t.put("vip", bool);
@@ -159,9 +178,9 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	if(tag)
     	{
     		int tem;
-    		for(Map<String, String> m:list)
+    		for(Map<String, Object> m:list)
     		{
-    			tem=Integer.parseInt(m.get("aad202"));
+    			tem=Integer.parseInt(m.get("aad202").toString());
     			if(m.get("vip")=="true")
     				m.put("aad204", String.valueOf(tem+tem*countB/countA*0.99));
     			else
@@ -171,9 +190,9 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	else
     	{
     		int tem;
-    		for(Map<String, String> m:list)
+    		for(Map<String, Object> m:list)
     		{
-    			tem=Integer.parseInt(m.get("aad203"));
+    			tem=Integer.parseInt(m.get("aad203").toString());
     			if(m.get("vip")=="true")
     				m.put("aad204", String.valueOf(tem+tem*countB/countA*0.99));
     			else
@@ -189,7 +208,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     			.append(" where a.aab101=?")
     			;
 
-    	for(Map<String, String> m:list)
+    	for(Map<String, Object> m:list)
 		{
     		Object args[]=
     			{

@@ -1,6 +1,7 @@
 package com.neusoft.services.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,12 +15,13 @@ public class Ac10ServicesImp extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String,String>> query()throws Exception
+	public List<Map<String,Object>> query()throws Exception
 	  {
 	  		//还原页面查询条件
 	  		Object aac1002=this.get("qaac1002");     //姓名  模糊查询
 	  		
 	  		//定义SQL主体
+	  		StringBuilder whereSql=new StringBuilder();
 	  		StringBuilder sql=new StringBuilder()
 	  				.append("select aac1001,aac1002,aac1003,aac1004,aac1005,")
 	  				.append("		aac901")
@@ -31,12 +33,31 @@ public class Ac10ServicesImp extends JdbcServicesSupport
 	  		//逐一判断查询条件是否录入,拼接AND条件
 	  		if(this.isNotNull(aac1002))
 	  		{
+	  			whereSql.append(" and aac1002 like ?");
 	  			sql.append(" where aac1002 like ?");
 	  			paramList.add("%"+aac1002+"%");
 	  		}
 	  				
 	  		sql.append(" order by aac1002");
-	  		return this.queryForList(sql.toString(), paramList.toArray());
+	  		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+			Map<String, Object> map1 = new HashMap<String, Object>();
+	    	int nowFloor =  1;
+			if (isNotNull(this.get("nowFloor"))) 
+			{
+				nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+			}
+			map1.put("floor", String.valueOf(countFloor(" ac10 ",whereSql.toString(),paramList.toArray())));
+			map1.put("nowFloor", String.valueOf(nowFloor));
+			rows.add(map1);
+			
+			
+			sql.append(" limit ?,10 ");
+			paramList.add((nowFloor-1)*10);
+			for(Map<String, Object> list:this.queryForList(sql.toString(), paramList.toArray()))
+			{
+				rows.add(list);
+			}
+			return rows;
 	  }
 	
 	
@@ -45,7 +66,7 @@ public class Ac10ServicesImp extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public Map<String,String> findById()throws Exception
+	public Map<String,Object> findById()throws Exception
     {
   	    //1.编写SQL语句
   	    StringBuilder sql1=new StringBuilder()

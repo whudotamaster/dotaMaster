@@ -78,7 +78,7 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String,String>> queryCollectionList() throws Exception
+	public List<Map<String,Object>> queryCollectionList() throws Exception
 	{
 		Object aab101 = this.get("aab101");
     	StringBuilder sql=new StringBuilder()
@@ -97,12 +97,12 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
 						aab101,
 						(nowFloor-1)*10
 						};
-    	List<Map<String, String>> rows = new ArrayList<Map<String, String>>();
-		Map<String, String> map1 = new HashMap<String, String>();
+    	List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map1 = new HashMap<String, Object>();
     	map1.put("floor", String.valueOf(countFloor("ab07 a","and a.aab101=?",aab101)));
 		map1.put("nowFloor", String.valueOf(nowFloor));
 		rows.add(map1);
-		for(Map<String, String> post:queryForList(sql.toString(), args))
+		for(Map<String, Object> post:queryForList(sql.toString(), args))
 		{
 			rows.add(post);
 		}
@@ -131,7 +131,7 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String,String>> queryHistory() throws Exception 
+	public List<Map<String,Object>> queryHistory() throws Exception 
 	{
 		// 1.∂®“ÂSQL”Ôæ‰
 		StringBuilder sql = new StringBuilder()
@@ -172,7 +172,7 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, String>> postFindById() throws Exception 
+	public List<Map<String, Object>> postFindById() throws Exception 
 	{
 		Ab05ServicesImpl ab05 = new Ab05ServicesImpl();
 		int nowFloor =  1;

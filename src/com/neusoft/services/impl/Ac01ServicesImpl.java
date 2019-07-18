@@ -1,29 +1,34 @@
 package com.neusoft.services.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.system.tools.Tools;
 
+/**
+ * @author Recardox
+ *
+ */
 public class Ac01ServicesImpl extends JdbcServicesSupport 
 {
 	
                            
-    
 	  /**
 	   * 英雄信息按名字模糊查询
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String,String>> query()throws Exception
+	public List<Map<String,Object>> query()throws Exception
 	  {
 	  		//还原页面查询条件
 	  		Object aac102=this.get("qaac102");     //姓名  模糊查询
 	  	
 	  		
 	  		//定义SQL主体
+	  		StringBuilder whereSql=new StringBuilder();
 	  		StringBuilder sql=new StringBuilder()
 	  				.append("select aac101,aac102,aac103,aac104,aac105,")
 	  				.append("       aac106,aac107,aac108,aac109,aac110,")
@@ -36,12 +41,32 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	  		//逐一判断查询条件是否录入,拼接AND条件
 	  		if(this.isNotNull(aac102))
 	  		{
+	  			whereSql.append(" and aac102 like ?");
 	  			sql.append(" where aac102 like ?");
 	  			paramList.add("%"+aac102+"%");
 	  		}
 	  				
 	  		sql.append(" order by aac102");
-	  		return this.queryForList(sql.toString(), paramList.toArray());
+	  		
+	  		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+			Map<String, Object> map1 = new HashMap<String, Object>();
+	    	int nowFloor =  1;
+			if (isNotNull(this.get("nowFloor"))) 
+			{
+				nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+			}
+			map1.put("floor", String.valueOf(countFloor(" ac01 ",whereSql.toString(),paramList.toArray())));
+			map1.put("nowFloor", String.valueOf(nowFloor));
+			rows.add(map1);
+			
+			
+			sql.append(" limit ?,10 ");
+			paramList.add((nowFloor-1)*10);
+			for(Map<String, Object> list:this.queryForList(sql.toString(), paramList.toArray()))
+			{
+				rows.add(list);
+			}
+	  		return rows;
 	  }
 	
 	
@@ -98,7 +123,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	 public Map<String,String> findById()throws Exception
+	 public Map<String,Object> findById()throws Exception
 	    {
 	    	//1.编写SQL语句
 	    	StringBuilder sql=new StringBuilder()
@@ -112,6 +137,25 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	    	return this.queryForMap(sql.toString(), this.get("aac101"));
 	    }
 	 
+	 //查找英雄的天赋
+	 public List<Map<String, Object>> FBIforMore()throws Exception
+	 {
+		 StringBuilder sql=new StringBuilder()
+				 .append("select x.aac101,x.aac102,x.aac112,y.aac201,y.aac202,y.aac203  ")
+				 .append("	  	 from ac01 x, ac02 y                          ")
+				 .append("	     where x.aac101=y.aac101                     ")
+				 .append("         and x.aac101=?                             ")
+				 .append("         ORDER BY y.aac202                            ")
+				 ;
+	
+		 return this.queryForList(sql.toString(), this.get("aac101"));
+	 }
+	 //查找英雄的技能
+	 public List<Map<String, Object>> findByIdSkill()throws Exception
+	 {
+		 String sql ="select aac302,aac303,aac304,aac305,aac306 from ac03 where aac101=? ";
+		 return this.queryForList(sql, this.get("aac101"));
+	 }
 	 
 	 /**
 	  * 修改英雄数据

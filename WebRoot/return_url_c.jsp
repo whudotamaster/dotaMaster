@@ -51,17 +51,16 @@
 		String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"GBK");
 		//付款金额
 		String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"GBK");
-		
 		//String subject=new String(request.getParameter("subject").getBytes("ISO-8859-1"),"GBK");
 		//out.print("subject:"+subject);
 		String a=session.getAttribute("aab101").toString();
 		Ab01ServicesImpl services=new Ab01ServicesImpl();
-		if(services.buyVIP(a,total_amount))
+		if(services.buyCurrency(a,total_amount))
 		{
-			out.print("购买成功");
+			out.print("购买虚拟货币成功");
 		}else
 		{
-			out.print("购买失败");
+			out.print("购买虚拟货币失败");
 		}
 	
 	}

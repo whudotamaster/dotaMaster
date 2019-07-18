@@ -97,7 +97,7 @@ ${rows }
 				  </tr>
 				  </table>
 				  <c:if test="${(rows[0].aab107)/100 >= rows[1].aab507+0 || rows[1].aab101 == aab101}">
-				  <table  border="1" width="95%" align="center" class="table table-striped">
+				  <table  border="1" width="95%" align="center" >
 				  	  <tr>
 	    <td>²ãÊý</td>
 	    <td>»Ø¸´ÈË</td>

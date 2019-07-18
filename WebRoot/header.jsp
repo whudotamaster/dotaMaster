@@ -126,20 +126,21 @@ String aab101=(String)session.getAttribute("aab101");
 String aab102=(String)session.getAttribute("aab102");
 String aab108=(String)session.getAttribute("aab108");
 String aab109=(String)session.getAttribute("aab109");
-Object c = session.getAttribute("unRead");
-int unRead = c!=null?Integer.parseInt(String.valueOf(c)):0; 
-
+int unRead=0;
+if(session.getAttribute("unRead")!=null)
+ unRead=Integer.parseInt(session.getAttribute("unRead").toString());
 String path=request.getContextPath();
 %>
 <div id="nav" >	
 <form>	
 	<input type="hidden" name="aab101" value="<%=aab101%>">
-			<input type="submit" class="btn btn-light" formaction="<%=path%>/mainPage.jsp" value="主页"/>
+			<input type="submit" class="btn btn-light"  formaction="<%=path%>/mainPage.jsp" value="主页"/>
 
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryBet.html" value="竞猜"/>
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryArticle.html" value="文章"/>
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryAcc.html" value="饰品"/>
-			<input type="submit" class="btn btn-light" formaction="<%=path%>/forum.html" value="论坛"/>
+		    <input type="submit" class="btn btn-light" onclick="back()" formaction="<%=path%>/queryBet.html" value="竞猜"/>
+		    <input type="submit" class="btn btn-light" onclick="back()" formaction="<%=path%>/queryArticle.html" value="文章"/>
+		    <input type="submit" class="btn btn-light" onclick="back()" formaction="<%=path%>/queryAcc.html" value="饰品"/>
+		    <input type="submit" class="btn btn-light" onclick="back()" formaction="<%=path%>/queryHero.html" value="英雄"/>
+			<input type="submit" class="btn btn-light" onclick="back()" formaction="<%=path%>/forum.html" value="论坛"/>
 			<c:if test="${aab108==2}">
 	            <input type="submit" class="btn btn-light" formaction="<%=path%>/adminGo.jsp"  value="网站管理"/>
 		    </c:if>
@@ -147,8 +148,8 @@ String path=request.getContextPath();
     <div id="back"  onmouseover="menu.style.visibility='visible'" onmouseout="out()"style="position:absolute;top:15;right:0;width:300;height:10;z-index:1;visibility:visible;"> 
 		<span id="menubar" style="width:300" > 
 			<font color=red size=2>
-			   <c:if test="${aab108==2}">管理呿  <%=aab102%> 未读消息<%=unRead%>板 </c:if>
-		 	   <c:if test="${aab108==1}">用户  <%=aab102%> 未读消息<%=unRead%>板</c:if>
+			   <c:if test="${aab108==2}">管理员  <%=aab102%> 未读消息<%=unRead%>条 </c:if>
+		 	   <c:if test="${aab108==1}">用户  <%=aab102%> 未读消息<%=unRead%>条</c:if>
 			   <c:if test="${aab108==null}">游客</c:if>		 
 			</font>
 		</span> 
@@ -156,7 +157,7 @@ String path=request.getContextPath();
 		<div id="menu" style="position:absolute;top:15;right:0;width:300;height:10;z-index:2;visibility:hidden;"> 
 			<form action ="<%=path%>/queryPerson.html" method="post">
 				<input type="hidden" name="aab101" value="<%=aab101%>">
-				<input type="submit" name="toLog" formaction="<%=path%>/login.jsp" value="登录与注冿"><BR>
+				<input type="submit" name="toLog" formaction="<%=path%>/login.jsp" value="登录与注册"><BR>
 				
 				<c:if test="${aab108!=null}">
 					<input type="submit"  name="toQpi" formnovalidate="formnovalidate" value="个人信息">

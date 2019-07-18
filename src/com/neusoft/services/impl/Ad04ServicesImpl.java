@@ -23,7 +23,7 @@ public class Ad04ServicesImpl extends JdbcServicesSupport
 		return this.executeUpdate(sql, this.get("aad401"))>0;
 	}
 	//查看待发货列表
-	public List<Map<String, String>> query()throws Exception
+	public List<Map<String, Object>> query()throws Exception
 	{
 		StringBuilder sql=new StringBuilder()
 				.append("select a.aad401,a.aac601,a.aab101,a.aad402,a.aad403,")
@@ -34,7 +34,7 @@ public class Ad04ServicesImpl extends JdbcServicesSupport
 		return this.queryForList(sql.toString());
 	}
 	//查看待发货订单详细信息
-	public Map<String, String> findById()throws Exception
+	public Map<String, Object> findById()throws Exception
 	{
 		StringBuilder sql=new StringBuilder()
 				.append("select a.aad401,a.aac601,a.aab101,a.aad402,a.aad403,")

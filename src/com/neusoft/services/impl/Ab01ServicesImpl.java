@@ -46,7 +46,14 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.executeUpdate(sql.toString(), args)>0;
     }
 	
-	//使用人民币购买或续费会员
+		/**
+		 * 
+		 * 使用人民币购买或续费会员
+		 * @param aab101
+		 * @param total_amount
+		 * @return
+		 * @throws Exception
+		 */
 		public boolean buyVIP(String aab101,String total_amount)throws Exception
 	    {
 		
@@ -70,12 +77,35 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			}
 			
 			Object args[]={
-					Double.parseDouble(total_amount)/10,//此处填写用户扣的金额数,根据网页传来的用户购买月数*每月金额
+					Double.parseDouble(total_amount)/10,//根据充值金额判断会员月数
 					aab101
 			};
 			System.out.println("会员购买时长："+	Double.parseDouble(total_amount)/10+"个月");
 	    	return this.executeUpdate(sql.toString(), args)>0;
 	    }
+		
+	/**
+	 * 购买虚拟货币
+	 * @param aab101
+	 * @param total_amount
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean buyCurrency(String aab101,String total_amount)throws Exception
+	{
+		StringBuilder sql=new StringBuilder()
+				.append("update ab01 a")
+				.append("   set  a.aab106 = a.aab106+?")
+				.append(" where a.aab101=?")
+				;
+
+		Object args[]={
+				Double.parseDouble(total_amount)*100,//根据充值金额判断虚拟货币数
+				aab101
+		};
+		System.out.println("购买虚拟货币数："+	Double.parseDouble(total_amount)*100);
+		return this.executeUpdate(sql.toString(), args)>0;
+	}
 	
 	public boolean updatePic(Object aab101,Object aab105) throws Exception
 	{
@@ -92,7 +122,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	public boolean isVIP(Object aab101)throws Exception
 	{
 		String sql="select aab109 from ab01 where aab101=? and aab109>current_date";
-		Map<String, String> map=this.queryForMap(sql, aab101);
+		Map<String, Object> map=this.queryForMap(sql, aab101);
 		if(map==null)
 			return false;
 		else
@@ -150,24 +180,24 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     public Double getMoney(Object aab101)throws Exception
     {
     	String sql="select aab106 from ab01 where aab101=?";
-    	Map<String, String> map=this.queryForMap(sql, aab101);
-    	return Double.valueOf(map.get("aab106"));
+    	Map<String, Object> map=this.queryForMap(sql, aab101);
+    	return Double.valueOf(map.get("aab106").toString());
     }
     
-    public List<Map<String,String>> queryBuyOrder()throws Exception
+    public List<Map<String,Object>> queryBuyOrder()throws Exception
     {
     	String sql="select a.aad401,a.aac601,a.aad402,a.aad403,a.aad404,a.aad405,b.aac602,b.aac605 from ad04 a,ac06 b where a.aac601=b.aac601	 and a.aab101=?";                                                                                                                                                                               
     	return this.queryForList(sql, this.get("aab101"));
     }
     
-    public List<Map<String,String>> querySellOrder()throws Exception
+    public List<Map<String,Object>> querySellOrder()throws Exception
     {
     	String sql="select a.aad301,a.aac601,a.aad302,a.aad303,a.aad304,a.aad305,b.aac602,b.aac604 from ad03 a,ac06 b where a.aac601=b.aac601 and a.aab101=?";                                                                                                                                                                                
     	return this.queryForList(sql, this.get("aab101"));
     }
     
     //登录判断方法
-    public Map<String, String> loginEmp()throws Exception
+    public Map<String, Object> loginEmp()throws Exception
     {
     	try
     	{
@@ -192,7 +222,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     }
     
     
-    public Map<String, String> loginPerson(Object aab103,Object aab104)throws Exception
+    public Map<String, Object> loginPerson(Object aab103,Object aab104)throws Exception
     {
     	try
     	{
@@ -273,7 +303,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	}   	
     }
     //获得用户个人信息
-    public Map<String,String> queryPersonEmp()throws Exception
+    public Map<String,Object> queryPersonEmp()throws Exception
     {
     	try
     	{
@@ -292,7 +322,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	}
     }
     
-    public Map<String,String> queryPersonEmp(Object aab101)throws Exception
+    public Map<String,Object> queryPersonEmp(Object aab101)throws Exception
     {
     	try
     	{
@@ -441,7 +471,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, String>> postFindById() throws Exception 
+	public List<Map<String, Object>> postFindById() throws Exception 
 	{
 		Ab05ServicesImpl ab05 = new Ab05ServicesImpl();
 		int nowFloor =  1;
@@ -496,7 +526,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.batchUpdate(sql, idlist);
     }
 
-    public Map<String,String> findById()throws Exception
+    public Map<String,Object> findById()throws Exception
     {
     	//1.编写SQL语句
     	StringBuilder sql=new StringBuilder()
@@ -514,7 +544,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
        * @return
        * @throws Exception
        */
-	public List<Map<String,String>> query()throws Exception
+	public List<Map<String,Object>> query()throws Exception
 	  {
 	  		//还原页面查询条件
 	  		Object aab102=this.get("qaab102");     //姓名  模糊查询

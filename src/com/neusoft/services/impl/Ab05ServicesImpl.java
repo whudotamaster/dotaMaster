@@ -19,7 +19,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, String>> queryPost() throws Exception 
+	public List<Map<String, Object>> queryPost() throws Exception 
 	{
 		// 还原页面查询条件
 		Object aab502 = this.get("aab502"); // 标题 模糊查询
@@ -55,9 +55,9 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		}
 		sql.append(" order by b.aab504 desc ");
 		
-		List<Map<String, String>> rows = new ArrayList<Map<String, String>>();
+		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
-		Map<String, String> map1 = new HashMap<String, String>();
+		Map<String, Object> map1 = new HashMap<String, Object>();
 		if (aab101 != null) 
 		{
 			map1.put("aab107", ab01.queryPersonEmp(aab101).get("aab107"));
@@ -71,8 +71,8 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		rows.add(map1);
 		sql.append(" limit ?,10 ");
 		paramList.add((nowFloor-1)*10);
-		List<Map<String, String>> list = this.queryForList(sql.toString(), paramList.toArray());
-		for(Map<String, String> post:list)
+		List<Map<String, Object>> list = this.queryForList(sql.toString(), paramList.toArray());
+		for(Map<String, Object> post:list)
 		{
 			rows.add(post);
 		}
@@ -159,7 +159,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, String>> postFindById() throws Exception 
+	public List<Map<String, Object>> postFindById() throws Exception 
 	{
 		// 还原页面查询条件
 		Object aab501 = this.get("aab501"); // 帖子ID
@@ -178,7 +178,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, String>> postFindById(Object aab101 , Object aab501 ,int nowFloor) throws Exception 
+	public List<Map<String, Object>> postFindById(Object aab101 , Object aab501, int nowFloor) throws Exception 
 	{
 		// 定义SQL主体
 		StringBuilder sql = new StringBuilder()
@@ -189,8 +189,8 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 				.append("  order by b.aab504")
 				;
 		// 参数列表
-		List<Map<String, String>> rows =  new ArrayList<Map<String, String>>();
-		Map<String, String> map1 = new HashMap<String, String>();
+		List<Map<String, Object>> rows =  new ArrayList<Map<String, Object>>();
+		Map<String, Object> map1 = new HashMap<String, Object>();
 		Ab07ServicesImpl ab07=new Ab07ServicesImpl();
 		Ab11ServicesImpl ab11=new Ab11ServicesImpl();
 		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
@@ -212,8 +212,8 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		rows.add(map1);
 		rows.add(queryForMap(sql.toString(), aab501));
 		Ab06ServicesImpl ab06=new Ab06ServicesImpl();
-		List<Map<String, String>> commentList = ab06.commentFindById(aab501,(nowFloor-1)*10);
-		for(Map<String, String> comment:commentList)
+		List<Map<String, Object>> commentList = ab06.commentFindById(aab501,(nowFloor-1)*10);
+		for(Map<String, Object> comment:commentList)
 		{
 			rows.add(comment);
 		}
@@ -234,12 +234,12 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		if (this.isNotNull(aab101) && this.isNotNull(aab501) && this.isNotNull(aab603)) 
 		{
 			String sql1 = " select aab505 from ab05 where aab501=?";
-			List<Map<String, String>> aab505_1 = this.queryForList(sql1, aab501);
-			String floor = null;
-			for (Map<String, String> aObject : aab505_1) {
+			List<Map<String, Object>> aab505_1 = this.queryForList(sql1, aab501);
+			Object floor = null;
+			for (Map<String, Object> aObject : aab505_1) {
 				floor = aObject.get("aab505");
 			}
-			int aab505 = Integer.parseInt(floor) + 1;
+			int aab505 = Integer.parseInt(floor.toString()) + 1;
 			StringBuilder sql2 = new StringBuilder()
 					.append(" insert into ab06(aab101,aab501,aab602,aab603,aab604)")
 					.append("    values (?,?,?,?,current_timestamp())")
@@ -274,7 +274,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String,String>> queryHistory() throws Exception 
+	public List<Map<String,Object>> queryHistory() throws Exception 
 	{
 		// 1.定义SQL语句
 		StringBuilder sql = new StringBuilder()
@@ -284,8 +284,8 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 				.append("  order by a.aab504 desc ")
 				.append(" limit ?,10 ");
 				;
-				List<Map<String, String>> rows = new ArrayList<Map<String, String>>();
-				Map<String, String> map1 = new HashMap<String, String>();
+				List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+				Map<String, Object> map1 = new HashMap<String, Object>();
 				int nowFloor =  1;
 				if (isNotNull(this.get("nowFloor"))) 
 				{
@@ -298,7 +298,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 								this.get("aab101"),
 								(nowFloor-1)*10
 								};
-				for(Map<String, String> comment:this.queryForList(sql.toString(), args))
+				for(Map<String, Object> comment:this.queryForList(sql.toString(), args))
 				{
 					rows.add(comment);
 				}

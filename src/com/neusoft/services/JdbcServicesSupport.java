@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import com.neusoft.system.db.DBUtils;
 
+import sun.util.locale.provider.AvailableLanguageTags;
+
 /**
  *抽象类:可以包含抽象方法的类 
  *
@@ -74,12 +76,20 @@ public abstract class JdbcServicesSupport  implements BaseServices
 					.append(" select count(1) count from " + table)
 					.append(" where true " + whereSql)
 					;
-		int floor = Integer.parseInt(this.queryForMap(sql.toString(),args).get("count"));
+		int floor = 0;
+		if(args != null) 
+		{
+			floor = Integer.parseInt(this.queryForMap(sql.toString(),args).get("count").toString());
+		}
+		else 
+		{
+			floor = Integer.parseInt(this.queryForMap(sql.toString()).get("count").toString());
+		}
 		if (floor % 10 == 0) 
 		{
 			return floor/10;
 		}
-		else
+		else 
 		{
 			return (floor/10)+1;
 		}
@@ -468,7 +478,7 @@ public abstract class JdbcServicesSupport  implements BaseServices
 	 * @return
 	 * @throws Exception
 	 */
-    protected final  List<Map<String,String>> queryForList(final String sql,final Object...args)throws Exception
+    protected final  List<Map<String,Object>> queryForList(final String sql,final Object...args)throws Exception
     {
     	//1.定义JDBC接口
     	PreparedStatement pstm=null;
@@ -498,9 +508,9 @@ public abstract class JdbcServicesSupport  implements BaseServices
     		int initSize=((int)(count/0.75))+1;
     		
     		//定义List容器,装载整个查询结果
-    		List<Map<String,String>> rows=new ArrayList<>();
+    		List<Map<String,Object>> rows=new ArrayList<>();
     		//定义装载当前行数据的Map容器变量
-    		Map<String,String> ins=null;
+    		Map<String,Object> ins=null;
     		
     		//循环结果集
     		while(rs.next())
@@ -533,13 +543,13 @@ public abstract class JdbcServicesSupport  implements BaseServices
 	 * @return
 	 * @throws Exception
 	 */
-	protected final List<Map<String,String>> queryForList(final String sql)throws Exception
+	protected final List<Map<String,Object>> queryForList(final String sql)throws Exception
 	{
 		return this.queryForList(sql, null);
 	}
 	
 	
-   protected final Map<String,String> queryForMap(final String sql,final Object...args)throws Exception
+   protected final Map<String,Object> queryForMap(final String sql,final Object...args)throws Exception
    {
 		//定义JDBC接口变量
 		PreparedStatement pstm=null;
@@ -558,7 +568,7 @@ public abstract class JdbcServicesSupport  implements BaseServices
 			//执行SQL--通过语句对象执行SQL语句,然后由结果集对象接受查询结果
 			rs=pstm.executeQuery();
 			//定义装载数据的容器变量
-			Map<String,String> ins=null;
+			Map<String,Object> ins=null;
 			//判断是否存在查询结果
 			if(rs.next())
 			{
