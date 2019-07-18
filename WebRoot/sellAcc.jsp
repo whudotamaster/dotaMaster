@@ -19,7 +19,7 @@ ${msg }
 <br>
 <br>
 <div class="demoTa" style="opacity: 0.9"></div>
-<form name="form" action="<%=path%>/sellAcc.html" method="post" onSubmit="return beforeSubmit(this);">
+<form name="form" action="<%=path%>/sellAcc.html" method="post">
 <table border=2 align="center"  class="table" style="background-color:white;opacity: 0.95;width:45%">
       	 <caption align="left"><font color="#000000" size="5px">${empty ins.aad303?'出售饰品':'订单详情' }</font> </caption>
    <tr>

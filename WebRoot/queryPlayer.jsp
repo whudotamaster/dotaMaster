@@ -15,8 +15,7 @@
 <body>
 <%@ include file="header.jsp" %>
 ${msg }
-<br>
-<br>
+<br><br>
 <form id="myform" action="<%=path%>/queryPlayer.html" method="post">
   <!-- 查询条件区 -->
 	<table border="1" width="35%" align="center">

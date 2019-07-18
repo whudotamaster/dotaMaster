@@ -10,7 +10,7 @@
 	String laab102=(String)request.getAttribute("ins.aab102");
 %>
 <script>
-//刷新一次页面
+
 function refresh(){
     url = location.href;
  console.log(url);
@@ -23,7 +23,6 @@ function refresh(){
 }
  
 setTimeout('refresh()', 1);
-  
 </script>
 
 <html>
@@ -37,18 +36,16 @@ setTimeout('refresh()', 1);
 
 <body>
 <div class="demoLina" style="opacity: 0.9"></div>
-<!-- 多흙庫꼬돔봄으 -->
 <%@ include file="header.jsp" %>
 
 <div id="main">
 
  <%=aab101%>
-떼청.jpg
 
 
 </div>
 <%@include file="footer.jsp" %>
-<!-- 多흙女신 -->
+
 
 </body>
 
