@@ -29,56 +29,56 @@ tr {
 	<br>
 	<br>
 	<form id="myform" action="<%=path%>/forum.html" method="post">
-		<!-- ²éÑ¯Ìõ¼şÇø -->
+		<!-- æŸ¥è¯¢æ¡ä»¶åŒº -->
 		<table border="1" width="95%" align="center">
 			<tr>
-				<td colspan="4">²éÑ¯Ìõ¼ş</td>
+				<td colspan="4">æŸ¥è¯¢æ¡ä»¶</td>
 			</tr>
 			<tr>
-				<td>²éÑ¯ƒÈÈİ</td>
+				<td>æŸ¥è¯¢å…§å®¹</td>
 				<td colspan="2"><e:text name="aab502" /></td>
 			</tr>
 			<tr>
-				<td>Çø¿é</td>
-				<td><e:radio name="aab506" value="ÆÕÍ¨Çø:0,¾«»ªÇø:1" defval="0" /></td>
+				<td>åŒºå—</td>
+				<td><e:radio name="aab506" value="æ™®é€šåŒº:0,ç²¾ååŒº:1" defval="0" /></td>
 				<td>
 					<c:choose>
 				<c:when test="<%= aab101!=null %>">
 					<input type="submit"
-					id="addPost" name="next" value="·¢Ìû" formaction="<%=path%>/addPostOnLoad.html">
+					id="addPost" name="next" value="å‘å¸–" formaction="<%=path%>/addPostOnLoad.html">
 				</c:when>
 				<c:otherwise>
 						<input type="submit"
-					id="addPost" name="next" value="·¢Ìû" formaction="<%=path%>/login.html">
+					id="addPost" name="next" value="å‘å¸–" formaction="<%=path%>/login.html">
 				</c:otherwise>
 				</c:choose>
 				</td>
 			</tr>
 		</table>
-		<!-- Êı¾İµü´úÇø -->
+		<!-- æ•°æ®è¿­ä»£åŒº -->
 		<table border="1" width="95%" align="center">
 			<tr>
 				<c:if test="${tag}">
 				<td></td>
 				</c:if>
-				<td>Ìû±êÌâ</td>
-				<td>·¢ÌûÈË</td>
-				<td>»Ø¸´Êı</td>
-				<td>Ê±¼ä</td>	
+				<td>å¸–æ ‡é¢˜</td>
+				<td>å‘å¸–äºº</td>
+				<td>å›å¤æ•°</td>
+				<td>æ—¶é—´</td>	
 				<c:if test="${tag}">
 				<td>
 				</td>
 				</c:if>	
 			</tr>
 			<!--
-	         ×¢ÒâÊÂÏî
-	    1.$¼°´óÀ¨ºÅµÄ½áÊø±ê¼Ç }ÓëË«ÒıºÅÖ®¼ä,²»ÔÊĞí³öÏÖ¿Õ¸ñ
-	    2.ËùÓĞµÄÊôĞÔÖ®¼äÖÁÉÙÒªÓĞÒ»¸ö¿Õ¸ñ,·ñÔò±¨´í
-	    3.var ÊôĞÔ,Ïàµ±ÓÚÔÚÒ³Ãæ¶¨Òå±äÁ¿Ãû³Æ,Òò´Ë  ins²»ÔÊĞíÔÙÓÃ$ {  }
+	         æ³¨æ„äº‹é¡¹
+	    1.$åŠå¤§æ‹¬å·çš„ç»“æŸæ ‡è®° }ä¸åŒå¼•å·ä¹‹é—´,ä¸å…è®¸å‡ºç°ç©ºæ ¼
+	    2.æ‰€æœ‰çš„å±æ€§ä¹‹é—´è‡³å°‘è¦æœ‰ä¸€ä¸ªç©ºæ ¼,å¦åˆ™æŠ¥é”™
+	    3.var å±æ€§,ç›¸å½“äºåœ¨é¡µé¢å®šä¹‰å˜é‡åç§°,å› æ­¤  insä¸å…è®¸å†ç”¨$ {  }
 	   -->
 			<c:choose>
 				<c:when test="${rows!=null }">
-					<!-- ÏÔÊ¾Êµ¼Ê²éÑ¯µ½µÄÊı¾İ -->
+					<!-- æ˜¾ç¤ºå®é™…æŸ¥è¯¢åˆ°çš„æ•°æ® -->
 					<c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="10">
 						<tr>
 						<c:if test="${tag}">
@@ -89,30 +89,30 @@ tr {
 							</td>
 								</c:if>
 							<td>
-							<!-- #  ¿ÕÃª --> 
+							<!-- #  ç©ºé”š --> 
 							<c:if test="${(rows[0].aab107)/100 >= ins.aab507 || ins.aab101 == aab101}">
 							<a href="#" onclick="onVisit('${ins.aab501 }','${ins.aab507 }')">${ins.aab502 }</a>
 							</c:if>
 							<c:if test="${(rows[0].aab107)/100 < ins.aab507 && ins.aab101 != aab101 }">
-							<a href="#" onclick="alert('¸ÃÌûÒª${ins.aab507}¼‰»òÒÔÉÏ²ÅÄÜ¹Û¿´¸ÃÌû×Ó');" style="color:#FF2222 ">------¸ÃÌûÒª${ins.aab507}¼‰»òÒÔÉÏ²ÅÄÜ¹Û¿´¸ÃÌû×Ó------</a>
+							<a href="#" onclick="alert('è¯¥å¸–è¦${ins.aab507}ç´šæˆ–ä»¥ä¸Šæ‰èƒ½è§‚çœ‹è¯¥å¸–å­');" style="color:#FF2222 ">------è¯¥å¸–è¦${ins.aab507}ç´šæˆ–ä»¥ä¸Šæ‰èƒ½è§‚çœ‹è¯¥å¸–å­------</a>
 							</c:if>
 							</td>
 							<td>
-								<!-- #  ÓÃ»§Ãû¼°Í·Ïñ--> 
-								<a href="#" onclick="onEdit('${ins.aab101}')">${ins.aab102 }</a>
-								<img src=<%=path%>/images/${ins.aab105 } class="round_icon"
-								onclick="onEdit('${ins.aab101}')">
+								<!-- #  ç”¨æˆ·ååŠå¤´åƒ--> 
+								<a href="#" onclick="onCheck('${ins.aab101}')">${ins.aab102 }</a>
+								<img src="/Avatar/${ins.aab105}" class="round_icon"
+								onclick="onCheck('${ins.aab101}')">
 							</td>
 							<td>${ins.aab505 }</td>
 							<td>${ins.aab504 }</td>
 							<c:if test="${tag}">
 							<td>
-							<a href="#" onclick="onDel('${ins.aab501}')">É¾³ı</a>
+							<a href="#" onclick="onDel('${ins.aab501}')">åˆ é™¤</a>
 							</td>
 							</c:if>	
 						</tr>
 					</c:forEach>
-					<!-- ²¹³ä¿ÕĞĞ -->
+					<!-- è¡¥å……ç©ºè¡Œ -->
 					<c:forEach begin="${fn:length(rows)+1 }" step="1" end="10">
 						<tr>
 							<c:if test="${tag }">
@@ -148,29 +148,29 @@ tr {
 				</c:otherwise>
 			</c:choose>
 		</table>
-		<!-- ¹¦ÄÜ°´Å¥Çø -->
+		<!-- åŠŸèƒ½æŒ‰é’®åŒº -->
 		<table border="1" width="95%" align="center">
 			<tr>
 				<td align="center">
-					<input type="button" onclick="onQuery()" name="next" value="²éÑ¯">
+					<input type="button" onclick="onQuery()" name="next" value="æŸ¥è¯¢">
 					<c:if test="${tag }">
 					<input type="submit"
-					id="goodPost" name="next" value="¼Ó¾«" formaction="<%=path%>/goodPost.html"
+					id="goodPost" name="next" value="åŠ ç²¾" formaction="<%=path%>/goodPost.html"
 					disabled="disabled">
 					<input type="submit"
-					id="delPost" name="next" value="É¾³ı" formaction="<%=path%>/delPost.html"
+					id="delPost" name="next" value="åˆ é™¤" formaction="<%=path%>/delPost.html"
 					disabled="disabled">
 					</c:if>
 					<c:if test="${ aab101 !=null }">
 					<input type="submit"
-					id="collectionPase" name="next" onclick="back()" value="ÊÕ²ØÒ³Ãæ" 
+					id="collectionPase" name="next" onclick="back()" value="æ”¶è—é¡µé¢" 
 					formaction="<%=path%>/queryCollection.html">
 					<input type="submit"
-					id="historyPase" name="next" onclick="back()" value="švÊ·°lÌû" 
+					id="historyPase" name="next" onclick="back()" value="æ­·å²ç™¼å¸–" 
 					formaction="<%=path%>/queryHistoryById.html">
 					</c:if>
-					<input type="button" onclick="onBack()" id="backFloor" value="ÉÏÒ»Ò³">
-					<input type="button" onclick="onNext()" id="nextFloor" value="ÏÂÒ»Ò³">
+					<input type="button" onclick="onBack()" id="backFloor" value="ä¸Šä¸€é¡µ">
+					<input type="button" onclick="onNext()" id="nextFloor" value="ä¸‹ä¸€é¡µ">
 					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
 					<e:hidden name="floor" defval="${rows[0].floor }"/>
 					</td>
@@ -201,7 +201,13 @@ tr {
         	 vform.submit();
     	 }
       }
-      
+            function onCheck(qaab101)
+      {
+    	  var vform = document.getElementById("myform");
+     	 vform.action="<%=path%>/queryOtherPerson.htm?qaab101="+ qaab101;
+     	 //alert(vform.action);
+     	 vform.submit();
+      }
       function onDel(vaab501)
       {
     	 var vform = document.getElementById("myform");
