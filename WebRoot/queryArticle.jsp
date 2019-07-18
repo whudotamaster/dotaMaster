@@ -108,10 +108,10 @@ ${msg }
 	             <c:if test="${aab108==2}">
 					<input type="submit" onclick="back()"  class="btn btn-secondary  active" formaction="<%=path%>/adminQueryArticle.html" value="审核">
 	        	</c:if>
-	        	    <input type="button" onclick="onBack()" class="btn btn-secondary  active" id="backFloor" value="上一页">
-					<input type="button" class="btn btn-secondary  active" onclick="onNext()" id="nextFloor" value="下一页">
-					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
-					<e:hidden name="floor" defval="${rows[0].floor }"/>
+	        <input type="button" onclick="onBack()" class="btn btn-secondary  active" id="backFloor" value="上一页">
+			<input type="button" class="btn btn-secondary  active" onclick="onNext()" id="nextFloor" value="下一页">
+			<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
+		    <e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>
 	  </tr>
 	</table>

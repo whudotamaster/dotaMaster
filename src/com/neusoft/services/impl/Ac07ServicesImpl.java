@@ -37,7 +37,7 @@ public class Ac07ServicesImpl extends JdbcServicesSupport
 					sql.append(" where aac702 like ?");
 					paramList.add("%" + aac702 + "%");
 				}
-				sql.append(" order by aac702");
+				sql.append(" order by aac705 desc");
 				
 				List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 				Map<String, Object> map1 = new HashMap<String, Object>();
