@@ -38,6 +38,8 @@ public class LoginTest extends HttpServlet
 			boolean tag=ins.get("aab108").equals("2")?true:false;
 			request.getSession().setAttribute("tag", tag);
 			request.getRequestDispatcher("mainPage.jsp").forward(request, response);
+	        request.getSession().setAttribute("pic",ins.get("aab105"));
+
 		}
 		else
 		{

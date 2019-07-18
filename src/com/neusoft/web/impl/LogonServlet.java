@@ -9,7 +9,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 
 
-public class LogonServlet extends EmpControllerSupport 
+public class LogonServlet extends UserControllerSupport 
 {
 	@Override
 	public String execute()throws Exception 

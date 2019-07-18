@@ -98,7 +98,7 @@ tr {
 							</td>
 							<td>
 								<!-- #  用户名及头像--> 
-								<a href="#" onclick="onEdit('${ins.aab101}')">${ins.aab102 }</a>
+								<a href="#" onclick="onCheck('${ins.aab101}')">${ins.aab102 }</a>
 								<img src=<%=path%>/images/${ins.aab105 } class="round_icon"
 								onclick="onEdit('${ins.aab101}')">
 							</td>
@@ -194,7 +194,13 @@ tr {
         	 vform.submit();
     	 }
       }
-      
+      function onCheck(aab101)
+      {
+    	  var vform = document.getElementById("myform");
+     	 vform.action="<%=path%>/queryPerson.html?aab101="+ aab101;
+     	 //alert(vform.action);
+     	 vform.submit();
+      }
       function onDel(vaab501)
       {
     	 var vform = document.getElementById("myform");

@@ -209,18 +209,18 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	    	{  
 		    	Object aab103 = this.get("aab103");
 			    	Object aab104 = Tools.getMd5(this.get("aab104"));
-//		    	//进行用户输入的数据长度判断
-//		    	if(((String) aab103).length()>32||((String) aab104).length()>32)
-//		    	{
-//		    		return 2000;
-//		    	}
-//		    	else
-//		    	{
+		    	//进行用户输入的数据长度判断
+		    	if(((String) aab103).length()>15)
+		    	{
+		    		return 2000;
+		    	}
+		    	else
+		    	{
 			    	StringBuilder sql=new StringBuilder()
 			    			.append("insert into ab01")
 			    			.append("(aab102,aab103,aab104,aab105,aab106,")
 			    			.append(" 						aab107,aab108,aab109)")
-			    			.append("values (?,?,?,'null.png',0,")
+			    			.append("values (?,?,?,'默认头像.png',0,")
 			    			.append("							0,1,current_timestamp())")
 			       			;
 			    	List<Object> paramList =new ArrayList<>();
@@ -232,7 +232,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			    	//成功写入数据库
 			    }
 		    
-//	    	}
+    	}
     	}
     	catch(Exception e)
     	{
@@ -286,18 +286,15 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	try
     	{
     		Object aab102=this.get("aab102");
-    		Object aab105=this.get("aab105");
     		Object aab101=this.get("aab101");
-
     		StringBuilder sql = new StringBuilder()
 					    		.append("update ab01 ")
-					    		.append("   set aab102 = ?,aab105=?")
+					    		.append("   set aab102 = ?")
 					    		.append(" where aab101 = ?")
 					    		;
     		Object args[]=
     			{
-        			aab102,
-        			aab105,
+        			aab102,	
         			aab101
     			};
     		return this.executeUpdate(sql.toString(), args)>0;
@@ -534,5 +531,6 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	  		sql.append(" order by x.aab102");
 	  		return this.queryForList(sql.toString(), paramList.toArray());
 	  }
+
 
 }

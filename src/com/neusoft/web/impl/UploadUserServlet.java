@@ -14,6 +14,7 @@ import com.neusoft.services.impl.Ab01ServicesImpl;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -29,23 +30,34 @@ public class UploadUserServlet extends HttpServlet
 {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
+      	
+     
+    
         Part part = request.getPart("file");
         String name = part.getSubmittedFileName();
         UUID uuid = UUID.randomUUID();
-
-        String path = request.getServletContext().getRealPath("")+"/pic/";
+        String path = "D:/Avatar/";
         File file = new File(path);
-        if (!file.exists()){
+        if (!file.exists())
+        {
             file.mkdirs();
-        }
-   
+        }   
         part.write(path+uuid+name);
         request.getSession().setAttribute("pic",uuid+name);
-        
-        Ab01ServicesImpl ab01=new Ab01ServicesImpl();
         try 
-        {	
-			ab01.updatePic(request.getSession().getAttribute("aab101"),path+uuid+name);
+        {	  
+        	//删掉老的
+        	Ab01ServicesImpl ab01=new Ab01ServicesImpl();
+        	String oldAvatar = (String)ab01.queryPersonEmp(request.getSession().getAttribute("aab101")).get("aab105");
+        	if(!oldAvatar.equals("默认头像.png"))
+        	{
+        	this.deleteFile( "D:/Avatar/"+oldAvatar);
+        	}
+        //换新的
+        	ab01.updatePic(request.getSession().getAttribute("aab101"),uuid+name);
+
+			request.setAttribute("msg", "提示：上传头像成功！");
+			request.getRequestDispatcher("updtPsnInf.html").forward(request, response);
 		} 
         catch (Exception e) 
         {			
@@ -53,6 +65,25 @@ public class UploadUserServlet extends HttpServlet
 		}   
     }
 
+    /** 
+     * 删除单个文件 
+     * @param   sPath    被删除文件的文件名 
+     * @return 单个文件删除成功返回true，否则返回false 
+     */  
+    public boolean deleteFile(String sPath) 
+    {  
+       boolean flag = false;  
+        File file = new File(sPath);  
+        // 路径为文件且不为空则进行删除  
+        if (file.isFile() && file.exists()) 
+        {
+        	
+            file.delete();  
+            flag = true;  
+        }  
+        return flag;  
+    }
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
     	
