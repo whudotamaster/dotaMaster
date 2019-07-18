@@ -119,6 +119,57 @@
                 -o-background-size: cover;
                 background-position: center 0;
             }
+             .demoAcc{
+                position:fixed;
+                top: 0;
+                left: 0;
+                width:100%;
+                height:100%;
+                min-width: 1000px;
+                z-index:-10;
+                zoom: 1;
+                background-color: #fff;
+                background: url(images/AccBg.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                background-position: center 0;
+            }
+             .demoEquipment{
+                position:fixed;
+                top: 0;
+                left: 0;
+                width:100%;
+                height:100%;
+                min-width: 1000px;
+                z-index:-10;
+                zoom: 1;
+                background-color: #fff;
+                background: url(images/EBg.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                background-position: center 0;
+            }
+            .demoEvent{
+                position:fixed;
+                top: 0;
+                left: 0;
+                width:100%;
+                height:100%;
+                min-width: 1000px;
+                z-index:-10;
+                zoom: 1;
+                background-color: #fff;
+                background: url(images/EventBg.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                background-position: center 0;
+            }
             .demoAcc{
                 position:fixed;
                 top: 0;
@@ -215,7 +266,11 @@ String path=request.getContextPath();
 		<!--实现鼠标悬停出现菜单  -->
 		<div id="menu" style="position:absolute;top:15;right:0;width:300;height:10;z-index:2;visibility:hidden;"> 
 			<form action ="<%=path%>/queryPerson.html" method="post">
+<<<<<<< Upstream, based on branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 				<input type="hidden" name="aab101" value="<%=aab101%>">
+=======
+				<input type="hidden" name="aab101" value="<%=aab101%>">
+>>>>>>> d1d3989 鏁村悎pull
 				<div class="btn-group-vertical btn-group-sm">
 				<input type="submit" name="toLog" class="btn btn-secondary" formaction="<%=path%>/login.jsp" value="注销">
 

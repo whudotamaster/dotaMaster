@@ -469,6 +469,12 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
+	/**
+	 * 指定帖子查询的加载(帖子 回复 收藏状态)
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Map<String, Object>> postFindById() throws Exception 
 	{
 		Ab05ServicesImpl ab05 = new Ab05ServicesImpl();

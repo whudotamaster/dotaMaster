@@ -125,6 +125,7 @@ ${msg }
 
 	       <input type="text" id="vaad402"  class="btn btn-secondary  active" name="aad402" placeholder="输入玩家编号" disabled="disabled">
 	       <input type="button" class="btn btn-secondary  active" onclick="onBack()" id="backFloor" value="上一页">
+
 					<input type="button" class="btn btn-secondary  active" onclick="onNext()" class="btn btn-secondary  active" id="nextFloor" value="下一页">
 					<input hidden="true" type="text" name="nowFloor" class="btn btn-secondary  active" id="nowFloor" value="${rows[0].nowFloor }">
 					<e:hidden name="floor" defval="${rows[0].floor }"/>
