@@ -2,15 +2,14 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%String path=request.getContextPath(); 
-String aab108=(String)session.getAttribute("aab108");%>
+<%@ include file="header.jsp" %>
 <html>
 <head>
    <title>Insert title here</title>
    <style type="text/css">
      tr
      {
-        height:25px;
+        height:40px;
      }
    </style>
    
@@ -28,14 +27,12 @@ String aab108=(String)session.getAttribute("aab108");%>
 ${msg }
 <br>
 <br>
+<div class="demoDOTA2"></div>
 <form id="myform" method="post">
 	<!-- 数据迭代区 -->
 	
-	<table border="1" width="95%" align="center">
-	 <caption>
-	       <%=aab108.equals("1")?"查看历史购买":"查看待发货列表"%>
-	    <hr width="160">
-	  </caption>
+	<table align="center" class="table table-striped" style="background-color:#DCDCDC;opacity: 0.9;width:90%">
+	   <caption align="left"><font color="white" size="5px"><%=aab108.equals("1")?"查看历史购买":"查看待发货列表"%></font> </caption>
 	  <tr>
 	    <td>序号</td>
 	    <td>饰品名称</td>
@@ -100,9 +97,9 @@ ${msg }
 	<table border="1" width="95%" align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="<%=aab108.equals("1")?"查看历史购买":"查看待发货列表"%>"
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="<%=aab108.equals("1")?"查看历史购买":"查看待发货列表"%>"
               formaction="<%=path%>/<%=aab108.equals("1")?"queryBuyOrder.html":"querySendAcc.html"%>">
-               <input type="submit" formaction="<%=path%>/mainPage.jsp" value="返回">
+               <input type="submit" class="btn btn-secondary  active" formaction="<%=path%>/mainPage.jsp" value="返回">
 	    </td>
 	  </tr>
 	</table>

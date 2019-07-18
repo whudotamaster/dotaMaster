@@ -1,10 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=GBK"
-	pageEncoding="GBK"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" pageEncoding="GBK"%>
+<%@ page import="java.net.*" %>
+<%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+//对中文参数进行解码
+String body=request.getParameter("c");
+body=URLDecoder.decode(body,"utf-8");
+String subject=request.getParameter("a");
+subject=URLDecoder.decode( subject,"utf-8");
+String amount=request.getParameter("b");
+amount=URLDecoder.decode(amount,"utf-8");
+         %> 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=GBK">
-<title>支付宝支付</title>
+<title>支付宝网站支付</title>
 <style>
 * {
 	margin: 0;
@@ -191,13 +200,20 @@ h2 {
 }
 </style>
 </head>
+<%= subject%>
+<%= amount%>
+<%= body%>
 <body text=#000000 bgColor="#ffffff" leftMargin=0 topMargin=4>
 	<header class="am-header">
-	<h1>支付宝支付入口页</h1>
+	<h1>支付宝电脑网站支付体验入口页</h1>
 	</header>
 	<div id="main">
 		<div id="tabhead" class="tab-head">
-			<h2 id="tab1" class="selected" name="tab">付 款</h2>			
+			<h2 id="tab1" class="selected" name="tab">付 款</h2>
+			<h2 id="tab2" name="tab">交 易 查 询</h2>
+			<h2 id="tab3" name="tab">退 款</h2>
+			<h2 id="tab4" name="tab">退 款 查 询</h2>
+			<h2 id="tab5" name="tab">交 易 关 闭</h2>
 		</div>
 		<form name=alipayment action=alipay.trade.page.pay.jsp method=post
 			target="_blank">
@@ -210,17 +226,17 @@ h2 {
 					<hr class="one_line">
 					<dt>订单名称 ：</dt>
 					<dd>
-						<input id="WIDsubject" name="WIDsubject" value="测试1" />
+						<input id="WIDsubject" name="WIDsubject" value="<%=subject%>"/>
 					</dd>
 					<hr class="one_line">
 					<dt>付款金额 ：</dt>
 					<dd>
-						<input id="WIDtotal_amount" name="WIDtotal_amount" value="0.1" />
+						<input id="WIDtotal_amount" name="WIDtotal_amount"value="<%=amount%>" />
 					</dd>
 					<hr class="one_line">
 					<dt>商品描述：</dt>
 					<dd>
-						<input id="WIDbody" name="WIDbody" value="这是一个测试用例" />
+						<input id="WIDbody" name="WIDbody" value="<%=body%>"/>
 					</dd>
 					<hr class="one_line">
 					<dt></dt>
@@ -233,7 +249,123 @@ h2 {
 				</dl>
 			</div>
 		</form>
-		
+		<form name=tradequery action=alipay.trade.query.jsp method=post
+			target="_blank">
+			<div id="body2" class="tab-content" name="divcontent">
+				<dl class="content">
+					<dt>商户订单号 ：</dt>
+					<dd>
+						<input id="WIDTQout_trade_no" name="WIDTQout_trade_no" />
+					</dd>
+					<hr class="one_line">
+					<dt>支付宝交易号 ：</dt>
+					<dd>
+						<input id="WIDTQtrade_no" name="WIDTQtrade_no" />
+					</dd>
+					<hr class="one_line">
+					<dt></dt>
+					<dd id="btn-dd">
+						<span class="new-btn-login-sp">
+							<button class="new-btn-login" type="submit"
+								style="text-align: center;">交 易 查 询</button>
+						</span> <span class="note-help">商户订单号与支付宝交易号二选一，如果您点击“交易查询”按钮，即表示您同意该次的执行操作。</span>
+					</dd>
+				</dl>
+			</div>
+		</form>
+		<form name=traderefund action=alipay.trade.refund.jsp method=post
+			target="_blank">
+			<div id="body3" class="tab-content" name="divcontent">
+				<dl class="content">
+					<dt>商户订单号 ：</dt>
+					<dd>
+						<input id="WIDTRout_trade_no" name="WIDTRout_trade_no" />
+					</dd>
+					<hr class="one_line">
+					<dt>支付宝交易号 ：</dt>
+					<dd>
+						<input id="WIDTRtrade_no" name="WIDTRtrade_no" />
+					</dd>
+					<hr class="one_line">
+					<dt>退款金额 ：</dt>
+					<dd>
+						<input id="WIDTRrefund_amount" name="WIDTRrefund_amount" />
+					</dd>
+					<hr class="one_line">
+					<dt>退款原因 ：</dt>
+					<dd>
+						<input id="WIDTRrefund_reason" name="WIDTRrefund_reason" />
+					</dd>
+					<hr class="one_line">
+					<dt>退款请求号 ：</dt>
+					<dd>
+						<input id="WIDTRout_request_no" name="WIDTRout_request_no" />
+					</dd>
+					<hr class="one_line">
+					<dt></dt>
+					<dd id="btn-dd">
+						<span class="new-btn-login-sp">
+							<button class="new-btn-login" type="submit"
+								style="text-align: center;">退 款</button>
+						</span> <span class="note-help">商户订单号与支付宝交易号二选一，如果您点击“退款”按钮，即表示您同意该次的执行操作。</span>
+					</dd>
+				</dl>
+			</div>
+		</form>
+		<form name=traderefundquery
+			action=alipay.trade.fastpay.refund.query.jsp method=post
+			target="_blank">
+			<div id="body4" class="tab-content" name="divcontent">
+				<dl class="content">
+					<dt>商户订单号 ：</dt>
+					<dd>
+						<input id="WIDRQout_trade_no" name="WIDRQout_trade_no" />
+					</dd>
+					<hr class="one_line">
+					<dt>支付宝交易号 ：</dt>
+					<dd>
+						<input id="WIDRQtrade_no" name="WIDRQtrade_no" />
+					</dd>
+					<hr class="one_line">
+					<dt>退款请求号 ：</dt>
+					<dd>
+						<input id="WIDRQout_request_no" name="WIDRQout_request_no" />
+					</dd>
+					<hr class="one_line">
+					<dt></dt>
+					<dd id="btn-dd">
+						<span class="new-btn-login-sp">
+							<button class="new-btn-login" type="submit"
+								style="text-align: center;">退 款 查 询</button>
+						</span> <span class="note-help">商户订单号与支付宝交易号二选一，如果您点击“退款查询”按钮，即表示您同意该次的执行操作。</span>
+					</dd>
+				</dl>
+			</div>
+		</form>
+		<form name=tradeclose action=alipay.trade.close.jsp method=post
+			target="_blank">
+			<div id="body5" class="tab-content" name="divcontent">
+				<dl class="content">
+					<dt>商户订单号 ：</dt>
+					<dd>
+						<input id="WIDTCout_trade_no" name="WIDTCout_trade_no" />
+					</dd>
+					<hr class="one_line">
+					<dt>支付宝交易号 ：</dt>
+					<dd>
+						<input id="WIDTCtrade_no" name="WIDTCtrade_no" />
+					</dd>
+					<hr class="one_line">
+					<dt></dt>
+					<dd id="btn-dd">
+						<span class="new-btn-login-sp">
+							<button class="new-btn-login" type="submit"
+								style="text-align: center;">交 易 关 闭</button>
+						</span> <span class="note-help">商户订单号与支付宝交易号二选一，如果您点击“交易关闭”按钮，即表示您同意该次的执行操作。</span>
+					</dd>
+				</dl>
+			</div>
+		</form>
 		<div id="foot">
 			<ul class="foot-ul">
 				<li>支付宝版权所有 2015-2018 ALIPAY.COM</li>
@@ -243,9 +375,27 @@ h2 {
 </body>
 <script language="javascript">
 	var tabs = document.getElementsByName('tab');
-	var contents = document.getElementsByName('divcontent');	
-	function GetDateNow()
-	{
+	var contents = document.getElementsByName('divcontent');
+	
+	(function changeTab(tab) {
+	    for(var i = 0, len = tabs.length; i < len; i++) {
+	        tabs[i].onmouseover = showTab;
+	    }
+	})();
+	
+	function showTab() {
+	    for(var i = 0, len = tabs.length; i < len; i++) {
+	        if(tabs[i] === this) {
+	            tabs[i].className = 'selected';
+	            contents[i].className = 'show';
+	        } else {
+	            tabs[i].className = '';
+	            contents[i].className = 'tab-content';
+	        }
+	    }
+	}
+	
+	function GetDateNow() {
 		var vNow = new Date();
 		var sNow = "";
 		sNow += String(vNow.getFullYear());
@@ -255,9 +405,11 @@ h2 {
 		sNow += String(vNow.getMinutes());
 		sNow += String(vNow.getSeconds());
 		sNow += String(vNow.getMilliseconds());
+		var url=decodeURI(location.href);
 		document.getElementById("WIDout_trade_no").value =  sNow;
-		//document.getElementById("WIDsubject").value = "测试";
-		//document.getElementById("WIDtotal_amount").value = "0.01";
+		//document.getElementById("WIDsubject").value =;
+		//document.getElementById("WIDtotal_amount").value = ;
+		//document.getElementById("WIDbody").value = ;
 	}
 	GetDateNow();
 </script>

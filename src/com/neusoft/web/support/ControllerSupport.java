@@ -38,7 +38,7 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void savePageData()throws Exception
 	{
-		List<Map<String,String>> rows=this.services.query();
+		List<Map<String,Object>> rows=this.services.query();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
@@ -55,7 +55,7 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void adminQueryArticleServ()throws Exception
 	{
-		List<Map<String,String>> rows=this.services.adminQueryArticle();
+		List<Map<String,Object>> rows=this.services.adminQueryArticle();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
@@ -74,7 +74,7 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void adminQueryComplainServ()throws Exception
 	{
-		List<Map<String,String>> rows=this.services.adminQueryComplain();
+		List<Map<String,Object>> rows=this.services.adminQueryComplain();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
@@ -93,7 +93,7 @@ public abstract class ControllerSupport implements BaseController
 	
 	protected final void savePageData(String methodName)throws Exception
 	{
-		List<Map<String,String>> rows=null;
+		List<Map<String,Object>> rows=null;
 		if(methodName.equals("buy"))
 			rows=this.services.queryBuyOrder();
 		else if(methodName.equals("sell"))
@@ -116,7 +116,7 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void savePageInstance()throws Exception
 	{
-		Map<String,String> ins=this.services.findById();
+		Map<String,Object> ins=this.services.findById();
 		if(ins!=null)
 		{
 			this.saveAttribute("ins",  ins);
@@ -131,7 +131,7 @@ public abstract class ControllerSupport implements BaseController
 	//登录判断
 	protected final boolean loginIn()throws Exception
 	{
-		Map<String, String> ins=this.services.loginEmp();
+		Map<String, Object> ins=this.services.loginEmp();
 		//System.out.println("在loginIn中实例化一次");
 
 		if(ins!=null)
@@ -177,7 +177,7 @@ public abstract class ControllerSupport implements BaseController
 	//查询用户信息
 	protected final void queryPersonIn() throws Exception
 	{
-		Map<String,String> ins=this.services.queryPersonEmp();
+		Map<String,Object> ins=this.services.queryPersonEmp();
 		if(ins!=null)
 		{
 			this.saveAttribute("ins",  ins);
@@ -222,21 +222,41 @@ public abstract class ControllerSupport implements BaseController
 	 * @return
 	 * @throws Exception
 	 */
-	private List<Map<String,String>> executeQueryMethod(String methodName)throws Exception
+	private List<Map<String,Object>> executeQueryMethod(String methodName)throws Exception
 	{
 		//1.获取需要调用的方法对象
 		Method method=this.services.getClass().getDeclaredMethod(methodName);
 		method.setAccessible(true);
 		//2.调用方法
-		return  (List<Map<String, String>>)method.invoke(services);
+		return  (List<Map<String, Object>>)method.invoke(services);
 	}
 	
 	protected final void query(String methodName)throws Exception
 	{
-		List<Map<String,String>> rows=this.executeQueryMethod(methodName);
+		List<Map<String,Object>> rows=this.executeQueryMethod(methodName);
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
+		}
+		else
+		{	
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+	/**
+	 * 通过反射执行findById方法
+	 * @param methodName
+	 * @return
+	 * @throws Exception
+	 */
+
+	protected final void findById(String methodName)throws Exception
+	{
+		List<Map<String, Object>> rows2=this.executeQueryMethod(methodName);
+		if(rows2.size()>0)
+		{
+			this.saveAttribute("rows2", rows2);
 		}
 		else
 		{	
@@ -250,21 +270,21 @@ public abstract class ControllerSupport implements BaseController
 	 * @return
 	 * @throws Exception
 	 */
-	private Map<String,String> executeQueryMethodMap(String methodName)throws Exception
+	private Map<String,Object> executeQueryMethodMap(String methodName)throws Exception
 	{
 		//1.获取需要调用的方法对象
 		Method method=this.services.getClass().getDeclaredMethod(methodName);
 		method.setAccessible(true);
 		//2.调用方法
-		return  (Map<String, String>)method.invoke(services);
+		return  (Map<String, Object>)method.invoke(services);
 	}
 	
 	protected final void queryMap(String methodName)throws Exception
 	{
-		Map<String,String> rows=this.executeQueryMethodMap(methodName);
-		if(rows.size()>0)
+		Map<String, Object> ins=this.executeQueryMethodMap(methodName);
+		if(ins.size()>0)
 		{
-			this.saveAttribute("rows", rows);
+			this.saveAttribute("ins", ins);
 		}
 		else
 		{	
@@ -342,7 +362,7 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void savePageDataForDelete()throws Exception
 	{
-		List<Map<String,String>> rows=this.services.query();
+		List<Map<String,Object>> rows=this.services.query();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);

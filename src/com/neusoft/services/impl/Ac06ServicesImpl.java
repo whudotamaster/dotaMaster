@@ -3,6 +3,8 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.naming.java.javaURLContextFactory;
 import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.system.tools.Tools;
@@ -13,10 +15,10 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	private boolean allowPurchase(Object aac601)throws Exception
 	{
 		//1,根据饰品ID查询饰品其他信息
-		Map<String, String> acc=this.findAccessories(aac601);
+		Map<String, Object> acc=this.findAccessories(aac601);
 		
 		//没有库存购买失败
-		if(Integer.parseInt(acc.get("aac606"))==0)
+		if(Integer.parseInt(acc.get("aac606").toString())==0)
 		{
 			this.setMessage("商品库存不足");
 			return false;
@@ -27,7 +29,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		Double money=ab01.getMoney(this.get("aab101"));
 		
 		//用户金币不足,购买失败
-		if(money<Double.parseDouble(acc.get("aac605")))
+		if(money<Double.parseDouble(acc.get("aac605").toString()))
 		{
 			this.setMessage("用户金额不足");
 			return false;
@@ -40,7 +42,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	private void buyAccessories(Object aac601)throws Exception
     {
 			
-		Map<String, String> acc=this.findAccessories(aac601);
+		Map<String, Object> acc=this.findAccessories(aac601);
 		
 		//3,减少用户余额,由于是事务性操作 只能重新编写sql语句
     	StringBuilder sql1=new StringBuilder()
@@ -98,8 +100,8 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
     	Object idlist[]=this.getIdList("idlist");
     	//查询饰品总体价格,以及是否都有货
     	String sql="select aac605,aac606 from ac06 where aac601=?";
-    	List<Map<String, String>> accList=new ArrayList<>();
-    	Map<String, String> map=null;
+    	List<Map<String, Object>> accList=new ArrayList<>();
+    	Map<String, Object> map=null;
     	for(Object id:idlist)
 		{
 			map=this.queryForMap(sql, id);
@@ -109,10 +111,10 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
     	
     	//总价格
     	int count=0;
-    	for(Map<String,String> m:accList)
+    	for(Map<String,Object> m:accList)
     	{
     		count+=Double.parseDouble(m.get("aac605").toString());
-    		if(Integer.parseInt(m.get("aac606"))<1)
+    		if(Integer.parseInt(m.get("aac606").toString())<1)
     		{
     			this.setMessage("库存不足");
     			return false;
@@ -157,7 +159,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	}
 	
 	//根据饰品ID查找其他信息
-	public Map<String, String> findAccessories(Object aac601) throws Exception
+	public Map<String, Object> findAccessories(Object aac601) throws Exception
 	{
 		//1.编写SQL语句
     	StringBuilder sql=new StringBuilder()
@@ -177,7 +179,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String,String>> query()throws Exception
+	public List<Map<String,Object>> query()throws Exception
 	  {
 	  		//还原页面查询条件
 	  		Object aac602=this.get("qaac602");     //姓名  模糊查询
@@ -208,19 +210,29 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public Map<String,String> findById()throws Exception
+	public Map<String,Object> findById()throws Exception
     {
     	//1.编写SQL语句
 	//	System.out.println(this.get("aac601"));
 	//	System.out.println(this.get("param"));
     	StringBuilder sql1=new StringBuilder()
-    			.append("select x.aac602,x.aac603,x.aac604,x.aac605,x.aac606,y.aac102,x.aac101")
+    			.append("select x.aac601,x.aac602,x.aac603,x.aac604,x.aac605,x.aac606,y.aac102,x.aac101")
   				.append("		 from ac06 x ,ac01 y")
   				.append("        where x.aac101=y.aac101   ")	
   				.append("         and x.aac601= ? ");
     			;  	
+    			String aac601=null;
+    			if(this.get("aac601") instanceof java.lang.String[])
+    			{
+    				String[] array=(String[])this.get("aac601");
+    				aac601=array[0];
+    			}
+    			else
+    			{
+    				aac601=this.get("aac601").toString();
+    			}
     	//执行查询
-        return this.queryForMap(sql1.toString(), this.get("aac601"));
+        return this.queryForMap(sql1.toString(), aac601);
     }
 	
 	/**

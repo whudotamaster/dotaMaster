@@ -78,7 +78,7 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String,String>> queryCollectionList() throws Exception
+	public List<Map<String,Object>> queryCollectionList() throws Exception
 	{
 		Object aab101 = this.get("aab101");
     	StringBuilder sql=new StringBuilder()
@@ -87,7 +87,6 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
     			.append(" where a.aab101=? and a.aab501=b.aab501 and b.aab101=c.aab101")
     			.append(" order by a.aab702 desc")
     			;
-    	System.out.println("aab101:" + this.get("aab101"));
     	return queryForList(sql.toString(), aab101);
 	}
 
@@ -113,7 +112,7 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String,String>> queryHistory() throws Exception 
+	public List<Map<String,Object>> queryHistory() throws Exception 
 	{
 		// 1.∂®“ÂSQL”Ôæ‰
 		StringBuilder sql = new StringBuilder()
@@ -154,7 +153,7 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, String>> postFindById() throws Exception 
+	public List<Map<String, Object>> postFindById() throws Exception 
 	{
 		Ab05ServicesImpl ab05 = new Ab05ServicesImpl();
 		return ab05.postFindById(this.get("aab101") , this.get("aab501"));

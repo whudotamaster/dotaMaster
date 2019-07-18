@@ -43,16 +43,13 @@ public class Tools
 			/**
 			 * MD5二次混淆加密
 			 */
-			//得到明文
-			String pwd="0000";
-			//完成原始加密
-			String md5pwd1=Tools.MD5Encode(pwd);
+			String md5pwd1=Tools.MD5Encode("admin");
 			//生成混淆明文
-			String pwd2=md5pwd1+"隐技フャゥソツ巧ΧΤΚㄕㄣˇΒ于无形:以無にはたコをっㄘㄗㄡεωぅ法為有法,以無ㄤㄆмязр限為有限"+md5pwd1;
-			String md45pwd2=Tools.MD5Encode(pwd2);
-			System.out.println(md45pwd2);
+			String pwd2=md5pwd1+"摇曳露营Δ天下第一"+md5pwd1;
+			String md5pwd2=Tools.MD5Encode(pwd2);
+			System.out.println(md5pwd2);
 			
-			
+		
 			
 			/**
 			 * MD5的几个特征

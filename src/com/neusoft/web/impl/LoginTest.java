@@ -18,7 +18,7 @@ public class LoginTest extends HttpServlet
 	{
 		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
 		Map<String, Object> dto=this.createDto(request);
-		Map<String, String> ins=null;
+		Map<String, Object> ins=null;
 		try 
 		{
 			ins = ab01.loginPerson(dto.get("aab103"),dto.get("aab104"));

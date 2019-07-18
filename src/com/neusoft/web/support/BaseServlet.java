@@ -1,5 +1,4 @@
 package com.neusoft.web.support;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -8,19 +7,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.Map.Entry;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.services.impl.Ab01ServicesImpl;
 import com.neusoft.services.impl.Ad06ServicesImpl;import sun.security.util.Length;
-
-
 @WebServlet("*.html")
 public class BaseServlet extends HttpServlet 
 {
@@ -142,9 +137,12 @@ public class BaseServlet extends HttpServlet
 		if(request.getSession().getAttribute("aab101")!=null)
 		{
 			Ad06ServicesImpl ad06=new Ad06ServicesImpl();
-			List<Map<String, String>> list=ad06.query(request.getSession().getAttribute("aab101"));
-			int length=list.size();
-			request.getSession().setAttribute("unRead", length);
+			List<Map<String, Object>> list=ad06.query(request.getSession().getAttribute("aab101"));
+			if(list!=null)
+			{
+				int length=list.size();
+				request.getSession().setAttribute("unRead", length);
+			}
 		}
 	}
 

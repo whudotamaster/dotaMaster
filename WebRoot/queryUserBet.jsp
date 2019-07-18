@@ -2,33 +2,28 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%
-String aab101=(String)session.getAttribute("aab101");
-String path=request.getContextPath();
-%>
 <html>
 <head>
    <title>Insert title here</title>
    <style type="text/css">
      tr
      {
-        height:25px;
+        height:40px;
      }
    </style>
 </head>
+<%@ include file="header.jsp" %>
 <body>
+
 ${msg }
- <div class="demo" ></div>
+<div class="demo" style="opacity: 0.9"></div>
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryUserBet.html" method="post">
 	<!-- 数据迭代区 -->
 	
-	<table border="1" width="95%" align="center">
-	 <caption>
-	         历史下注
-	    <hr width="160">
-	  </caption>
+	<table align="center" class="table table-striped" style="background-color:#C8FFFF;opacity: 0.9;width:85%">
+	 <caption align="left"><font color="#000000" size="5px">历史下注</font> </caption>
 	  <tr>
 	    <td>序号</td>
 	    <td>战队1</td>

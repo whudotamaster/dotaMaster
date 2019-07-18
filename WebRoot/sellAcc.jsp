@@ -1,18 +1,13 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-String path=request.getContextPath(); 
-String aab108=(String)session.getAttribute("aab108");
-String aab101=(String)session.getAttribute("aab101");
-boolean tag=(boolean)session.getAttribute("tag");
-%>
+<%@ include file="header.jsp" %>
 <html>
 <head>
 <title>Insert title here</title>
 <style type="text/css">
   td{
-      height:30px;
+      height:40px;
   }
   msg{
      color:#FF0000
@@ -21,18 +16,12 @@ boolean tag=(boolean)session.getAttribute("tag");
 </head>
 <body>
 ${msg }
-是否管理员:<%=tag %>
 <br>
-用户ID<%=aab101 %>
-是否已存在订单:${ins.aad303 }
 <br>
-<%=path%>
+<div class="demoTa" style="opacity: 0.9"></div>
 <form action="<%=path%>/sellAcc.html" method="post">
-<table  border="1" align="center" width="45%">
-    <caption>
-      	 ${empty ins.aad303?'出售饰品':'订单详情' }
-      <hr width="160">
-    </caption>
+<table border=2 align="center" class="table" style="background-color:white;opacity: 0.95;width:45%">
+      	 <caption align="left"><font color="#000000" size="5px">${empty ins.aad303?'出售饰品':'订单详情' }</font> </caption>
    <tr>
      <td colspan="2">饰品名称:  ${ins.aac602 }</td>
    </tr>
@@ -73,20 +62,20 @@ ${msg }
      <input type="submit" name="next" value="确认已发货"
               formaction="<%=path%>/sellAcc.html">
      <input type="submit" name="next" value="返回" 
-              formaction="<%=path%>/queryBet.html">
+              formaction="<%=path%>/findByIdAcc.html?aac601=${ins.aac601}">
      </c:when>
      <c:when test="${ins.aad303==0}">
-     <c:if test="<%=tag%>">
+     <c:if test="${aab108==2}">
      <input type="submit" name="next" value="确认已收货"
               formaction="<%=path%>/modifyGetAcc.html">
      <input type="submit" name="next" value="收货失败"
               formaction="<%=path%>/modifyGetAcc.html">
      <input type="submit" name="next" value="返回" 
-              formaction="<%=path%>/queryGetAcc.html">
+              formaction="<%=path%>/findByIdAcc.html?aac601=${ins.aac601}">
      </c:if>  
-      <c:if test="<%=!tag%>">
+      <c:if test="${aab108!=2}">
      <input type="submit" name="next" value="返回" 
-              formaction="<%=path%>/querySellOrder.html">
+              formaction="<%=path%>/findByIdAcc.html?aac601=${ins.aac601}">
      </c:if>  
      </c:when>
      </c:choose>
@@ -94,7 +83,7 @@ ${msg }
    </tr>
 </table>
 <input type="hidden" name="aab101" value="<%=aab101 %>">
-<input type="hidden" name="aac601" value="1">
+<input type="hidden" name="aac601" value="${ins.aac601} ">
 <input type="hidden" name="aad301" value="${ins.aad301 }">
 </form>
 </body>

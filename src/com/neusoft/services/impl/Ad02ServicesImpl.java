@@ -10,7 +10,7 @@ import com.neusoft.system.tools.Tools;
 public class Ad02ServicesImpl extends JdbcServicesSupport 
 {
 	
-	public List<Map<String, String>> query()throws Exception
+	public List<Map<String, Object>> query()throws Exception
     {
 		//比赛开始时间 战队1 战队2 押注A方 押注B方 获得货币
 		StringBuilder sql=new StringBuilder()
