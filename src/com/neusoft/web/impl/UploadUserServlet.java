@@ -1,5 +1,4 @@
 package com.neusoft.web.impl;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -7,11 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-
 import org.omg.PortableServer.THREAD_POLICY_ID;
-
 import com.neusoft.services.impl.Ab01ServicesImpl;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -20,9 +16,9 @@ import java.util.UUID;
 /**
  * Created by foreknow on 2018/12/13.
 MultipartConfig
-ä½¿ç”¨æ³¨è§£MultipartConfig å°†ä¸€ä¸ª Servlet æ ‡è¯†ä¸ºæ”¯æŒæ–‡ä»¶ä¸Šä¼ ã€‚Servlet3.0 å°†
-multipart/form-data çš„ POST è¯·æ±‚å°è£…æˆ Partï¼Œé€šè¿‡ Part å¯¹æ–‡ä»¶è¿›è¡Œä¸Šä¼ ã€‚
-Servlet3 æ²¡æœ‰æä¾›ç›´æ¥è·å–æ–‡ä»¶åçš„æ–¹æ³•,éœ€è¦ä»è¯·æ±‚å¤´ä¸­è§£æå‡ºæ¥
+Ê¹ÓÃ×¢½âMultipartConfig ½«Ò»¸ö Servlet ±êÊ¶ÎªÖ§³ÖÎÄ¼şÉÏ´«¡£Servlet3.0 ½«
+multipart/form-data µÄ POST ÇëÇó·â×°³É Part£¬Í¨¹ı Part ¶ÔÎÄ¼ş½øĞĞÉÏ´«¡£
+Servlet3 Ã»ÓĞÌá¹©Ö±½Ó»ñÈ¡ÎÄ¼şÃûµÄ·½·¨,ĞèÒª´ÓÇëÇóÍ·ÖĞ½âÎö³öÀ´
  */
 @WebServlet(name = "UploadUserServlet",value = "/uploadUser.htm",loadOnStartup=0)
 @MultipartConfig
@@ -46,16 +42,16 @@ public class UploadUserServlet extends HttpServlet
         request.getSession().setAttribute("pic",uuid+name);
         try 
         {	  
-        	//åˆ æ‰è€çš„
+        	//É¾µôÀÏµÄ
         	Ab01ServicesImpl ab01=new Ab01ServicesImpl();
         	String oldAvatar = (String)ab01.queryPersonEmp(request.getSession().getAttribute("aab101")).get("aab105");
-        	if(!oldAvatar.equals("é»˜è®¤å¤´åƒ.png"))
+        	if(!oldAvatar.equals("Ä¬ÈÏÍ·Ïñ.png"))
         	{
         	this.deleteFile( "D:/Avatar/"+oldAvatar);
         	}
-        //æ¢æ–°çš„
+        //»»ĞÂµÄ
         	ab01.updatePic(request.getSession().getAttribute("aab101"),uuid+name);
-			request.setAttribute("msg", "æç¤ºï¼šä¸Šä¼ å¤´åƒæˆåŠŸï¼");
+			request.setAttribute("msg", "ÌáÊ¾£ºÉÏ´«Í·Ïñ³É¹¦£¡");
 			request.getRequestDispatcher("queryPerson.html").forward(request, response);
 		} 
         catch (Exception e) 
@@ -65,15 +61,15 @@ public class UploadUserServlet extends HttpServlet
     }
 
     /** 
-     * åˆ é™¤å•ä¸ªæ–‡ä»¶ 
-     * @param   sPath    è¢«åˆ é™¤æ–‡ä»¶çš„æ–‡ä»¶å 
-     * @return å•ä¸ªæ–‡ä»¶åˆ é™¤æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false 
-     */  
+     * É¾³ıµ¥¸öÎÄ¼ş 
+     * @param   sPath    ±»É¾³ıÎÄ¼şµÄÎÄ¼şÃû 
+     * @return µ¥¸öÎÄ¼şÉ¾³ı³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse 
+     */   
     public boolean deleteFile(String sPath) 
     {  
        boolean flag = false;  
         File file = new File(sPath);  
-        // è·¯å¾„ä¸ºæ–‡ä»¶ä¸”ä¸ä¸ºç©ºåˆ™è¿›è¡Œåˆ é™¤  
+         // Â·¾¶ÎªÎÄ¼şÇÒ²»Îª¿ÕÔò½øĞĞÉ¾³ı   
         if (file.isFile() && file.exists()) 
         {
         	

@@ -10,7 +10,7 @@
 	String laab102=(String)request.getAttribute("ins.aab102");
 %>
 <script>
-//åˆ·æ–°ä¸€æ¬¡é¡µé¢
+//µÇÂ½Ë¢ĞÂÒ³Ãæ
 function refresh(){
     url = location.href;
  console.log(url);
@@ -28,7 +28,7 @@ setTimeout('refresh()', 1);
 
 <html>
 <head>
-	<title>å¯®å¥³</title>
+	<title>Ö÷Ò³</title>
 
 </head>
 
@@ -37,18 +37,18 @@ setTimeout('refresh()', 1);
 
 <body>
 <div class="demoLina" style="opacity: 0.9"></div>
-<!-- å¤ší™åº«ê¼¬ë”ë´„ìœ¼ -->
+<!-- ÒıÈëÍ·²¿µ¼º½À¸ -->
 <%@ include file="header.jsp" %>
 
 <div id="main">
 
  <%=aab101%>
-î€•ë–¼ì²­.jpg
+É¶Ò²Ã».jpg
 
 
 </div>
 <%@include file="footer.jsp" %>
-<!-- å¤ší™å¥³ì‹  -->
+<!-- ÒıÈëÒ³½Å -->
 
 </body>
 
