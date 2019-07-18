@@ -280,7 +280,7 @@ public abstract class ControllerSupport implements BaseController
 	
 	protected final void queryMap(String methodName)throws Exception
 	{
-		Map<String,Object> ins=this.executeQueryMethodMap(methodName);
+		Map<String, Object> ins=this.executeQueryMethodMap(methodName);
 		if(ins.size()>0)
 		{
 			this.saveAttribute("ins", ins);
