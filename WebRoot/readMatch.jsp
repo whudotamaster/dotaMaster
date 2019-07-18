@@ -24,7 +24,7 @@ ${msg}
 <form action="<%=path%>/findByIdArticle.html" method="post">
 <table  border="1" align="center" width="45%">
     <caption>
-               比赛${aab108==2?'浏览':'修改' }
+               比赛${aab108==2?'修改':'浏览' }
       <hr width="160">
     </caption>
    <tr>

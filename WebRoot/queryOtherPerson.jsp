@@ -11,10 +11,10 @@ tr {
 	height: 25px;
 }
 </style>
-<title>æŸ¥çœ‹${qins.aab102}çš„ä¿¡æ¯</title>
+<title>²é¿´${qins.aab102}µÄĞÅÏ¢</title>
 </head>
 <body>
-<!-- å¼•å…¥å¤´éƒ¨å¯¼èˆªæ  -->
+<!-- ÒıÈëÍ·²¿µ¼º½À¸ -->
 <%@ include file="header.jsp" %>
 
 <br>
@@ -22,7 +22,7 @@ tr {
 <table border="1" align="center" width="45%">
   <caption>
 
-       ä¿®æ”¹æˆ‘çš„ä¿¡æ¯
+       ĞŞ¸ÄÎÒµÄĞÅÏ¢
   
  
        <hr width="160">
@@ -34,48 +34,48 @@ tr {
 	     <td colspan="2">${msg }</td>
 	 </tr>
 	 <tr>
-	 	<td>æ˜µç§°</td>
+	 	<td>êÇ³Æ</td>
 	 	<td>
 	 	   <e:text name="aab102" required="true" autofocus="true" readonly="true" defval="${qins.aab102 }" /> 
 	 	</td>
 	 </tr>
 	  <tr>
-	 	<td>å¤´åƒ</td>
+	 	<td>Í·Ïñ</td>
 	 	<td>
  	      <img id="avatar" src="/Avatar/${qins.aab105 }" style="height:200px;width:200px;" >
  	  	</td>
 		</tr>
 	 <tr>
 	 
-	 <td>å½“å‰ç»éªŒå€¼</td>
+	 <td>µ±Ç°¾­ÑéÖµ</td>
 	 	<td>
  	       <e:text name="aab107" required="true" readonly="true" defval="${qins.aab107 }"/> 
 	 	</td>
 	 </tr>
 </table>
-<!-- æ•°æ®è¿­ä»£åŒº -->
+<!-- Êı¾İµü´úÇø -->
 		<table border="1" width="95%" align="center">
 			<tr>
 				
-				<td>å¸–æ ‡é¢˜</td>
-				<td>å›å¤æ•°</td>
-				<td>å‘å¸–æ—¶é—´</td>
+				<td>Ìû±êÌâ</td>
+				<td>»Ø¸´Êı</td>
+				<td>·¢ÌûÊ±¼ä</td>
 		
 			</tr>
 			<!--
-	         æ³¨æ„äº‹é¡¹
-	    1.$åŠå¤§æ‹¬å·çš„ç»“æŸæ ‡è®° }ä¸åŒå¼•å·ä¹‹é—´,ä¸å…è®¸å‡ºç°ç©ºæ ¼
-	    2.æ‰€æœ‰çš„å±æ€§ä¹‹é—´è‡³å°‘è¦æœ‰ä¸€ä¸ªç©ºæ ¼,å¦åˆ™æŠ¥é”™
-	    3.var å±æ€§,ç›¸å½“äºåœ¨é¡µé¢å®šä¹‰å˜é‡åç§°,å› æ­¤  insä¸å…è®¸å†ç”¨$ {  }
+	         ×¢ÒâÊÂÏî
+	    1.$¼°´óÀ¨ºÅµÄ½áÊø±ê¼Ç }ÓëË«ÒıºÅÖ®¼ä,²»ÔÊĞí³öÏÖ¿Õ¸ñ
+	    2.ËùÓĞµÄÊôĞÔÖ®¼äÖÁÉÙÒªÓĞÒ»¸ö¿Õ¸ñ,·ñÔò±¨´í
+	    3.var ÊôĞÔ,Ïàµ±ÓÚÔÚÒ³Ãæ¶¨Òå±äÁ¿Ãû³Æ,Òò´Ë  ins²»ÔÊĞíÔÙÓÃ$ {  }
 	   -->
 			<c:choose>
 				<c:when test="${rows!=null }">
-					<!-- æ˜¾ç¤ºå®é™…æŸ¥è¯¢åˆ°çš„æ•°æ® -->
+					<!-- ÏÔÊ¾Êµ¼Ê²éÑ¯µ½µÄÊı¾İ -->
 					<c:forEach items="${rows }" var="ins" varStatus="vs">
 						<tr>
 							
 								<td>
-							<!-- #  ç©ºé”š --> 
+							<!-- #  ¿ÕÃª --> 
 							<a href="#" onclick="onVisit('${ins.aab501 }')">${ins.aab502 }</a>
 							</td>
 							<td>${ins.aab505 }</td>
@@ -83,7 +83,7 @@ tr {
 							
 						</tr>
 					</c:forEach>
-					<!-- è¡¥å……ç©ºè¡Œ -->
+					<!-- ²¹³ä¿ÕĞĞ -->
 					<c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
 						<tr>
 						
@@ -116,13 +116,13 @@ tr {
 
 
 
- <input type="submit" name="Submit" formaction="<%=path%>/forum.html"  formnovalidate="formnovalidate" onclick="back()" value="è¿”å›è®ºå›">
+ <input type="submit" name="Submit" formaction="<%=path%>/forum.html"  formnovalidate="formnovalidate" onclick="back()" value="·µ»ØÂÛÌ³">
 
- <input type="submit" name="Submit" formaction="<%=path%>/mainPage.jsp"  formnovalidate="formnovalidate" value="è¿”å›ä¸»é¡µ">
+ <input type="submit" name="Submit" formaction="<%=path%>/mainPage.jsp"  formnovalidate="formnovalidate" value="·µ»ØÖ÷Ò³">
 </form>
 
 	<%@include file="footer.jsp" %>
-	<!-- å¼•å…¥é¡µè„š -->
+	<!-- ÒıÈëÒ³½Å -->
 </body>
     <script>
     function onVisit(vaab501)
@@ -134,6 +134,5 @@ tr {
       	 vform.submit();
   	
     }
-
     </script>
 </html>

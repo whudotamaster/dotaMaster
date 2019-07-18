@@ -14,16 +14,13 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
+<div class="demoPlayer" style="opacity: 0.9"></div>
 ${msg }
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryPlayer.html" method="post">
   <!-- 查询条件区 -->
-	<table border="1" width="35%" align="center">
-	  <caption>
-	            选手信息
-	    <hr width="160">
-	  </caption>
+	<table align="center" class="table table-striped" style="background-color:#1A7CA1;opacity: 0.9;width:55%">
 	  <tr>
 	    <td colspan="4">查询条件</td>
 	  </tr>
@@ -35,13 +32,12 @@ ${msg }
 	  </tr>	 
 	</table>
 	<!-- 数据迭代区 -->
-	<table border="1" width="35%" align="center">
+	<table align="center" class="table table-striped" style="background-color:#1A7CA1;opacity: 0.9;width:55%">
 	  <tr>
 	    <td></td>
 	    <td>序号</td>
 	    <td>选手头像</td>
 	    <td>选手名</td>
-	    <td></td>
 	    <td></td>
 	   
 	  </tr>
@@ -55,16 +51,18 @@ ${msg }
 				             onclick="onSelect(this.checked)" >
 				    </td>
 				    <td>${vs.count }</td>
-				     <td  align="center" style="width:15%; height:15%">
-				       <img alt="no image" src=<%=path%>/images/${ins.aac1004 } style="width:100%; height:100%">
+				     <td   style="width:15%; height:15%">
+				       <img alt="no image" src=<%=path%>/images/${ins.aac1004 } style="width:70%; height:100%">
 				     </td>
 				    <td>
 				      <!-- #  空锚 -->
-				     <a href="#" onclick="onEdit('${ins.aac1001}')">${ins.aac1002 }</a>
+				     <a href="#" style="color:black" onclick="onEdit('${ins.aac1001}')">${ins.aac1002 }</a>
 				    </td>
+				     <c:if test="${aab108==2}">
 				    <td>
-				      <a href="#" onclick="onDel('${ins.aac1001}')">删除</a>
+				      <a href="#" style="color:red" onclick="onDel('${ins.aac1001}')">删除</a>
 				    </td>
+				    </c:if>
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
@@ -92,18 +90,20 @@ ${msg }
 	   </c:choose>
 	</table>
 	<!-- 功能按钮区 -->
-	<table border="1" width="35%" align="center">
+	<table  align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" onclick="back()" value="查询">
-	       <input type="submit" name="next" value="添加" 
+	       <input type="submit" class="btn btn-secondary  active" name="next" onclick="back()" value="查询">
+	        <c:if test="${aab108==2}">
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
 	              formaction="<%=path%>/addPlayer.jsp">
-	       <input type="submit" id="del" name="next" value="删除" 
+	       <input type="submit" class="btn btn-secondary  active" id="del" name="next" value="删除" 
 	              formaction="<%=path%>/delPlayer.html"  disabled="disabled">
-	               <input type="button" onclick="onBack()" id="backFloor" value="上一页">
-					<input type="button" onclick="onNext()" id="nextFloor" value="下一页">
-					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
-					<e:hidden name="floor" defval="${rows[0].floor }"/>
+	       </c:if>
+	        <input type="button" class="btn btn-secondary  active" onclick="onBack()" id="backFloor" value="上一页">
+		    <input type="button" class="btn btn-secondary  active" onclick="onNext()" id="nextFloor" value="下一页">
+			<input hidden="true" class="btn btn-secondary  active" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
+			<e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>
 	  </tr>
 	</table>

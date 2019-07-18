@@ -14,15 +14,13 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
+<div class="demoMatch" style="opacity: 0.9"></div>
 ${msg }
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryMatch.html" method="post">
   <!-- 查询条件区 -->
-	<table border="1" width="35%" align="center">
-	  <caption>
-	                比赛信息
-	  </caption>
+	<table align="center" class="table table-striped" style="background-color:#DFDCD1;opacity: 0.9;width:85%"">
 	  <tr>
 	    <td colspan="4">查询条件</td>
 	  </tr>
@@ -34,7 +32,7 @@ ${msg }
 	  </tr>	 
 	</table>
 	<!-- 数据迭代区 -->
-	<table border="1" width="35%" align="center">
+	<table align="center" class="table table-striped" style="background-color:#DFDCD1;opacity: 0.9;width:85%">
 	  <tr>
 	    <td></td>
 	    <td>序号</td>
@@ -91,18 +89,18 @@ ${msg }
 	   </c:choose>
 	</table>
 	<!-- 功能按钮区 -->
-	<table border="1" width="35%" align="center">
+	<table align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" onclick="back()" value="查询">
+	       <input type="submit" name="next" class="btn btn-secondary  active" onclick="back()" value="查询">
 	       <c:if test="${aab108==2}">
-	       <input type="submit" name="next" value="添加" 
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
 	              formaction="<%=path%>/addMatch.jsp">
 	       </c:if>
-	          <input type="button" onclick="onBack()" id="backFloor" value="上一页">
-					<input type="button" onclick="onNext()" id="nextFloor" value="下一页">
-					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
-					<e:hidden name="floor" defval="${rows[0].floor }"/>
+	        <input type="button" class="btn btn-secondary  active" onclick="onBack()" id="backFloor" value="上一页">
+			<input type="button" class="btn btn-secondary  active" onclick="onNext()" id="nextFloor" value="下一页">
+			<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
+			<e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>
 	  </tr>
 	</table>

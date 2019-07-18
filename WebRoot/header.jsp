@@ -170,6 +170,40 @@
                 -o-background-size: cover;
                 background-position: center 0;
             }
+           .demoMatch{
+                position:fixed;
+                top: 0;
+                left: 0;
+                width:100%;
+                height:100%;
+                min-width: 1000px;
+                z-index:-10;
+                zoom: 1;
+                background-color: #fff;
+                background: url(images/MatchBg.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                background-position: center 0;
+            } 
+            .demoPlayer{
+                position:fixed;
+                top: 0;
+                left: 0;
+                width:100%;
+                height:100%;
+                min-width: 1000px;
+                z-index:-10;
+                zoom: 1;
+                background-color: #fff;
+                background: url(images/PlayerBg.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                background-position: center 0;
+            } 
     </style>
 </head>
 <%
@@ -192,6 +226,8 @@ String path=request.getContextPath();
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryHero.html" value="英雄"/>
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryEquipment.html" value="装备"/>
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryEvent.html" value="赛事"/>
+		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryMatch.html" value="比赛"/>
+		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryPlayer.html" value="选手"/>
 			<input type="submit" class="btn btn-light" formaction="<%=path%>/forum.html" value="论坛"/>
 			<c:if test="${aab108==2}">
 	            <input type="submit" class="btn btn-light" formaction="<%=path%>/adminGo.jsp"  value="网站管理"/>

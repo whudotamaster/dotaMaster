@@ -138,6 +138,7 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
 	 */
 	private boolean addMatch()throws Exception
     {		
+		int aac1101=0;
     	//1.±àÐ´SQLÓï¾ä	
 		String sql2="select aac701 from ac07 where aac702=?";
 		Object aac701=this.queryForMap(sql2, this.get("aac702")).get("aac701");
@@ -153,13 +154,17 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
     			0,
     			aac701
     	         };
-    	int aac1101=Tools.getSequence("aac1101");
+    	int n1=this.executeUpdate(sql.toString(), args);
+    	if(n1>0)
+    	{
+    	 aac1101=Tools.getSequence("aac1101");
+    	}
     	StringBuilder sql3=new StringBuilder()
     			.append(" insert into ad01 (aac1101,aad102,aad103,aad104,aad105)        ")
     			.append("            values (?,0,0, date_sub(now(), interval 48 hour),  ")
     			.append("                   DATE_ADD(NOW(), INTERVAL 1 Hour))          ")
     			;
-    	int n1=this.executeUpdate(sql.toString(), args);
+    	
     	int n2=this.executeUpdate(sql3.toString(), aac1101);
     	System.out.println("²åÈë¾º²Â³É¹¦");
         return n1+n2>n1;	
