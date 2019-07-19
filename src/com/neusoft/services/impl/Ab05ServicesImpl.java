@@ -312,6 +312,24 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	}
 	
 	/**
+	 * 查找用户历史发帖
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Map<String,Object>> queryHistory(Object aab101) throws Exception 
+	{
+
+		StringBuilder sql = new StringBuilder()
+				.append(" select a.aab501,a.aab502,a.aab504,a.aab505 ")
+				.append("   from ab05 a ")
+				.append("  where a.aab101=? ")
+				.append("  order by a.aab504 desc ")
+				;
+		return this.queryForList(sql.toString(), aab101);
+	}
+	
+	/**
 	 * 帖子批量刪除
 	 * 
 	 * @return

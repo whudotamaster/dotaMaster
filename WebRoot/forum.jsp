@@ -157,7 +157,7 @@ color:#000000;
 							<td style="width:10%">
 								<!-- #  用户名及头像--> 
 								<div class="posthidden" style="width:50%">
-								<a style="color:#000000;text-decoration:underline" href="#" onclick="onEdit('${ins.aab101}')">${ins.aab102 }</a>
+								<a style="color:#000000;text-decoration:underline" href="#" onclick="onCheck('${ins.aab101}')">${ins.aab102 }</a>
 								<img src=<%=path%>/images/${ins.aab105 } class="round_icon"
 								onclick="onEdit('${ins.aab101}')">
 								</div>
