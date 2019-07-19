@@ -191,27 +191,66 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     }
     
     public List<Map<String,Object>> queryBuyOrder()throws Exception
-    {                                                                                                                           
+    {
+    	int number = 10 ;
     	StringBuilder sql=new StringBuilder()
-    					  .append("select a.aad401,a.aac601,a.aad402,a.aad403,a.aad404,")
-    					  .append("       a.aad405,b.aac602,b.aac605,c.fvalue")
-    					  .append("  from ad04 a,ac06 b,syscode c ")
-    					  .append(" where a.aac601=b.aac601 and c.fname='aad403'")
-    					  .append("   and c.fcode=a.aad403 and a.aab101=?")
-    					  .append(" order by a.aad405 desc");
-    	return this.queryForList(sql.toString(), this.get("aab101"));
+    			.append("select a.aad401,a.aac601,a.aad402,a.aad403,a.aad404,a.aad405,b.aac602,b.aac605 from ad04 a,ac06 b where a.aac601=b.aac601	 and a.aab101=?" );
+    	String whereSql= "a.aab101=?";
+    	List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map1 = new HashMap<String, Object>();
+    	int nowFloor =  1;
+		if (isNotNull(this.get("nowFloor"))) 
+		{
+			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+		}
+		map1.put("floor", String.valueOf(countFloor("ad04 a,ac06 b",whereSql.toString(),number,this.get("aab101"))));
+		map1.put("nowFloor", String.valueOf(nowFloor));
+		rows.add(map1);
+		
+
+		sql.append(" limit ?,? ");
+		Object args[] = {
+				this.get("aab101"),
+				(nowFloor-1)*number,
+				number
+		};
+	
+		for(Map<String, Object> list:this.queryForList(sql.toString(), args))
+		{
+			rows.add(list);
+		}
+    	return rows;
     }
     
     public List<Map<String,Object>> querySellOrder()throws Exception
-    {                                                                                                                                                                       
+    {
+    	int number = 10 ;
+    	StringBuilder whereSql=new StringBuilder();
     	StringBuilder sql=new StringBuilder()
-				  .append("select a.aad301,a.aac601,a.aad302,a.aad303,a.aad304,")
-				  .append("       a.aad305,b.aac602,b.aac604,c.fvalue")
-				  .append("  from ad03 a,ac06 b,syscode c ")
-				  .append(" where a.aac601=b.aac601 and c.fname='aad303'")
-				  .append("   and c.fcode=a.aad303 and a.aab101=?")
-				  .append(" order by a.aad305 desc");
-    	return this.queryForList(sql.toString(), this.get("aab101"));
+    			.append("select a.aad301,a.aac601,a.aad302,a.aad303,a.aad304,a.aad305,b.aac602,b.aac604 from ad03 a,ac06 b where a.aac601=b.aac601 and a.aab101=?");             
+    	List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map1 = new HashMap<String, Object>();
+    	int nowFloor =  1;
+		if (isNotNull(this.get("nowFloor"))) 
+		{
+			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+		}
+		map1.put("floor", String.valueOf(countFloor("ad03 a,ac06 b",whereSql.toString(),number,this.get("aab101"))));
+		map1.put("nowFloor", String.valueOf(nowFloor));
+		rows.add(map1);
+		
+		
+		sql.append(" limit ?,? ");
+		Object args[] = {
+				this.get("aab101"),
+				(nowFloor-1)*number,
+				number
+		};
+		for(Map<String, Object> list:this.queryForList(sql.toString(), args))
+		{
+			rows.add(list);
+		}
+		return rows;
     }
     
     //登录判断方法
@@ -586,6 +625,13 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.queryForMap(sql.toString(), this.get("aab101"));
     }
       
+    private final Map<String, Object> articleFindById() throws Exception
+    {
+    	Object aab801 = this.get("aab801");
+		Ab08ServicesImpl ab08 =new Ab08ServicesImpl();
+		return ab08.findById(aab801);
+	}
+    
       /**
        * 不定条件查询
        * @return

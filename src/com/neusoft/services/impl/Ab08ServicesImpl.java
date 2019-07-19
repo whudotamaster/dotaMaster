@@ -16,6 +16,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	 */
 	public List<Map<String,Object>> query()throws Exception
 	  {
+		int number = 10 ;
 	  		//还原页面查询条件
 	  		Object aab802=this.get("qaab802");     //姓名  模糊查询
 	  		//定义SQL主体
@@ -47,13 +48,14 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 				nowFloor = Integer.valueOf((String)this.get("nowFloor"));
 			}
 			whereSql.append("and x.aab804 = 2");
-			map1.put("floor", String.valueOf(countFloor("ab08 x",whereSql.toString(),paramList1.toArray())));
+			map1.put("floor", String.valueOf(countFloor("ab08 x",whereSql.toString(),number,paramList1.toArray())));
 			map1.put("nowFloor", String.valueOf(nowFloor));
 			rows.add(map1);
 			
 			
-			sql1.append(" limit ?,10 ");
-			paramList1.add((nowFloor-1)*10);
+			sql1.append(" limit ?,? ");
+			paramList1.add((nowFloor-1)*number);
+			paramList1.add(number);
 			for(Map<String, Object> list:this.queryForList(sql1.toString(), paramList1.toArray()))
 			{
 				rows.add(list);
@@ -65,6 +67,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	//管理员查询待审核文章
 	public List<Map<String,Object>> adminQueryArticle()throws Exception
 	  {
+		int number = 10;
 	  		//还原页面查询条件
 	  		Object aab802=this.get("qaab802");     //姓名  模糊查询
 	  		//定义SQL主体
@@ -97,13 +100,14 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 				nowFloor = Integer.valueOf((String)this.get("nowFloor"));
 			}
 			whereSql.append("and x.aab804 = 1");
-			map1.put("floor", String.valueOf(countFloor("ab08 x",whereSql.toString(),paramList1.toArray())));
+			map1.put("floor", String.valueOf(countFloor("ab08 x",whereSql.toString(),number,paramList1.toArray())));
 			map1.put("nowFloor", String.valueOf(nowFloor));
 			rows.add(map1);
 			
 			
-			sql1.append(" limit ?,10 ");
-			paramList1.add((nowFloor-1)*10);
+			sql1.append(" limit ?,? ");
+			paramList1.add((nowFloor-1)*number);
+			paramList1.add(number);
 			for(Map<String, Object> list:this.queryForList(sql1.toString(), paramList1.toArray()))
 			{
 				rows.add(list);
@@ -114,6 +118,12 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	
 	public Map<String,Object> findById()throws Exception
     {
+		Object aab801 =  this.get("aab801");
+    	return findById(aab801);
+    }
+	
+	public Map<String,Object> findById(Object aab801)throws Exception
+    {
     	//1.编写SQL语句
     	StringBuilder sql1=new StringBuilder()
     			.append(" select  x.aab801,x.aab101,x.aab802,x.aab803,x.aab804,    ")   
@@ -123,7 +133,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
   				.append("         and aab801= ? ")
     			;
     	//执行查询
-    	return this.queryForMap(sql1.toString(), this.get("aab801"));
+    	return this.queryForMap(sql1.toString(), aab801);
     }
 	
 	/**

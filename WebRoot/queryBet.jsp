@@ -73,16 +73,13 @@
 </head>
 <body>
 
- <div class="demo" ></div>
+	<div class="demo"></div>
 
-${msg }
-<br>
-<br>
-<form id="myform" action="<%=path%>/queryBet.html" method="post" >
-	<!-- 数据迭代区 -->
-		
-	<table align="center" class="table table-striped" style="background-color:#CCFFFF;opacity: 0.9;width:90%">
-	   <caption align="left"><font color="white" size="5px">可押注比赛</font> </caption>
+	${msg }
+	<br>
+	<br>
+	<form id="myform" action="<%=path%>/queryBet.html" method="post">
+		<!-- 数据迭代区 -->
 
 	  <tr>
 	    <td>序号</td>

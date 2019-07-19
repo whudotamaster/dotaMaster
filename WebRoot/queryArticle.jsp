@@ -95,7 +95,7 @@ ${msg }
 	<table border="0" cellpadding="0" cellspacing="0"  align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" class="btn btn-secondary  active" name="next" value="文章查询">
+	       <input type="submit" class="btn btn-secondary  active" name="next" onclick="back()" value="文章查询">
 	       
 	        <c:if test="${aab108!=null}">
 	       		<input type="submit" class="btn btn-secondary  active" name="next" value="我要投稿" 

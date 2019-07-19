@@ -7,53 +7,29 @@
 <head>
 <title>Insert title here</title>
 <style type="text/css">
-tr {
-	height: 25px;
-}
-
-.round_icon {
-	width: 60px;
-	height: 60px;
-	display: flex;
-	border-radius: 50%;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-}
-.posthidden{
-white-space:nowrap;
-overflow:hidden; 
-text-overflow:ellipsis;
-}
-.post
-{
-width: 25%;
-max-width:600px;
-min-width:200px;
-min-height:400px;
-background-color: #EEEEEE;
-text-align:center;
+#a tr {
+height:250px;
+color: red;
 }
 </style>
+
 </head>
-<body>
-<div class="post" style="top:500px">
-<div class="media posthidden" style="width:100%;height:100px">
-  <div class="media-left" >
-  	
-    <a href="#"> 
-      <img class="media-object round_icon posthidden" src="img.png" alt="11233333333333333333333333333">
-      <div class="posthidden" style="width:80px; ">你的名字2222222222222222222222222222222222</div>
-    </a>
-  </div>
-  <div class="media-body" style="min-width:100px;max-width:450px">
-  <a href="#">
-    <h4 class="media-heading posthidden" style="width:60%;min-width:100px;max-width:450px" >Media 222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222heading</h4>
-         </a>
-              <div class="text-left">回覆數:10</div>  
-              <div class="text-left">2019-07-15 10:14:53</div>
-  </div>
-</div>
-</div>
+<body >
+<table border="1" class="a" id="a">
+    <tr>
+        <td style="text-align:center;vertical-align:middle;">
+            文字内容
+          
+        </td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td style="text-align:center;vertical-align:middle;">
+            文字内容
+          
+        </td>
+    </tr>
+</table>
 </body>
 </html>

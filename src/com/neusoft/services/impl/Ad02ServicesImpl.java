@@ -13,6 +13,7 @@ public class Ad02ServicesImpl extends JdbcServicesSupport
 	
 	public List<Map<String, Object>> query()throws Exception
     {
+		int number = 10 ;
 		//比赛开始时间 战队1 战队2 押注A方 押注B方 获得货币
 		StringBuilder whereSql=new StringBuilder();
 		StringBuilder sql=new StringBuilder()
@@ -31,15 +32,16 @@ public class Ad02ServicesImpl extends JdbcServicesSupport
 			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
 		}
 		whereSql.append("and b.aab101=?");
-		map1.put("floor", String.valueOf(countFloor("ad02 b",whereSql.toString(),this.get("aab101"))));
+		map1.put("floor", String.valueOf(countFloor("ad02 b",whereSql.toString(),number,this.get("aab101"))));
 		map1.put("nowFloor", String.valueOf(nowFloor));
 		rows.add(map1);
 		
 		
-		sql.append(" limit ?,10 ");
+		sql.append(" limit ?,? ");
 		Object args[]={
 				this.get("aab101"),
-				(nowFloor-1)*10
+				(nowFloor-1)*number,
+				number
 				};
 		
 		return this.queryForList(sql.toString(),args);

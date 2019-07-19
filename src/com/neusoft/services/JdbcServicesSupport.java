@@ -65,12 +65,12 @@ public abstract class JdbcServicesSupport  implements BaseServices
 	}
 	
 	/**
-	 * 查找一共有多少个分页(以10个为单位)
+	 * 查找一共有多少个分页
 	 * table 要查的表
 	 * @return
 	 * @throws Exception
 	 */
-	public int countFloor(final String table,final String whereSql,final Object...args) throws Exception 
+	public int countFloor(final String table,final String whereSql,final int number,final Object...args) throws Exception 
 	{
 		StringBuilder sql= new StringBuilder()
 					.append(" select count(1) count from " + table)
@@ -85,13 +85,13 @@ public abstract class JdbcServicesSupport  implements BaseServices
 		{
 			floor = Integer.parseInt(this.queryForMap(sql.toString()).get("count").toString());
 		}
-		if (floor % 10 == 0) 
+		if (floor % number == 0) 
 		{
-			return floor/10;
+			return floor/number;
 		}
 		else 
 		{
-			return (floor/10)+1;
+			return (floor/number)+1;
 		}
 	}
 	

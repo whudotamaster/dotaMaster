@@ -50,8 +50,7 @@ public class LoginTest extends HttpServlet
 				e.printStackTrace();
 			}
 			request.getRequestDispatcher("mainPage.jsp").forward(request, response);
-	        request.getSession().setAttribute("pic",ins.get("aab105"));
-
+			request.getSession().setAttribute("pic", ins.get("aab105"));
 		}
 		else
 		{

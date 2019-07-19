@@ -43,6 +43,7 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
 	 */
 	public List<Map<String, Object>> queryMatch()throws Exception
     {
+		int number = 10 ;
 		//还原页面查询条件
   		Object aac702=this.get("qaac702");     //姓名  模糊查询
   		StringBuilder whereSql=new StringBuilder();
@@ -71,13 +72,14 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
 			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
 		}
 		whereSql.append(" and a.aac701=b.aac701");
-		map1.put("floor", String.valueOf(countFloor(" ac11 a,ac07 b ",whereSql.toString(),paramList.toArray())));
+		map1.put("floor", String.valueOf(countFloor(" ac11 a,ac07 b ",whereSql.toString(),number,paramList.toArray())));
 		map1.put("nowFloor", String.valueOf(nowFloor));
 		rows.add(map1);
 		
 		
-		sql.append(" limit ?,10 ");
-		paramList.add((nowFloor-1)*10);
+		sql.append(" limit ?,? ");
+		paramList.add((nowFloor-1)*number);
+		paramList.add(number);
 		for(Map<String, Object> list:this.queryForList(sql.toString(), paramList.toArray()))
 		{
 			rows.add(list);

@@ -18,6 +18,7 @@ public class Ac07ServicesImpl extends JdbcServicesSupport
 	 */
 	public List<Map<String, Object>> query() throws Exception 
 	{
+		int number = 10 ;
 		// 还原页面查询条件
 				Object aac702 = this.get("qaac702"); // 姓名 模糊查询
 
@@ -29,34 +30,35 @@ public class Ac07ServicesImpl extends JdbcServicesSupport
 						.append("		 from ac07 ")
 						;
 
-				// 参数列表
-				List<Object> paramList = new ArrayList<>();
-				// 逐一判断查询条件是否录入,拼接AND条件
-				if (this.isNotNull(aac702)) {
-					whereSql.append(" and aac702 like ?");
-					sql.append(" where aac702 like ?");
-					paramList.add("%" + aac702 + "%");
-				}
-				sql.append(" order by aac705 desc");
-				
-				List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
-				Map<String, Object> map1 = new HashMap<String, Object>();
-		    	int nowFloor =  1;
-				if (isNotNull(this.get("nowFloor"))) 
-				{
-					nowFloor = Integer.valueOf((String)this.get("nowFloor"));
-				}
-				map1.put("floor", String.valueOf(countFloor(" ac07 ",whereSql.toString(),paramList.toArray())));
-				map1.put("nowFloor", String.valueOf(nowFloor));
-				rows.add(map1);
-				
-				sql.append(" limit ?,10 ");
-				paramList.add((nowFloor-1)*10);
-				for(Map<String, Object> list:this.queryForList(sql.toString(), paramList.toArray()))
-				{
-					rows.add(list);
-				}
-				return rows;
+		// 参数列表
+		List<Object> paramList = new ArrayList<>();
+		// 逐一判断查询条件是否录入,拼接AND条件
+		if (this.isNotNull(aac702)) {
+			whereSql.append(" and aac702 like ?");
+			sql.append(" where aac702 like ?");
+			paramList.add("%" + aac702 + "%");
+		}
+		sql.append(" order by aac702");
+		
+		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map1 = new HashMap<String, Object>();
+    	int nowFloor =  1;
+		if (isNotNull(this.get("nowFloor"))) 
+		{
+			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+		}
+		map1.put("floor", String.valueOf(countFloor(" ac07 ",whereSql.toString(),number,paramList.toArray())));
+		map1.put("nowFloor", String.valueOf(nowFloor));
+		rows.add(map1);
+		
+		sql.append(" limit ?,? ");
+		paramList.add((nowFloor-1)*number);
+		paramList.add(number);
+		for(Map<String, Object> list:this.queryForList(sql.toString(), paramList.toArray()))
+		{
+			rows.add(list);
+		}
+		return rows;
 	}
 
 	/**

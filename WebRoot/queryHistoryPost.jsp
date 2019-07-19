@@ -24,7 +24,6 @@ tr {
 </head>
 <body >
 	<%@ include file="header.jsp" %>
-	${msg }
 	<br>
 	<br>
 	<form id="myform" action="<%=path%>/queryHistoryById.html" method="post">
@@ -41,7 +40,7 @@ tr {
 				<td></td>
 				<td>帖标题</td>
 				<td>回复数</td>
-				<td>收藏时间</td>
+				<td>发帖时间</td>
 				<td></td>
 			</tr>
 			<!--

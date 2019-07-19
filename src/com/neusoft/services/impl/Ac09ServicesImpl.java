@@ -15,6 +15,7 @@ public class Ac09ServicesImpl extends JdbcServicesSupport
 	 */
 	public List<Map<String,Object>> query()throws Exception
 	  {
+		int number = 10;
 	  		//还原页面查询条件
 	  		Object aac902=this.get("qaac902");     //姓名  模糊查询
 	  	
@@ -44,13 +45,14 @@ public class Ac09ServicesImpl extends JdbcServicesSupport
 			{
 				nowFloor = Integer.valueOf((String)this.get("nowFloor"));
 			}
-			map1.put("floor", String.valueOf(countFloor(" ac09 ",whereSql.toString(),paramList.toArray())));
+			map1.put("floor", String.valueOf(countFloor(" ac09 ",whereSql.toString(),number,paramList.toArray())));
 			map1.put("nowFloor", String.valueOf(nowFloor));
 			rows.add(map1);
 			
 			
-			sql.append(" limit ?,10 ");
-			paramList.add((nowFloor-1)*10);
+			sql.append(" limit ?,? ");
+			paramList.add((nowFloor-1)*number);
+			paramList.add(number);
 			for(Map<String, Object> list:this.queryForList(sql.toString(), paramList.toArray()))
 			{
 				rows.add(list);
