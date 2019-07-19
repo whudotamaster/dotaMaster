@@ -21,10 +21,11 @@ msg {
 	<br>
 	<br>
 	<form action="<%=path%>/findByIdTeam.html" method="post" id="myform">
-		<table align="center" class="table table-striped" style="background-color:#FFFFFF;opacity: 0.9;width:45%">
+		<table align="center" border="1" style="background-color:#FFFFFF;opacity: 0.9;width:45%">
 		  <tr>
 			<td>
-				с╒пшоЙо╦пео╒Д╞юю
+			<font color="#000000" size="5px">с╒пшоЙо╦пео╒Д╞юю</font>
+				
 			</td>
 			</tr>
 			<tr>

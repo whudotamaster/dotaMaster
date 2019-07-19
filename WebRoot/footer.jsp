@@ -4,10 +4,10 @@
 
 
 
-<div id="foot" style="position: absolute;left: 20px;bottom: 50px;">
+
 <p>页脚-ACVS组出品 AllrightsReserved</p>
 <a href="compToAdmin.jsp">向管理员投诉</a>
 <a>|</a>
 <a href="sendMail.jsp">向站长投诉</a>
 
-</div>
+
