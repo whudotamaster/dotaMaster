@@ -14,13 +14,45 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.neusoft.services.BaseServices;
 import com.neusoft.services.impl.Ab01ServicesImpl;
+import com.neusoft.services.impl.Ab10ServicesImpl;
 import com.neusoft.services.impl.Ac06ServicesImpl;
 import com.neusoft.services.impl.Ad06ServicesImpl;
 import com.neusoft.system.db.DBUtils;
 
 public class Tools 
 {
+  //注册时添加用户的任务关联
+	public static void setMission(Object userId)
+	{
+		try
+		{
+			Ab10ServicesImpl ab10 = new Ab10ServicesImpl();
+			ab10.insert(userId);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	//其他方法调用此方法完成任务
+	public static boolean completeMission(Object userId,Object missionId)
+	{
+		try
+		{
+			Ab10ServicesImpl ab10 = new Ab10ServicesImpl();
+			return ab10.update(userId, missionId);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 
+	
+	//发送消息
 	public static void sendMessage(String text,Object userId)
 	{
 		try
@@ -34,7 +66,7 @@ public class Tools
 		}
 	}
 	
-	
+	//md5 test
 
 	public static void main(String[] args) 
 	{
@@ -70,7 +102,7 @@ public class Tools
 	/***************************************************************************
 	 *                    MD5Begin
 	 ***************************************************************************/
-	
+	//获得MD5
 	
 	   public static String getMd5(Object pwd)throws Exception
 	   {

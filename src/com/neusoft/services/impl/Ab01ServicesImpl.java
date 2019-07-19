@@ -112,7 +112,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 		System.out.println("购买虚拟货币数："+	Double.parseDouble(total_amount)*100);
 		return this.executeUpdate(sql.toString(), args)>0;
 	}
-	
+	//更新头像
 	public boolean updatePic(Object aab101,Object aab105) throws Exception
 	{
 		String sql="update ab01 set aab105=? where aab101=?";
@@ -306,6 +306,8 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			    	paramList.add(aab103);
 			    	paramList.add(aab104);
 			    	this.executeUpdate(sql.toString(), paramList.toArray());
+			    	Object userId = this.getUserId(aab103);
+			    	Tools.setMission(userId);
 			    	return 0;
 			    	//成功写入数据库
 			    }
@@ -339,6 +341,23 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     		return null;
     	}
     }
+    public Object getUserId(Object userName)throws Exception
+    {
+    	try
+    	{
+    		StringBuilder sql = new StringBuilder()
+    				.append("select aab101")
+    				.append("  from ab01")
+    				.append(" where aab103=?")
+    				;
+    		return this.queryForMap(sql.toString(),userName).get("aab101");
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    		return null;
+    	}
+    }
     
     public Map<String,Object> queryPersonEmp(Object aab101)throws Exception
     {
@@ -358,6 +377,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     		return null;
     	}
     }
+    
     
     //用户修改个人信息
     public boolean personUpdateEmp()throws Exception
@@ -452,6 +472,17 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 		return this.executeUpdate(sql, args) > 0;
 	}
 
+	//加经验值
+	protected final boolean addExp(Object userId,Object exp) throws Exception
+	{
+		String sql = "update ab01 set aab107 = aab107+? where aab101=?";
+		Object args[] = 
+			{ 
+				userId, 
+				exp 
+			};
+		return this.executeUpdate(sql, args) > 0;
+	}
 	/**
 	 * 打赏扣钱和加钱
 	 * 
@@ -480,12 +511,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	
 	}
  
-	/**
-	 * 指定帖子查询的加载(帖子 回复 收藏状态)
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
+
 	/**
 	 * 指定帖子查询的加载(帖子 回复 收藏状态)
 	 * 

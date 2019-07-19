@@ -262,20 +262,14 @@ String aab101=(String)session.getAttribute("aab101");
 String aab102=(String)session.getAttribute("aab102");
 String aab108=(String)session.getAttribute("aab108");
 String aab109=(String)session.getAttribute("aab109");
-
 int unRead=0;
 if(session.getAttribute("unRead")!=null)
  unRead=Integer.parseInt(session.getAttribute("unRead").toString());
-
 String path=request.getContextPath();
 String pic = (String)session.getAttribute("pic");
 %>
-
 <div id="nav" >
-	
     <form method="post">			
-
-
 	<input type="hidden" name="aab101" value="<%=aab101%>">
 			<input type="submit" class="btn btn-light" formaction="<%=path%>/mainPage.jsp" value="主页"/>
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryBet.html" value="竞猜"/>
@@ -295,7 +289,6 @@ String pic = (String)session.getAttribute("pic");
 		<span id="menubar" style="width:300" > 
 			<font color=red size=2>
 			   <c:if test="${aab108==2}">
-
 			   		 <img id="havatar" src="/Avatar/${pic}" onclick="changeAvatar()" style="height:50px;width:50px;" >
 			 		  管理员  <%=aab102%> 未读消息<%=unRead%>条 
 			   </c:if>
@@ -311,13 +304,7 @@ String pic = (String)session.getAttribute("pic");
 		<!--实现鼠标悬停出现菜单  -->
 		<div id="menu" style="position:absolute;top:15;right:0;width:300;height:10;z-index:2;visibility:hidden;"> 
 			<form action ="<%=path%>/queryPerson.html" method="post">
-<<<<<<< Upstream, based on branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
-
 				<input type="hidden" name="aab101" value="<%=aab101%>">
-
-=======
-				<input type="hidden" name="aab101" value="<%=aab101%>">
->>>>>>> 4b361b4 session娑堥櫎 娑堟伅鏇存柊 鐧诲綍鐣岄潰浼樺寲 琛ュ厖椤佃剼
 				<div class="btn-group-vertical btn-group-sm">
 				<c:if test="${!empty aab108}">
 				<input type="submit" name="toLog" class="btn btn-secondary" formaction="<%=path%>/logout.html" value="注销">
@@ -327,7 +314,9 @@ String pic = (String)session.getAttribute("pic");
 				</c:if>
 				<c:if test="${aab108!=null}">
 					<input type="submit"  name="toQpi" class="btn btn-secondary" formnovalidate="formnovalidate" value="个人信息">
-					<input type="submit" name="toNotice" class="btn btn-secondary" formaction="<%=path%>/queryNotice.html" value="查看系统消息">
+					<input type="submit" name="toNotice" class="btn btn-secondary" formaction="<%=path%>/queryNotice.html" value="系统消息">
+					<input type="submit" name="toMission" class="btn btn-secondary" formaction="<%=path%>/queryMission.html" value="日常任务">
+					
 				</c:if>
 			  	<c:if test="${aab108==null}">
 	       			<input type="submit" name="psgToLog" class="btn btn-secondary" value="个人信息" formaction="<%=path%>/login.jsp">
@@ -353,6 +342,7 @@ String pic = (String)session.getAttribute("pic");
 			menu1.style.visibility="hidden"; 
 		} 
 		//--> 
+		//傻逼github天天删劳资注释 lzzscl
 	 	 function onNext()
 	 	 {
 	 		 document.getElementById("nowFloor").value = parseInt(document.getElementById("nowFloor").value) +1 ;
