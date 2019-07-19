@@ -36,18 +36,18 @@ public class Tools
 	}
 	
 	//其他方法调用此方法完成任务
-	public static boolean completeMission(Object userId,Object missionId)
+	public static void completeMission(Object userId,Object missionId)
 	{
 		try
 		{
 			Ab10ServicesImpl ab10 = new Ab10ServicesImpl();
-			return ab10.update(userId, missionId);
+			ab10.update(userId, missionId);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		return false;
+		
 	}
 	
 
