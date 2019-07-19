@@ -15,7 +15,7 @@
 <table align="center" class="table table-striped" style="background-color:#EEEEEE;opacity: 0.9;width:45%">
     <tr>
     <td>
-      <font color="#000000" size="5px"> vip¹ºÂò</font>
+      <font color="#000000" size="5px"> vip¹ºÂò </font>
     </td>
     </tr>
    <tr>
