@@ -75,12 +75,14 @@ ${msg}
    </tr> 
    <tr>
      <td colspan="2" align="center">
+       <c:if test="${aab108==2}">
        <input type="submit" name="next" value="¹ºÂò" 
               formaction="<%=path%>/findForBuyAcc.html"
               formnovalidate="formnovalidate">
        <input type="submit" name="next" value="³öÊÛ" 
               formaction="<%=path%>/findForSellAcc.html"
               formnovalidate="formnovalidate">
+       </c:if>       
        <input type="submit" name="next" value="·µ»Ø" 
               formaction="<%=path%>/queryAcc.html"
               formnovalidate="formnovalidate">

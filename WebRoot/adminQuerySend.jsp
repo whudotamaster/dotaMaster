@@ -55,11 +55,8 @@ ${msg }
 	         <!-- 显示实际查询到的数据 -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
-				    <td>
-				      <!-- #  空锚 -->
-				      <a href="#" onclick="onEdit('${ins.aad401 }')">${vs.count }</a>
-				    </td>
-				    <td>${ins.aac602 }</td>
+				    <td>${vs.count }</td>
+				    <td><a href="#" onclick="onEdit('${ins.aad401 }')">${ins.aac602 }</a></td>
 				    <td>${ins.aac605 }</td>
 				    <td>${ins.aad402 }</td>
 				    <td>${ins.aad405 }</td>
@@ -108,4 +105,5 @@ ${msg }
 	<input type="hidden" name="aab101" value="1">
 </form>
 </body>
+<%@include file="footer.jsp" %>
 </html>

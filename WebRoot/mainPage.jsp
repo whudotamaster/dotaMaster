@@ -44,8 +44,6 @@ setTimeout('refresh()', 1);
 
 <div id="main">
 
- <%=aab101%>
-ɶҲû.jpg
 
 
 </div>

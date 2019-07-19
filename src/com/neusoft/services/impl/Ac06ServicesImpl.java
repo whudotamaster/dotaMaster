@@ -110,7 +110,6 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 			map=this.queryForMap(sql, id);
 			accList.add(map);
 		}
-    	System.out.println(accList);
     	
     	//总价格
     	int count=0;
@@ -129,6 +128,11 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		if(money<count)
 		{
 			this.setMessage("用户金额不足");
+			return false;
+		}
+		if(this.get("aad402")==null)
+		{
+			this.setMessage("请输入玩家游戏ID");
 			return false;
 		}
 		//对于每种不同饰品,插入事务语句

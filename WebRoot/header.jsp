@@ -311,12 +311,20 @@ String pic = (String)session.getAttribute("pic");
 		<!--实现鼠标悬停出现菜单  -->
 		<div id="menu" style="position:absolute;top:15;right:0;width:300;height:10;z-index:2;visibility:hidden;"> 
 			<form action ="<%=path%>/queryPerson.html" method="post">
+<<<<<<< Upstream, based on branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 
 				<input type="hidden" name="aab101" value="<%=aab101%>">
 
+=======
+				<input type="hidden" name="aab101" value="<%=aab101%>">
+>>>>>>> 4b361b4 session娑堥櫎 娑堟伅鏇存柊 鐧诲綍鐣岄潰浼樺寲 琛ュ厖椤佃剼
 				<div class="btn-group-vertical btn-group-sm">
-				<input type="submit" name="toLog" class="btn btn-secondary" formaction="<%=path%>/login.jsp" value="注销">
-
+				<c:if test="${!empty aab108}">
+				<input type="submit" name="toLog" class="btn btn-secondary" formaction="<%=path%>/logout.html" value="注销">
+				</c:if>
+				<c:if test="${empty aab108}">
+				<input type="submit" name="toLog" class="btn btn-secondary" formaction="<%=path%>/logout.html" value="登录">
+				</c:if>
 				<c:if test="${aab108!=null}">
 					<input type="submit"  name="toQpi" class="btn btn-secondary" formnovalidate="formnovalidate" value="个人信息">
 					<input type="submit" name="toNotice" class="btn btn-secondary" formaction="<%=path%>/queryNotice.html" value="查看系统消息">
@@ -330,9 +338,7 @@ String pic = (String)session.getAttribute("pic");
 			</div>
 			</div>
 </div>
-aab101=<%=aab101%>
 <br>
-aab108=<%=aab108%>
 	<SCRIPT language=javascript>
 <!-- 
 	function out() 

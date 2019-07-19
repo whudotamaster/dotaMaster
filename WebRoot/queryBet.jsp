@@ -68,19 +68,7 @@
               )
               return false;
           }
-      })
-      
-		function show(){
-		    obj = document.getElementsByName("test");
-		    check_val = [];
-		    for(k in obj){
-		        if(obj[k].checked)
-		            check_val.push(obj[k].value);
-		    }
-		    alert(check_val);
-		    var userList = "${rows}";
-		}
-      
+      })      
    </script>
 </head>
 <body>
@@ -106,7 +94,9 @@ ${msg }
 	    <td>战队2押注总额</td>
 	    <td>押注战队1</td>
 	    <td>押注战队2</td>
-	    <td></td>
+	    <c:if test="${!empty aab101}">
+	        <td></td>
+	    </c:if>
 	  </tr>
 	  <!--
 	         注意事项
@@ -118,7 +108,7 @@ ${msg }
 	     <c:when test="${rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="11">
-	    	   	  <tr style="height:40px">
+	    	   	  <tr style="height:60px">
 				    <td>${vs.count }</td>
 				    <td>${ins.aac702 }</td>
 				    <td>${ins.aac1103 }</td>
@@ -127,21 +117,23 @@ ${msg }
 				    <td>${ins.aad102 }</td>
 				    <td>${ins.aad103 }</td>
 				    <td>
-				      <input type="text" name="aad202${vs.count }" required="true" value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
+				      <input type="text" name="aad202${vs.count }"  value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
     onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
 				    </td>
 				    <td>
-				      <input type="text" name="aad203${vs.count }"  required="true" value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
+				      <input type="text" name="aad203${vs.count }"   value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
     onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
 				    </td>
-				   <td>
-				      <a href="#" onclick="onBet('${ins.aad101}','${vs.count }')">下注</a>
-				    </td>
+				    <c:if test="${!empty aab101}">
+					    <td>
+					      <a href="#" onclick="onBet('${ins.aad101}','${vs.count }')">下注</a>
+					    </td>
+				    </c:if>
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
 		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="11">
-			           <tr style="height:40px">
+			           <tr style="height:60px">
 			            <td></td>
 			            <td></td>
 			            <td></td>
@@ -151,13 +143,15 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
-			            <td></td>
+			            <c:if test="${!empty aab101}">
+			            	<td></td>
+			            </c:if>
 			          </tr>
 		      </c:forEach>
 	     </c:when>
 	     <c:otherwise>
 	        <c:forEach begin="1" step="1" end="11">
-	            <tr style="height:40px">
+	            <tr style="height:60px">
 	             <td></td>
 	             <td></td>
 	             <td></td>
@@ -166,7 +160,9 @@ ${msg }
 	             <td></td>
 	             <td></td>
 	             <td></td>
+	             <c:if test="${!empty aab101}">
 	             <td></td>
+	             </c:if>
 	           </tr>
 	        </c:forEach>
 	     </c:otherwise>
@@ -177,11 +173,13 @@ ${msg }
 	<table border="1"  align="center" >
 	  <tr>
 	    <td align="center">
+	   <c:if test="${!empty aab101}">
 	       <input type="submit" class="btn btn-secondary  active" onclick="back()" name="next" value="查询">
 	       <input type="submit" class="btn btn-secondary  active" onclick="back()" name="next" value="查看历史押注" 
 	              formaction="<%=path%>/queryUserBet.html">
-	              	<input type="button" onclick="onBack()" id="backFloor" value="上一页">
-					<input type="button" onclick="onNext()" id="nextFloor" value="下一页">
+	   </c:if>           
+	              	<input type="button" onclick="onBack()" class="btn btn-secondary  active"  id="backFloor" value="上一页">
+					<input type="button" onclick="onNext()" class="btn btn-secondary  active"  id="nextFloor" value="下一页">
 					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
 					<e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>
@@ -189,12 +187,6 @@ ${msg }
 	</table>
 	<input type="hidden" name="aab101" value="<%=aab101 %>">
 </form>
-<form action="<%=path%>/buyVIP.html" method="post">
-<input type="search" name="month" placeholder="输入开通的月数" align="center" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
-    onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
-<input type="submit" name="next" value="开通" align="center">
-<input type="hidden" name="aab101" value="<%=aab101 %>">
-<input type="hidden" name="aab109" value="<%=aab109 %>">
-</form>
 </body>
+<%@include file="footer.jsp" %>
 </html>

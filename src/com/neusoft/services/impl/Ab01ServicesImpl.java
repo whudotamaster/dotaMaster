@@ -11,6 +11,12 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	//使用虚拟货币购买或续费会员
 	public boolean buyVIP()throws Exception
     {
+		if(this.get("month")==null)
+		{
+			this.setMessage("请输入开通会员的月数");
+			return false;
+		}
+		
 		//如果金钱不足开通的月数
 		if(this.getMoney(this.get("aab101"))<Integer.parseInt(this.get("month").toString())*1000)
 		{	
@@ -185,15 +191,27 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     }
     
     public List<Map<String,Object>> queryBuyOrder()throws Exception
-    {
-    	String sql="select a.aad401,a.aac601,a.aad402,a.aad403,a.aad404,a.aad405,b.aac602,b.aac605 from ad04 a,ac06 b where a.aac601=b.aac601	 and a.aab101=?";                                                                                                                                                                               
-    	return this.queryForList(sql, this.get("aab101"));
+    {                                                                                                                           
+    	StringBuilder sql=new StringBuilder()
+    					  .append("select a.aad401,a.aac601,a.aad402,a.aad403,a.aad404,")
+    					  .append("       a.aad405,b.aac602,b.aac605,c.fvalue")
+    					  .append("  from ad04 a,ac06 b,syscode c ")
+    					  .append(" where a.aac601=b.aac601 and c.fname='aad403'")
+    					  .append("   and c.fcode=a.aad403 and a.aab101=?")
+    					  .append(" order by a.aad405 desc");
+    	return this.queryForList(sql.toString(), this.get("aab101"));
     }
     
     public List<Map<String,Object>> querySellOrder()throws Exception
-    {
-    	String sql="select a.aad301,a.aac601,a.aad302,a.aad303,a.aad304,a.aad305,b.aac602,b.aac604 from ad03 a,ac06 b where a.aac601=b.aac601 and a.aab101=?";                                                                                                                                                                                
-    	return this.queryForList(sql, this.get("aab101"));
+    {                                                                                                                                                                       
+    	StringBuilder sql=new StringBuilder()
+				  .append("select a.aad301,a.aac601,a.aad302,a.aad303,a.aad304,")
+				  .append("       a.aad305,b.aac602,b.aac604,c.fvalue")
+				  .append("  from ad03 a,ac06 b,syscode c ")
+				  .append(" where a.aac601=b.aac601 and c.fname='aad303'")
+				  .append("   and c.fcode=a.aad303 and a.aab101=?")
+				  .append(" order by a.aad305 desc");
+    	return this.queryForList(sql.toString(), this.get("aab101"));
     }
     
     //登录判断方法
@@ -220,7 +238,6 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     		return null;
     	}
     }
-    
     
     public Map<String, Object> loginPerson(Object aab103,Object aab104)throws Exception
     {

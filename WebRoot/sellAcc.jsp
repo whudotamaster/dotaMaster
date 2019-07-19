@@ -90,4 +90,5 @@ ${msg }
 <input type="hidden" name="aad301" value="${ins.aad301 }">
 </form>
 </body>
+<%@include file="footer.jsp" %>
 </html>

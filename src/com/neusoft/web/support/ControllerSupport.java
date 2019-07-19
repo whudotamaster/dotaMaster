@@ -94,11 +94,7 @@ public abstract class ControllerSupport implements BaseController
 	protected final void savePageData(String methodName)throws Exception
 	{
 		List<Map<String,Object>> rows=null;
-		if(methodName.equals("buy"))
-			rows=this.services.queryBuyOrder();
-		else if(methodName.equals("sell"))
-			rows=this.services.querySellOrder();
-		else if(methodName.equals("FBIforMore"))
+		if(methodName.equals("FBIforMore"))
 			rows=this.services.FBIforMore();
 		if(rows.size()>0)
 		{
@@ -330,7 +326,7 @@ public abstract class ControllerSupport implements BaseController
 		}
 		else
 		{
-			this.saveAttribute("msg", " ß∞‹  : "+this.getServices().getMessage());
+			this.saveAttribute("msg", " ß∞‹  : "+this.services.getMessage());
 		}
 	}
 	
@@ -344,14 +340,15 @@ public abstract class ControllerSupport implements BaseController
 	 */
 	protected final void update(String methodName,String typeText,String msgText,String key)throws Exception
 	{
-		String msg=typeText+" ß∞‹!";
     	if(this.executeUpdateMethod(methodName))
     	{
-    		msg=msgText+"[ <msg> "+this.dto.get(key)+" </msg> ]";
+    		String msg=msgText+"[ <msg> "+this.dto.get(key)+" </msg> ]";
+    		this.saveAttribute("msg", msg);
     	}
-    	System.out.println(this.dto.get(key));
-    	//ServletœÚ“≥√Ê ‰≥ˆ ˝æ›
-    	this.saveAttribute("msg", msg);
+    	else
+    	{
+    		this.saveAttribute("msg", " ß∞‹  : "+this.services.getMessage());
+    	}
 
 	}
 	

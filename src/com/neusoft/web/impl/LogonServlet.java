@@ -15,7 +15,6 @@ public class LogonServlet extends UserControllerSupport
 	public String execute()throws Exception 
 	{
 		this.logonIn();
-		System.out.println("logonIn‘À––");	
 		return "login";
 	}
 }

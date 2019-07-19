@@ -1,6 +1,8 @@
 package com.neusoft.web.impl;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
@@ -9,8 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.Session;
 import com.neusoft.services.impl.Ab01ServicesImpl;
+import com.neusoft.services.impl.Ad06ServicesImpl;
 @WebServlet(value="/login.html",loadOnStartup=0)
 public class LoginTest extends HttpServlet 
 {
@@ -30,13 +32,23 @@ public class LoginTest extends HttpServlet
 		}
 		if(ins!=null)
 		{
+			
 			request.setAttribute("ins", ins);
 			request.getSession().setAttribute("aab101", ins.get("aab101"));
 			request.getSession().setAttribute("aab108", ins.get("aab108"));
 			request.getSession().setAttribute("aab109", ins.get("aab109"));
 			request.getSession().setAttribute("aab102", ins.get("aab102"));
+			request.getSession().setAttribute("pic", ins.get("aab105"));
 			boolean tag=ins.get("aab108").equals("2")?true:false;
 			request.getSession().setAttribute("tag", tag);
+			try 
+			{
+				this.updateMessage(request);
+			} 
+			catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
 			request.getRequestDispatcher("mainPage.jsp").forward(request, response);
 	        request.getSession().setAttribute("pic",ins.get("aab105"));
 
@@ -95,5 +107,21 @@ public class LoginTest extends HttpServlet
 	{
 		this.doGet(request, response);
 	}
+	
+	//消息提示
+	private void updateMessage(HttpServletRequest request)throws Exception
+	{	
+		if(request.getSession().getAttribute("aab101")!=null)
+		{
+			Ad06ServicesImpl ad06=new Ad06ServicesImpl();
+			List<Map<String, Object>> list=ad06.query(request.getSession().getAttribute("aab101"));
+			if(list!=null)
+			{
+				int length=list.size();
+				request.getSession().setAttribute("unRead", length);
+			}
+		}
+	}
+
 
 }

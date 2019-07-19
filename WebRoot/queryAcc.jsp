@@ -108,6 +108,7 @@ ${msg }
 	    <td align="center">
 	    <div class="btn-group" role="group" aria-label="Basic example" style="text-align:center;">
 	       <input type="submit" class="btn btn-secondary  active" onclick="back()" name="next" value="查询">
+	       <c:if test="${!empty aab101}">
 	       <c:if test="${aab108==2}">
 	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
 	              formaction="<%=path%>/addAcc.jsp">
@@ -121,9 +122,10 @@ ${msg }
 	              formaction="<%=path%>/delAcc.html"  disabled="disabled">
 	       </c:if>
 	       <input type="submit" id="buy" class="btn btn-secondary  active" name="next" value="批量购买" 
-	              formaction="<%=path%>/buyAccList.html"  disabled="disabled">
+	              onclick="onBuyList()"  disabled="disabled">
 
 	       <input type="text" id="vaad402"  class="btn btn-secondary  active" name="aad402" placeholder="输入玩家编号" disabled="disabled">
+	       </c:if>
 	       <input type="button" class="btn btn-secondary  active" onclick="onBack()" id="backFloor" value="上一页">
 
 					<input type="button" class="btn btn-secondary  active" onclick="onNext()" class="btn btn-secondary  active" id="nextFloor" value="下一页">
@@ -137,6 +139,7 @@ ${msg }
 	<input type="hidden" name="aab101" value="<%=aab101 %>">
 </form>
 </body>
+<%@include file="footer.jsp" %>
 <script type="text/javascript">
       var count=0;
       function onSelect(vstate)
@@ -171,5 +174,19 @@ ${msg }
     	 //alert(vform.action);
     	 vform.submit();
       } 
+      function onBuyList()
+      {
+    	 var vform = document.getElementById("myform");
+    	 if(vform.vaad402=='')
+    	 {
+    		 alert('请输入玩家编号');
+    	 }
+    	 else
+    	 {
+	     	 vform.action="<%=path%>/buyAccList.html";
+	     	 //alert(vform.action);
+	     	 vform.submit();
+     	 }
+      }
    </script>  
 </html>

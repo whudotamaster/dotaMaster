@@ -5,7 +5,7 @@ public final class QueryBuyOrderServlet extends UserControllerSupport
 	@Override
 	public String execute() throws Exception 
 	{
-		this.savePageData("buy");
+		this.query("queryBuyOrder");
 		return "adminQuerySend";
 	}
 }

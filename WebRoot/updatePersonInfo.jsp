@@ -11,7 +11,8 @@
 <body>
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
-
+${msg } 
+<br>
 <br>
 <form action="<%=path%>/updtPsnInf.html" method="post">
 <table border="1" align="center" width="45%">
@@ -80,6 +81,13 @@
     <input type="file" name="file" id="file" >
     <input type="submit" name="next" id="file" value="上传头像">
 </form>
+
+<form action="<%=path%>/buyVIP.html" method="post">
+<input type="search" name="month" placeholder="输入开通的月数" align="center" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
+    onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
+<input type="submit" name="next" value="开通" align="center">
+<input type="hidden" name="aab101" value="<%=aab101 %>">
+<input type="hidden" name="aab109" value="<%=aab109 %>">
 	<%@include file="footer.jsp" %>
 	<!-- 引入页脚 -->
 </body>
@@ -95,7 +103,24 @@
                 document.getElementById("img").src = "${pageContext.request.contextPath}/pic/" + req.responseText;
             }
         }
+<<<<<<< Upstream, based on branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
     }
+=======
+        
+        $("#totalCnt").change(function () {
+            var totalCnt = $("#totalCnt").val();
+            if (totalCnt != parseInt(totalCnt)){
+                $.sobox.alert(
+                        '温馨提示',
+                        '请输入正确的正整数',
+                        function () {
+                            $("#totalCnt").val("");
+                        }
+                )
+                return false;
+            }
+        })      
+>>>>>>> 4b361b4 session娑堥櫎 娑堟伅鏇存柊 鐧诲綍鐣岄潰浼樺寲 琛ュ厖椤佃剼
        
     </script>
 </html>
