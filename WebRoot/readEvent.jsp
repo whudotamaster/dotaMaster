@@ -16,61 +16,65 @@
 <body>
 <%@ include file="header.jsp" %>
 ${msg}
-${rows!=null }
+<div class="demoEvent" style="opacity: 0.9"></div>
 <br>
 <br>
 <form action="<%=path%>/findByIdTeam.html" method="post" id="myform">
-<table  border="1" align="center" width="45%">
-    <caption>
-               赛事比赛信息浏览
-      <hr width="160">
-    </caption>
+<table  align="center" class="table table-striped" style="background-color:#BABABA;opacity: 0.9;width:45%">
     <tr>
-     <td colspan="2">比赛</td>
-   </tr>
+    <td>
+       <font color="#000000" size="4px">赛事比赛信息浏览</font>
+    </td>
+    </tr>
+      <tr>
+	    <td>赛事名</td>
+	    <td>比赛开始时间</td>
+	    <td>战队1名称</td>
+	    <td>战队2名称</td>
+	    <td>胜负</td>
+	    <td></td>
+	  </tr>
    <c:choose>
 	     <c:when test="${rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
-	    <c:forEach items="${rows }" var="ins" varStatus="vs">
+	    <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="11">
 	    <tr>
-           <td>赛事名</td>
             <td>
             <e:text name="aac702"   readonly="true"  required="true"  defval="${ins.aac702 }"/> 
             </td>
-            <td>比赛开始时间</td>
+           
             <td>
             <e:text name="aac1102"   readonly="true"  required="true"  defval="${ins.aac1102 }"/>
             </td>
-            <td>战队1名称</td>
+           
             <td >
-		    <!-- #  空锚 -->
-			<!-- # <a  href="#" onclick="onEdit('${ins.aac901}')">${ins.aac1103 }</a>-->
 			<e:text name="aac1103"   readonly="true"  required="true"  defval="${ins.aac1103 }"/>
 		    </td> 
-            <td>战队2名称</td>
+            
             <td >
-		    <!-- #  空锚 -->
-			<!-- <a  href="#" onclick="onEdit('${ins.aac901}')">${ins.aac1104 }</a>-->
 			<e:text name="aac1104"   readonly="true"  required="true"  defval="${ins.aac1104 }"/>
-		    </td> 
-            <td>胜负</td>
+		    </td>    
             <td>
-            <e:text name="aac1105"   readonly="true"  required="true"  defval="${ins.aac1105 }"/>
+            <e:select name="aac1105" readonly="true" required="true"  value="未开始:0,胜:1,负:2" defval="${ins.aac1105 }" />
             </td>
         </tr>   
         </c:forEach>
         </c:when>
    </c:choose>
- 
-   <tr>
+</table>
+
+ <table align="center">
+   <tr align="center">
      <td colspan="2" align="center">
-       <input type="submit" name="next" value="返回" 
+       <input type="submit" class="btn btn-secondary  active" name="next" value="返回" 
               formaction="<%=path%>/queryEvent.html"
               formnovalidate="formnovalidate">
      </td>
    </tr>
-</table>
+ </table>
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 <script type="text/javascript">
     

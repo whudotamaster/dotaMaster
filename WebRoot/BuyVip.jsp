@@ -4,33 +4,48 @@
 <html>
 <head>
 <title>Insert title here</title>
+<style type="text/css">
+.rtop dd{ text-algin:center }
+</style>
 </head>
 <body>
 <%@ include file="header.jsp" %>
+<div class="demoTeam" style="opacity: 0.9"></div>
 <form id="form"  method="post">
-<dl class="content">
-					
-					<dt>商品名称 ：</dt>
-					<dd>
-						<input id="WIDsubject" name="WIDsubject" value="vip"  readonly="readonly"/>
-					</dd>
-					<dt>付款金额 ：</dt>
-					<dd>
-						<input id="WIDtotal_amount" name="WIDtotal_amount"  required="required"  />
-					</dd>
-					<dt>商品描述：</dt>
-					<dd>
-						<input id="WIDbody" name="WIDbody" value="这是一个vip购买测试用例，会员价10元一个月"  style="width:700px;" />
-					</dd>
-					<dt></dt>
-					<dd id="btn-dd">
-						<span class="new-btn-login-sp">
-						<input type="button" name="next" value="付款"
+<table align="center" class="table table-striped" style="background-color:#EEEEEE;opacity: 0.9;width:45%">
+    <tr>
+    <td>
+      <font color="#000000" size="5px"> vip购买</font>
+    </td>
+    </tr>
+   <tr>
+     <td>商品名称</td>
+     <td>
+       <e:text name="WIDsubject"  value="vip" readonly="true"/> 
+     </td>
+   </tr>
+   <tr>
+     <td>付款金额</td>
+     <td>
+       <e:text name="WIDtotal_amount"  required="true" />
+     </td>
+   </tr>  
+   <tr>
+     <td>商品描述</td>
+     <td>
+       <e:textarea rows="5" cols="45" name="WIDbody" value="这是一个vip购买测试用例，10元1月"  />
+     </td>
+   </tr>
+   <tr>
+     <td colspan="2" align="center">
+       <input type="button"  class="btn btn-secondary  active" name="next" value="付款"
 				             onclick="add()" >
-						</span>
-					</dd>
-				</dl>
+     </td>
+   </tr>
+</table>		
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 <script type="text/javascript">
   function add(){

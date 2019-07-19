@@ -18,16 +18,16 @@
 ${msg}
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
-
+<div class="demoTa" style="opacity: 0.9"></div>
 <br>
 <br>
 <form action="<%=path%>/findByIdArticle.html" method="post">
-<table  border="1" align="center" width="45%">
-    <caption>
-               文章${empty param.aab801?'添加':'阅读' }
-       ${empty param.aab801 }
-      <hr width="160">
-    </caption>
+<table  align="center" class="table table-striped" style="background-color:#7F8BB3;opacity: 0.9;width:45%">
+   <tr>
+    <td colspan="2" >
+        <font color="#000000" size="5px"> 文章${empty param.aab801?'添加':'阅读' }</font>
+    </td>
+    </tr>
    <tr>
      <td colspan="2">文章</td>
    </tr>
@@ -54,14 +54,16 @@ ${msg}
    <input type="hidden" name="aab101" value="<%=aab101%>">
    <tr>
      <td colspan="2" align="center">
-     <input type="submit" name="next" value="添加"
+     <input type="submit" class="btn btn-secondary  active" name="next" value="添加"
               formaction="<%=path%>/addArticle.html">
-       <input type="submit" name="next" value="返回" 
+       <input type="submit" class="btn btn-secondary  active" name="next" value="返回" 
               formaction="<%=path%>/queryArticle.html"
               formnovalidate="formnovalidate">
      </td>
    </tr>
 </table>
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 </html>

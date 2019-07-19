@@ -1,7 +1,6 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%String path=request.getContextPath();%>
 <html>
 <head>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
@@ -14,74 +13,20 @@
      color:#FF0000
   }
 </style>
-<script type="text/javascript">
-var imgcontentStr = ''；
-$("#aac505").on("change", function () {
-        var file = $("#aac505")[0].files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = function (e) {
-            if (reader.error) {
-                console.log(reader.error);
-            } else {
-            //判断图片大小超过1M，进行压缩
-                if (file.size > 1048576) {
-                    var img = new Image,
-                        quality = 1, //image quality
-                        canvas = document.createElement("canvas"),
-                        drawer = canvas.getContext("2d");
-                    img.src = reader.result;
-                    img.onload = function () {
-                        var scale = parseInt(file.size / 1048576);
-                        var width = parseInt(img.width / scale);
-                        canvas.width = width;
-                        canvas.height = width * (img.height / img.width);
-                        drawer.drawImage(img, 0, 0, canvas.width, canvas.height);
-                        var result = canvas.toDataURL("image/jpeg", quality);
-                        $(".img").prop("src", result)
-                        imgcontentStr = result;
-                    }
-                } else {
-                    var result = reader.result;
-                    $(".img").prop("src", result)
-                    $(".img").css("display", "inline-block")
-                    imgcontentStr = result;
-                }
-            }
-        }
-    })
-    
-    $("#Btn").on("click", function () {
-        var data = $.param({
-            imgcontent: imgcontentStr
-        });
-        $.ajax({
-            url: url,
-            type: "post",
-            data: data,
-            dataType: "json",
-            success: function (result) {
-                if (result.rspcode == 1000) {
-                    alert("提交成功")
-                } else {
-                    alert("提交失败")
-                }
-            }
-        })
-        return false;
-    });
-</script>
 </head>
 <body>
 ${msg}
+<%@ include file="header.jsp" %>
+<div class="demoEquipment" style="opacity: 0.9"></div>
 <br>
 <br>
 <form action="<%=path%>/addEmp.html" method="post">
-<table  border="1" align="center" width="45%">
-    <caption>
-                装备${empty param.aac501?'添加':'修改' }
-      <hr width="160">
-    </caption>
+<table  align="center" class="table table-striped" style="background-color:#C0C2B8;opacity: 0.9;width:45%">
+    <tr>
+    <td>
+      <font color="#000000" size="5px"> 装备${empty param.aac501?'添加':'修改' }</font>
+    </td>
+    </tr>
    <tr>
      <td colspan="2">装备数据</td>
    </tr>
@@ -121,16 +66,17 @@ ${msg}
    </tr>
    <tr>
      <td colspan="2" align="center">
-       <input type="submit" name="next" value="${empty param.aac501?'添加':'修改' }" class="btn" id="btn"
+       <input type="submit" class="btn btn-secondary  active" name="next" value="${empty param.aac501?'添加':'修改' }" class="btn" id="btn"
               formaction="<%=path%>/${empty param.aac501?'add':'modify' }Equipment.html">
-       <input type="submit" name="next" value="返回" 
+       <input type="submit" class="btn btn-secondary  active" name="next" value="返回" 
               formaction="<%=path%>/queryEquipment.html"
               formnovalidate="formnovalidate">
      </td>
    </tr>
 </table>
 <input type="hidden" name="aac501" value="${param.aac501 }">
-<input type= name="aac505" value="${param.aac505 }">
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 </html>

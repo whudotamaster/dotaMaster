@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 <style type="text/css">
   td{
-      height:30px;
+      height:50px;
   }
   msg{
      color:#FF0000
@@ -16,17 +16,16 @@
 <body>
 <%@ include file="header.jsp" %>
 ${msg}
+<div class="demoAcc" style="opacity: 0.9"></div>
 <br>
 <br>
 <form action="<%=path%>/findByIdAcc.html" method="post">
-<table  border="1" align="center" width="45%">
-    <caption>
-               饰品信息浏览
-      <hr width="160">
-    </caption>
-   <tr>
-     <td colspan="2">饰品</td>
-   </tr>
+<table  align="center" border="1" style="background-color:#ABCDE7;opacity: 0.9;width:45% ">
+    <tr>
+    <td colspan="2">
+      <font color="#000000" size="5px"> 饰品信息浏览</font>
+    </td>
+    </tr>
    <tr>
      <td>饰品名</td>
      <td>
@@ -36,7 +35,7 @@ ${msg}
    <tr>
      <td>饰品归属英雄</td>
      <td>
-       <e:text name="aac101"    readonly="${aab108!=2}" required="true" defval="${ins.aac101 }"/>
+       <e:text name="aac102"    readonly="true" required="true" defval="${ins.aac102 }"/>
      </td>
    </tr>
    <c:if test="${aab108!=2}">
@@ -75,19 +74,17 @@ ${msg}
    </tr> 
    <tr>
      <td colspan="2" align="center">
-       <c:if test="${aab108==2}">
-       <input type="submit" name="next" value="购买" 
+       <input type="submit" class="btn btn-secondary  active" name="next" value="购买" 
               formaction="<%=path%>/findForBuyAcc.html"
               formnovalidate="formnovalidate">
-       <input type="submit" name="next" value="出售" 
+       <input type="submit" class="btn btn-secondary  active" name="next" value="出售" 
               formaction="<%=path%>/findForSellAcc.html"
               formnovalidate="formnovalidate">
-       </c:if>       
-       <input type="submit" name="next" value="返回" 
+       <input type="submit" class="btn btn-secondary  active" name="next" value="返回" 
               formaction="<%=path%>/queryAcc.html"
               formnovalidate="formnovalidate">
         <c:if test="${aab108==2}" >      
-        <input type="submit" name="next" value="修改" formaction="<%=path%>/modifyAcc.html" formnovalidate="formnovalidate" >  
+        <input type="submit" class="btn btn-secondary  active" name="next" value="修改" formaction="<%=path%>/modifyAcc.html" formnovalidate="formnovalidate" >  
        </c:if>
      </td>
    </tr>
@@ -95,5 +92,7 @@ ${msg}
 <input type="hidden" name="aac601" value="${param.aac601 }">
 <input type="hidden" name="aab101" value="<%=aab101 %>">
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 </html>

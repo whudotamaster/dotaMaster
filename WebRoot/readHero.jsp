@@ -16,16 +16,17 @@ msg {
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<%=path%>
+	<div class="demo" style="opacity: 0.9"></div>
 	${msg}
 	<br>
 	<br>
 	<form action="<%=path%>/findByIdTeam.html" method="post" id="myform">
-		<table border="1" align="center" width="45%">
-			<caption>
+		<table align="center" class="table table-striped" style="background-color:#FFFFFF;opacity: 0.9;width:45%">
+		  <tr>
+			<td>
 				英雄详细信息浏览
-				<hr width="160">
-			</caption>
+			</td>
+			</tr>
 			<tr>
 				<td colspan="2">英雄</td>
 			</tr>
@@ -40,6 +41,9 @@ msg {
 				</td>
 			</tr>
 			<tr>
+			<tr>
+			<td></td>
+			</tr>
 			<tr>
 				<td colspan="2">技能</td>
 			</tr>
@@ -105,13 +109,17 @@ msg {
 			</c:choose>
 
 			<tr>
-				<td colspan="2" align="center"><input type="submit" name="next"
+				<td colspan="2" align="center">
+				<input type="submit" name="next" class="btn btn-secondary  active"
 					value="返回" formaction="<%=path%>/queryHero.html"
-					formnovalidate="formnovalidate"></td>
+					formnovalidate="formnovalidate">
+					</td>
 			</tr>
 		</table>
 		<input type="hidden" name="aac901" value="${param.aac101 }">
 	</form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 <script type="text/javascript">
     

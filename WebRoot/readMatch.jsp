@@ -17,29 +17,28 @@
 ${msg}
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
+<div class="demoMatch" style="opacity: 0.9"></div>
 <br>
 <br>
  <c:if test="${ aab108==2 }">
  </c:if>
 <form action="<%=path%>/findByIdArticle.html" method="post">
-<table  border="1" align="center" width="45%">
-    <caption>
-               比赛${aab108==2?'修改':'浏览' }
-      <hr width="160">
-    </caption>
-   <tr>
-     <td colspan="2">文章</td>
-   </tr>
+<table  align="center" class="table table-striped" style="background-color:#DFDCD1;opacity: 0.9;width:45%">
+    <tr>
+    <td>
+        <font color="#000000" size="5px"> 比赛${aab108==2?'修改':'浏览' }</font>
+    </td>
+    </tr>
    <tr>
      <td>赛事名</td>
      <td>
-       <e:text name="aac702" required="true" readonly="readonly"  defval="${ins.aac702 }"/> 
+       <e:text name="aac702" required="true"  readonly="true"  defval="${ins.aac702 }"/> 
      </td>
    </tr>
    <tr>
      <td>比赛开始时间</td>
      <td>
-       <e:text name="aac1102"  required="true"  readonly="${aab108!=2 }"  defval="${ins.aac1102 }"/>
+         <e:text name="aac1102"  required="true"  readonly="${aab108!=2 }"  defval="${ins.aac1102 }"/>
      </td>
    </tr>
    
@@ -51,18 +50,12 @@ ${msg}
      </td>
    </tr>
    <tr>
-     <td>胜负</td>
-     <td>
-           比赛<e:select name="aac1105" value="未开始:0,胜:1,负:2" defval="${ins.aac1105 }" />
-     </td>
-   </tr>
-   <tr>
      <td colspan="2" align="center">
-       <input type="submit" name="next" value="返回" 
+       <input type="submit"  class="btn btn-secondary  active" name="next" value="返回" 
               formaction="<%=path%>/queryMatch.html"
               formnovalidate="formnovalidate">
         <c:if test="${ aab108==2 }">
-        <input type="submit" name="next" value="修改" 
+        <input type="submit"  class="btn btn-secondary  active" name="next" value="修改" 
               formaction="<%=path%>/modifyMatch.html"
               formnovalidate="formnovalidate">   
         </c:if>
@@ -71,5 +64,7 @@ ${msg}
 </table>
 <input type="hidden" name="aac1101" value="${param.aac1101 }">
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 </html>

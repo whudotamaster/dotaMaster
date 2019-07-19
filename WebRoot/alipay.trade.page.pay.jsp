@@ -20,18 +20,18 @@
     String subject = new String(request.getParameter("WIDsubject").getBytes("ISO-8859-1"),"GBK");
     //商品描述，可空
     String body = new String(request.getParameter("WIDbody").getBytes("ISO-8859-1"),"GBK");
-    //out.print(URLDecoder.decode(subject,"utf-8"));
+    out.print(subject);
 
 	//设置请求参数
 	AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
 	alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
- 	if(subject=="vip")
+ 	if(subject.equals("vip"))
 	{
 	alipayRequest.setReturnUrl(AlipayConfig.return_url);
-	}else 
+	} else
 	{
 		alipayRequest.setReturnUrl(AlipayConfig.return_url_c);
-	} 
+	}
 	
 
 	

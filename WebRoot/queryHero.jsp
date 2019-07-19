@@ -8,7 +8,7 @@
    <style type="text/css">
      tr
      {
-        height:25px;
+        height:50px;
      }
    </style>
 </head>
@@ -20,7 +20,7 @@ ${msg }
 <br>
 <form id="myform" action="<%=path%>/queryHero.html" method="post">
   <!-- 查询条件区 -->
-	<table align="center" class="table table-striped" style="background-color:#C8FFFF;opacity: 0.9;width:85%">
+	<table align="center" class="table table-striped" style="background-color:#D1DDF4;opacity: 0.9;width:85%">
 	  <tr>
 	    <td colspan="4">查询条件</td>
 	  </tr>
@@ -31,7 +31,7 @@ ${msg }
 	    </td>
 	</table>
 	<!-- 数据迭代区 -->
-	<table align="center" class="table table-striped" style="background-color:#C8FFFF;opacity: 0.9;width:85%">
+	<table align="center" class="table table-striped" style="background-color:#D1DDF4;opacity: 0.9;width:85%">
 	  <tr>
 	    <td></td>
 	    <td>序号</td>
@@ -64,9 +64,9 @@ ${msg }
 				             onclick="onSelect(this.checked)" >
 				    </td>
 				    <td>${vs.count }</td>
-				    <td style="width:5%; height:5%">
+				    <td >
 				       <a href="#" onclick="onRead('${ins.aac101}')">
-				        <img alt="no image" src=<%=path%>/images/${ins.aac112 }></a>
+				        <img style="width:70%; height:100%" alt="no image" src=<%=path%>/images/${ins.aac112 }></a>
 				     </td>
 				    <td>
 				      <!-- #  空锚 -->

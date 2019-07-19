@@ -116,14 +116,13 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
 	private boolean modifyMatch()throws Exception
 	    {
 	    	StringBuilder sql=new StringBuilder()
-	    			.append(" update ac11 set aac1102=?,aac1103=?,aac1104=?,aac1105=?  ")
+	    			.append(" update ac11 set aac1102=?,aac1103=?,aac1104=?  ")
 	    			.append("                  where aac1101=?                       ")
 	    			;
 	    	Object args[]={
 	    			this.get("aac1102"),
 	    			this.get("aac1103"),
 	    			this.get("aac1104"),
-	    			this.get("aac1105"),
 	    			this.get("aac1101")
 	    	};
 	    	return this.executeUpdate(sql.toString(), args)>0;

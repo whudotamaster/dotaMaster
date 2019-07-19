@@ -15,22 +15,20 @@
 </head>
 <body>
 ${msg}
+<div class="demoTa" style="opacity: 0.9"></div>
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
 <br>
 <br>
 <form action="<%=path%>/findByIdArticle.html" method="post">
-<table  border="1" align="center" width="45%">
-    <caption>
-               文章${empty param.aab801?'添加':'阅读' }
-       ${empty param.aab801 }
-      <hr width="160">
-    </caption>
+<table  align="center" class="table table-striped" style="background-color:#7F8BB3;opacity: 0.9;width:45%">
    <tr>
-     <td colspan="2">文章</td>
+    <td colspan="2">
+       <font color="#000000" size="5px"> 文章${empty param.aab801?'添加':'阅读' }</font>
+    </td>
    </tr>
    <tr>
-     <td>文章标题</td>
+    <td>文章标题</td>
      <td>
        <e:text name="aab802" required="true" readonly="true"  defval="${ins.aab802 }"/> 
      </td>
@@ -66,19 +64,19 @@ ${msg}
    <tr>
      <td colspan="2" align="center">
      <c:if test="${aab108!=2}">
-       <input type="submit" name="next" value="返回" 
+       <input type="submit"  class="btn btn-secondary  active"  name="next" value="返回" 
               formaction="<%=path%>/queryArticle.html"
               formnovalidate="formnovalidate">
      </c:if>
  <!-- 管理员可见的两个按钮 -->
 		<c:if test="${aab108==2}">
-			<input type="submit" name="next" value="返回" 
+			<input type="submit" class="btn btn-secondary  active" name="next" value="返回" 
               formaction="<%=path%>/adminQueryArticle.html"
               formnovalidate="formnovalidate">
-			<input type="submit" name="pass" value="审核通过"
+			<input type="submit" class="btn btn-secondary  active" name="pass" value="审核通过"
 					formaction="<%=path%>/passArticle.html"
 					formnovalidate="formnovalidate">
-			<input type="submit" name="unpass" value="审核不通过"
+			<input type="submit" class="btn btn-secondary  active" name="unpass" value="审核不通过"
 					formaction="<%=path%>/unpassArticle.html"
 					formnovalidate="formnovalidate">
 		</c:if>
@@ -88,5 +86,7 @@ ${msg}
    		<input type="hidden" name="aab801" value="${ins.aab801 }">
 </table>
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 </html>

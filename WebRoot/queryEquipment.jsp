@@ -8,7 +8,7 @@
    <style type="text/css">
      tr
      {
-        height:25px;
+        height:50px;
      }
    </style>
    
@@ -24,7 +24,7 @@ ${msg }
 <br>
 <form id="myform" action="<%=path%>/queryEquipment.html" method="post">
   <!-- 查询条件区 -->
-	<table align="center" class="table table-striped" style="background-color:#C0C2B8;opacity: 0.9;width:55%">
+	<table align="center" class="table table-striped" style="background-color:#C0C2B8;opacity: 0.9;width:45%">
 
 	 
 	  <tr>
@@ -40,7 +40,7 @@ ${msg }
 
 	</table>
 	<!-- 数据迭代区 -->
-	<table align="center" class="table table-striped" style="background-color:#C0C2B8;opacity: 0.9;width:55%">
+	<table align="center" class="table table-striped" style="background-color:#C0C2B8;opacity: 0.9;width:45%">
 	  <tr>
 	    <td></td>
 	    <td>序号</td>
@@ -58,8 +58,8 @@ ${msg }
 				             onclick="onSelect(this.checked)" >
 				    </td>
 				    <td>${vs.count }</td>
-				     <td  align="center" style="width:15%; height:15%">
-				       <img alt="no image" src=<%=path%>/images/${ins.aac505 } style="width:100%; height:100%">
+				     <td >
+				       <img alt="no image" src=<%=path%>/images/${ins.aac505 } style="width:30%; height:100%">
 				     </td>
 				    <td>
 				      <!-- #  空锚 -->
@@ -114,6 +114,8 @@ ${msg }
 	  </tr>
 	</table>
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 <script type="text/javascript">
       var count=0;

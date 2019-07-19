@@ -1,7 +1,6 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%String path=request.getContextPath();%>
 <html>
 <head>
 <title>Insert title here</title>
@@ -16,15 +15,18 @@
 </head>
 <body>
 ${msg}
+<%@ include file="header.jsp" %>
+<div class="demo" style="opacity: 0.9"></div>
 <br>
 <br>
 <form action="<%=path%>/addHero.html" method="post">
-<table  border="1" align="center" width="45%">
-    <caption>
-       英雄${empty param.aac101?'添加':'修改' }
-      <hr width="160">
-    </caption>
-   <tr>
+<table  align="center" class="table table-striped" style="background-color:#D1DDF4;opacity: 0.9;width:45%">
+    <tr>
+    <td>
+      <font color="#000000" size="5px"> 英雄${empty param.aac101?'添加':'修改' }</font>
+    </td>
+    </tr>
+    <tr>
      <td colspan="2">英雄数据</td>
    </tr>
    <tr>
@@ -96,9 +98,9 @@ ${msg}
    
    <tr>
      <td colspan="2" align="center">
-       <input type="submit" name="next" value="${empty param.aac101?'添加':'修改' }"
+       <input type="submit" class="btn btn-secondary  active" name="next" value="${empty param.aac101?'添加':'修改' }"
               formaction="<%=path%>/${empty param.aac101?'add':'modify' }Hero.html">
-       <input type="submit" name="next" value="返回" 
+       <input type="submit" class="btn btn-secondary  active" name="next" value="返回" 
               formaction="<%=path%>/queryHero.html"
               formnovalidate="formnovalidate">
      </td>
@@ -107,5 +109,7 @@ ${msg}
 <input type="hidden" name="aac101" value="${param.aac101 }">
 <e:hidden name="qaac102"/>
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 </html>

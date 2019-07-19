@@ -8,7 +8,7 @@
    <style type="text/css">
      tr
      {
-        height:25px;
+        height:50px;
      }
    </style>
 </head>
@@ -20,7 +20,7 @@ ${msg }
 <br>
 <form id="myform" action="<%=path%>/queryMatch.html" method="post">
   <!-- 查询条件区 -->
-	<table align="center" class="table table-striped" style="background-color:#DFDCD1;opacity: 0.9;width:85%"">
+	<table align="center" class="table table-striped" style="background-color:#DFDCD1;opacity: 0.9;width:85%">
 	  <tr>
 	    <td colspan="4">查询条件</td>
 	  </tr>
@@ -105,6 +105,8 @@ ${msg }
 	  </tr>
 	</table>
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 <script type="text/javascript">
       var count=0;

@@ -8,7 +8,7 @@
    <style type="text/css">
      tr
      {
-        height:25px;
+        height:50px;
      }
    </style>
 </head>
@@ -108,6 +108,8 @@ ${msg }
 	  </tr>
 	</table>
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 <script type="text/javascript">
       function onEdit(vaac701)

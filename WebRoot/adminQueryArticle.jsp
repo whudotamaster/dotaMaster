@@ -19,16 +19,18 @@
 ${msg }
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
+<div class="demoTa" style="opacity: 0.9"></div>
 <br>
 <br>
     <c:if test="${aab108==2}">
 <form id="myform" action="<%=path%>/adminQueryArticle.html" method="post">
   <!-- 查询条件区 -->
-	<table border="1" width="95%" align="center">
-	  <caption>
-	              文章
-	    <hr width="160">
-	  </caption>
+	<table align="center" class="table table-striped" style="background-color:#7F8BB3;opacity: 0.9;width:95%">
+	<tr>
+	   <td>
+	       <font color="#000000" size="5px">文章审核</font>
+	   </td>
+	 </tr>
 	  <tr>
 	    <td colspan="4">查询条件</td>
 	  </tr>
@@ -39,7 +41,7 @@ ${msg }
 	    </td>
 	</table>
 	<!-- 数据迭代区 -->
-	<table border="1" width="95%" align="center">
+	<table align="center" class="table table-striped" style="background-color:#7F8BB3;opacity: 0.9;width:95%">
 	  <tr>
 	    <td></td>
 	    <td>序号</td>
@@ -66,12 +68,12 @@ ${msg }
 				    <td>${vs.count }</td>
 				    <td>
 				      <!-- #  空锚 -->
-				      <a href="#" onclick="onEdit('${ins.aab801}')">${ins.aab802 }</a>
+				      <a href="#" style="color:#D5A5D9" onclick="onEdit('${ins.aab801}')">${ins.aab802 }</a>
 				    </td>
 				    <td>${ins.aab102 }</td>
 				    <td>${ins.aab805 }</td>
 				    <td>
-				      <a href="#" onclick="onDel('${ins.aab801}')">删除</a>
+				      <a href="#" style="color:#D5A5D9"  onclick="onDel('${ins.aab801}')">删除</a>
 				    </td>
 				  </tr>
 		      </c:forEach>
@@ -104,18 +106,18 @@ ${msg }
 	</table>
 	
 	<!-- 功能按钮区 -->
-	<table border="1" width="95%" align="center">
+	<table  align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="查询">
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="查询">
 	       
-	       <input type="submit" id="del" name="next" value="删除" 
+	       <input type="submit" class="btn btn-secondary  active" id="del" name="next" value="删除" 
 	              formaction="<%=path%>/delArticle.html"  disabled="disabled">
 	             
-	            <input type="submit" id="del" name="next" onclick="back()" value="返回" 
+	            <input type="submit" class="btn btn-secondary  active" id="del" name="next" onclick="back()" value="返回" 
 	              formaction="<%=path%>/queryArticle.html">
-	          <input type="button" onclick="onBack()" id="backFloor" value="上一页">
-					<input type="button" onclick="onNext()" id="nextFloor" value="下一页">
+	          <input type="button" class="btn btn-secondary  active" onclick="onBack()" id="backFloor" value="上一页">
+					<input type="button" class="btn btn-secondary  active" onclick="onNext()" id="nextFloor" value="下一页">
 					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
 					<e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>

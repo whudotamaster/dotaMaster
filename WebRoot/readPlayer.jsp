@@ -16,17 +16,16 @@
 <body>
 <%@ include file="header.jsp" %>
 ${msg}
+<div class="demoPlayer" style="opacity: 0.9"></div>
 <br>
 <br>
 <form action="<%=path%>/findByIdPlayer.html" method="post">
-<table  border="1" align="center" width="45%">
-    <caption>
-               选手信息${aab108!=2?'查询':'修改' }
-      <hr width="160">
-    </caption>
-   <tr>
-     <td colspan="2">选手</td>
-   </tr>
+<table  align="center" border="1" style="background-color:#1A7CA1;opacity: 0.9;width:45%">
+    <tr>
+    <td>
+      <font color="#000000" size="5px"> 选手信息${aab108!=2?'查询':'修改' }</font>
+    </td>
+    </tr>
    <c:if test="${aab108==2}" >
    <tr>
      <td>选手头像链接</td>
@@ -69,16 +68,18 @@ ${msg}
    </tr>
    <tr>
      <td colspan="2" align="center">
-       <input type="submit" name="next" value="返回" 
+       <input type="submit" class="btn btn-secondary  active" name="next" value="返回" 
               formaction="<%=path%>/queryPlayer.html"
               formnovalidate="formnovalidate">
         <c:if test="${aab108==2}" >      
-        <input type="submit" name="next" value="修改" formaction="<%=path%>/modifyPlayer.html" formnovalidate="formnovalidate" >  
+        <input type="submit" class="btn btn-secondary  active" name="next" value="修改" formaction="<%=path%>/modifyPlayer.html" formnovalidate="formnovalidate" >  
        </c:if>
      </td>
    </tr>
 </table>
 <input type="hidden" name="aac1001" value="${param.aac1001 }">
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 </html>

@@ -15,15 +15,17 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
+<div class="demoTeam" style="opacity: 0.9"></div>
 ${msg}
 <br>
 <br>
 <form action="<%=path%>/findByIdTeam.html" method="post" id="myform">
-<table  border="1" align="center" width="45%">
-    <caption>
-              战队及成员信息${aab108!=2?'查询':'修改' }
-      <hr width="160">
-    </caption>
+<table  align="center" border="1"  style="background-color:#EEEEEE;opacity: 0.9;width:45%" style="background-color:#EEEEEE;opacity: 0.9;width:45%">
+    <tr>
+    <td>
+          <font color="#000000" size="5px">战队及成员信息${aab108!=2?'查询':'修改' }</font>    
+      </td>
+    </tr>
    <tr>
      <td colspan="2">战队</td>
    </tr>
@@ -34,7 +36,7 @@ ${msg}
      </td>
    </tr>
    <c:if test="${aab108!=2}">
-   <tr>
+   <tr >
      <td>战队图片</td>
      <td >
       <img alt="no image" src=<%=path%>/images/${rows[0].aac903 } style="width:12%; height:100%">
@@ -90,9 +92,9 @@ ${msg}
          <td>
            <img alt="no image" src=<%=path%>/images/${ins.aac1004 } style="width:12%; height:100%" >
            <c:if test="${aab108==2}" >
-           <e:text name="aac1004"   readonly="${aab108!=2}"  required="true"  defval="${ins.aac1004 }" /> 
+           <e:text name="aac1004"   readonly="true"  required="true"  defval="${ins.aac1004 }" /> 
            </c:if>
-          </td>
+         </td>
           </tr>  
 	       </c:forEach>
          </c:when>
@@ -108,6 +110,8 @@ ${msg}
 </table>
 <input type="hidden" name="aac901" value="${param.aac901 }">
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 <script type="text/javascript">
     

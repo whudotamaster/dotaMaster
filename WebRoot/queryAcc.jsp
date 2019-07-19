@@ -9,7 +9,7 @@
    <style type="text/css">
      tr
      {
-        height:25px;
+        height:50px;
      }
    
 
@@ -113,9 +113,9 @@ ${msg }
 	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
 	              formaction="<%=path%>/addAcc.jsp">
 	       </c:if>
-		   <input type="submit"  class="btn btn-secondary" name="next" value="查看历史购买" 
+		   <input type="submit"  class="btn btn-secondary active"  name="next" value="查看历史购买" 
 			              formaction="<%=path%>/queryBuyOrder.html">
-		   <input type="submit"  class="btn btn-secondary" name="next" value="查看历史出售" 
+		   <input type="submit"  class="btn btn-secondary active" name="next" value="查看历史出售" 
 			              formaction="<%=path%>/querySellOrder.html">		       
 	       <c:if test="${aab108==2}">
 	       		<input type="submit" id="del" class="btn btn-secondary  active"  name="next" value="删除" 
@@ -138,6 +138,8 @@ ${msg }
 	<input type="hidden" name="aac901" value="${param.aac901 }">
 	<input type="hidden" name="aab101" value="<%=aab101 %>">
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 <%@include file="footer.jsp" %>
 <script type="text/javascript">

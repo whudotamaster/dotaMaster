@@ -8,22 +8,20 @@
    <style type="text/css">
      tr
      {
-        height:25px;
+        height:50px;
      }
    </style>
 </head>
 <body>
 <%@ include file="header.jsp" %>
+<div class="demoTeam" style="opacity: 0.9"></div>
 ${msg }
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryTeam.html" method="post">
   <!-- 查询条件区 -->
-	<table border="1" width="35%" align="center">
-	  <caption>
-	            战队信息
-	    <hr width="160">
-	  </caption>
+	<table  align="center" class="table table-striped" style="background-color:#EEEEEE;opacity: 0.9;width:35%">
+	
 	  <tr>
 	    <td colspan="4">查询条件</td>
 	  </tr>
@@ -35,7 +33,7 @@ ${msg }
 	  </tr>	 
 	</table>
 	<!-- 数据迭代区 -->
-	<table border="1" width="35%" align="center">
+	<table align="center" class="table table-striped" style="background-color:#EEEEEE;opacity: 0.9;width:35%">
 	  <tr>
 	    <td>序号</td>
 	    <td>战队图像</td>
@@ -81,20 +79,24 @@ ${msg }
 	   </c:choose>
 	</table>
 	<!-- 功能按钮区 -->
-	<table border="1" width="35%" align="center">
+	<table  align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" onclick="back()" value="查询">
-	       <input type="submit" name="next" value="添加" 
+	       <input type="submit" class="btn btn-secondary  active" name="next" onclick="back()" value="查询">
+	       <c:if test="${aab108==2}">
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
 	              formaction="<%=path%>/addTeam.jsp">
-	         <input type="button" onclick="onBack()" id="backFloor" value="上一页">
-					<input type="button" onclick="onNext()" id="nextFloor" value="下一页">
+	        </c:if>
+	         <input type="button" class="btn btn-secondary  active" onclick="onBack()" id="backFloor" value="上一页">
+					<input type="button" class="btn btn-secondary  active" onclick="onNext()" id="nextFloor" value="下一页">
 					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
 					<e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>
 	  </tr>
 	</table>
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 <script type="text/javascript">
       var count=0;

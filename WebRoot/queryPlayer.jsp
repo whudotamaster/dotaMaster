@@ -8,7 +8,7 @@
    <style type="text/css">
      tr
      {
-        height:25px;
+        height:50px;
      }
    </style>
 </head>
@@ -20,7 +20,7 @@ ${msg }
 <br>
 <form id="myform" action="<%=path%>/queryPlayer.html" method="post">
   <!-- 查询条件区 -->
-	<table align="center" class="table table-striped" style="background-color:#1A7CA1;opacity: 0.9;width:55%">
+	<table align="center" class="table table-striped" style="background-color:#1A7CA1;opacity: 0.8;width:55%">
 	  <tr>
 	    <td colspan="4">查询条件</td>
 	  </tr>
@@ -32,7 +32,7 @@ ${msg }
 	  </tr>	 
 	</table>
 	<!-- 数据迭代区 -->
-	<table align="center" class="table table-striped" style="background-color:#1A7CA1;opacity: 0.9;width:55%">
+	<table align="center" class="table table-striped" style="background-color:#1A7CA1;opacity: 0.8;width:55%">
 	  <tr>
 	    <td></td>
 	    <td>序号</td>
@@ -51,8 +51,8 @@ ${msg }
 				             onclick="onSelect(this.checked)" >
 				    </td>
 				    <td>${vs.count }</td>
-				     <td   style="width:15%; height:15%">
-				       <img alt="no image" src=<%=path%>/images/${ins.aac1004 } style="width:70%; height:100%">
+				     <td  >
+				       <img alt="no image" src=<%=path%>/images/${ins.aac1004 } style="width:30%; height:100%">
 				     </td>
 				    <td>
 				      <!-- #  空锚 -->
@@ -60,7 +60,7 @@ ${msg }
 				    </td>
 				     <c:if test="${aab108==2}">
 				    <td>
-				      <a href="#" style="color:red" onclick="onDel('${ins.aac1001}')">删除</a>
+				      <a href="#" style="color:black" onclick="onDel('${ins.aac1001}')">删除</a>
 				    </td>
 				    </c:if>
 				  </tr>
@@ -108,6 +108,8 @@ ${msg }
 	  </tr>
 	</table>
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 <script type="text/javascript">
       var count=0;

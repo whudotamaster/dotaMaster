@@ -17,17 +17,16 @@
 ${msg}
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
+<div class="demoEvent" style="opacity: 0.9"></div>
 <br>
 <br>
 <form action="<%=path%>/modifyEvent.html" method="post">
-<table  border="1" align="center" width="45%">
-    <caption>
-               赛事修改
-      <hr width="160">
-    </caption>
+<table align="center" class="table table-striped" style="background-color:#BABABA;opacity: 0.9;width:45%">
    <tr>
-     <td colspan="2">赛事</td>
-   </tr>
+    <td>
+      <font style="color:#000000" size="5px">赛事修改</font> 
+    </td>
+    </tr>
    <tr>
      <td>赛事名</td>
      <td>
@@ -61,12 +60,12 @@ ${msg}
    </tr>
    <tr>
      <td colspan="2" align="center">
-       <input type="submit" name="next" value="返回" 
+       <input type="submit" class="btn btn-secondary  active" name="next" value="返回" 
               formaction="<%=path%>/queryEvent.html"
               formnovalidate="formnovalidate">
         <!-- 管理员可见的两个按钮 -->
 		<c:if test="${aab108==2}">
-			<input type="submit" name="next" value="修改" 
+			<input type="submit" class="btn btn-secondary  active" name="next" value="修改" 
               formaction="<%=path%>/modifyEvent.html"
               formnovalidate="formnovalidate">
 		</c:if>
@@ -75,5 +74,7 @@ ${msg}
 </table>
 <input type="hidden" name="aac701" value="${param.aac701 }">
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 </html>

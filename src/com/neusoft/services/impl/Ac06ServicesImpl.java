@@ -243,7 +243,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	//	System.out.println(this.get("aac601"));
 	//	System.out.println(this.get("param"));
     	StringBuilder sql1=new StringBuilder()
-    			.append("select x.aac601,x.aac602,x.aac603,x.aac604,x.aac605,x.aac606,y.aac102,x.aac101")
+    			.append("select x.aac601,x.aac602,x.aac603,x.aac604,x.aac605,x.aac606,y.aac102,y.aac101")
   				.append("		 from ac06 x ,ac01 y")
   				.append("        where x.aac101=y.aac101   ")	
   				.append("         and x.aac601= ? ");
@@ -302,7 +302,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		   // Object aac101=this.findIdByNameAc01();
 		   // System.out.println("aac101:"+aac101);
 	    	StringBuilder sql=new StringBuilder()
-	    			.append("	update ac06 set aac602=?,aac603=?,aac604=?,aac605=?,aac606=?,aac101=?  ")
+	    			.append("	update ac06 set aac602=?,aac603=?,aac604=?,aac605=?,aac606=?  ")
 		            .append("   where aac601=? ")
 	    			;
 	    	System.out.println(this.get("aac601"));
@@ -312,7 +312,6 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	    			this.get("aac604"),
 	    			this.get("aac605"),
 	    			this.get("aac606"),
-	    			this.get("aac101"),    	
 	    			this.get("aac601")
 	    	};
 	    	return this.executeUpdate(sql.toString(), args)>0;
