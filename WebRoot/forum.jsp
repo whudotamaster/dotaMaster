@@ -2,6 +2,7 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl" prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%Integer a = 1; %>
 <html>
 <head>
 <title>Insert title here</title>
@@ -10,7 +11,6 @@ tr
 {
 	height: 25px;
 }
-
 .round_icon {
 	width: 34px;
 	height: 34px;
@@ -79,7 +79,7 @@ tr
 			<c:choose>
 				<c:when test="${rows!=null }">
 					<!-- 显示实际查询到的数据 -->
-					<c:forEach items="${rows }" var="ins" varStatus="vs" begin="1">
+					<c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="10">
 						<tr>
 						<c:if test="${tag}">
 						<td>
@@ -113,7 +113,7 @@ tr
 						</tr>
 					</c:forEach>
 					<!-- 补充空行 -->
-					<c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
+					<c:forEach begin="${fn:length(rows)+1 }" step="1" end="10">
 						<tr>
 							<c:if test="${tag }">
 							<td></td>
@@ -130,7 +130,7 @@ tr
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
-					<c:forEach begin="1" step="1" end="15">
+					<c:forEach begin="1" step="1" end="10">
 						<tr>
 							<c:if test="${tag}">
 							<td></td>
@@ -151,7 +151,8 @@ tr
 		<!-- 功能按钮区 -->
 		<table border="1" width="95%" align="center">
 			<tr>
-				<td align="center"><input type="submit" name="next" value="查询">
+				<td align="center">
+					<input type="button" onclick="onQuery()" name="next" value="查询">
 					<c:if test="${tag }">
 					<input type="submit"
 					id="goodPost" name="next" value="加精" formaction="<%=path%>/goodPost.html"
@@ -162,12 +163,16 @@ tr
 					</c:if>
 					<c:if test="${ aab101 !=null }">
 					<input type="submit"
-					id="collectionPase" name="next" value="收藏页面" 
+					id="collectionPase" name="next" onclick="back()" value="收藏页面" 
 					formaction="<%=path%>/queryCollection.html">
 					<input type="submit"
-					id="historyPase" name="next" value="歷史發帖" 
+					id="historyPase" name="next" onclick="back()" value="歷史發帖" 
 					formaction="<%=path%>/queryHistoryById.html">
 					</c:if>
+					<input type="button" onclick="onBack()" id="backFloor" value="上一页">
+					<input type="button" onclick="onNext()" id="nextFloor" value="下一页">
+					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
+					<e:hidden name="floor" defval="${rows[0].floor }"/>
 					</td>
 			</tr>
 		</table>
@@ -188,20 +193,24 @@ tr
       
       function onVisit(vaab501,vaab507)
       {
-    	 if(${aab507/100 >= vaab507+0}){
+    	 if(${aab107/100 >= vaab507+0}){
+    		 document.getElementById("nowFloor").value = 1;
     		 var vform = document.getElementById("myform");
         	 vform.action="<%=path%>/post.html?aab501="+ vaab501;
         	 //alert(vform.action);
         	 vform.submit();
     	 }
       }
-      function onCheck(qaab101)
+     function onCheck(qaab101)
       {
     	  var vform = document.getElementById("myform");
      	 vform.action="<%=path%>/queryOtherPerson.htm?qaab101="+ qaab101;
      	 //alert(vform.action);
      	 vform.submit();
       }
+
+      
+
       function onDel(vaab501)
       {
     	 var vform = document.getElementById("myform");

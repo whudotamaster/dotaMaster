@@ -1,6 +1,7 @@
 package com.neusoft.services.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,6 +45,7 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
     {
 		//还原页面查询条件
   		Object aac702=this.get("qaac702");     //姓名  模糊查询
+  		StringBuilder whereSql=new StringBuilder();
 		StringBuilder sql=new StringBuilder()
   				.append("select a.aac1101,b.aac702,a.aac1102,a.aac1103,a.aac1104")
   				.append("  from ac11 a,ac07 b")
@@ -54,12 +56,33 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
   		//逐一判断查询条件是否录入,拼接AND条件
   		if(this.isNotNull(aac702))
   		{
+  			whereSql.append(" and aac702 like ? ");
   			sql.append(" and aac702 like ?");
   			paramList.add("%"+aac702+"%");
   		}
   				
   		sql.append(" order by aac1102 desc");
-  		return this.queryForList(sql.toString(), paramList.toArray());
+  		
+  		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map1 = new HashMap<String, Object>();
+    	int nowFloor =  1;
+		if (isNotNull(this.get("nowFloor"))) 
+		{
+			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+		}
+		whereSql.append(" and a.aac701=b.aac701");
+		map1.put("floor", String.valueOf(countFloor(" ac11 a,ac07 b ",whereSql.toString(),paramList.toArray())));
+		map1.put("nowFloor", String.valueOf(nowFloor));
+		rows.add(map1);
+		
+		
+		sql.append(" limit ?,10 ");
+		paramList.add((nowFloor-1)*10);
+		for(Map<String, Object> list:this.queryForList(sql.toString(), paramList.toArray()))
+		{
+			rows.add(list);
+		}
+		return rows;
     }
 	
 	/**
@@ -115,6 +138,7 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
 	 */
 	private boolean addMatch()throws Exception
     {		
+		int aac1101=0;
     	//1.编写SQL语句	
 		String sql2="select aac701 from ac07 where aac702=?";
 		Object aac701=this.queryForMap(sql2, this.get("aac702")).get("aac701");
@@ -130,13 +154,17 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
     			0,
     			aac701
     	         };
-    	int aac1101=Tools.getSequence("aac1101");
+    	int n1=this.executeUpdate(sql.toString(), args);
+    	if(n1>0)
+    	{
+    	 aac1101=Tools.getSequence("aac1101");
+    	}
     	StringBuilder sql3=new StringBuilder()
     			.append(" insert into ad01 (aac1101,aad102,aad103,aad104,aad105)        ")
     			.append("            values (?,0,0, date_sub(now(), interval 48 hour),  ")
     			.append("                   DATE_ADD(NOW(), INTERVAL 1 Hour))          ")
     			;
-    	int n1=this.executeUpdate(sql.toString(), args);
+    	
     	int n2=this.executeUpdate(sql3.toString(), aac1101);
     	System.out.println("插入竞猜成功");
         return n1+n2>n1;	

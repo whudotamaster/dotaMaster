@@ -86,8 +86,27 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
     			.append("  from ab07 a,ab05 b,ab01 c")
     			.append(" where a.aab101=? and a.aab501=b.aab501 and b.aab101=c.aab101")
     			.append(" order by a.aab702 desc")
+    			.append(" limit ?,10 ");
     			;
-    	return queryForList(sql.toString(), aab101);
+    	int nowFloor =  1;
+		if (isNotNull(this.get("nowFloor"))) 
+		{
+			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+		}
+		Object args[]={
+						aab101,
+						(nowFloor-1)*10
+						};
+    	List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map1 = new HashMap<String, Object>();
+    	map1.put("floor", String.valueOf(countFloor("ab07 a","and a.aab101=?",aab101)));
+		map1.put("nowFloor", String.valueOf(nowFloor));
+		rows.add(map1);
+		for(Map<String, Object> post:queryForList(sql.toString(), args))
+		{
+			rows.add(post);
+		}
+    	return rows;
 	}
 
 	/**
@@ -156,6 +175,11 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
 	public List<Map<String, Object>> postFindById() throws Exception 
 	{
 		Ab05ServicesImpl ab05 = new Ab05ServicesImpl();
-		return ab05.postFindById(this.get("aab101") , this.get("aab501"));
+		int nowFloor =  1;
+		if (isNotNull(this.get("nowFloor"))) 
+		{
+			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+		}
+		return ab05.postFindById(this.get("aab101") , this.get("aab501"),nowFloor);
 	}
 }

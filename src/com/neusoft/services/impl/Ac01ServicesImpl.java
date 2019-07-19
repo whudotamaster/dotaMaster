@@ -1,6 +1,7 @@
 package com.neusoft.services.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +28,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	  	
 	  		
 	  		//定义SQL主体
+	  		StringBuilder whereSql=new StringBuilder();
 	  		StringBuilder sql=new StringBuilder()
 	  				.append("select aac101,aac102,aac103,aac104,aac105,")
 	  				.append("       aac106,aac107,aac108,aac109,aac110,")
@@ -39,12 +41,30 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	  		//逐一判断查询条件是否录入,拼接AND条件
 	  		if(this.isNotNull(aac102))
 	  		{
+	  			whereSql.append(" and aac102 like ?");
 	  			sql.append(" where aac102 like ?");
 	  			paramList.add("%"+aac102+"%");
 	  		}
 	  				
 	  		sql.append(" order by aac102");
-	  		return this.queryForList(sql.toString(), paramList.toArray());
+	  		
+	  		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+			Map<String, Object> map1 = new HashMap<String, Object>();
+	    	int nowFloor =  1;
+			if (isNotNull(this.get("nowFloor"))) 
+			{
+				nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+			}
+			map1.put("floor", String.valueOf(countFloor(" ac01 ",whereSql.toString(),paramList.toArray())));
+			map1.put("nowFloor", String.valueOf(nowFloor));
+			rows.add(map1);
+			sql.append(" limit ?,10 ");
+			paramList.add((nowFloor-1)*10);
+			for(Map<String, Object> list:this.queryForList(sql.toString(), paramList.toArray()))
+			{
+				rows.add(list);
+			}
+	  		return rows;
 	  }
 	
 	
@@ -59,8 +79,8 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
     	StringBuilder sql=new StringBuilder()
     			.append(" insert into ac01 (aac102,aac103,aac104,aac105,")
     			.append("                   aac106,aac107,aac108,aac109,aac110,")
-    			.append("				    aac111) ")
-    			.append("                   values(?,?,?,?, ")
+    			.append("				    aac111,aac112) ")
+    			.append("                   values(?,?,?,?,?,")
     			.append("				           ?,?,?,?,?, ")
     			.append("						   ?) ")	            
     			;
@@ -75,7 +95,8 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
     			this.get("aac108"),
     			this.get("aac109"),
     			this.get("aac110"),
-    			this.get("aac111")
+    			this.get("aac111"),
+    			this.get("aac112")
     	         };
         return this.executeUpdate(sql.toString(), args)>0;	
     }
@@ -145,7 +166,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	    	StringBuilder sql=new StringBuilder()
 	    			.append(" update ac01 set  aac102=?,aac103=?,aac104=?,aac105=?, ")
 	    			.append("                  aac106=?,aac107=?,aac108=?,aac109=?,aac110=?, ")
-	    			.append("			       aac111=?,aac112=? ")
+	    			.append("			       aac111=? ")
 	    			.append("                  where aac101=? ")
 	    			;
 	    	Object args[]={
@@ -159,7 +180,6 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	    			this.get("aac109"),
 	    			this.get("aac110"),
 	    			this.get("aac111"),
-	    			this.get("aac112"),	    	
 	    			this.get("aac101")
 	    	};
 	    	return this.executeUpdate(sql.toString(), args)>0;

@@ -14,8 +14,9 @@
 <li><a href="adminQueryArticle.html">审核文章</a></li>
 <li><a href="forum.html">管理帖子</a></li>
 <li><a href="adminQueryComp.html">处理申诉</a></li>
-<li><a href="querySendAcc.html">收货处理</a></li>
-<li><a href="queryGetAcc.html">发货处理</a></li>
+<li><a href="querySendAcc.html">发货处理</a></li>
+<li><a href="queryGetAcc.html">收货处理</a></li>
+<li><a href="announceResult.jsp">公布比赛结果</a></li>
 </ul>
 	            <input type="submit" formaction="<%=path%>/mainPage.jsp" value="返回">
 

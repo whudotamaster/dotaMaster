@@ -27,7 +27,7 @@ ${msg}
               比赛添加   
     </caption>
    <tr>
-     <td colspan="2">选手</td>
+     <td colspan="2">比赛</td>
    </tr>
    <tr>
      <td>赛事名称</td>
@@ -38,7 +38,7 @@ ${msg}
    <tr>
      <td>比赛开始时间</td>
      <td>
-      <e:text name="aac1102"  required="true"   /> 
+        <input name="aac1102" type="datetime-local" />
      </td>
    </tr>
    <tr>

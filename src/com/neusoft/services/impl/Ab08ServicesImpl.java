@@ -19,6 +19,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	  		//还原页面查询条件
 	  		Object aab802=this.get("qaab802");     //姓名  模糊查询
 	  		//定义SQL主体
+	  		StringBuilder whereSql=new StringBuilder();
 	  		StringBuilder sql1=new StringBuilder()
 	  				.append(" select  x.aab801,x.aab101,x.aab802,x.aab803,x.aab804,    ")   
 	  				.append("	  		  x.aab805,x.aab806 ,y.aab102                      ")     
@@ -33,11 +34,31 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	  		//逐一判断查询条件是否录入,拼接AND条件
 	  		if(this.isNotNull(aab802))
 	  		{
+	  			whereSql.append("  and aab802 like ? ");
 	  			sql1.append("  and aab802 like ? ");
   			    paramList1.add("%"+aab802+"%");	
   		    }  				
 	  		sql1.append(" order by aab805 desc ");//按照时间降序排列
-	  		return this.queryForList(sql1.toString(), paramList1.toArray());  	
+	  		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+	  		Map<String, Object> map1 = new HashMap<String, Object>();
+	    	int nowFloor =  1;
+			if (isNotNull(this.get("nowFloor"))) 
+			{
+				nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+			}
+			whereSql.append("and x.aab804 = 2");
+			map1.put("floor", String.valueOf(countFloor("ab08 x",whereSql.toString(),paramList1.toArray())));
+			map1.put("nowFloor", String.valueOf(nowFloor));
+			rows.add(map1);
+			
+			
+			sql1.append(" limit ?,10 ");
+			paramList1.add((nowFloor-1)*10);
+			for(Map<String, Object> list:this.queryForList(sql1.toString(), paramList1.toArray()))
+			{
+				rows.add(list);
+			}
+	  		return rows;
 	  		
 	  }
 	
@@ -47,6 +68,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	  		//还原页面查询条件
 	  		Object aab802=this.get("qaab802");     //姓名  模糊查询
 	  		//定义SQL主体
+	  		StringBuilder whereSql=new StringBuilder();
 	  		StringBuilder sql1=new StringBuilder()
 	  				.append(" select  x.aab801,x.aab101,x.aab802,x.aab803,x.aab804,    ")   
 	  				.append("	  		  x.aab805,x.aab806 ,y.aab102                      ")     
@@ -61,11 +83,32 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	  		//逐一判断查询条件是否录入,拼接AND条件
 	  		if(this.isNotNull(aab802))
 	  		{
+	  			whereSql.append("  and aab802 like ? ");
 	  			sql1.append("  and aab802 like ? ");
 			    paramList1.add("%"+aab802+"%");	
 		    }  				
 	  		sql1.append(" order by aab805 desc ");//按照时间降序排列
-	  		return this.queryForList(sql1.toString(), paramList1.toArray());  	
+	  		
+	  		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+	  		Map<String, Object> map1 = new HashMap<String, Object>();
+	    	int nowFloor =  1;
+			if (isNotNull(this.get("nowFloor"))) 
+			{
+				nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+			}
+			whereSql.append("and x.aab804 = 1");
+			map1.put("floor", String.valueOf(countFloor("ab08 x",whereSql.toString(),paramList1.toArray())));
+			map1.put("nowFloor", String.valueOf(nowFloor));
+			rows.add(map1);
+			
+			
+			sql1.append(" limit ?,10 ");
+			paramList1.add((nowFloor-1)*10);
+			for(Map<String, Object> list:this.queryForList(sql1.toString(), paramList1.toArray()))
+			{
+				rows.add(list);
+			}
+	  		return rows;	
 	  		
 	  }
 	

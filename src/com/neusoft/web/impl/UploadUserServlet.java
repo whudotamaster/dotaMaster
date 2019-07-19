@@ -1,5 +1,4 @@
 package com.neusoft.web.impl;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -7,11 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-
 import org.omg.PortableServer.THREAD_POLICY_ID;
-
 import com.neusoft.services.impl.Ab01ServicesImpl;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -30,9 +26,6 @@ public class UploadUserServlet extends HttpServlet
 {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-      	
-     
-    
         Part part = request.getPart("file");
         String name = part.getSubmittedFileName();
         UUID uuid = UUID.randomUUID();
@@ -55,7 +48,9 @@ public class UploadUserServlet extends HttpServlet
         	}
         //换新的
         	ab01.updatePic(request.getSession().getAttribute("aab101"),uuid+name);
+
 			request.setAttribute("msg", "提示：上传头像成功！");
+
 			request.getRequestDispatcher("queryPerson.html").forward(request, response);
 		} 
         catch (Exception e) 
@@ -63,6 +58,7 @@ public class UploadUserServlet extends HttpServlet
 			e.printStackTrace();
 		}   
     }
+
 
     /** 
      * 删除单个文件 

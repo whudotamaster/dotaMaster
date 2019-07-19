@@ -54,7 +54,6 @@
       {
     	 var vform = document.getElementById("myform");
     	 vform.action="<%=path%>/playBet.html?aad101="+vaad101+"&count="+count;
-    	 //alert(vform.action);
     	 vform.submit();
       } 
       $("#totalCnt").change(function () {
@@ -95,7 +94,7 @@ ${msg }
 	<!-- 数据迭代区 -->
 		
 	<table align="center" class="table table-striped" style="background-color:#CCFFFF;opacity: 0.9;width:90%">
-	   <caption align="left"><font color="#000000" size="5px">可押注比赛</font> </caption>
+	   <caption align="left"><font color="white" size="5px">可押注比赛</font> </caption>
 
 	  <tr>
 	    <td>序号</td>
@@ -103,10 +102,10 @@ ${msg }
 	    <td>战队1</td>
 	    <td>战队2</td>
 	    <td>比赛开始时间</td>
-	    <td>A方押注数量</td>
-	    <td>B方押注数量</td>
-	    <td>押注A方</td>
-	    <td>押注B方</td>
+	    <td>战队1押注总额</td>
+	    <td>战队2押注总额</td>
+	    <td>押注战队1</td>
+	    <td>押注战队2</td>
 	    <td></td>
 	  </tr>
 	  <!--
@@ -118,7 +117,7 @@ ${msg }
 	   <c:choose>
 	     <c:when test="${rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
-		     <c:forEach items="${rows }" var="ins" varStatus="vs">
+		     <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="11">
 	    	   	  <tr style="height:40px">
 				    <td>${vs.count }</td>
 				    <td>${ins.aac702 }</td>
@@ -128,11 +127,11 @@ ${msg }
 				    <td>${ins.aad102 }</td>
 				    <td>${ins.aad103 }</td>
 				    <td>
-				      <input type="text" name="aad202${vs.count }"  value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
+				      <input type="text" name="aad202${vs.count }" required="true" value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
     onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
 				    </td>
 				    <td>
-				      <input type="text" name="aad203${vs.count }"  value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
+				      <input type="text" name="aad203${vs.count }"  required="true" value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
     onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
 				    </td>
 				   <td>
@@ -141,7 +140,7 @@ ${msg }
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
-		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
+		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="11">
 			           <tr style="height:40px">
 			            <td></td>
 			            <td></td>
@@ -157,7 +156,7 @@ ${msg }
 		      </c:forEach>
 	     </c:when>
 	     <c:otherwise>
-	        <c:forEach begin="1" step="1" end="15">
+	        <c:forEach begin="1" step="1" end="11">
 	            <tr style="height:40px">
 	             <td></td>
 	             <td></td>
@@ -178,9 +177,13 @@ ${msg }
 	<table border="1"  align="center" >
 	  <tr>
 	    <td align="center">
-	       <input type="submit" class="btn btn-secondary  active" name="next" value="查询">
-	       <input type="submit" class="btn btn-secondary  active" name="next" value="查看历史押注" 
+	       <input type="submit" class="btn btn-secondary  active" onclick="back()" name="next" value="查询">
+	       <input type="submit" class="btn btn-secondary  active" onclick="back()" name="next" value="查看历史押注" 
 	              formaction="<%=path%>/queryUserBet.html">
+	              	<input type="button" onclick="onBack()" id="backFloor" value="上一页">
+					<input type="button" onclick="onNext()" id="nextFloor" value="下一页">
+					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
+					<e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>
 	  </tr>
 	</table>

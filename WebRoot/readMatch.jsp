@@ -24,7 +24,7 @@ ${msg}
 <form action="<%=path%>/findByIdArticle.html" method="post">
 <table  border="1" align="center" width="45%">
     <caption>
-               比赛${aab108==2?'浏览':'修改' }
+               比赛${aab108==2?'修改':'浏览' }
       <hr width="160">
     </caption>
    <tr>
@@ -53,7 +53,7 @@ ${msg}
    <tr>
      <td>胜负</td>
      <td>
-           比赛<e:select name="aac1105" value="未开始:00,胜:01,负:02" defval="${ins.aac1105 }" />
+           比赛<e:select name="aac1105" value="未开始:0,胜:1,负:2" defval="${ins.aac1105 }" />
      </td>
    </tr>
    <tr>

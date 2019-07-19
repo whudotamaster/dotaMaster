@@ -11,7 +11,7 @@
 %>
 
 <Script>
-//刷新一次页面
+
 function refresh(){
     url = location.href;
  console.log(url);
@@ -24,7 +24,7 @@ function refresh(){
 }
  
 setTimeout('refresh()', 1);
-  
+
 </script>
 
 
@@ -45,7 +45,7 @@ setTimeout('refresh()', 1);
 <div id="main">
 
  <%=aab101%>
-啥都没.jpg
+啥也没.jpg
 
 
 </div>

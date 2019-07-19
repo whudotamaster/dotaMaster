@@ -1,9 +1,6 @@
 <%@ page language="java"  pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-
-
 <html>
 <head>
 <style>
@@ -21,11 +18,7 @@ tr {
 <form action="<%=path%>/updtPsnInf.html" method="post" id="myform">
 <table border="1" align="center" width="45%">
   <caption>
-
-       修改我的信息
-  
- 
-       <hr width="160">
+     修改我的信息     
   </caption>
 	 <tr>
 	     <td colspan="2">${qins }</td>
@@ -108,15 +101,7 @@ tr {
 			</c:choose>
 		</table>
 
-
-
-
-
-
-
-
-
- <input type="submit" name="Submit" formaction="<%=path%>/forum.html"  formnovalidate="formnovalidate" value="返回论坛">
+ <input type="submit" name="Submit" formaction="<%=path%>/forum.html"  formnovalidate="formnovalidate" onclick="back()" value="返回论坛">
 
  <input type="submit" name="Submit" formaction="<%=path%>/mainPage.jsp"  formnovalidate="formnovalidate" value="返回主页">
 </form>
@@ -134,6 +119,5 @@ tr {
       	 vform.submit();
   	
     }
-
     </script>
 </html>

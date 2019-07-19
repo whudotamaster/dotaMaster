@@ -17,16 +17,22 @@ public class Ab06ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	protected final List<Map<String, Object>> commentFindById(Object aab501) throws Exception 
+
+	protected final List<Map<String, Object>> commentFindById(Object aab501, Object limitFloor ) throws Exception 
 	{
 		StringBuilder sql = new StringBuilder()
 				.append(" select a.aab102,a.aab105,b.aab602,b.aab603,b.aab604 ")
 				.append("   from ab01 a,ab06 b ")
 				.append("  where aab501=? and a.aab101=b.aab101 ")
 				.append("  order by b.aab604")
+				.append(" limit ?,10")
 				;
 		// 参数列表
-		return this.queryForList(sql.toString(), aab501);
+		Object args[] = {
+							aab501,
+							limitFloor
+						};
+		return this.queryForList(sql.toString(), args);
 	}
 
 	/**

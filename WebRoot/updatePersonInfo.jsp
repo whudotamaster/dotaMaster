@@ -45,8 +45,6 @@
  	      <a href="changePassword.jsp">点我修改密码</a>
 	 	</td>
 	 </tr>
-
-	 
 	  <tr>
 	 	<td>头像</td>
 	 	<td>
@@ -54,7 +52,6 @@
  	  	</td>
 		</tr>
 	 <tr>
-	 
 	 <td>当前经验值</td>
 	 	<td>
  	       <e:text name="aab107" required="true" readonly="true" defval="${ins.aab107 }"/> 
@@ -74,7 +71,6 @@
 	 </tr>
 </table>
 <input  type="hidden" name="aab101" value="<%=aab101%>">
-	
  <input type="submit" name="next"  value="修改">
  <input type="submit" name="Submit" formaction="<%=path%>/mainPage.jsp"  formnovalidate="formnovalidate" value="返回主页">
 </form>
@@ -88,22 +84,18 @@
 	<!-- 引入页脚 -->
 </body>
     <script>
-    
-        window.onload = function ()
-        {
-            document.querySelector("#file").onchange = function ()
-            {
-                var req = new XMLHttpRequest();
-                var form = new FormData(document.getElementById("form1"));
-//              form.append("file",document.querySelector("#file").files[0]);
-                req.open("post", "${pageContext.request.contextPath}/upload", true);
-                req.send(form);
-                req.onload = function () 
-                {
-                    document.getElementById("img").src = "${pageContext.request.contextPath}/pic/" + req.responseText;
-                }
+    window.onload = function () {
+        document.querySelector("#file").onchange = function () {
+            var req = new XMLHttpRequest();
+            var form = new FormData(document.getElementById("form1"));
+//          form.append("file",document.querySelector("#file").files[0]);
+            req.open("post", "${pageContext.request.contextPath}/upload", true);
+            req.send(form);
+            req.onload = function () {
+                document.getElementById("img").src = "${pageContext.request.contextPath}/pic/" + req.responseText;
             }
         }
+    }
        
     </script>
 </html>

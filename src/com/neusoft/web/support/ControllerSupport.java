@@ -123,7 +123,7 @@ public abstract class ControllerSupport implements BaseController
 		}
 		else
 		{
-			this.saveAttribute("msg", this.services.getMessage());
+			//this.saveAttribute("msg", this.services.getMessage());
 			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
 		}	
 	}
@@ -263,7 +263,6 @@ public abstract class ControllerSupport implements BaseController
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}	
 	}
-	
 	/**
 	 * 通过反射执行更新方法 return Map
 	 * @param methodName
@@ -331,7 +330,7 @@ public abstract class ControllerSupport implements BaseController
 		}
 		else
 		{
-			this.saveAttribute("msg", "失败"+this.getServices().getMessage());
+			this.saveAttribute("msg", "失败  : "+this.getServices().getMessage());
 		}
 	}
 	

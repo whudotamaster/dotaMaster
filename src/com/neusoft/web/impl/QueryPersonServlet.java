@@ -14,7 +14,7 @@ public class QueryPersonServlet extends EmpControllerSupport
 	@Override
 	public String execute()throws Exception
 	{
-	  this.queryPersonIn();
-	  return  "updatePersonInfo";
+		this.queryPersonIn();
+	    return  "updatePersonInfo";
 	}
 }
