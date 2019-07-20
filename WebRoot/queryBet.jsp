@@ -12,37 +12,21 @@
   color:black;
   }
        .demo{
-
                 position:fixed;
-
                 top: 0;
-
                 left: 0;
-
                 width:100%;
-
                 height:100%;
-
                 min-width: 1000px;
-
                 z-index:-10;
-
                 zoom: 1;
-
                 background-color: #fff;
-
                 background: url(images/bg.png);
-
                 background-repeat: no-repeat;
-
                 background-size: cover;
-
                 -webkit-background-size: cover;
-
                 -o-background-size: cover;
-
                 background-position: center 0;
-
             }
             
     </style>
@@ -73,13 +57,16 @@
 </head>
 <body>
 
-	<div class="demo"></div>
+ <div class="demo" ></div>
 
-	${msg }
-	<br>
-	<br>
-	<form id="myform" action="<%=path%>/queryBet.html" method="post">
-		<!-- 数据迭代区 -->
+${msg }
+<br>
+<br>
+<form id="myform" action="<%=path%>/queryBet.html" method="post" >
+	<!-- 数据迭代区 -->
+		
+	<table align="center" class="table table-striped" style="background-color:#CCFFFF;opacity: 0.9;width:90%">
+	   <caption align="left"><font color="white" size="5px">可押注比赛</font> </caption>
 
 	  <tr>
 	    <td>序号</td>
