@@ -310,11 +310,11 @@ String pic = (String)session.getAttribute("pic");
 			<font color=red size=2>
 			   <c:if test="${aab108==2}">
 			   		 <img id="havatar" src="/Avatar/${pic}" onclick="changeAvatar()" style="height:50px;width:50px;" >
-			 		  管理员  <%=aab102%> 未读消息<%=unRead%>条 
+			 		    <%=aab102%> 未读消息<%=unRead%>条 
 			   </c:if>
 		 	   <c:if test="${aab108==1}">  	      
 		 	 		  <img id="havatar" src="/Avatar/${pic}" onclick="changeAvatar()" style="height:50px;width:50px;" >
-		 	   		用户  <%=aab102%> 未读消息<%=unRead%>条
+		 	   		  <%=aab102%> 未读消息<%=unRead%>条
 		 	   </c:if>
 			   		<c:if test="${aab108==null}">游客
 			   </c:if>		 
@@ -324,7 +324,13 @@ String pic = (String)session.getAttribute("pic");
 		<!--实现鼠标悬停出现菜单  -->
 		<div id="menu" style="position:absolute;top:15;right:0;width:300;height:10;z-index:2;visibility:hidden;"> 
 			<form action ="<%=path%>/queryPerson.html" method="post">
+<<<<<<< Upstream, based on branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 				<input type="hidden" name="aab101" value="<%=aab101%>">
+=======
+
+				<input type="hidden" name="aab101" value="<%=aab101%>">
+
+>>>>>>> fbeca2a 鍒濇鏁村悎pull
 				<div class="btn-group-vertical btn-group-sm">
 				<c:if test="${!empty aab108}">
 				<input type="submit" name="toLog" class="btn btn-secondary" formaction="<%=path%>/logout.html" value="注销">

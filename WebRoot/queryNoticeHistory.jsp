@@ -15,7 +15,7 @@
    
 
 </head>
-<body>
+<body style="height:100%">
 ${msg }
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
@@ -85,7 +85,5 @@ ${msg }
 
 <!-- 引入脚部导航栏 -->
 <%@ include file="footer.jsp" %>
-
 </body>
-
 </html>
