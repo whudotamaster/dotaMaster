@@ -126,38 +126,26 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	 public Map<String,Object> findById()throws Exception
-	    {
-	    	//1.编写SQL语句
-	    	StringBuilder sql=new StringBuilder()
-	    			.append("select aac102,aac103,aac104,aac105,")
-	  				.append("       aac106,aac107,aac108,aac109,aac110,")
-	  				.append("		aac111,aac112")
-	  				.append("		 from ac01 ")
-	    			.append(" where aac101=?")
-	    			;
-	    	//执行查询
-	    	return this.queryForMap(sql.toString(), this.get("aac101"));
-	    }
-	 
 	 //查找英雄的天赋
-	 public List<Map<String, Object>> FBIforMore()throws Exception
+	 public Map<String, Object> findById()throws Exception
 	 {
+		
 		 StringBuilder sql=new StringBuilder()
-				 .append("select x.aac101,x.aac102,x.aac112,y.aac201,y.aac202,y.aac203  ")
-				 .append("	  	 from ac01 x, ac02 y                          ")
-				 .append("	     where x.aac101=y.aac101                     ")
-				 .append("         and x.aac101=?                             ")
-				 .append("         ORDER BY y.aac202                            ")
+				 .append(" select aac102,aac103,aac104,aac105,aac101,   ")
+				 .append("	  			       aac106,aac107,aac108,aac109,aac110,  ")
+				 .append("	  						  aac111,aac112         ")
+				 .append("	  						 from ac01        ")
+				 .append("                 where aac101=?       ")
 				 ;
-	
-		 return this.queryForList(sql.toString(), this.get("aac101"));
-	 }
-	 //查找英雄的技能
-	 public List<Map<String, Object>> findByIdSkill()throws Exception
-	 {
-		 String sql ="select aac302,aac303,aac304,aac305,aac306 from ac03 where aac101=? ";
-		 return this.queryForList(sql, this.get("aac101"));
+		 Map<String, Object> ins=this.queryForMap(sql.toString(), this.get("aac101"));
+		 String sql2="select y.aac201,y.aac202,y.aac203 from ac02 y where y.aac101=?";
+		 List<Map<String, Object>> rows=this.queryForList(sql2, this.get("aac101"));
+		 ins.put("rows", rows);
+		 String sql3 ="select aac302,aac303,aac304,aac305,aac306 from ac03 where aac101=? ";
+		 List<Map<String, Object>> rows2=this.queryForList(sql3.toString(), this.get("aac101"));
+		 ins.put("rows2", rows2);
+		 System.out.println(ins);
+		 return ins;
 	 }
 	 
 	 /**

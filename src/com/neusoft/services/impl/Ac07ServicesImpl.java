@@ -25,20 +25,21 @@ public class Ac07ServicesImpl extends JdbcServicesSupport
 				// 定义SQL主体
 				StringBuilder whereSql=new StringBuilder();
 				StringBuilder sql = new StringBuilder()
-						.append("select aac701,aac702,aac703,aac704,aac705,")
-						.append("		aac706")
-						.append("		 from ac07 ")
+						.append("select x.aac701,x.aac702,y.fvalue aac703,x.aac704,x.aac705,")
+						.append("		x.aac706")
+						.append("		 from ac07 x , syscode y ")
+						.append("  where x.aac703=y.fcode and y.fname='aac703'");
 						;
 
 		// 参数列表
 		List<Object> paramList = new ArrayList<>();
 		// 逐一判断查询条件是否录入,拼接AND条件
 		if (this.isNotNull(aac702)) {
-			whereSql.append(" and aac702 like ?");
-			sql.append(" where aac702 like ?");
+			whereSql.append(" and x.aac702 like ?");
+			sql.append(" and x.aac702 like ?");
 			paramList.add("%" + aac702 + "%");
 		}
-		sql.append(" order by aac702");
+		sql.append("  order by x.aac705 desc");
 		
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map1 = new HashMap<String, Object>();
@@ -47,7 +48,7 @@ public class Ac07ServicesImpl extends JdbcServicesSupport
 		{
 			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
 		}
-		map1.put("floor", String.valueOf(countFloor(" ac07 ",whereSql.toString(),number,paramList.toArray())));
+		map1.put("floor", String.valueOf(countFloor(" ac07 x",whereSql.toString(),number,paramList.toArray())));
 		map1.put("nowFloor", String.valueOf(nowFloor));
 		rows.add(map1);
 		
@@ -94,9 +95,11 @@ public class Ac07ServicesImpl extends JdbcServicesSupport
 	public Map<String, Object> findById() throws Exception 
 	{
 		StringBuilder sql = new StringBuilder()
-				.append(" select  aac702,aac703,aac704,aac705,aac706 ,aac701 ")
-				.append("         from ac07                                 ")
-				.append("	     where aac701=?                             ");
+				.append(" select  x.aac702,x.aac703,x.aac704,x.aac705,x.aac706 ,x.aac701 ")
+				.append("         from ac07 x, syscode y                                ")
+				.append("	     where aac701=?                             ")
+				.append("        and x.aac703=y.fcode and y.fname='aac703' ")
+				;
 		return this.queryForMap(sql.toString(), this.get("aac701"));
 	}
 

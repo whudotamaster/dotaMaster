@@ -61,7 +61,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		Map<String, Object> map1 = new HashMap<String, Object>();
 		try 
 		{
-			map1.put("aab107", ab01.queryPersonEmp(aab101).get("aab107"));
+			map1.put("aab107", ab01.queryPerson(aab101).get("aab107"));
 		} 
 		catch (Exception e) 
 		{
@@ -76,6 +76,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		List<Map<String, Object>> list = this.queryForList(sql.toString(), paramList.toArray());
 		for(Map<String, Object> post:list)
 		{
+			post.put("aab504", post.get("aab504").toString().replace(".0", ""));
 			rows.add(post);
 		}
 		return rows;
@@ -145,8 +146,9 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 						aab503,
 						aab507
 				};
-
 			Boolean tag = this.executeUpdate(sql.toString(), args) > 0;
+			Tools.completeMission(aab101, 1);
+			Tools.sendMessage("恭喜你完成每日任务_发帖，获得经验5点，M点5点！", aab101);
 			Ab01ServicesImpl ab01=new Ab01ServicesImpl();
 			ab01.addExp(aab101, "addPost");
 			return tag;
@@ -202,7 +204,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		map1.put("nowFloor", String.valueOf(nowFloor));
 		try 
 		{
-			map1.put("aab107", ab01.queryPersonEmp(aab101).get("aab107"));
+			map1.put("aab107", ab01.queryPerson(aab101).get("aab107"));
 		} 
 		catch (Exception e) 
 		{
@@ -213,7 +215,9 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		String whereSql = " and b.aab501=?";
 		map1.put("floor", String.valueOf(countFloor("ab06 b",whereSql,number,aab501)));
 		rows.add(map1);
-		rows.add(queryForMap(sql.toString(), aab501));
+		Map<String, Object> map2 = queryForMap(sql.toString(), aab501);
+		map2.put("aab504", map2.get("aab504").toString().replace(".0", ""));
+		rows.add(map2);
 		Ab06ServicesImpl ab06=new Ab06ServicesImpl();
 		List<Map<String, Object>> commentList = ab06.commentFindById(aab501,(nowFloor-1)*number,number);
 		for(Map<String, Object> comment:commentList)

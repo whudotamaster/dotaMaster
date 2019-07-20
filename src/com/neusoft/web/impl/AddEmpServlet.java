@@ -1,6 +1,6 @@
 package com.neusoft.web.impl;
 
-public class AddEmpServlet extends EmpControllerSupport 
+public class AddEmpServlet extends PersonControllerSupport 
 {
 
 	@Override

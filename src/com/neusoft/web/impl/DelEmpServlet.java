@@ -1,6 +1,6 @@
 package com.neusoft.web.impl;
 
-public class DelEmpServlet extends EmpControllerSupport {
+public class DelEmpServlet extends PersonControllerSupport {
 
 	@Override
 	public String execute() throws Exception

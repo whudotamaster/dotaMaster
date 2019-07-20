@@ -43,7 +43,7 @@
 
 ${msg }
   <div id="login" style="margin:0 auto; width=800px" >
-	<form action="<%=path%>/login.html" method="post" class="form-signin">
+	<form id="myform" action="<%=path%>/login.html" method="post" class="form-signin">
 		<table>
 		    <h1 class="h3 mb-3 font-weight-normal"><font color="white">µÇÂ¼/×¢²á</font></h1>
 			
@@ -62,8 +62,8 @@ ${msg }
 			<tr>
 				<td colspan="2" align="center">
 					<input   class="btn  btn-primary btn-block" type="submit" name="next" value="µÇÂ¼">
-					<input  class="btn  btn-primary btn-block"  type="submit" name="next" formaction="<%=path%>/logon.html" 
-					value="×¢²á" formnovalidate="formnovalidate">
+					<input  class="btn  btn-primary btn-block" type="submit" name="next" formaction="<%=path%>/logon.html" 
+					value="×¢²á" >
 				</td>			
 			</tr>
 		</table>

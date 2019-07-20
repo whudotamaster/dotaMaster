@@ -1,7 +1,7 @@
 package com.neusoft.web.impl;
 
 
-public class DelByIdEmpServlet extends EmpControllerSupport 
+public class DelByIdEmpServlet extends PersonControllerSupport 
 {
 
 	@Override

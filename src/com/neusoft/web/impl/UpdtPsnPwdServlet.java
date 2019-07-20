@@ -2,7 +2,7 @@ package com.neusoft.web.impl;
 
 
 
-public class UpdtPsnPwdServlet extends EmpControllerSupport
+public class UpdtPsnPwdServlet extends PersonControllerSupport
 {
    @Override
    public String execute() throws Exception

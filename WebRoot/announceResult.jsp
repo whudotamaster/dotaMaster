@@ -51,7 +51,6 @@ ${msg }
 <table align="center" class="table table-striped" style="background-color:#DCDCDC;opacity: 0.85;width:90%">
 	   <caption align="left"><font color="white" size="5px">比赛</font> </caption>
 	  <tr>
-	    <td></td>
 	    <td>序号</td>
 	    <td>赛事</td>
 	    <td>战队1</td>
@@ -71,10 +70,7 @@ ${msg }
 	         <!-- 显示实际查询到的数据 -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
-				    <td>
-				      <input type="checkbox" name="idlist" value="${ins.aad101 }"
-				             onclick="onSelect(this.checked)" >
-				    </td>
+			
 				    <td>${vs.count }</td>
 				    <td>${ins.aac702 }</td>
 				    <td>${ins.aac1103 }</td>
@@ -98,14 +94,12 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
-			            <td></td>
 			          </tr>
 		      </c:forEach>
 	     </c:when>
 	     <c:otherwise>
 	        <c:forEach begin="1" step="1" end="15">
 	           <tr>
-	             <td></td>
 	             <td></td>
 	             <td></td>
 	             <td></td>
@@ -123,10 +117,6 @@ ${msg }
 	  <tr>
 	    <td align="center">
 	       <input type="submit" class="btn btn-secondary  active" name="next" value="查询">
-	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
-	              formaction="<%=path%>/addEmp.jsp">
-	       <input type="submit" class="btn btn-secondary  active" id="del" name="next" value="删除" 
-	              formaction="<%=path%>/delEmp.html"  disabled="disabled">
 	    </td>
 	  </tr>
 	</table>

@@ -6,9 +6,8 @@ public class FindByIdHeroFMServlet extends HeroControllerSupport {
 	@Override
 	public String execute() throws Exception 
 	{
-		this.savePageData("FBIforMore");
-		this.findById("findByIdSkill");
+		
+		this.savePageInstance();
 		return "readHero";
 	}
-
 }

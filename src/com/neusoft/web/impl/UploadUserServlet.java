@@ -41,7 +41,7 @@ public class UploadUserServlet extends HttpServlet
         {	  
         	//删掉老的
         	Ab01ServicesImpl ab01=new Ab01ServicesImpl();
-        	String oldAvatar = (String)ab01.queryPersonEmp(request.getSession().getAttribute("aab101")).get("aab105");
+        	String oldAvatar = (String)ab01.queryPerson(request.getSession().getAttribute("aab101")).get("aab105");
         	if(!oldAvatar.equals("默认头像.png"))
         	{
         	this.deleteFile( "D:/Avatar/"+oldAvatar);

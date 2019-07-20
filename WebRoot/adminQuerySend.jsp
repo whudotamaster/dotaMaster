@@ -30,7 +30,7 @@ ${msg }
 <br>
 <br>
 <div class="demoDOTA2"></div>
-<form id="myform" method="post">
+<form id="myform" action="<%=path%>/<%=aab108.equals("1")?"queryBuyOrder.html":"querySendAcc.html"%>" method="post">
 	<!-- 数据迭代区 -->
 	
 	<table align="center" class="table table-striped" style="background-color:#DCDCDC;opacity: 0.9;width:90%">
@@ -53,7 +53,7 @@ ${msg }
 	   <c:choose>
 	     <c:when test="${rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
-		     <c:forEach items="${rows }" var="ins" varStatus="vs">
+		     <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="16">
 	    	   	  <tr>
 				    <td>${vs.count }</td>
 				    <td><a href="#" onclick="onEdit('${ins.aad401 }')">${ins.aac602 }</a></td>
@@ -65,7 +65,7 @@ ${msg }
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
-		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
+		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="16">
 			          <tr>
 			            <td></td>
 			            <td></td>
@@ -78,7 +78,7 @@ ${msg }
 		      </c:forEach>
 	     </c:when>
 	     <c:otherwise>
-	        <c:forEach begin="1" step="1" end="15">
+	        <c:forEach begin="1" step="1" end="16">
 	           <tr>
 	             <td></td>
 	             <td></td>
@@ -96,13 +96,17 @@ ${msg }
 	<table align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" class="btn btn-secondary  active" name="next" value="<%=aab108.equals("1")?"查看历史购买":"查看待发货列表"%>"
+	       <input type="submit" class="btn btn-secondary  active" onclick="back()" name="next" value="<%=aab108.equals("1")?"查看历史购买":"查看待发货列表"%>"
               formaction="<%=path%>/<%=aab108.equals("1")?"queryBuyOrder.html":"querySendAcc.html"%>">
-               <input type="submit" class="btn btn-secondary  active" formaction="<%=path%>/mainPage.jsp" value="返回">
+               <input type="submit" onclick="back()" class="btn btn-secondary  active" formaction="<%=path%>/mainPage.jsp" value="返回">
+                <input type="button" class="btn btn-secondary  active" onclick="onBack()" id="backFloor" value="上一页">
+					<input type="button" class="btn btn-secondary  active" onclick="onNext()" id="nextFloor" value="下一页">
+					<input hidden="true" class="btn btn-secondary  active" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
+					<e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>
 	  </tr>
 	</table>
-	<input type="hidden" name="aab101" value="1">
+	<input type="hidden" name="aab101" value="${aab101}">
 </form>
 </body>
 <%@include file="footer.jsp" %>

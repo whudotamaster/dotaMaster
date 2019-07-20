@@ -9,7 +9,7 @@ import com.neusoft.services.JdbcServicesSupport;
 public class Ad05ServicesImpl extends JdbcServicesSupport 
 {
 //用户添加投诉意见 insert into ad05
-	public boolean psnAddComplain()throws Exception
+	public boolean insert()throws Exception
 	{
     	Object aab101 = this.get("aab101");
     	Object aad502 = this.get("aad502");
@@ -28,18 +28,7 @@ public class Ad05ServicesImpl extends JdbcServicesSupport
 	}
 	
 	//管理员按照时间顺序列表待审核投诉
-		public List<Map<String, Object>> adminQueryComplain()throws Exception
-		{
-		  		//定义SQL主体
-		  		StringBuilder sql=new StringBuilder()		  			
-		  				.append("  SELECT a.aad501,a.aab101,a.aad502,a.aad503,a.aad504,a.aad505,b.aab102  ")  
-		  				.append("    FROM ad05 a ,ab01 b")
-		  				.append("   WHERE a.aad504=1 and b.aab101=a.aab101 ")//504待审核为1
-	  			    	.append(" ORDER BY a.aad505 DESC")//按照投诉时间降序排列
-		  				;
-		  		return this.queryForList(sql.toString());  	
-		  }
-		
+
 		public List<Map<String, Object>> query()throws Exception
 		{
 		  		//定义SQL主体

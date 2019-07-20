@@ -18,14 +18,16 @@
 ${msg}
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
-
+<div class="demoMatch" style="opacity: 0.9"></div>
 <br>
 <br>
 <form action="<%=path%>/findByIdPlayer.html" method="post">
-<table  border="1" align="center" width="45%">
-      <caption>
-              比赛添加   
-    </caption>
+<table  align="center" class="table table-striped" style="background-color:#DFDCD1;opacity: 0.9;width:45%">
+     <tr>
+      <td>
+              <font color="#000000" size="5px">比赛添加   </font>
+         </td>
+      </tr>
    <tr>
      <td colspan="2">比赛</td>
    </tr>
@@ -55,14 +57,16 @@ ${msg}
    </tr>  
    <tr>
      <td colspan="2" align="center">
-     <input type="submit" name="next" value="添加"
+     <input type="submit" class="btn btn-secondary  active" name="next" value="添加"
               formaction="<%=path%>/addMatch.html">
-       <input type="submit" name="next" value="返回" 
+       <input type="submit" class="btn btn-secondary  active" name="next" value="返回" 
               formaction="<%=path%>/queryMatch.html"
               formnovalidate="formnovalidate">
      </td>
    </tr>
 </table>
 </form>
+<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 </html>

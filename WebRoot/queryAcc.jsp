@@ -44,7 +44,10 @@ ${msg }
 	    <td>ÐòºÅ</td>
 	    <td>ÊÎÆ·Í¼Ïñ</td>
 	    <td>ÊÎÆ·Ãû</td>
-	    <td></td>
+	        <c:if test="${aab108==2}">
+				    <td>
+				    </td>
+				    </c:if>
 	   
 	  </tr>
 	   <c:choose>
@@ -68,11 +71,7 @@ ${msg }
 				      <a href="#" onclick="onDel('${ins.aac601}')">É¾³ý</a>
 				    </td>
 				    </c:if>
-				    <c:if test="${aab108==1}">
-				    <td>
-				      <a href="#" onclick="onBuy('${ins.aac601}')">¹ºÂò</a>
-				    </td>
-				    </c:if>
+
 				    
 				  </tr>
 		      </c:forEach>
@@ -83,7 +82,10 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
-			            <td></td>
+			        <c:if test="${aab108==2}">
+				    <td>
+				    </td>
+				    </c:if>
 			            
 			          </tr>
 		      </c:forEach>
@@ -95,7 +97,10 @@ ${msg }
 	             <td></td>
 	             <td></td>
 	             <td></td>
-	             <td></td>
+	                <c:if test="${aab108==2}">
+				    <td>
+				    </td>
+				    </c:if>
 	                   
 	           </tr>
 	        </c:forEach>
@@ -141,7 +146,6 @@ ${msg }
 <!-- ÒýÈë½Å²¿µ¼º½À¸ -->
 <%@ include file="footer.jsp" %>
 </body>
-<%@include file="footer.jsp" %>
 <script type="text/javascript">
       var count=0;
       function onSelect(vstate)

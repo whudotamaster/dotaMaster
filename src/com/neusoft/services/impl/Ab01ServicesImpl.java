@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import com.neusoft.services.JdbcServicesSupport;
 import com.neusoft.system.tools.Tools;
+import com.sun.corba.se.impl.orbutil.ObjectWriter;
 import com.sun.org.apache.bcel.internal.generic.Select;
 public class Ab01ServicesImpl extends JdbcServicesSupport 
 {
@@ -49,7 +50,15 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 				this.get("month"),
 				this.get("aab101")
 		};
-    	return this.executeUpdate(sql.toString(), args)>0;
+		if (this.executeUpdate(sql.toString(), args)>0) 
+		{
+			String sql2="select aab109 from ab01 where aab101=?";
+			Map<String, Object> map=this.queryForMap(sql2, this.get("aab101"));
+			this.setMessage("开通成功，VIP时间到 ："+map.get("aab109"));
+			return true;
+		}
+		
+    	return false;
     }
 	
 		/**
@@ -191,43 +200,19 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     }
     
     public List<Map<String,Object>> queryBuyOrder()throws Exception
-    {
-    	int number = 10 ;
-    	StringBuilder sql=new StringBuilder()
-    			.append("select a.aad401,a.aac601,a.aad402,a.aad403,a.aad404,a.aad405,b.aac602,b.aac605 from ad04 a,ac06 b where a.aac601=b.aac601	 and a.aab101=?" );
-    	String whereSql= "a.aab101=?";
-    	List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
-		Map<String, Object> map1 = new HashMap<String, Object>();
-    	int nowFloor =  1;
-		if (isNotNull(this.get("nowFloor"))) 
-		{
-			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
-		}
-		map1.put("floor", String.valueOf(countFloor("ad04 a,ac06 b",whereSql.toString(),number,this.get("aab101"))));
-		map1.put("nowFloor", String.valueOf(nowFloor));
-		rows.add(map1);
-		
-
-		sql.append(" limit ?,? ");
-		Object args[] = {
-				this.get("aab101"),
-				(nowFloor-1)*number,
-				number
-		};
-	
-		for(Map<String, Object> list:this.queryForList(sql.toString(), args))
-		{
-			rows.add(list);
-		}
-    	return rows;
-    }
-    
-    public List<Map<String,Object>> querySellOrder()throws Exception
-    {
-    	int number = 10 ;
+    {                          
+    	int number = 15 ;
     	StringBuilder whereSql=new StringBuilder();
     	StringBuilder sql=new StringBuilder()
-    			.append("select a.aad301,a.aac601,a.aad302,a.aad303,a.aad304,a.aad305,b.aac602,b.aac604 from ad03 a,ac06 b where a.aac601=b.aac601 and a.aab101=?");             
+    					  .append("select a.aad401,a.aac601,a.aad402,a.aad403,a.aad404,")
+    					  .append("       a.aad405,b.aac602,b.aac605,c.fvalue")
+    					  .append("  from ad04 a,ac06 b,syscode c ")
+    					  .append(" where a.aac601=b.aac601 and c.fname='aad403'")
+    					  .append("   and c.fcode=a.aad403 and a.aab101=?")
+    					  .append(" order by a.aad405 desc");
+    	whereSql.append("  and a.aac601=b.aac601 and c.fname='aad403'")
+         	    .append("   and c.fcode=a.aad403 and a.aab101=?");
+    	
     	List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map1 = new HashMap<String, Object>();
     	int nowFloor =  1;
@@ -235,22 +220,63 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 		{
 			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
 		}
-		map1.put("floor", String.valueOf(countFloor("ad03 a,ac06 b",whereSql.toString(),number,this.get("aab101"))));
+		map1.put("floor", String.valueOf(countFloor("ad04 a,ac06 b,syscode c",whereSql.toString(),number,this.get("aab101"))));
 		map1.put("nowFloor", String.valueOf(nowFloor));
 		rows.add(map1);
 		
 		
 		sql.append(" limit ?,? ");
-		Object args[] = {
+		Object args[]={
 				this.get("aab101"),
 				(nowFloor-1)*number,
 				number
-		};
+				};
+    	
 		for(Map<String, Object> list:this.queryForList(sql.toString(), args))
 		{
 			rows.add(list);
 		}
 		return rows;
+    }
+    
+    public List<Map<String,Object>> querySellOrder()throws Exception
+    {                 
+    	int number = 15 ; 
+    	StringBuilder whereSql=new StringBuilder();
+    	StringBuilder sql=new StringBuilder()
+				  .append("select a.aad301,a.aac601,a.aad302,a.aad303,a.aad304,")
+				  .append("       a.aad305,b.aac602,b.aac604,c.fvalue")
+				  .append("  from ad03 a,ac06 b,syscode c ")
+				  .append(" where a.aac601=b.aac601 and c.fname='aad303'")
+				  .append("   and c.fcode=a.aad303 and a.aab101=?")
+				  .append(" order by a.aad305 desc");
+    	whereSql.append("   and a.aac601=b.aac601 and c.fname='aad303'")
+		        .append("   and c.fcode=a.aad303 and a.aab101=?");
+    	
+
+    	List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+    		Map<String, Object> map1 = new HashMap<String, Object>();
+        	int nowFloor =  1;
+    		if (isNotNull(this.get("nowFloor")))
+    		{
+    			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+    		}
+    		map1.put("floor", String.valueOf(countFloor("ad03 a,ac06 b,syscode c",whereSql.toString(),number,this.get("aab101"))));
+    		map1.put("nowFloor", String.valueOf(nowFloor));
+    		rows.add(map1);
+    		
+    		
+    		sql.append(" limit ?,? ");
+    			Object args[]={
+    								this.get("aab101"),
+    								(nowFloor-1)*number,
+    								number
+    								};
+    		for(Map<String, Object> list:this.queryForList(sql.toString(), args))
+    		{
+    			rows.add(list);
+    		}
+    		return rows;
     }
     
     //登录判断方法
@@ -314,22 +340,24 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.queryForMap(sql.toString(), this.get("aab103"))!=null;
     }
     //用户注册
-    public int logonPerson()throws Exception
+    public boolean insert()throws Exception
     {
     	try
     	{
 	    	if (isExist()==true)
 	    	{
-	    		return 1000;//重名用户名不允许注册
+	    		this.setMessage("注册失败，用户名重复！");
+	    		return false;
 	    	}
 	    	else
 	    	{  
 		    	Object aab103 = this.get("aab103");
-			    	Object aab104 = Tools.getMd5(this.get("aab104"));
+			    Object aab104 = Tools.getMd5(this.get("aab104"));
 		    	//进行用户输入的数据长度判断
 		    	if(((String) aab103).length()>15)
 		    	{
-		    		return 2000;
+		    		this.setMessage("输入的用户名过长，最多可输入15位");
+		    		return false;
 		    	}
 		    	else
 		    	{
@@ -347,7 +375,9 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			    	this.executeUpdate(sql.toString(), paramList.toArray());
 			    	Object userId = this.getUserId(aab103);
 			    	Tools.setMission(userId);
-			    	return 0;
+			    	this.setMessage("注册成功，请登录！");
+			    	Tools.sendMessage("欢迎来到DotaMaster综合网站！你可以在本网站进行资讯查询，赛事竞猜，论坛交流，还可以参与互动获得M点，换取精美饰品！", userId);
+			    	return true;
 			    	//成功写入数据库
 			    }
 		    
@@ -357,11 +387,11 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	{
     		//报错，输出3000
     		e.printStackTrace();
-    		return 3000;
+    		return false;
     	}   	
     }
     //获得用户个人信息
-    public Map<String,Object> queryPersonEmp()throws Exception
+    public Map<String,Object> queryPerson()throws Exception
     {
     	try
     	{
@@ -371,7 +401,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     				.append("  from ab01 a")
     				.append(" where a.aab101=?")
     				;
-    		System.out.println("queryPersonEmp() aab101="+this.get("aab101"));
+    		System.out.println("queryPerson() aab101="+this.get("aab101"));
     		return this.queryForMap(sql.toString(), this.get("aab101"));
     	}
     	catch(Exception e)
@@ -398,7 +428,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	}
     }
     
-    public Map<String,Object> queryPersonEmp(Object aab101)throws Exception
+    public Map<String,Object> queryPerson(Object aab101)throws Exception
     {
     	try
     	{
@@ -418,8 +448,8 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     }
     
     
-    //用户修改个人信息
-    public boolean personUpdateEmp()throws Exception
+    //用户修改昵称
+    public boolean updateUsername()throws Exception
     {
     	try
     	{
@@ -625,13 +655,6 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.queryForMap(sql.toString(), this.get("aab101"));
     }
       
-    private final Map<String, Object> articleFindById() throws Exception
-    {
-    	Object aab801 = this.get("aab801");
-		Ab08ServicesImpl ab08 =new Ab08ServicesImpl();
-		return ab08.findById(aab801);
-	}
-    
       /**
        * 不定条件查询
        * @return

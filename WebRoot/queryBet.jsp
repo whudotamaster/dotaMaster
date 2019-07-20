@@ -91,8 +91,8 @@ ${msg }
 	   <c:choose>
 	     <c:when test="${rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
-		     <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="11">
-	    	   	  <tr style="height:60px">
+		     <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="16">
+	    	   	  <tr style="height:45px">
 				    <td>${vs.count }</td>
 				    <td>${ins.aac702 }</td>
 				    <td>${ins.aac1103 }</td>
@@ -116,8 +116,8 @@ ${msg }
 				  </tr>
 		      </c:forEach>
 		      <!-- 补充空行 -->
-		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="11">
-			           <tr style="height:60px">
+		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="16">
+			           <tr style="height:45px">
 			            <td></td>
 			            <td></td>
 			            <td></td>
@@ -134,8 +134,8 @@ ${msg }
 		      </c:forEach>
 	     </c:when>
 	     <c:otherwise>
-	        <c:forEach begin="1" step="1" end="11">
-	            <tr style="height:60px">
+	        <c:forEach begin="1" step="1" end="16">
+	            <tr style="height:45px">
 	             <td></td>
 	             <td></td>
 	             <td></td>
@@ -162,8 +162,8 @@ ${msg }
 	       <input type="submit" class="btn btn-secondary  active" onclick="back()" name="next" value="查看历史押注" 
 	              formaction="<%=path%>/queryUserBet.html">
 	   </c:if>           
-	              	<input type="button" onclick="onBack()" class="btn btn-secondary  active"  id="backFloor" value="上一页">
-					<input type="button" onclick="onNext()" class="btn btn-secondary  active"  id="nextFloor" value="下一页">
+	              	<input type="button" onclick="betPage();onBack()" class="btn btn-secondary  active"  id="backFloor" value="上一页">
+					<input type="button" onclick="betPage();onNext()" class="btn btn-secondary  active"  id="nextFloor" value="下一页">
 					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
 					<e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>
@@ -172,5 +172,12 @@ ${msg }
 	<input type="hidden" name="aab101" value="<%=aab101 %>">
 </form>
 </body>
+<script type="text/javascript">
+function betPage() {
+	  var vform = document.getElementById("myform");
+	  vform.action="<%=path%>/queryBet.html";
+	
+}
+</script>
 <%@include file="footer.jsp" %>
 </html>

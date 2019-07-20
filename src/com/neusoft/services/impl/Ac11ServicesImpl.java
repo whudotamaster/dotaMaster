@@ -82,8 +82,11 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
 		paramList.add(number);
 		for(Map<String, Object> list:this.queryForList(sql.toString(), paramList.toArray()))
 		{
+			String aac1102=list.get("aac1102").toString().replace(":00.0", " ");
+			list.put("aac1102", aac1102);
 			rows.add(list);
 		}
+		
 		return rows;
     }
 	
@@ -142,6 +145,8 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
 		int aac1101=0;
     	//1.±àÐ´SQLÓï¾ä	
 		String sql2="select aac701 from ac07 where aac702=?";
+		System.out.println(this.get("aac702"));
+		System.out.println(this.queryForMap(sql2, this.get("aac702")));
 		Object aac701=this.queryForMap(sql2, this.get("aac702")).get("aac701");
     	StringBuilder sql=new StringBuilder()
     			.append(" insert into ac11 (aac1102,aac1103,aac1104,aac1105,aac701)  ")
@@ -162,12 +167,17 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
     	}
     	StringBuilder sql3=new StringBuilder()
     			.append(" insert into ad01 (aac1101,aad102,aad103,aad104,aad105)        ")
-    			.append("            values (?,0,0, date_sub(now(), interval 48 hour),  ")
-    			.append("                   DATE_ADD(NOW(), INTERVAL 1 Hour))          ")
+    			.append("            values (?,0,0, date_sub(?, interval 48 hour),  ")
+    			.append("                   DATE_ADD(?, INTERVAL 1 Hour))          ")
     			;
-    	
-    	int n2=this.executeUpdate(sql3.toString(), aac1101);
+    	Object args2[]={
+    			aac1101,
+    			this.get("aac1102"),
+    			this.get("aac1102")
+    	};
+    	int n2=this.executeUpdate(sql3.toString(), args2);
     	System.out.println("²åÈë¾º²Â³É¹¦");
         return n1+n2>n1;	
     }
+
 }

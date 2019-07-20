@@ -5,7 +5,7 @@ public class AdminQueryArticleServlet extends ArticleControllerSupport
 	@Override
 	public String execute() throws Exception
 	{
-		this.adminQueryArticleServ();
+		this.query("adminQuery");
 		return "adminQueryArticle";
 	}
 }

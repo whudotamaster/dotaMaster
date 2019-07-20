@@ -24,7 +24,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	  		StringBuilder sql1=new StringBuilder()
 	  				.append(" select  x.aab801,x.aab101,x.aab802,x.aab803,x.aab804,    ")   
 	  				.append("	  		  x.aab805,x.aab806 ,y.aab102                      ")     
-	  				.append("  		   from ab08 x ,ab01 y                          ")
+	  				.append("  		   from ab08 x ,ab01 y                         ")
 	  				.append("        where x.aab101=y.aab101 and x.aab804 = 2   ")//804审核已通过为2
 	
 	  				;
@@ -65,7 +65,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	  }
 	
 	//管理员查询待审核文章
-	public List<Map<String,Object>> adminQueryArticle()throws Exception
+	public List<Map<String,Object>> adminQuery()throws Exception
 	  {
 		int number = 10;
 	  		//还原页面查询条件
@@ -127,10 +127,10 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
     	//1.编写SQL语句
     	StringBuilder sql1=new StringBuilder()
     			.append(" select  x.aab801,x.aab101,x.aab802,x.aab803,x.aab804,    ")   
-  				.append("	  		  x.aab805,x.aab806 ,y.aab102                      ")     
-  				.append("  		   from ab08 x ,ab01 y                          ")
+  				.append("	  		  x.aab805 ,y.aab102 ,z.fvalue aab806                     ")     
+  				.append("  		   from ab08 x ,ab01 y , syscode z                         ")
   				.append("        where x.aab101=y.aab101    ")
-  				.append("         and aab801= ? ")
+  				.append("         and aab801= ? and x.aab806 = z.fcode and z.fname='aab806'")
     			;
     	//执行查询
     	return this.queryForMap(sql1.toString(), aab801);

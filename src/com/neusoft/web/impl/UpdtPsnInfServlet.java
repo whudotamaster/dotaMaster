@@ -7,13 +7,13 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
-public class UpdtPsnInfServlet extends EmpControllerSupport 
+public class UpdtPsnInfServlet extends PersonControllerSupport 
 {
 	@Override
 	public String execute()throws Exception
 	{
-		this.updtPsnInfIn();
-		this.queryPersonIn();	
+		this.update("updateUsername");
+		this.queryMap("queryPerson");	
 		return "updatePersonInfo";
 	}
 }

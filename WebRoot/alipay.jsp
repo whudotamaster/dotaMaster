@@ -12,7 +12,6 @@ String amount=request.getParameter("b");
 amount=URLDecoder.decode(amount,"utf-8");
  %> 
 <html>
-<%=subject %>
 <head>
 <title>屶原右利嫋屶原</title>
 <style>

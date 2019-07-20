@@ -15,7 +15,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 	//用户进入首页时,查看当前是否有可押注的比赛
 	public List<Map<String, Object>> query()throws Exception
     {
-		int number = 10 ;
+		int number=15;
 		StringBuilder whereSql = new StringBuilder();
 		StringBuilder sql=new StringBuilder()
   				.append("select d.aad101,d.aad102,d.aad103,c.aac1101,")
@@ -39,9 +39,9 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 		
 		sql.append(" limit ?,? ");
 		Object args[]={
-					(nowFloor-1)*number,
-					number
-						};
+				(nowFloor-1)*number,
+				number
+		};
 		for(Map<String, Object> list:this.queryForList(sql.toString(),args))
 		{
 			rows.add(list);
@@ -129,6 +129,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     			this.get("aad101")
     	};
     	this.apppendSql(sql2.toString(), args2);
+    	Tools.completeMission(this.get("aab101"), 1);
     	if(this.executeTransaction())
     	{
     		this.setMessage("押注成功");
@@ -203,7 +204,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	//3.1获取用户押注列表
     	//list中属性有用户ID 押注A方数量 押注B方数量 此处需要计算出用户赚的额度 并且放入每一个map中
     	List<Map<String, Object>> list=this.queryUserCount(aad101);
-    	
+    	Ab01ServicesImpl ab01=new Ab01ServicesImpl();
     	//3.2根据比赛胜负来计算用户该单获得的金币,并存入map中
     	if(tag)
     	{
@@ -211,7 +212,21 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     		for(Map<String, Object> m:list)
     		{
     			tem=Integer.parseInt(m.get("aad202").toString());
-    			m.put("aad204", String.valueOf((tem+tem*countB/countA)*0.95));//根据用户是否为会员扣费暂时未做
+    			if(ab01.isVIP(m.get("aab101")))
+    			{
+    				if(countA!=0)
+    					m.put("aad204", String.valueOf(tem+tem*countB/countA*0.98));
+    				else
+    					m.put("aad204", String.valueOf(tem));
+    			}
+    			else
+    			{
+    				if(countA!=0)
+    					m.put("aad204", String.valueOf(tem+tem*countB/countA*0.95));
+    				else
+    					m.put("aad204", String.valueOf(tem));
+    			}
+    			
     		}
     	}
     	else
@@ -220,7 +235,20 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     		for(Map<String, Object> m:list)
     		{
     			tem=Integer.parseInt(m.get("aad203").toString());
-    			m.put("aad204", String.valueOf((tem+tem*countB/countA)*0.95));
+    			if(ab01.isVIP(m.get("aab101")))
+    			{
+    				if(countB!=0)
+    					m.put("aad204", String.valueOf(tem+tem*countA/countB*0.98));
+    				else
+    					m.put("aad204", String.valueOf(tem));
+    			}
+    			else
+    			{
+    				if(countB!=0)
+    					m.put("aad204", String.valueOf(tem+tem*countA/countB*0.95));
+    				else
+    					m.put("aad204", String.valueOf(tem));
+    			}
     			
     		}
     	}

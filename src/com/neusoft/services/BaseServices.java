@@ -26,12 +26,7 @@ public interface BaseServices
      {
     	 return null;
      }
-     
-     default List<Map<String,Object>> adminQueryArticle()throws Exception
 
-     {
-    	 return null;
-     }
      
      default  String getMessage() 
  	 {
@@ -43,10 +38,7 @@ public interface BaseServices
     	 return null;
      }
 
-     default List<Map<String,Object>> adminQuery()throws Exception
-     {
-    	 return null;
-     }
+   
      
      default List<Map<String,Object>> queryBuyOrder()throws Exception
      {
@@ -58,34 +50,11 @@ public interface BaseServices
     	 return null;
      }
 	
-	default boolean psnAddComplaint()throws Exception
+	default boolean insert()throws Exception
 	{
 		return false;
 	}
-
-	default List<Map<String, Object>> adminQueryComplain() throws Exception
-	{
-		return null;
-	}
-
-	 default Map<String, Object> loginEmp() throws Exception
-	 {
-		 return null;
-	 }
-	 default int logonPerson() throws Exception
-	 {
-		return 0;
-	 }
-
 	
-     default Map<String,Object> queryPersonEmp()throws Exception
-     {
-    	return null;
-     }
 
-	 default boolean personUpdateEmp()throws Exception
-	 {
-		return false;
-	 }
 
 }

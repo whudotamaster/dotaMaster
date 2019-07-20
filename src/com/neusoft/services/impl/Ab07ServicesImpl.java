@@ -83,7 +83,7 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
 		int number = 10;
 		Object aab101 = this.get("aab101");
     	StringBuilder sql=new StringBuilder()
-    			.append("select a.aab701,a.aab501,a.aab101,a.aab702,b.aab502,c.aab102")
+    			.append("select a.aab701,a.aab501,c.aab101,a.aab702,b.aab502,c.aab102")
     			.append("  from ab07 a,ab05 b,ab01 c")
     			.append(" where a.aab101=? and a.aab501=b.aab501 and b.aab101=c.aab101")
     			.append(" order by a.aab702 desc")

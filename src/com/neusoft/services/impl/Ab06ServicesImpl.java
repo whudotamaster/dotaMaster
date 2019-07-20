@@ -32,7 +32,13 @@ public class Ab06ServicesImpl extends JdbcServicesSupport
 							limitFloor,
 							number
 						};
-		return this.queryForList(sql.toString(), args);
+		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+		for(Map<String, Object> ins:this.queryForList(sql.toString(), args))
+		{
+			ins.put("aab604", ins.get("aab604").toString().replace(".0", ""));
+			rows.add(ins);
+		}
+		return rows;
 	}
 
 	/**
@@ -76,6 +82,8 @@ public class Ab06ServicesImpl extends JdbcServicesSupport
 								aab501 
 								};
 			tag = this.executeUpdate(sql3.toString(), args2) > 0 && tag;
+			Tools.completeMission(aab101, 1);
+			Tools.sendMessage("恭喜你完成每日任务_回帖，获得经验5点，M点5点！", aab101);
 			Ab01ServicesImpl ab01=new Ab01ServicesImpl();
 			ab01.addExp(aab101, "addComment");
 			return tag;

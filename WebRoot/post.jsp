@@ -18,8 +18,8 @@
 	align-items: center;
 	justify-content: center;
 	vertical-align:middle;
-    margin-left: 10px;
 	overflow: hidden;
+	margin-left: 10px;
 }
 
             .posthidden{
@@ -30,7 +30,6 @@ color:#000000;
 text-align:left;
 vertical-align:middle;
 }
-
 
   body
   {
@@ -95,11 +94,11 @@ ${msg }
 	   -->
 	         <!-- 显示实际查询到的数据 -->
 	    	   	  <tr>
-				    <td style="width:80px">
+				    <td style="width:120px">
 				    <div class="posthidden" style="width:95%">
 					<!-- #  用户名及头像--> 
 								<a style="color:#000000;text-decoration:underline" href="#" onclick="onEdit('${rows[1].aab101}')">${rows[1].aab102 }</a>
-								<img src=<%=path%>/images/${rows[1].aab105 } class="round_icon"
+								<img src="/Avatar/${rows[1].aab105 }" class="round_icon"
 								onclick="onEdit('${rows[1].aab101}')">
 								</div>
 				    </td>
@@ -145,7 +144,7 @@ ${msg }
 			            	 <td style="width:80px">
 				 			   <div class="posthidden" style="width:95%">
 								 <a style="color:#000000;text-decoration:underline" href="#" onclick="onEdit('${ins.aab101}')">${ins.aab102 }</a>
-								<img src=<%=path%>/images/${ins.aab105} class="round_icon"
+								<img src="/Avatar/${ins.aab105}" class="round_icon"
 								onclick="onEdit('${ins.aab101}')">
 								</div>
 							</td>
@@ -161,7 +160,7 @@ ${msg }
 	   <c:if test="${(rows[0].aab107)/100 >=  rows[1].aab507+0 || rows[1].aab101 == aab101}">
 	     <tr>
      <td colspan="2">
-		<div id="editor" style="width:100%;text-align:left;vertical-align:middle;background-color: #ffffff;opacity:1;"></div>
+		<div id="editor" style="width:100%;height:200px;text-align:left;vertical-align:middle;background-color: #ffffff;opacity:1;"></div>
      </td>
    </tr>
    </c:if>
@@ -187,8 +186,8 @@ ${msg }
                <input type="submit" onclick="back()"  class="btn btn-secondary  active" name="next" value="返回" 
               formaction="<%=path%>/forum.html"
               formnovalidate="formnovalidate">
-              	<input type="button" onclick="onBack()"  class="btn btn-secondary  active" id="backFloor" value="上一页">
-					<input type="button" onclick="onNext()"  class="btn btn-secondary  active" id="nextFloor" value="下一页">
+              	<input type="button" onclick="postPage('${param.aab501 }');onBack()"  class="btn btn-secondary  active" id="backFloor" value="上一页">
+					<input type="button" onclick="postPage('${param.aab501 }');onNext()"  class="btn btn-secondary  active" id="nextFloor" value="下一页">
 					<input hidden="true" type="text"  name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
 					<e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>
@@ -287,5 +286,21 @@ ${msg }
     	  vform.submit();
       }
       
+      function postPage(aab501) 
+      {
+    	  var vform = document.getElementById("myform");
+    	  vform.action="<%=path%>/post.html?aab501="+aab501;
+		}
    </script>
+   <style>
+   .w-e-text-container{
+height:173px; 
+max-height:173px; 
+}
+
+.w-e-text{
+height:173px; 
+max-height:173px; 
+}
+   </style>
 </html>
