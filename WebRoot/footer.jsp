@@ -4,10 +4,12 @@
 
 
 
-
-<p>页脚-ACVS组出品 AllrightsReserved</p>
+<div id="footer" align="center">
+<font size=2>
+<p>Dota Master ACVS组出品 AllrightsReserved</p>
 <a href="compToAdmin.jsp">向管理员投诉</a>
 <a>|</a>
 <a href="sendMail.jsp">向站长投诉</a>
-
+</font>
+</div>
 
