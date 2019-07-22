@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.sql.RowSet;
+import javax.tools.Tool;
 
 import org.apache.naming.java.javaURLContextFactory;
 import org.eclipse.jdt.internal.compiler.ast.ThisReference;
@@ -85,6 +86,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		//先判断能不能买
 		if(allowPurchase(this.get("aac601")))
 		{
+			Tools.completeMission(this.get("aab101"), 6);
 			//插入单次购买事务语句
 			this.buyAccessories(this.get("aac601"));
 			//执行事务
@@ -165,6 +167,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 			return false;	
 		}
 
+		Tools.completeMission(this.get("aab101"), 5);
 		return this.executeUpdate(sql, args)>0;
 		
 	}

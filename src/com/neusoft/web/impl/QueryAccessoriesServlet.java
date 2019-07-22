@@ -1,6 +1,6 @@
 package com.neusoft.web.impl;
 
-public class QueryAccServlet extends AccControllerSupport {
+public class QueryAccessoriesServlet extends AccControllerSupport {
 
 	@Override
 	public String execute() throws Exception 

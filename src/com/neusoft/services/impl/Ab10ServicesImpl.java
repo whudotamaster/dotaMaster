@@ -52,7 +52,7 @@ public class Ab10ServicesImpl extends JdbcServicesSupport
 	public void update(Object userId,Object missionId)throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
-					.append("UPDATE ab10 SET ab1002 = 1 WHERE aab101 = ? AND aab901 = ?")
+					.append("UPDATE ab10 SET aab1002 = 1 WHERE aab101 = ? AND aab901 = ?")
 					;
 		Object args[] = {userId,missionId};
 		if(!this.isComplete(userId, missionId))

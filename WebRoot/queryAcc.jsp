@@ -22,7 +22,7 @@ ${msg }
 <div class="demoAcc" style="opacity: 0.9"></div>
 <br>
 <br>
-<form id="myform" action="<%=path%>/queryAcc.html" method="post">
+<form id="myform" action="<%=path%>/queryAccessories.html" method="post" >
   <!-- 查询条件区 -->
 	<table align="center" class="table table-striped" style="background-color:#ABCDE7;opacity: 0.9;width:65%" >
 	  <tr>
@@ -107,7 +107,7 @@ ${msg }
 	  <tr>
 	    <td align="center">
 	    <div class="btn-group" role="group" aria-label="Basic example" style="text-align:center;">
-	       <input type="submit" class="btn btn-secondary  active" onclick="back()" name="next" value="查询">
+	       <input type="submit" class="btn btn-secondary  active" onclick="back()" name="next" value="查询" formaction="<%=path%>/queryAccessories.html">		     
 	       <c:if test="${!empty aab101}">
 	       <c:if test="${aab108==2}">
 	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
@@ -141,7 +141,6 @@ ${msg }
 <!-- 引入脚部导航栏 -->
 <%@ include file="footer.jsp" %>
 </body>
-<%@include file="footer.jsp" %>
 <script type="text/javascript">
       var count=0;
       function onSelect(vstate)

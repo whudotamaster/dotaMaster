@@ -291,7 +291,7 @@ String pic = (String)session.getAttribute("pic");
 			<input type="submit" class="btn btn-light" formaction="<%=path%>/mainPage.jsp" value="主页"/>
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryBet.html" value="竞猜"/>
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryArticle.html" value="文章"/>
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryAcc.html" value="饰品"/>
+		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryAccessories.html" value="饰品"/>
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryHero.html" value="英雄"/>
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryEquipment.html" value="装备"/>
 		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryEvent.html" value="赛事"/>
@@ -324,13 +324,7 @@ String pic = (String)session.getAttribute("pic");
 		<!--实现鼠标悬停出现菜单  -->
 		<div id="menu" style="position:absolute;top:15;right:0;width:300;height:10;z-index:2;visibility:hidden;"> 
 			<form action ="<%=path%>/queryPerson.html" method="post">
-<<<<<<< Upstream, based on branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 				<input type="hidden" name="aab101" value="<%=aab101%>">
-=======
-
-				<input type="hidden" name="aab101" value="<%=aab101%>">
-
->>>>>>> fbeca2a 鍒濇鏁村悎pull
 				<div class="btn-group-vertical btn-group-sm">
 				<c:if test="${!empty aab108}">
 				<input type="submit" name="toLog" class="btn btn-secondary" formaction="<%=path%>/logout.html" value="注销">
