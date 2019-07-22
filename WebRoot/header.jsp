@@ -310,7 +310,7 @@ String pic = (String)session.getAttribute("pic");
           	<c:if test="${aab108==2}">
           
              <li class="nav-item">
-            <a class="nav-link" href="<%=path%>/adminGo.jsp">网站管理</a>
+            <a class="nav-link" href="<%=path%>/adminGo.html">网站管理</a>
           </li>
           </c:if>
          </ul>
@@ -354,7 +354,7 @@ String pic = (String)session.getAttribute("pic");
 				<input type="submit" name="toLog" class="btn btn-secondary" formaction="<%=path%>/logout.html" value="登录">
 				</c:if>
 				<c:if test="${aab108!=null}">
-					<input type="submit"  name="toQpi" class="btn btn-secondary" formnovalidate="formnovalidate" value="个人信息">
+					<input type="submit"  name="toQpi" class="btn btn-secondary"  formaction="<%=path%>/queryPerson.html" value="个人信息">
 					<input type="submit" name="toNotice" class="btn btn-secondary" formaction="<%=path%>/queryNotice.html" value="系统消息">
 					<input type="submit" name="toMission" class="btn btn-secondary" formaction="<%=path%>/queryMission.html" value="日常任务">
 				</c:if>

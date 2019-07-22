@@ -99,6 +99,15 @@ public abstract class ControllerSupport implements BaseController
 		//2.调用方法
 		return  (List<Map<String, Object>>)method.invoke(services);
 	}
+	protected int executeCountMethod(String methodName)throws Exception
+	{
+		//1.获取需要调用的方法对象
+		Method method=this.services.getClass().getDeclaredMethod(methodName);
+		method.setAccessible(true);
+		//2.调用方法
+		return  (int)method.invoke(services);
+	}
+
 	
 	protected final void query(String methodName)throws Exception
 	{
@@ -266,7 +275,6 @@ public abstract class ControllerSupport implements BaseController
     {
     	this.attribute.put(key, value);
     }
-    
     @Override
     public final Map<String, Object> getAttribute() 
     {

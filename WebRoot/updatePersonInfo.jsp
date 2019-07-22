@@ -109,9 +109,7 @@ ${msg }
                 document.getElementById("img").src = "${pageContext.request.contextPath}/pic/" + req.responseText;
             }
         }
-<<<<<<< Upstream, based on branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
     }
-=======
         
         $("#totalCnt").change(function () {
             var totalCnt = $("#totalCnt").val();
@@ -126,7 +124,6 @@ ${msg }
                 return false;
             }
         })      
->>>>>>> 4b361b4 session消除 消息更新 登录界面优化 补充页脚
        
     </script>
 </html>
