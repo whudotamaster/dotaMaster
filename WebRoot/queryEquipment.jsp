@@ -65,9 +65,11 @@ ${msg }
 				      <!-- #  ¿ÕÃª -->
 				      <a href="#" onclick="onEdit('${ins.aac501}')">${ins.aac502 }</a>
 				    </td>
+				    <c:if test="${aab108==2}">
 				    <td>
 				      <a href="#" onclick="onDel('${ins.aac501}')">É¾³ý</a>
 				    </td>
+				    </c:if>
 				  </tr>
 		      </c:forEach>
 		      <!-- ²¹³ä¿ÕÐÐ -->

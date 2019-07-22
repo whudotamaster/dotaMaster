@@ -1,6 +1,7 @@
 package com.neusoft.services.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,13 +32,37 @@ public class Ad04ServicesImpl extends JdbcServicesSupport
 	//查看待发货列表
 	public List<Map<String, Object>> query()throws Exception
 	{
+		int number = 15 ;
+		StringBuilder whereSql=new StringBuilder();
 		StringBuilder sql=new StringBuilder()
 				.append("select a.aad401,a.aac601,a.aab101,a.aad402,a.aad403,")
 				.append("		a.aad404,a.aad405,b.fvalue,c.aac602,c.aac605")
 				.append(" from  ad04 a,syscode b,ac06 c ")
 				.append("where  a.aad403=0 and b.fname='aad403' and b.fcode=a.aad403 and a.aac601=c.aac601 order by a.aad405 desc")
 				;
-		return this.queryForList(sql.toString());
+		whereSql.append("and a.aad403=0 and b.fname='aad403' and b.fcode=a.aad403 and a.aac601=c.aac601");
+		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map1 = new HashMap<String, Object>();
+    	int nowFloor =  1;
+		if (isNotNull(this.get("nowFloor"))) 
+		{
+			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+		}
+		map1.put("floor", String.valueOf(countFloor("ad04 a,syscode b,ac06 c",whereSql.toString(),number,null)));
+		map1.put("nowFloor", String.valueOf(nowFloor));
+		rows.add(map1);
+		
+		
+		sql.append(" limit ?,? ");
+			Object args[]={
+								(nowFloor-1)*number,
+								number
+								};
+		for(Map<String, Object> list:this.queryForList(sql.toString(), args))
+		{
+			rows.add(list);
+		}
+		return rows;
 	}
 	//查看待发货订单详细信息
 	public Map<String, Object> findById()throws Exception

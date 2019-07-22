@@ -3,6 +3,8 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+
 <link rel="stylesheet"  href="css/bootstrap.min.css"/>
 <link rel="stylesheet" href="css/style.css"/>
 <script src="js/jquery-3.3.1.min.js"></script>
@@ -255,23 +257,6 @@
                 -o-background-size: cover;
                 background-position: center 0;
             } 
-            .demoTeam{
-                position:fixed;
-                top: 0;
-                left: 0;
-                width:100%;
-                height:100%;
-                min-width: 1000px;
-                z-index:-10;
-                zoom: 1;
-                background-color: #fff;
-                background: url(images/TeamBg.jpg);
-                background-repeat: no-repeat;
-                background-size: cover;
-                -webkit-background-size: cover;
-                -o-background-size: cover;
-                background-position: center 0;
-            } 
     </style>
 </head>
 <%
@@ -285,36 +270,72 @@ if(session.getAttribute("unRead")!=null)
 String path=request.getContextPath();
 String pic = (String)session.getAttribute("pic");
 %>
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <a class="navbar-brand" href="mainPage.jsp">Dota Master</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample03">
+        <ul class="navbar-nav mr-auto">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="<%=path%>/queryHero.html">英雄</a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" href="<%=path%>/queryEquipment.html">装备</a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" href="<%=path%>/queryAcc.html">饰品</a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" href="<%=path%>/forum.html">论坛</a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" href="<%=path%>/queryArticle.html">文章</a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" href="<%=path%>/queryEvent.html">赛事</a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" href="<%=path%>/queryMatch.html">比赛</a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" href="<%=path%>/queryBet.html">竞猜</a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" href="<%=path%>/queryPlayer.html">选手</a>
+          </li>		
+          	<c:if test="${aab108==2}">
+          
+             <li class="nav-item">
+            <a class="nav-link" href="<%=path%>/adminGo.jsp">网站管理</a>
+          </li>
+          </c:if>
+         </ul>
+      </div>
+    </nav>
 <div id="nav" >
-    <form method="post">			
-	<input type="hidden" name="aab101" value="<%=aab101%>">
-			<input type="submit" class="btn btn-light" formaction="<%=path%>/mainPage.jsp" value="主页"/>
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryBet.html" value="竞猜"/>
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryArticle.html" value="文章"/>
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryAccessories.html" value="饰品"/>
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryHero.html" value="英雄"/>
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryEquipment.html" value="装备"/>
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryEvent.html" value="赛事"/>
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryMatch.html" value="比赛"/>
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryTeam.html" value="战队"/>
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/queryPlayer.html" value="选手"/>
-		     <input type="submit" class="btn btn-light" formaction="<%=path%>/BuyVip.jsp" value="VIP"/>
-		    <input type="submit" class="btn btn-light" formaction="<%=path%>/BuyCurrency.jsp" value="虚拟货币"/>
-			<input type="submit" class="btn btn-light" formaction="<%=path%>/forum.html" value="论坛"/>
-			<c:if test="${aab108==2}">
-	            <input type="submit" class="btn btn-light" formaction="<%=path%>/adminGo.jsp"  value="网站管理"/>
-		    </c:if>
-</form>
-    <div id="back"  onmouseover="menu.style.visibility='visible'" onmouseout="out()"style="position:absolute;top:15;right:0;width:300;height:10;z-index:1;visibility:visible;"> 
+
+	
+
+    <div id="back"  onmouseover="menu.style.visibility='visible'" onmouseout="out()"style="position:absolute;top:15px;right:0px;width:300px;height:10px;z-index:1;visibility:visible;"> 
 		<span id="menubar" style="width:300" > 
-			<font color=red size=2>
+			<font color=white size=2>
 			   <c:if test="${aab108==2}">
-			   		 <img id="havatar" src="/Avatar/${pic}" onclick="changeAvatar()" style="height:50px;width:50px;" >
-			 		    <%=aab102%> 未读消息<%=unRead%>条 
+			   		 <img id="havatar" src="/Avatar/${pic}" onclick="changeAvatar()" style="height:35px;width:35px;" >
+			 		  管理员  <%=aab102%> 
+			 		<c:if test="${unRead!=0}">
+			 		  未读消息<%=unRead%>条 
+			 		  </c:if>
 			   </c:if>
 		 	   <c:if test="${aab108==1}">  	      
-		 	 		  <img id="havatar" src="/Avatar/${pic}" onclick="changeAvatar()" style="height:50px;width:50px;" >
-		 	   		  <%=aab102%> 未读消息<%=unRead%>条
+		 	 		  <img id="havatar" src="/Avatar/${pic}" onclick="changeAvatar()" style="height:35px;width:35px;" >
+		 	   		用户  <%=aab102%> 	
+		 	   		<c:if test="${unRead!=0}">
+			 		  未读消息<%=unRead%>条 
+			 		  </c:if>
 		 	   </c:if>
 			   		<c:if test="${aab108==null}">游客
 			   </c:if>		 
@@ -322,8 +343,8 @@ String pic = (String)session.getAttribute("pic");
 			</font>
 		</span> 
 		<!--实现鼠标悬停出现菜单  -->
-		<div id="menu" style="position:absolute;top:15;right:0;width:300;height:10;z-index:2;visibility:hidden;"> 
-			<form action ="<%=path%>/queryPerson.html" method="post">
+		<div id="menu" style="position:absolute;top:15px;right:0px;width:300;height:10px;z-index:2;visibility:hidden;"> 
+			<form method="post">
 				<input type="hidden" name="aab101" value="<%=aab101%>">
 				<div class="btn-group-vertical btn-group-sm">
 				<c:if test="${!empty aab108}">
@@ -336,10 +357,9 @@ String pic = (String)session.getAttribute("pic");
 					<input type="submit"  name="toQpi" class="btn btn-secondary" formnovalidate="formnovalidate" value="个人信息">
 					<input type="submit" name="toNotice" class="btn btn-secondary" formaction="<%=path%>/queryNotice.html" value="系统消息">
 					<input type="submit" name="toMission" class="btn btn-secondary" formaction="<%=path%>/queryMission.html" value="日常任务">
-					
 				</c:if>
 			  	<c:if test="${aab108==null}">
-	       			<input type="submit" name="psgToLog" class="btn btn-secondary" value="个人信息" formaction="<%=path%>/login.jsp">
+	       			<input type="submit" name="psgToLog" class="btn btn-secondary"  formaction="<%=path%>/login.jsp" value="个人信息">
 	       			<input type="submit" name="psgToNotice" class="btn btn-secondary" formaction="<%=path%>/login.jsp" value="查看系统消息">
 	     	    </c:if>
 	     	    </div>

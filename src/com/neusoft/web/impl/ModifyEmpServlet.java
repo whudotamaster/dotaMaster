@@ -2,7 +2,7 @@ package com.neusoft.web.impl;
 
 import com.neusoft.web.support.ControllerSupport;
 
-public class ModifyEmpServlet extends EmpControllerSupport {
+public class ModifyEmpServlet extends PersonControllerSupport {
 
 	@Override
 	public String execute() throws Exception

@@ -1,7 +1,6 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%String path=request.getContextPath();%>
 <html>
 <head>
 <title>Insert title here</title>
@@ -16,17 +15,17 @@
 </head>
 <body>
 ${msg}
+<%@ include file="header.jsp" %>
+<div class="demoAcc" style="opacity: 0.9"></div>
 <br>
 <br>
 <form action="<%=path%>/findByIdAcc.html" method="post">
-<table  border="1" align="center" width="45%">
-    <caption>
-               饰品添加
-      <hr width="160">
-    </caption>
+<table align="center" class="table table-striped" style="background-color:#ABCDE7;opacity: 0.9;width:45%">
    <tr>
-     <td colspan="2">饰品</td>
-   </tr>
+    <td>
+        <font color="#000000" size="5px">饰品添加</font>
+    </td>
+    </tr>
    <tr>
      <td>饰品名</td>
      <td>
@@ -65,9 +64,9 @@ ${msg}
    </tr> 
    <tr>
      <td colspan="2" align="center">
-     <input type="submit" name="next" value="添加"
+     <input type="submit" class="btn btn-secondary  active" name="next" value="添加"
               formaction="<%=path%>/addAcc.html">
-       <input type="submit" name="next" value="返回" 
+       <input type="submit" class="btn btn-secondary  active"  name="next" value="返回" 
               formaction="<%=path%>/queryAcc.html"
               formnovalidate="formnovalidate">
      </td>

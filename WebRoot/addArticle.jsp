@@ -41,7 +41,7 @@ ${msg}
    <tr>
      <td>文章类型</td>
      <td>
-       <e:text name="aab806"  required="true"   /> 
+       <e:radio name="aab806"  required="true"  value="其他:0,比赛战报:1,英雄攻略:2" defval="0" /> 
      </td>
    </tr>  
 

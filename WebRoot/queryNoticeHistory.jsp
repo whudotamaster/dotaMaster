@@ -22,7 +22,7 @@ ${msg }
 <br>
 <br>
     
-<form id="myform"  method="post">
+<form id="myform" action="<%=path%>/queryNoticeHistory.html" method="post">
 	<!-- 数据迭代区 -->
 	<table border="1" width="95%" align="center">
 	  <tr>
@@ -39,7 +39,7 @@ ${msg }
 	   <c:choose>
 	     <c:when test="${rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
-		     <c:forEach items="${rows }" var="ins" varStatus="vs">
+		     <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="10">
 	    	   	  <tr>
 	    	   	    <td>${vs.count }</td>
 				    <td>${ins.aad602 }</td>
@@ -75,7 +75,10 @@ ${msg }
 	       <input type="submit" name="next" value="刷新" formaction="<%=path%>/queryNoticeHistory.html">
 	        <input type="submit" id="del" name="next" value="返回主页" 
 	              formaction="<%=path%>/mainPage.jsp">
-	        
+	        	<input type="button" class="btn btn-secondary  active" onclick="onBack()" id="backFloor" value="上一页">
+					<input type="button" class="btn btn-secondary  active" onclick="onNext()" id="nextFloor" value="下一页">
+					<input hidden="true" class="btn btn-secondary  active" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
+					<e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>
 	  </tr>
 	</table>

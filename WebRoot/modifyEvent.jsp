@@ -36,7 +36,7 @@ ${msg}
    <tr>
      <td>赛事级别</td>
      <td>
-       <e:text name="aac703"  required="true"  readonly="${aab108!=2}" defval="${ins.aac703 }"/>
+       <e:radio name="aac703"  required="true"  readonly="${aab108!=2}" value="Major:0,Minor:1,其他:2" defval="${ins.aac703 }" />
      </td>
    </tr> 
    <tr>

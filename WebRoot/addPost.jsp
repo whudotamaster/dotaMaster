@@ -11,40 +11,71 @@
   msg{
      color:#FF0000
   }
+  
+         .addPost{
+
+                position:fixed;
+
+                top: 0;
+
+                left: 0;
+
+                width:100%;
+
+                height:100%;
+
+                min-width: 1000px;
+
+                z-index:-10;
+
+                zoom: 1;
+
+                background-color: #fff;
+
+                background: url(images/addPost.png);
+
+                background-repeat: no-repeat;
+
+                background-size: cover;
+
+                -webkit-background-size: cover;
+
+                -o-background-size: cover;
+
+                background-position: center 0;
+
+            }
 </style>
 
 </head>
 <body>
+<div class="addPost"></div>
 <%@ include file="header.jsp" %>
 ${msg }
 <br>
 <br>
 <form action="<%=path%>/addEmp.html" method="post">
-<table  border="1" align="center" width="45%">
-    <caption>
-       发帖<%=aab101!=null %>
-      <hr width="160">
-    </caption>
+<table  border="1" align="center" class="table table-striped" style="background-color:#a3a9a6;opacity: 0.95;width:55%">
    <c:choose>
    <c:when test="<%=aab101!=null %>">
       <tr>
-	     <td>标题</td>
+	     <td width="100px">标题</td>
 	     <td>
 	       <e:text name="apaab502"  required="true" defval=""/> 
 	     </td>
 	   </tr>
 	    <tr>
-	     <td>观看权限</td>
+	     <td width="100px">观看权限</td>
 	     <td>
 	       <e:select name="apaab507" value="不限:0,1级会员:1,2级会员:2,3级会员:3,4级会员:4,5级会员:5,管理員:9" defval="0" />
 	     </td>
 	   </tr>
 	   <tr>
-     <td>內容</td>
+     <td width="100px">內容</td>
      <td>
     <!--     <e:textarea rows="5" cols="45" name="apaab503" required="true" defval=""/>
        -->
-      <div id="editor" style="width:75%,max-width:750px,min-width:500px"></div>
+      <div id="editor" style="width:100%;background-color:#ffffff"></div>
    
      </td>
    </tr>

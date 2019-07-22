@@ -1,7 +1,7 @@
 <%@ page language="java"  pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <html>
@@ -56,6 +56,12 @@ ${msg }
 	 <td>当前经验值</td>
 	 	<td>
  	       <e:text name="aab107" required="true" readonly="true" defval="${ins.aab107 }"/> 
+	 	</td>
+	 	</tr>
+	 	 <tr>
+	 <td>当前等级</td>
+	 	<td>
+		 	<fmt:formatNumber value="${(ins.aab107-ins.aab107%100)/100 }" pattern="#" type="number"/> 
 	 	</td>
 	 	</tr>
 	 	<tr>

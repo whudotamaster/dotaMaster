@@ -51,9 +51,9 @@ public class SendMailServlet extends HttpServlet
 	        message.setRecipients(Message.RecipientType.TO, 
 	        		new InternetAddress[]{
 	        				//以下公布受害人名单
-	        				new InternetAddress("7005881@qq.com")        				
+	        				new InternetAddress("7005881@qq.com"),        				
 //	        				new InternetAddress("452181717@qq.com"),
-//	        				new InternetAddress("2368392847@qq.com"),//二把手和三把手的邮箱
+	        				new InternetAddress("2368392847@qq.com")//二把手和三把手的邮箱
 //	        				new InternetAddress("623582881@qq.com")
 	        				});
 	        //小组其他三人的邮箱 他们都是boss 负责收件

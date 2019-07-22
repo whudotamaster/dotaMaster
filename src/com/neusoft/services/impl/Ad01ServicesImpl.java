@@ -15,6 +15,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 	//用户进入首页时,查看当前是否有可押注的比赛
 	public List<Map<String, Object>> query()throws Exception
     {
+		int number=15;
 		StringBuilder whereSql = new StringBuilder();
 		StringBuilder sql=new StringBuilder()
   				.append("select d.aad101,d.aad102,d.aad103,c.aac1101,")
@@ -31,13 +32,17 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
 		}
 		whereSql.append("and d.aac1101=c.aac1101 and e.aac701=c.aac701 and now()>d.aad104 and now()<d.aad105");
-		map1.put("floor", String.valueOf(countFloor(" ac11 c,ad01 d,ac07 e ",whereSql.toString(),null)));
+		map1.put("floor", String.valueOf(countFloor(" ac11 c,ad01 d,ac07 e ",whereSql.toString(),number,null)));
 		map1.put("nowFloor", String.valueOf(nowFloor));
 		rows.add(map1);
 		
 		
-		sql.append(" limit ?,10 ");
-		for(Map<String, Object> list:this.queryForList(sql.toString(),(nowFloor-1)*10))
+		sql.append(" limit ?,? ");
+		Object args[]={
+				(nowFloor-1)*number,
+				number
+		};
+		for(Map<String, Object> list:this.queryForList(sql.toString(),args))
 		{
 			rows.add(list);
 		}
@@ -124,7 +129,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     			this.get("aad101")
     	};
     	this.apppendSql(sql2.toString(), args2);
-    	Tools.completeMission(this.get("aab101"), 1);
+    	Tools.completeMission(this.get("aab101"), 4);
     	if(this.executeTransaction())
     	{
     		this.setMessage("押注成功");

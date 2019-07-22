@@ -29,7 +29,7 @@ public class QueryOtherPersonServlet extends HttpServlet
 		Ab01ServicesImpl ab01 = new Ab01ServicesImpl();
 		try
 		{
-		Map<String,Object> qins = ab01.queryPersonEmp(dto.get("qaab101"));
+		Map<String,Object> qins = ab01.queryPerson(dto.get("qaab101"));
 		request.setAttribute("qins", qins);
 
 		}catch(Exception e)

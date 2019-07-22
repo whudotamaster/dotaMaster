@@ -7,7 +7,12 @@
 <title>Insert title here</title>
 <style type="text/css">
 tr {
-	height: 25px;
+	height: 40px;
+}
+
+#a td {
+style=text-align:left;
+vertical-align:middle;
 }
 
 .round_icon {
@@ -19,25 +24,64 @@ tr {
 	justify-content: center;
 	overflow: hidden;
 }
+
+ body
+  {
+  color:black;
+  }
+       .demoTimg{
+
+                position:fixed;
+
+                top: 0;
+
+                left: 0;
+
+                width:100%;
+
+                height:100%;
+
+                min-width: 1000px;
+
+                z-index:-10;
+
+                zoom: 1;
+
+                background-color: #fff;
+
+                background: url(images/hc.png);
+
+                background-repeat: no-repeat;
+
+                background-size: cover;
+
+                -webkit-background-size: cover;
+
+                -o-background-size: cover;
+
+                background-position: center 0;
+
+            }
+            .posthidden{
+white-space:nowrap;
+overflow:hidden; 
+text-overflow:ellipsis;
+color:#000000;
+}
 </style>
 
 </head>
 <body >
+<div class="demoTimg"></div>
 <%@ include file="header.jsp" %>
 	${msg }
 	<br>
 	<br>
 	<form id="myform" action="<%=path%>/queryCollection.html" method="post">
 		<!-- 查询条件区 -->
-		<table border="1" width="95%" align="center">
-			<caption>
-				收藏页面
-				<hr width="160">
-			</caption>
-		</table>
+		
 		<!-- 数据迭代区 -->
-		<table border="1" width="95%" align="center">
-			<tr>
+		<table align="center" class="table table-striped" id="a" style="background-color:#8eb0cc;opacity: 0.9;width:80%">
 				<td></td>
 				<td>帖标题</td>
 				<td>发帖人</td>
@@ -58,16 +102,18 @@ tr {
 							<td><input type="checkbox" name="idlist"
 								value="${ins.aab701 }" onclick="onSelect(this.checked)">
 								</td>
-								<td>
+								<td width="50%">
 							<!-- #  空锚 --> 
-							<a href="#" onclick="onVisit('${ins.aab501 }')">${ins.aab502 }</a>
+							<div class="posthidden" style="width:80%">
+							<a href="#" onclick="onVisit('${ins.aab501 }')"  style="color:#000000;text-decoration:underline">${ins.aab502 }</a>
+							</div>
 							</td>
-							<td>
+							<td width="15%">
 								<!-- #  用户名及头像--> 
-								<a href="#" onclick="onEdit('${ins.aab101}')">${ins.aab102 }</a>
+								<a href="#" onclick="onCheck('${ins.aab101}')"  style="color:#000000;text-decoration:underline" >${ins.aab102 }</a>
 							</td>
 							<td>${ins.aab702 }</td>
-							<td><a href="#" onclick="onDelCollection('${ins.aab501}')">删除</a></td>
+							<td><a href="#" onclick="onDelCollection('${ins.aab501}')"  style="color:#000000;text-decoration:underline">删除</a></td>
 						</tr>
 					</c:forEach>
 					<!-- 补充空行 -->
@@ -95,18 +141,18 @@ tr {
 			</c:choose>
 		</table>
 		<!-- 功能按钮区 -->
-		<table border="1" width="95%" align="center">
+		<table width="95%" align="center">
 			<tr>
 				<td align="center">
-				<input type="submit"
+				<input type="submit" class="btn btn-secondary  active"
 					id="delCollection" name="next" value="删除收藏" 
 					disabled="disabled"
 					formaction="<%=path%>/delCollection.html">
-				  <input type="submit" name="next" onclick="back()" value="返回" 
+				  <input type="submit" class="btn btn-secondary  active" name="next" onclick="back()" value="返回" 
               formaction="<%=path%>/forum.html"
               formnovalidate="formnovalidate">
-                   	<input type="button" onclick="onBack()" id="backFloor" value="上一页">
-					<input type="button" onclick="onNext()" id="nextFloor" value="下一页">
+                   	<input type="button" class="btn btn-secondary  active" onclick="collectionPage();onBack()" id="backFloor" value="上一页">
+					<input type="button" class="btn btn-secondary  active" onclick="collectionPage();onNext()" id="nextFloor" value="下一页">
 					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
 					<e:hidden name="floor" defval="${rows[0].floor }"/>
 					</td>
@@ -142,5 +188,18 @@ tr {
     	 vform.submit();
       } 
       
+      function onCheck(qaab101)
+      {
+    	  var vform = document.getElementById("myform");
+     	 vform.action="<%=path%>/queryOtherPerson.htm?qaab101="+ qaab101;
+     	 //alert(vform.action);
+     	 vform.submit();
+      }
+      
+      function collectionPage() 
+      {
+    	  var vform = document.getElementById("myform");
+      	 vform.action="<%=path%>/queryHistoryById.html;
+	 }
    </script>
 </html>

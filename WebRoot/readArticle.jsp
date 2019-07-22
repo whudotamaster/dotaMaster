@@ -80,13 +80,34 @@ ${msg}
 					formaction="<%=path%>/unpassArticle.html"
 					formnovalidate="formnovalidate">
 		</c:if>
-
+		<c:if test="${aab101 !=null }">
+ 						<input type="button" class="btn btn-secondary  active" value="打赏" 
+				       onclick="reward('${param.aab801 }','${ins.aab101}')"
+				            formnovalidate="formnovalidate" >
+				            </c:if>
+				         <c:if test="${aab101 ==null }">
+ 						<input type="button" class="btn btn-secondary  active" value="打赏" 
+				       		formaction = "login.html"
+				            formnovalidate="formnovalidate" >
+				            </c:if>   
      </td>
    </tr>
    		<input type="hidden" name="aab801" value="${ins.aab801 }">
+   		<input type="hidden" name="aab101" value="${aab101 }">
 </table>
 </form>
 <!-- 引入脚部导航栏 -->
 <%@ include file="footer.jsp" %>
+<script>
+function reward(vaab801,paab101)
+{	
+	 var vform = document.getElementById("myform");
+
+	 vform.action="<%=path%>/rewardForArticle.html?paab101="+paab101;
+
+	 //alert(vform.action);
+	 vform.submit();
+}
+</script>
 </body>
 </html>

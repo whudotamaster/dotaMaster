@@ -80,13 +80,14 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
 	 */
 	public List<Map<String,Object>> queryCollectionList() throws Exception
 	{
+		int number = 10;
 		Object aab101 = this.get("aab101");
     	StringBuilder sql=new StringBuilder()
-    			.append("select a.aab701,a.aab501,a.aab101,a.aab702,b.aab502,c.aab102")
+    			.append("select a.aab701,a.aab501,c.aab101,a.aab702,b.aab502,c.aab102")
     			.append("  from ab07 a,ab05 b,ab01 c")
     			.append(" where a.aab101=? and a.aab501=b.aab501 and b.aab101=c.aab101")
     			.append(" order by a.aab702 desc")
-    			.append(" limit ?,10 ");
+    			.append(" limit ?,? ");
     			;
     	int nowFloor =  1;
 		if (isNotNull(this.get("nowFloor"))) 
@@ -95,11 +96,12 @@ public class Ab07ServicesImpl extends JdbcServicesSupport
 		}
 		Object args[]={
 						aab101,
-						(nowFloor-1)*10
+						(nowFloor-1)*number,
+						number
 						};
     	List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map1 = new HashMap<String, Object>();
-    	map1.put("floor", String.valueOf(countFloor("ab07 a","and a.aab101=?",aab101)));
+    	map1.put("floor", String.valueOf(countFloor("ab07 a","and a.aab101=?",number,aab101)));
 		map1.put("nowFloor", String.valueOf(nowFloor));
 		rows.add(map1);
 		for(Map<String, Object> post:queryForList(sql.toString(), args))

@@ -9,12 +9,12 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 
 
-public class QueryPersonServlet extends EmpControllerSupport 
+public class QueryPersonServlet extends PersonControllerSupport 
 {
 	@Override
 	public String execute()throws Exception
 	{
-		this.queryPersonIn();
+		this.queryMap("queryPerson");
 	    return  "updatePersonInfo";
 	}
 }

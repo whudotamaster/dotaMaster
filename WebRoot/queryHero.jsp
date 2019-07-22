@@ -18,19 +18,6 @@ ${msg }
 <div class="demo" style="opacity: 0.9"></div>
 <br>
 <br>
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
-  </div>
-</div>
 <form id="myform" action="<%=path%>/queryHero.html" method="post">
   <!-- 查询条件区 -->
 	<table align="center" class="table table-striped" style="background-color:#D1DDF4;opacity: 0.9;width:85%">

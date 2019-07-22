@@ -22,7 +22,7 @@ ${msg }
 <div class="demoAcc" style="opacity: 0.9"></div>
 <br>
 <br>
-<form id="myform" action="<%=path%>/queryAccessories.html" method="post" >
+<form id="myform" action="<%=path%>/queryAcc.html" method="post" >
   <!-- 查询条件区 -->
 	<table align="center" class="table table-striped" style="background-color:#ABCDE7;opacity: 0.9;width:65%" >
 	  <tr>
@@ -44,7 +44,10 @@ ${msg }
 	    <td>序号</td>
 	    <td>饰品图像</td>
 	    <td>饰品名</td>
-	    <td></td>
+	        <c:if test="${aab108==2}">
+				    <td>
+				    </td>
+				    </c:if>
 	   
 	  </tr>
 	   <c:choose>
@@ -68,11 +71,7 @@ ${msg }
 				      <a href="#" onclick="onDel('${ins.aac601}')">删除</a>
 				    </td>
 				    </c:if>
-				    <c:if test="${aab108==1}">
-				    <td>
-				      <a href="#" onclick="onBuy('${ins.aac601}')">购买</a>
-				    </td>
-				    </c:if>
+
 				    
 				  </tr>
 		      </c:forEach>
@@ -83,7 +82,10 @@ ${msg }
 			            <td></td>
 			            <td></td>
 			            <td></td>
-			            <td></td>
+			        <c:if test="${aab108==2}">
+				    <td>
+				    </td>
+				    </c:if>
 			            
 			          </tr>
 		      </c:forEach>
@@ -95,7 +97,10 @@ ${msg }
 	             <td></td>
 	             <td></td>
 	             <td></td>
-	             <td></td>
+	                <c:if test="${aab108==2}">
+				    <td>
+				    </td>
+				    </c:if>
 	                   
 	           </tr>
 	        </c:forEach>
@@ -107,7 +112,7 @@ ${msg }
 	  <tr>
 	    <td align="center">
 	    <div class="btn-group" role="group" aria-label="Basic example" style="text-align:center;">
-	       <input type="submit" class="btn btn-secondary  active" onclick="back()" name="next" value="查询" formaction="<%=path%>/queryAccessories.html">		     
+	       <input type="submit" class="btn btn-secondary  active" onclick="back()" name="next" value="查询" formaction="<%=path%>/queryAcc.html">		     
 	       <c:if test="${!empty aab101}">
 	       <c:if test="${aab108==2}">
 	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 

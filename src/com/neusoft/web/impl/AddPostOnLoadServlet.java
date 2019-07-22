@@ -1,11 +1,11 @@
 package com.neusoft.web.impl;
-public class AddPostOnLoadServlet extends EmpControllerSupport 
+public class AddPostOnLoadServlet extends PersonControllerSupport 
 {
 
 	@Override
 	public String execute() throws Exception 
 	{
-		this.queryMap("queryPersonEmp");
+		this.queryMap("queryPerson");
 	return "addPost";
 	}
 

@@ -18,6 +18,8 @@ msg {
 	<%@ include file="header.jsp"%>
 	<div class="demo" style="opacity: 0.9"></div>
 	${msg}
+	${ins.rows2}
+	${ins.rows}
 	<br>
 	<br>
 	<form action="<%=path%>/findByIdTeam.html" method="post" id="myform">
@@ -34,11 +36,11 @@ msg {
 			<tr>
 				<td>英雄名</td>
 				<td><e:text name="aac102" readonly="readonly" required="true"
-						defval="${rows[0].aac102 }" /></td>
+						defval="${ins.aac102 }" /></td>
 			</tr>
 			<tr>
 				<td>英雄图像</td>
-				<td><img alt="no image" src=<%=path%>/images/${rows[0].aac112 } style="width: 12%; height: 100%">
+				<td><img alt="no image" src=<%=path%>/images/${ins.aac112 } style="width: 12%; height: 100%">
 				</td>
 			</tr>
 			<tr>
@@ -49,9 +51,9 @@ msg {
 				<td colspan="2">技能</td>
 			</tr>
 			<c:choose>
-				<c:when test="${rows2!=null }">
+				<c:when test="${ins.rows2!=null }">
 					<!-- 显示实际查询到的数据 -->
-					<c:forEach items="${rows2 }" var="ins" varStatus="vs">
+					<c:forEach items="${ins.rows2 }" var="ins" varStatus="vs">
 						<tr>
 							<td>技能图像</td>
 							<td><img alt="no image" src=<%=path%>/images/${ins.aac306 } style="width: 12%; height: 100%">
@@ -87,9 +89,9 @@ msg {
 				<td colspan="2">天赋</td>
 			</tr>
 			<c:choose>
-				<c:when test="${rows!=null }">
+				<c:when test="${ins.rows!=null }">
 					<!-- 显示实际查询到的数据 -->
-					<c:forEach items="${rows }" var="ins" varStatus="vs">
+					<c:forEach items="${ins.rows }" var="ins" varStatus="vs">
 						<tr>
 							<td>天赋等级</td>
 

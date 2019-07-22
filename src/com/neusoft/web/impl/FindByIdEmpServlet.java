@@ -1,6 +1,6 @@
 package com.neusoft.web.impl;
 
-public class FindByIdEmpServlet extends EmpControllerSupport 
+public class FindByIdEmpServlet extends PersonControllerSupport 
 {
 
 	@Override

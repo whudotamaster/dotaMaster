@@ -20,7 +20,6 @@
     String subject = new String(request.getParameter("WIDsubject").getBytes("ISO-8859-1"),"GBK");
     //商品描述，可空
     String body = new String(request.getParameter("WIDbody").getBytes("ISO-8859-1"),"GBK");
-    out.print(subject);
 
 	//设置请求参数
 	AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();

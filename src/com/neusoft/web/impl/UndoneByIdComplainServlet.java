@@ -8,7 +8,7 @@ public class UndoneByIdComplainServlet extends ComplainControllerSupport
 	public String execute()throws Exception
 	{
 		this.update("undoneById","完成忽略处理");
-		this.adminQueryComplainServ();
+		this.savePageData();
 		return "adminQueryComplain";
 	}
 }

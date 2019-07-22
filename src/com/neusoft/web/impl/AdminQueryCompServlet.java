@@ -5,7 +5,7 @@ public class AdminQueryCompServlet extends ComplainControllerSupport
 	@Override
 	public String execute()throws Exception
 	{
-		this.adminQueryComplainServ();
+		this.savePageData();
 		return "adminQueryComplain";
 	}
 }

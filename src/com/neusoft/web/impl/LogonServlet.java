@@ -14,7 +14,7 @@ public class LogonServlet extends UserControllerSupport
 	@Override
 	public String execute()throws Exception 
 	{
-		this.logonIn();
+		this.update("insert");
 		return "login";
 	}
 }

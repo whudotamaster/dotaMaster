@@ -1,6 +1,6 @@
 package com.neusoft.web.impl;
 
-public class RewardServlet extends EmpControllerSupport 
+public class RewardServlet extends PersonControllerSupport 
 {
 
 	@Override
