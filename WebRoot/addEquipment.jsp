@@ -4,7 +4,8 @@
 <html>
 <head>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
-<title>Insert title here</title>
+<title>Ìí¼Ó×°±¸</title>
+<link rel="shortcut icon" href="ico/favicon.ico" />
 <style type="text/css">
   td{
       height:30px;

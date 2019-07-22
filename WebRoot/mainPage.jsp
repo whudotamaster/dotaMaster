@@ -31,7 +31,7 @@ setTimeout('refresh()', 1);
 <html>
 <head>
 	<title>ึ๗าณ</title>
-
+<link rel="shortcut icon" href="ico/favicon.ico" />
 </head>
 
 

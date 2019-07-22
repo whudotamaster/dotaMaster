@@ -5,6 +5,7 @@
 <html>
 <head>
 <title>修改个人信息</title>
+<link rel="shortcut icon" href="ico/favicon.ico" />
 </head>
 <body>
 <!-- 引入头部导航栏 -->

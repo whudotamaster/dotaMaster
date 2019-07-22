@@ -4,7 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
-<title>Insert title here</title>
+<title>我收藏的帖子</title>
+<link rel="shortcut icon" href="ico/favicon.ico" />
+
 <style type="text/css">
 tr {
 	height: 40px;

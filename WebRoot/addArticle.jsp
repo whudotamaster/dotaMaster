@@ -4,7 +4,8 @@
 
 <html>
 <head>
-<title>Insert title here</title>
+<link rel="shortcut icon" href="ico/favicon.ico" />
+<title>лМ╪сндуб</title>
 <style type="text/css">
   td{
       height:30px;

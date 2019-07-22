@@ -3,6 +3,7 @@
 <html>
 <head>
 <title>¥¶¿Ì…ÍÀﬂ</title>
+<link rel="shortcut icon" href="ico/favicon.ico" />
 <style type="text/css">
 tr {
 	height: 25px;

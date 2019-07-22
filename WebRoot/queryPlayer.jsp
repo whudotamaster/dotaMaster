@@ -4,7 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
-   <title>Insert title here</title>
+   <title>查看选手信息</title>
+   <link rel="shortcut icon" href="ico/favicon.ico" />
+   
    <style type="text/css">
      tr
      {
@@ -15,7 +17,7 @@
 <body>
 <%@ include file="header.jsp" %>
 <div class="demoPlayer" style="opacity: 0.9"></div>
-${msg }
+
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryPlayer.html" method="post">

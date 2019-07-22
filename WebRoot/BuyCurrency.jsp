@@ -3,7 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<title>Insert title here</title>
+<title>购买M点</title>
+<link rel="shortcut icon" href="ico/favicon.ico" />
 <style type="text/css">
 .rtop dd{ text-algin:center }
 </style>
@@ -15,7 +16,7 @@
 <table align="center" class="table table-striped" style="background-color:#EEEEEE;opacity: 0.9;width:45%">
     <tr>
     <td>
-      <font color="#000000" size="5px"> 虚拟货币购买</font>
+      <font color="#000000" size="5px"> M点购买</font>
     </td>
     </tr>
    <tr>
@@ -33,7 +34,7 @@
    <tr>
      <td>商品描述</td>
      <td>
-       <e:textarea rows="5" cols="45" name="WIDbody" value="这是一个虚拟货币购买测试用例，比例为1：100"  />
+       <e:textarea rows="5" cols="45" name="WIDbody" value="这是一个M点购买测试用例，比例为1：100"  />
      </td>
    </tr>
    <tr>

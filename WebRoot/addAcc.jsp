@@ -3,7 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<title>Insert title here</title>
+<link rel="shortcut icon" href="ico/favicon.ico" />
+<title>Ìí¼ÓÊÎÆ·</title>
 <style type="text/css">
   td{
       height:30px;

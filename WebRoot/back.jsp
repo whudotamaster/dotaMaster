@@ -3,6 +3,7 @@
 <html>
 <head>
 <title>Insert title here</title>
+<link rel="shortcut icon" href="ico/favicon.ico" />
 </head>
 <body>
 ${msg }

@@ -2,9 +2,9 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
 <html>
 <head>
+<link rel="shortcut icon" href="ico/favicon.ico" />
    <title>待读消息</title>
    <style type="text/css">
      tr
@@ -12,16 +12,12 @@
         height:25px;
      }
    </style>
-   
-
 </head>
 <body>
-${msg }
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
 <br>
 <br>
-    
 <form id="myform" action="<%=path%>/queryNotice.html" method="post">
 	<!-- 数据迭代区 -->
 	<table border="1" width="95%" align="center">
@@ -66,31 +62,21 @@ ${msg }
 	     </c:otherwise>
 	   </c:choose>
 	</table>
-	
 	<!-- 功能按钮区 -->
 	<table border="1" width="95%" align="center">
-	
-	
 	  <tr>
 	    <td align="center">
 	       <input type="submit" name="next" value="刷新">
-	       
-	        <input type="submit" id="del" name="next" value="查看全部消息" 
+	        <input type="submit" id="del" name="next" value="查看全部消息"
 	              formaction="<%=path%>/queryNoticeHistory.html">
-	        
-	        <input type="submit" id="del" name="next" value="返回主页" 
+	        <input type="submit" id="del" name="next" value="返回主页"
 	              formaction="<%=path%>/mainPage.jsp">
-	        
 	    </td>
 	  </tr>
 	</table>
 		<input type="hidden" name="aab101" value="<%=aab101%>">
 </form>
-
-
 <!-- 引入脚部导航栏 -->
 <%@ include file="footer.jsp" %>
-
 </body>
-
 </html>

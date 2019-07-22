@@ -4,6 +4,8 @@
 
 <html>
 <head>
+   <link rel="shortcut icon" href="ico/favicon.ico" />
+
 <title>ÍøÕ¾Í¶Ëß</title>
 <style type="text/css">
   td{

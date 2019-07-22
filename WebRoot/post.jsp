@@ -4,7 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
-   <title>Insert title here</title>
+   <title>${rows[1].aab101}µÄÌû×Ó${rows[1].aab502 }</title>
+   <link rel="shortcut icon" href="ico/favicon.ico" />
+   
    <style type="text/css">
      tr
      {

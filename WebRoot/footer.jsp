@@ -4,7 +4,7 @@
 
 
 
-<div id="footer" align="center">
+<div id="footer" align="center" style="position:absolutely;bottom:10px;">
 <font size=2>
 <p>Dota Master ACVS组出品 AllrightsReserved</p>
 <a href="compToAdmin.jsp">向管理员投诉</a>

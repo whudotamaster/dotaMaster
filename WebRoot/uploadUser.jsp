@@ -3,6 +3,8 @@
 <html>
 <head>
     <title>$Title$</title>
+       <link rel="shortcut icon" href="ico/favicon.ico" />
+    
     <script>
         window.onload = function () {
             document.querySelector("#file").onchange = function () {
