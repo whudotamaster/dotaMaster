@@ -14,11 +14,10 @@
   }
 </style>
 </head>
-<body>
+<body onload="imgOnLoad('EventBg','jpg');pageOnLoad()">
 ${msg}
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
-<div class="demoEvent" style="opacity: 0.9"></div>
 <br>
 <br>
 <form action="<%=path%>/modifyEvent.html" method="post">

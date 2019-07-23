@@ -8,7 +8,7 @@
 
 <style type="text/css">
 td {
-	height: 30px;
+	height: 50px;
 }
   *{
       margin: 0;
@@ -31,11 +31,9 @@ msg {
 }
 </style>
 </head>
-<body>
+<body onload="imgOnLoad('bg','png');pageOnLoad()">
 	<%@ include file="header.jsp"%>
-	<div class="demo" style="opacity: 0.9"></div>
 	${msg}
-	
 	<br>
 	<br>
 	<form action="<%=path%>/findByIdTeam.html" method="post" id="myform">
@@ -79,21 +77,6 @@ msg {
 		  </div>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	   <table width=100%>
 			<tr>

@@ -19,9 +19,8 @@
 
 
 </head>
-<body>
+<body onload="imgOnLoad('AccBg','jpg');pageOnLoad()">
 ${msg }
-<div class="demoAcc" style="opacity: 0.9"></div>
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryAcc.html" method="post" >

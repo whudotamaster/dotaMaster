@@ -1,4 +1,19 @@
-<%@ page language="java"
+<div id="no">
+<div id="no0" class="no"></div>
+<div id="no1" class="no"></div>
+<div id="no2" class="no"></div>
+<div style="wider:100% ; height: 100%;">
+<div id="no3" class="no"></div>
+<div id="no4" class="no"></div>
+<div id="no5" class="no"></div>
+<div style="wider:100% ; height: 100%;">
+<div id="no6" class="no"></div>
+<div id="no7" class="no"></div>
+<div id="no8" class="no"></div>
+</div>
+</div>
+</div>
+<%@ page language="java" 
     pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -267,6 +282,11 @@
 	justify-content: center;
 	overflow: hidden;
 }
+            } 
+             html,body { wider:100% ; height: 100%;margin: 0; padding: 0;}
+
+			#no{width:100%;height:100%;background:black;position:fixed;z-index:-1;}
+			.no{width:calc(100%/3);height:calc(100%/3);float:left;  background-size: 100% 100%;}
     </style>
 </head>
 <%
@@ -311,8 +331,17 @@ String pic = (String)session.getAttribute("pic");
              <li class="nav-item">
             <a class="nav-link pico"  href="<%=path%>/queryBet.html">竞猜</a>
           </li>
+           <li class="nav-item">
+            <a class="nav-link pico" href="<%=path%>/queryTeam.html">战队</a>
+          </li>
              <li class="nav-item">
             <a class="nav-link pico" href="<%=path%>/queryPlayer.html">选手</a>
+          </li>		
+           <li class="nav-item">
+            <a class="nav-link pico" href="<%=path%>/BuyVip.jsp">VIP</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link pico" href="<%=path%>/BuyCurrency.jsp">虚拟货币</a>
           </li>
           	<c:if test="${aab108==2}">
              <li class="nav-item">
@@ -323,8 +352,11 @@ String pic = (String)session.getAttribute("pic");
       </div>
     </nav>
 <div id="nav" >
-    <div id="back"  onmouseover="menu.style.visibility='visible'" onmouseout="out()"style="position:absolute;top:15px;right:0px;width:300px;height:10px;z-index:1;visibility:visible;">
-		<span id="menubar" style="width:300" >
+
+	
+
+    <div id="back"  onmouseover="menu.style.visibility='visible'" onmouseout="out()"style="position:absolute;top:15px;right:0px;width:300px;height:30px;z-index:1;visibility:visible;"> 
+		<span id="menubar" style="width:300" > 
 			<font color=white size=2>
 			   <c:if test="${aab108==2}">
 			   		<img id="havatar" class="pico" src="/Avatar/${pic}" onclick="toUpdate()" style="height:35px;width:35px;border-radius:50%" >
@@ -385,11 +417,13 @@ String pic = (String)session.getAttribute("pic");
 	     {
 	   	 	document.getElementById("nowFloor").value = 1;
 	     }
-	 	 window.onload = function()
+	     
+	 	 function pageOnLoad()
 	 	 {
 			document.getElementById("nextFloor").disabled = ${!(rows[0].nowFloor < rows[0].floor)};
 	 		document.getElementById("backFloor").disabled = ${!(rows[0].nowFloor > 1)}
 	 	 }
+
 	 	function toNotice()
 	 	 {
 	 		  var vform = document.getElementById("formX");
@@ -448,4 +482,14 @@ document.onkeydown=function()
 alert(event.keyCode);
 } */
     //鼠标事件结束************************************
-	</SCRIPT>
+	 	 
+	      function imgOnLoad(image,type)
+	      {
+	      	for(var i = 0 ; i<9;i++)
+	      	{
+	      	var id = "no" + i ;
+	      		document.getElementById(id).style.backgroundImage="url(images/"+ image + "_" + i +"."+type+")";	
+	      	}
+	      }
+	</SCRIPT> 
+

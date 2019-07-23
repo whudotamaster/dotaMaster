@@ -9,9 +9,8 @@
 .rtop dd{ text-algin:center }
 </style>
 </head>
-<body>
+<body onload="imgOnLoad('ta','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-<div class="demoTeam" style="opacity: 0.9"></div>
 <form id="form"  method="post">
 <table align="center" class="table table-striped" style="background-color:#EEEEEE;opacity: 0.9;width:45%">
     <tr>
@@ -34,7 +33,7 @@
    <tr>
      <td>商品描述</td>
      <td>
-       <e:textarea rows="5" cols="45" name="WIDbody" value="这是一个M点购买测试用例，比例为1：100"  />
+       <e:textarea rows="5" readonly='true' cols="45" name="WIDbody" value="这是一个虚拟货币购买测试用例，比例为1：100"  />
      </td>
    </tr>
    <tr>

@@ -14,10 +14,9 @@
      }
    </style>
 </head>
-<body>
+<body onload="imgOnLoad('EventBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
 ${msg }
-<div class="demoEvent" style="opacity: 0.9"></div>
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryEvent.html" method="post">

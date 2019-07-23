@@ -24,13 +24,12 @@
 
    </script>
 </head>
-<body>
+<body onload="imgOnLoad('dota2','png');pageOnLoad()">
 <font color="white">
 ${msg }
 </font>
 <br>
 <br>
-<div class="demoDOTA2"></div>
 <form id="myform" action="<%=path%>/<%=aab108.equals("1")?"queryBuyOrder.html":"querySendAcc.html"%>" method="post">
 	<!-- 数据迭代区 -->
 	

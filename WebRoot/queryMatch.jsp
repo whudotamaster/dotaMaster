@@ -14,9 +14,8 @@
      }
    </style>
 </head>
-<body>
+<body onload="imgOnLoad('MatchBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-<div class="demoMatch" style="opacity: 0.9"></div>
 ${msg }
 <br>
 <br>

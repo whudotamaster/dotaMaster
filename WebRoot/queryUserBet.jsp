@@ -15,10 +15,9 @@
    </style>
 </head>
 <%@ include file="header.jsp" %>
-<body>
+<body onload="imgOnLoad('bg','png');pageOnLoad()">
 
 ${msg }
-<div class="demo" style="opacity: 0.9"></div>
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryUserBet.html" method="post">

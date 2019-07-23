@@ -14,10 +14,10 @@
      }
    </style>
 </head>
-<body>
-<%@ include file="header.jsp" %>
+
+<body onload="imgOnLoad('bg','png');pageOnLoad()">
 ${msg }
-<div class="demo" style="opacity: 0.9"></div>
+<%@ include file="header.jsp" %>
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryHero.html" method="post">
@@ -54,6 +54,7 @@ ${msg }
     </c:forEach>
   </div>
 </div>
+
 	
 	<!-- 功能按钮区 -->
 	<table  border="0" cellpadding="0" cellspacing="0"  align="center">

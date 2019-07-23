@@ -18,7 +18,7 @@ msg {
 }
 </style>
 </head>
-<body>
+<body onload="imgOnLoad('bg','png');pageOnLoad()">
 	<%@ include file="header.jsp"%>
 	<div class="demo" style="opacity: 0.9"></div>
 	${msg}

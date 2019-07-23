@@ -15,9 +15,8 @@
   }
 </style>
 </head>
-<body>
+<body onload="imgOnLoad('ta','jpg');pageOnLoad()">
 ${msg}
-<div class="demoTa" style="opacity: 0.9"></div>
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
 <br>

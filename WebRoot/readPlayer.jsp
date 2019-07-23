@@ -15,10 +15,9 @@
   }
 </style>
 </head>
-<body>
+<body onload="imgOnLoad('PlayerBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
 ${msg}
-<div class="demoPlayer" style="opacity: 0.9"></div>
 <br>
 <br>
 <form action="<%=path%>/findByIdPlayer.html" method="post">

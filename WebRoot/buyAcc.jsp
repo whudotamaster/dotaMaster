@@ -15,13 +15,12 @@
   }
 </style>
 </head>
-<body>
+<body onload="imgOnLoad('ta','jpg');pageOnLoad()">
 ${msg }
 <br>
 <br>
 <br>
 
-<div class="demoTa" style="opacity: 0.9"></div>
 <form action="<%=path%>/buyAcc.html" method="post">
 <table border=2 align="center" class="table" style="background-color:white;opacity: 0.95;width:45%">
       	 <caption align="left"><font color="#000000" size="5px">${empty ins.aad403?'π∫¬Ú Œ∆∑':'∂©µ•œÍ«È' }</font> </caption>

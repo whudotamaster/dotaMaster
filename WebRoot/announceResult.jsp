@@ -41,11 +41,10 @@
       
    </script>
 </head>
-<body>
+<body onload="imgOnLoad('Lina2','jpg');pageOnLoad()">
 ${msg }
 <br>
 <br>
-<div class="demoLina2"></div>
 <form id="myform" action="<%=path%>/queryComp.html" method="post">
 	<!-- 数据迭代区 -->
 	

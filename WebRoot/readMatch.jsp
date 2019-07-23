@@ -15,11 +15,10 @@
   }
 </style>
 </head>
-<body>
+<body onload="imgOnLoad('MatchBg','jpg');pageOnLoad()">
 ${msg}
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
-<div class="demoMatch" style="opacity: 0.9"></div>
 <br>
 <br>
  <c:if test="${ aab108==2 }">

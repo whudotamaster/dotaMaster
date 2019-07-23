@@ -13,7 +13,7 @@
      }
    </style>
 </head>
-<body>
+<body onload="imgOnLoad('TideHunter','jpg');pageOnLoad()">
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
 <br>

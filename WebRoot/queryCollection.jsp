@@ -31,39 +31,7 @@ vertical-align:middle;
   {
   color:black;
   }
-       .demoTimg{
 
-                position:fixed;
-
-                top: 0;
-
-                left: 0;
-
-                width:100%;
-
-                height:100%;
-
-                min-width: 1000px;
-
-                z-index:-10;
-
-                zoom: 1;
-
-                background-color: #fff;
-
-                background: url(images/hc.png);
-
-                background-repeat: no-repeat;
-
-                background-size: cover;
-
-                -webkit-background-size: cover;
-
-                -o-background-size: cover;
-
-                background-position: center 0;
-
-            }
             .posthidden{
 white-space:nowrap;
 overflow:hidden; 
@@ -73,8 +41,7 @@ color:#000000;
 </style>
 
 </head>
-<body >
-<div class="demoTimg"></div>
+<body onload="imgOnLoad('hc','png');pageOnLoad()">
 <%@ include file="header.jsp" %>
 	${msg }
 	<br>
@@ -84,6 +51,7 @@ color:#000000;
 		
 		<!-- 数据迭代区 -->
 		<table align="center" class="table table-striped" id="a" style="background-color:#8eb0cc;opacity: 0.9;width:80%">
+		<tr>
 				<td></td>
 				<td>帖标题</td>
 				<td>发帖人</td>

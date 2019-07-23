@@ -45,6 +45,7 @@ public class BaseServlet extends HttpServlet
      		/***********************************************************
      		 *                        实例化目标类---业务控制器
      		 ***********************************************************/
+     		System.out.println(basePackageName+controllerFirstName+"Servlet");
      		//实例化业务控制器
      		BaseController controller=(BaseController)Class.forName(basePackageName+controllerFirstName+"Servlet").newInstance();
      		
