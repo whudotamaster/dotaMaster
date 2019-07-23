@@ -4,7 +4,8 @@
 <%@ include file="header.jsp" %>
 <html>
 <head>
-<title>Insert title here</title>
+<title>¹ºÂòÊÎÆ·</title>
+<link rel="shortcut icon" href="ico/favicon.ico" />
 <style type="text/css">
   td{
       height:40px;

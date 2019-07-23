@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=GBK">
 <title>付款</title>
+<link rel="shortcut icon" href="ico/favicon.ico" />
 </head>
 <%@ page language="java" contentType="text/html; charset=GBK" pageEncoding="GBK"%>
 <%@ page import="java.net.*" %>

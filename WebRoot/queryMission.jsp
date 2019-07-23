@@ -2,85 +2,85 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
 <html>
 <head>
+<link rel="shortcut icon" href="ico/favicon.ico" />
    <title>今日可完成的任务</title>
    <style type="text/css">
-     tr
-     {
-        height:25px;
-     }
-   </style>
    
 
+ .background{
+                position:fixed;
+                top: 0;
+                left: 0;
+                width:100%;
+                height:100%;
+                min-width: 1000px;
+                z-index:-10;
+                zoom: 1;
+                background: url(images/backgrounds/TideHunter.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                background-position: center 0;
+            }
+   </style>
+       <link href="css/pricing.css" rel="stylesheet">
+   
 </head>
 <body>
-${msg }
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
-<br>
-<br>
-    
-<form id="myform" action="<%=path%>/queryMission.html" method="post">
-	<!-- 数据迭代区 -->
-	<table border="1" width="95%" align="center">
-	  <tr>
-	    <td>序号</td>
-	    <td>任务名称</td>
-	    <td>任务描述</td>
-	    <td>奖励经验</td>
-	    <td>奖励经验</td>
-	    <td>完成状态</td>
-	  </tr>
-	  <!--
-	         注意事项
-	    1.$及大括号的结束标记 }与双引号之间,不允许出现空格
-	    2.所有的属性之间至少要有一个空格,否则报错
-	    3.var 属性,相当于在页面定义变量名称,因此  ins不允许再用$ {  }
-	   -->
-	   <c:choose>
+<div class="background"></div>
+ <div class="container" style="z-index:2;" >
+      <div class="card-deck mb-3 text-center">
+      	   <c:choose>
 	     <c:when test="${rows!=null }">
-	         <!-- 显示实际查询到的数据 -->
-		     <c:forEach items="${rows }" var="ins" varStatus="vs">
-	    	   	  <tr>
-	    	   	    <td>${vs.count }</td>
-				    <td>${ins.aab902 }</td>
-				    <td>${ins.aab903 }</td>
-				    <td>${ins.aab904 }</td>
-				    <td>${ins.aab905 }</td>
-				      <td>
-				      <c:if test="${ins.aab1002==0}"><font color="green">可完成！</font></c:if>
-				       <c:if test="${ins.aab1002==1}"><font color="red">已完成！</font></c:if>
-				      </td>
-				   </tr>
-		      </c:forEach>
-		     
-	     </c:when>
+	     
 	   
+		     <c:forEach items="${rows }" var="ins" >
+		     
+	    	   <div class="card mb-4 box-shadow" style="background:#F6F6F6;opacity:0.9" >
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal"     style="opacity:1"><font color="#272636">${ins.aab902 }</font></h4> 
+          </div>
+          <div class="card-body">
+         <c:if test="${ins.aab1002==0}">
+          
+     		<img id="havatar" src="images/others/uncomplete.jpg" style="height:120px;width:120px;"  >
+     		</c:if>
+     		        <c:if test="${ins.aab1002==1}">
+          
+     		<img id="havatar" src="images/others/complete.jpg" style="height:120px;width:120px;"  >
+     		</c:if>
+            <font color="#272636"><h5 class="card-title pricing-card-title">${ins.aab903 }</h5> 
+            <h5><small class="text-muted">Exp:${ins.aab904 }|M点:${ins.aab905 }</small></h5></font>
+          </div>
+        </div>
+	    	  
+		      </c:forEach>
+		      	   <div class="card mb-4 box-shadow" style="background:#F6F6F6;opacity:0.9" >
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal"     style="opacity:1"><font color="#272636">${aab102 }</font></h4> 
+          </div>
+          <div class="card-body">
+        
+          
+     		<img id="havatar" src="/Avatar/${pic}" class="pico" onclick="toUpdate()"style="height:120px;width:120px;border-radius: 50%"  >
+     	
+            <font color="#272636"><h5 class="card-title pricing-card-title"><br>会员到期时间<br>${aab109 }</h5> </font>
+            
+          </div>
+        </div>
+	     </c:when>
 	   </c:choose>
-	</table>
-	
-	<!-- 功能按钮区 -->
-	<table border="1" width="95%" align="center">
-	
-	
-	  <tr>
-	    <td align="center">
-	       <input type="submit" name="next" value="刷新">
-	        <input type="submit" id="del" name="next" value="返回主页" 
-	              formaction="<%=path%>/mainPage.jsp">
-	        
-	    </td>
-	  </tr>
-	</table>
-		<input type="hidden" name="aab101" value="<%=aab101%>">
-</form>
-
-
+         
+         
+      </div>
+      
+</div>
 <!-- 引入脚部导航栏 -->
 <%@ include file="footer.jsp" %>
-
 </body>
-
 </html>

@@ -4,7 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
-   <title>Insert title here</title>
+   <title>╬╨╡бап╠М</title>
+   <link rel="shortcut icon" href="ico/favicon.ico" />
+   
    <%@ include file="header.jsp" %>
    <style type="text/css">
    body

@@ -4,7 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
-<title>Insert title here</title>
+<title>ÂÛÌ³Ê×Ò³</title>
+<link rel="shortcut icon" href="ico/favicon.ico" />
 <style type="text/css">
  #a tr {
 	height: 80px;

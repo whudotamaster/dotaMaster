@@ -14,6 +14,7 @@ amount=URLDecoder.decode(amount,"utf-8");
 <html>
 <head>
 <title>Ö§¸¶±¦ÍøÕ¾Ö§¸¶</title>
+<link rel="shortcut icon" href="ico/favicon.ico" />
 <style>
 * {
 	margin: 0;

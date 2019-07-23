@@ -6,6 +6,7 @@
 <html>
 <head>
    <title>管理员审核文章</title>
+   <link rel="shortcut icon" href="ico/favicon.ico" />
    <style type="text/css">
      tr
      {

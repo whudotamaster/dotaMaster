@@ -5,7 +5,9 @@
 <%@ include file="header.jsp" %>
 <html>
 <head>
-   <title>Insert title here</title>
+   <title>≤È—Ø Œ∆∑</title>
+   <link rel="shortcut icon" href="ico/favicon.ico" />
+   
    <style type="text/css">
      tr
      {

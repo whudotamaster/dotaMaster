@@ -5,7 +5,8 @@
 <%@ include file="header.jsp" %>
 <html>
 <head>
-   <title>Insert title here</title>
+   <title>公布比赛结果</title>
+   <link rel="shortcut icon" href="ico/favicon.ico" />
    <style type="text/css">
      tr
      {

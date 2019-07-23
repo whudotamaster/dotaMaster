@@ -6,13 +6,14 @@
 <%String path=request.getContextPath();%>
 <html>
 <head>
+<link rel="shortcut icon" href="ico/favicon.ico" />
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/signin.css" rel="stylesheet">
      <link href="css/style.css" rel="stylesheet">
-<title>µÇÂ¼</title>
+<title>»¶Ó­À´µ½DotaMaster</title>
 </head>
 <style type="text/css">
 .bg{

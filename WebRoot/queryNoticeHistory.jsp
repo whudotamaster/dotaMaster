@@ -2,26 +2,23 @@
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
 <html>
 <head>
    <title>全部消息</title>
+   <link rel="shortcut icon" href="ico/favicon.ico" />
+   
    <style type="text/css">
      tr
      {
         height:25px;
      }
    </style>
-   
-
 </head>
-<body style="height:100%">
-${msg }
+<body>
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
 <br>
 <br>
-    
 <form id="myform" action="<%=path%>/queryNoticeHistory.html" method="post">
 	<!-- 数据迭代区 -->
 	<table border="1" width="95%" align="center">
@@ -66,14 +63,12 @@ ${msg }
 	     </c:otherwise>
 	   </c:choose>
 	</table>
-	
 	<!-- 功能按钮区 -->
 	<table border="1" width="95%" align="center">
-	
 	  <tr>
 	    <td align="center">
 	       <input type="submit" name="next" value="刷新" formaction="<%=path%>/queryNoticeHistory.html">
-	        <input type="submit" id="del" name="next" value="返回主页" 
+	        <input type="submit" id="del" name="next" value="返回主页"
 	              formaction="<%=path%>/mainPage.jsp">
 	        	<input type="button" class="btn btn-secondary  active" onclick="onBack()" id="backFloor" value="上一页">
 					<input type="button" class="btn btn-secondary  active" onclick="onNext()" id="nextFloor" value="下一页">
@@ -84,8 +79,6 @@ ${msg }
 	</table>
 		<input type="hidden" name="aab101" value="<%=aab101%>">
 </form>
-
-
 <!-- 引入脚部导航栏 -->
 <%@ include file="footer.jsp" %>
 </body>

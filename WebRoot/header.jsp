@@ -1,19 +1,27 @@
-<%@ page language="java" 
+<%@ page language="java"
     pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
-
+<head>
 <link rel="stylesheet"  href="css/bootstrap.min.css"/>
 <link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/arrows.css"/>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
+<link rel="shortcut icon" href="ico/favicon.ico" />
     <style type="text/css">
+    
    body
   {
   color:black;
   }
+ .pico
+ {
+   	cursor: url('ico/favicon2.ico'), default;
+ 
+ }
  .demo{
                 position:fixed;
                 top: 0;
@@ -31,7 +39,6 @@
                 -o-background-size: cover;
                 background-position: center 0;
             }
-            
         .demoLina{
                 position:fixed;
                 top: 0;
@@ -49,7 +56,6 @@
                 -o-background-size: cover;
                 background-position: center 0;
             }
-            
         .demoTa{
                 position:fixed;
                 top: 0;
@@ -67,7 +73,6 @@
                 -o-background-size: cover;
                 background-position: center 0;
             }
-            
            .demoDOTA2{
                 position:fixed;
                 top: 0;
@@ -85,7 +90,6 @@
                 -o-background-size: cover;
                 background-position: center 0;
             }
-            
              .demoQOP{
                 position:fixed;
                 top: 0;
@@ -103,7 +107,6 @@
                 -o-background-size: cover;
                 background-position: center 0;
             }
-            
           .demoLina2{
                 position:fixed;
                 top: 0;
@@ -239,7 +242,7 @@
                 -webkit-background-size: cover;
                 -o-background-size: cover;
                 background-position: center 0;
-            } 
+            }
             .demoPlayer{
                 position:fixed;
                 top: 0;
@@ -256,7 +259,14 @@
                 -webkit-background-size: cover;
                 -o-background-size: cover;
                 background-position: center 0;
-            } 
+            }
+            .round_icon {
+	display: flex;
+	border-radius: 50%;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
     </style>
 </head>
 <%
@@ -270,144 +280,172 @@ if(session.getAttribute("unRead")!=null)
 String path=request.getContextPath();
 String pic = (String)session.getAttribute("pic");
 %>
-
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-      <a class="navbar-brand" href="mainPage.jsp">Dota Master</a>
+      <a class="navbar-brand pico" href="mainPage.jsp">Dota Master</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarsExample03">
         <ul class="navbar-nav mr-auto">
-        
           <li class="nav-item">
-            <a class="nav-link" href="<%=path%>/queryHero.html">英雄</a>
+            <a class="nav-link pico" href="<%=path%>/queryHero.html">英雄</a>
           </li>
              <li class="nav-item">
-            <a class="nav-link" href="<%=path%>/queryEquipment.html">装备</a>
+            <a class="nav-link pico" href="<%=path%>/queryEquipment.html">装备</a>
           </li>
              <li class="nav-item">
-            <a class="nav-link" href="<%=path%>/queryAcc.html">饰品</a>
+            <a class="nav-link pico" href="<%=path%>/queryAcc.html">饰品</a>
           </li>
              <li class="nav-item">
-            <a class="nav-link" href="<%=path%>/forum.html">论坛</a>
+            <a class="nav-link pico" href="<%=path%>/forum.html">论坛</a>
           </li>
              <li class="nav-item">
-            <a class="nav-link" href="<%=path%>/queryArticle.html">文章</a>
+            <a class="nav-link pico" href="<%=path%>/queryArticle.html">文章</a>
           </li>
              <li class="nav-item">
-            <a class="nav-link" href="<%=path%>/queryEvent.html">赛事</a>
+            <a class="nav-link pico" href="<%=path%>/queryEvent.html">赛事</a>
           </li>
              <li class="nav-item">
-            <a class="nav-link" href="<%=path%>/queryMatch.html">比赛</a>
+            <a class="nav-link pico" href="<%=path%>/queryMatch.html">比赛</a>
           </li>
              <li class="nav-item">
-            <a class="nav-link" href="<%=path%>/queryBet.html">竞猜</a>
+            <a class="nav-link pico"  href="<%=path%>/queryBet.html">竞猜</a>
           </li>
              <li class="nav-item">
-            <a class="nav-link" href="<%=path%>/queryPlayer.html">选手</a>
-          </li>		
+            <a class="nav-link pico" href="<%=path%>/queryPlayer.html">选手</a>
+          </li>
           	<c:if test="${aab108==2}">
-          
              <li class="nav-item">
-            <a class="nav-link" href="<%=path%>/adminGo.jsp">网站管理</a>
+            <a class="nav-link pico" href="<%=path%>/adminGo.html">网站管理</a>
           </li>
           </c:if>
          </ul>
       </div>
     </nav>
 <div id="nav" >
-
-	
-
-    <div id="back"  onmouseover="menu.style.visibility='visible'" onmouseout="out()"style="position:absolute;top:15px;right:0px;width:300px;height:10px;z-index:1;visibility:visible;"> 
-		<span id="menubar" style="width:300" > 
+    <div id="back"  onmouseover="menu.style.visibility='visible'" onmouseout="out()"style="position:absolute;top:15px;right:0px;width:300px;height:10px;z-index:1;visibility:visible;">
+		<span id="menubar" style="width:300" >
 			<font color=white size=2>
 			   <c:if test="${aab108==2}">
-			   		 <img id="havatar" src="/Avatar/${pic}" onclick="changeAvatar()" style="height:35px;width:35px;" >
-			 		  管理员  <%=aab102%> 
+			   		<img id="havatar" class="pico" src="/Avatar/${pic}" onclick="toUpdate()" style="height:35px;width:35px;border-radius:50%" >
+			 		  管理员  <%=aab102%>
 			 		<c:if test="${unRead!=0}">
-			 		  未读消息<%=unRead%>条 
+			 		  未读消息<%=unRead%>条
+			 		  	<img id="havatar" class="pico" src="images/others/mail.jpg" onclick="toNotice()" style="height:35px;width:35px;border-radius:50%" >
 			 		  </c:if>
 			   </c:if>
-		 	   <c:if test="${aab108==1}">  	      
-		 	 		  <img id="havatar" src="/Avatar/${pic}" onclick="changeAvatar()" style="height:35px;width:35px;" >
-		 	   		用户  <%=aab102%> 	
+		 	   <c:if test="${aab108==1}">
+		 	 		  <img id="havatar" class="pico" src="/Avatar/${pic}" onclick="toUpdate()" style="height:35px;width:35px;border-radius:50%" >
+		 	   		用户  <%=aab102%>
 		 	   		<c:if test="${unRead!=0}">
-			 		  未读消息<%=unRead%>条 
+			 		  未读消息<%=unRead%>条
+			 		 <img id="havatar" class="pico" src="images/others/mail.jpg" onclick="toNotice()" style="height:35px;width:35px;border-radius:50%" >
 			 		  </c:if>
 		 	   </c:if>
 			   		<c:if test="${aab108==null}">游客
-			   </c:if>		 
-
+			   </c:if>
 			</font>
-		</span> 
-		<!--实现鼠标悬停出现菜单  -->
-		<div id="menu" style="position:absolute;top:15px;right:0px;width:300;height:10px;z-index:2;visibility:hidden;"> 
-			<form method="post">
-				<input type="hidden" name="aab101" value="<%=aab101%>">
-				<div class="btn-group-vertical btn-group-sm">
-				<c:if test="${!empty aab108}">
-				<input type="submit" name="toLog" class="btn btn-secondary" formaction="<%=path%>/logout.html" value="注销">
-				</c:if>
-				<c:if test="${empty aab108}">
-				<input type="submit" name="toLog" class="btn btn-secondary" formaction="<%=path%>/logout.html" value="登录">
-				</c:if>
-				<c:if test="${aab108!=null}">
-					<input type="submit"  name="toQpi" class="btn btn-secondary" formaction="<%=path%>/queryPerson.html" formnovalidate="formnovalidate" value="个人信息">
-					<input type="submit" name="toNotice" class="btn btn-secondary" formaction="<%=path%>/queryNotice.html" value="系统消息">
-					<input type="submit" name="toMission" class="btn btn-secondary" formaction="<%=path%>/queryMission.html" value="日常任务">
-				</c:if>
-			  	<c:if test="${aab108==null}">
-	       			<input type="submit" name="psgToLog" class="btn btn-secondary"  formaction="<%=path%>/login.jsp" value="个人信息">
-	       			<input type="submit" name="psgToNotice" class="btn btn-secondary" formaction="<%=path%>/login.jsp" value="查看系统消息">
-	     	    </c:if>
-	     	    </div>
-			</form>
+		</span>
 			</div>
-			</div>
+</div>
+<form id="formX"> 	<input type="hidden" name="aab101" value="<%=aab101%>"></form>
+<div id="mymenu" class="mymenu">
+<c:if test="${aab108==null}">
+<img id="left"  class="arrow left pico" src="images/others/notice.jpg" onclick="toLogin()" >
+<img id="right" class="arrow right pico" src="images/others/uncomplete.jpg"  onclick="toLogin()" >
+<img id="up" class="arrow up pico" src="images/others/person.jpg" onclick="toLogin()" >
+<img id="down" class="arrow down pico" src="images/others/quit.jpg" onclick="toLogin()" >
+</c:if>
+<c:if test="${aab108!=null}">
+<img id="left"  class="arrow left pico" src="images/others/notice.jpg" onclick="toNotice()" >
+<img id="right" class="arrow right pico" src="images/others/uncomplete.jpg"  onclick="toMission()" >
+<img id="up" class="arrow up pico" src="images/others/person.jpg" onclick="toUpdate()" >
+<img id="down" class="arrow down pico" src="images/others/quit.jpg" onclick="toLogin()" >
+</c:if>
 </div>
 <br>
 	<SCRIPT language=javascript>
-<!-- 
-	function out() 
-	{ 
-		if(window.event.toElement.id!="menu" && window.event.toElement.id!="link") 
-		menu.style.visibility="hidden"; 
-	} 
-	//--> 
-		function out1() 
-		{ 
-			if(window.event.toElement.id!="menu1" && window.event.toElement.id!="link") 
-			menu1.style.visibility="hidden"; 
-		} 
-		//--> 
-		//傻逼github天天删劳资注释 lzzscl
 	 	 function onNext()
 	 	 {
 	 		 document.getElementById("nowFloor").value = parseInt(document.getElementById("nowFloor").value) +1 ;
 	 		 document.getElementById("myform").submit();
-	 	 }	 
+	 	 }
 	 	function onBack()
 		 {
 			 document.getElementById("nowFloor").value = parseInt(document.getElementById("nowFloor").value) -1 ;
 			 document.getElementById("myform").submit();
-		 }	 	
+		 }
 	 	function onQuery()
 	 	{
 	 		var vform = document.getElementById("myform");
 	 		document.getElementById("nowFloor").value = 1;
 	 		vform.submit();
-	 	} 	
+	 	}
 	     function back()
 	     {
 	   	 	document.getElementById("nowFloor").value = 1;
 	     }
-	     
 	 	 window.onload = function()
 	 	 {
-			document.getElementById("nextFloor").disabled = ${!(rows[0].nowFloor < rows[0].floor)}; 
+			document.getElementById("nextFloor").disabled = ${!(rows[0].nowFloor < rows[0].floor)};
 	 		document.getElementById("backFloor").disabled = ${!(rows[0].nowFloor > 1)}
 	 	 }
-	</SCRIPT> 
-
+	 	function toNotice()
+	 	 {
+	 		  var vform = document.getElementById("formX");
+	 	    	 vform.action="<%=path%>/queryNotice.html";
+	 	    	 vform.submit();
+	 	 }
+		function toMission()
+	 	 {
+	 		  var vform = document.getElementById("formX");
+	 	    	 vform.action="<%=path%>/queryMission.html";
+	 	    	 vform.submit();
+	 	 }
+		function toUpdate()
+	 	 {
+	 		  var vform = document.getElementById("formX");
+	 	    	 vform.action="<%=path%>/queryPerson.html";
+	 	    	 vform.submit();
+	 	 }
+		function toLogin()
+	 	 {
+	 		  var vform = document.getElementById("formX");
+	 	    	 vform.action="<%=path%>/logout.html";
+	 	    	 vform.submit();
+	 	 }
+	 	//鼠标事件*******************************
+	 /*	function test()
+{
+alert(event.x+" "+event.y);
+alert(event.button);
+} */
+/*右键菜单不显示*/
+	document.oncontextmenu=function()
+	{
+		return false;
+	}
+	document.onmousedown=function()
+	{
+		if(event.button==2)
+		{
+			var mymenu = document.getElementById("mymenu");
+			mymenu.style.zIndex = 5;
+			mymenu.style.opacity = 1;
+			mymenu.style.left = event.pageX-150+'px';
+			mymenu.style.top= event.pageY-150+'px';
+		}
+		if(event.button==0)
+		{
+			var mymenu = document.getElementById("mymenu");
+			mymenu.style.opacity = 0;
+			mymenu.style.zIndex = 1;
+		}
+	}
+/*
+document.onkeydown=function()
+{
+alert(event.keyCode);
+} */
+    //鼠标事件结束************************************
+	</SCRIPT>
