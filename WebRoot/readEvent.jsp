@@ -36,27 +36,26 @@ ${msg}
 	    <td></td>
 	  </tr>
    <c:choose>
-	     <c:when test="${rows!=null }">
+	     <c:when test="${ins.rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
-	    <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="11">
-	    <tr>
+	    <c:forEach items="${ins.rows }" var="ins2" varStatus="vs" begin="0" end="10">
+	    <tr>        
+	        <td>
+	        <e:text name="aac702"   readonly="true"  required="true"  defval="${ins.aac702 }"/>
+	        </td> 
             <td>
-            <e:text name="aac702"   readonly="true"  required="true"  defval="${ins.aac702 }"/> 
-            </td>
-           
-            <td>
-            <e:text name="aac1102"   readonly="true"  required="true"  defval="${ins.aac1102 }"/>
+            <e:text name="aac1102"   readonly="true"  required="true"  defval="${ins2.aac1102 }"/>
             </td>
            
             <td >
-			<e:text name="aac1103"   readonly="true"  required="true"  defval="${ins.aac1103 }"/>
+			<e:text name="aac1103"   readonly="true"  required="true"  defval="${ins2.aac1103 }"/>
 		    </td> 
             
             <td >
-			<e:text name="aac1104"   readonly="true"  required="true"  defval="${ins.aac1104 }"/>
+			<e:text name="aac1104"   readonly="true"  required="true"  defval="${ins2.aac1104 }"/>
 		    </td>    
             <td>
-            <e:select name="aac1105" readonly="true" required="true"  value="未开始:0,胜:1,负:2" defval="${ins.aac1105 }" />
+            <e:select name="aac1105" readonly="true" required="true"  value="未开始:0,胜:1,负:2" defval="${ins2.aac1105 }"  disabled="true"/>
             </td>
         </tr>   
         </c:forEach>
@@ -67,12 +66,17 @@ ${msg}
  <table align="center">
    <tr align="center">
      <td colspan="2" align="center">
+      <c:if test="${aab108==2}">
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
+	              formaction="<%=path%>/addMatch.jsp">
+	              </c:if>
        <input type="submit" class="btn btn-secondary  active" name="next" value="返回" 
               formaction="<%=path%>/queryEvent.html"
               formnovalidate="formnovalidate">
      </td>
    </tr>
  </table>
+ <input type="hidden" name="aac702" value="${ins.aac702 }">
 </form>
 <!-- 引入脚部导航栏 -->
 <%@ include file="footer.jsp" %>

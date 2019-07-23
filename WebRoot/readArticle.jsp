@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<title>${empty param.aab801?'ндубм╤╦Е':${ins.aab802 } }</title>
+<title>ндубоЙо╦</title>
    <link rel="shortcut icon" href="ico/favicon.ico" />
 
 <style type="text/css">

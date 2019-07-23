@@ -103,13 +103,18 @@ ${msg}
  
    <tr>
      <td colspan="2" align="center">
-       <input type="submit" name="next" value="返回" 
+      <c:if test="${aab108==2}">
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加战队成员" 
+	              formaction="<%=path%>/addPlayer.jsp">
+	            </c:if>
+       <input type="submit" name="next" class="btn btn-secondary  active"  value="返回" 
               formaction="<%=path%>/queryTeam.html"
               formnovalidate="formnovalidate">
+              
      </td>
    </tr>
 </table>
-<input type="hidden" name="aac901" value="${param.aac901 }">
+<input type="hidden" name="aac901" value="${ins.aac901 }">
 </form>
 <!-- 引入脚部导航栏 -->
 <%@ include file="footer.jsp" %>

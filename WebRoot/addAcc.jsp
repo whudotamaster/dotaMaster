@@ -41,7 +41,7 @@ ${msg}
    <tr>
      <td> Œ∆∑πÈ Ù”¢–€√˚</td>
      <td>
-       <e:text name="aac102" required="true" />
+       <e:text name="aac102" required="true" readonly="true" />
      </td>
    </tr>
    <tr>

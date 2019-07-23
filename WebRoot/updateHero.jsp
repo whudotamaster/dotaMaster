@@ -42,7 +42,7 @@ msg {
 			</tr>
 			<tr>
 				<td>英雄名</td>
-				<td><e:text name="aac102" readonly="readonly" required="true"
+				<td><e:text name="aac102" readonly="true" required="true"
 						defval="${ins.aac102 }" /></td>
 			</tr>
 			<tr>
@@ -63,26 +63,26 @@ msg {
 						</tr>
 						<tr>
 							<td>技能名</td>
-							<td><e:text name="aac302" readonly="readonly"
+							<td><e:text name="aac302${vs.count }" readonly="${aab108!=2}"
 									defval="${ins.aac302 }" /></td>
 						</tr>
 						<tr>
 							<td>技能描述</td>
-							<td><e:textarea rows="5" cols="70" name="aac303" readonly="readonly"
+							<td><e:textarea rows="5" cols="70" name="aac303${vs.count }" readonly="${aab108!=2}"
 									defval="${ins.aac303 }" /></td>
 						</tr>
 						<tr>
 							<td>冷却</td>
-							<td><e:text name="aac304" readonly="readonly"
+							<td><e:text name="aac304${vs.count }" readonly="${aab108!=2}"
 									defval="${ins.aac304 }" /></td>
 						</tr>
 						<tr>
 							<td>耗蓝</td>
-							<td><e:text name="aac305" readonly="readonly"
+							<td><e:text name="aac305${vs.count }" readonly="${aab108!=2}"
 									defval="${ins.aac305 }" /></td>
 						</tr>
 						<tr>
-						<td></td>
+						<td><input type="hidden" name="aac301${vs.count }" value="${ins.aac301 }"></td>
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -97,17 +97,17 @@ msg {
 						<tr>
 							<td>天赋等级</td>
 
-							<td><e:text name="aac202" readonly="readonly"
+							<td><e:text name="aac202${vs.count }" readonly="${aab108!=2}"
 									defval="${ins.aac202 }" /></td>
 						</tr>
 						<tr>
 							<td>天赋描述</td>
-							<td><e:textarea rows="1" cols="70" name="aac203" readonly="readonly"
+							<td><e:textarea rows="1" cols="70" name="aac203${vs.count }" readonly="${aab108!=2}"
 									defval="${ins.aac203 }" /></td>
 						</tr>
 						
 						<tr>
-						<td></td>
+						<td><input type="hidden" name="aac201${vs.count }" value="${ins.aac201 }"></td>
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -125,7 +125,7 @@ msg {
 			     
 			</tr>
 		</table>
-		<input type="hidden" name="aac901" value="${param.aac101 }">
+		<input type="hidden" name="aac101" value="${ins.aac101 }">
 	</form>
 <!-- 引入脚部导航栏 -->
 <%@ include file="footer.jsp" %>

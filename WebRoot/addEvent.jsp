@@ -32,7 +32,7 @@ ${msg}
    <tr>
      <td>ÈüÊÂÃû</td>
      <td>
-       <e:text name="aac702" required="true" autofocus="true" /> 
+       <e:text name="aac702" required="true" readonly="true" autofocus="true" /> 
      </td>
    </tr> 
     <tr>

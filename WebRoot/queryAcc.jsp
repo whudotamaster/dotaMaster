@@ -116,8 +116,6 @@ ${msg }
 	       <input type="submit" class="btn btn-secondary  active" onclick="back()" name="next" value="查询" formaction="<%=path%>/queryAcc.html">		     
 	       <c:if test="${!empty aab101}">
 	       <c:if test="${aab108==2}">
-	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
-	              formaction="<%=path%>/addAcc.jsp">
 	       </c:if>
 		   <input type="submit"  class="btn btn-secondary active"  name="next" value="查看历史购买" 
 			              formaction="<%=path%>/queryBuyOrder.html">

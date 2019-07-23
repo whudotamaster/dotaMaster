@@ -110,6 +110,8 @@ ${msg}
      <c:if test="${aab108==2}">
        <input type="submit" class="btn btn-secondary  active" name="next" value="${empty param.aac101?'添加':'修改' }"
               formaction="<%=path%>/${empty param.aac101?'add':'modify' }Hero.html">
+              <input type="submit" class="btn btn-secondary  active" name="next" value="添加该英雄饰品" 
+	              formaction="<%=path%>/addAcc.jsp">
               </c:if>
        <input type="submit" class="btn btn-secondary  active" name="next" value="返回" 
               formaction="<%=path%>/queryHero.html"

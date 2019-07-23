@@ -87,7 +87,7 @@ msg {
 					</td>
 			</tr>
 		</table>
-		<input type="hidden" name="aac901" value="${param.aac101 }">
+		<input type="hidden" name="aac101" value="${ins.aac101 }">
 	</form>
 <!-- 引入脚部导航栏 -->
 <%@ include file="footer.jsp" %>

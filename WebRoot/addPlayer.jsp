@@ -32,7 +32,7 @@ ${msg}
    <tr>
      <td>选手头像</td>
      <td>
-       <e:text name="aac1004"  required="true"   /> 
+       <e:text name="aac1004"  required="true"  value=" " /> 
      </td>
    </tr> 
    <tr>
@@ -50,7 +50,7 @@ ${msg}
    <tr>
      <td>所属战队</td>
      <td>
-       <e:text name="aac902"  required="true"   /> 
+       <e:text name="aac902"  required="true"  readonly="true"   /> 
      </td>
    </tr>  
    <tr>

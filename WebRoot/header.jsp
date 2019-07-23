@@ -317,7 +317,7 @@ String pic = (String)session.getAttribute("pic");
             <a class="nav-link pico" href="<%=path%>/queryAcc.html">饰品</a>
           </li>
              <li class="nav-item">
-            <a class="nav-link pico" href="<%=path%>/forum.html">论坛</a>
+            <a class="nav-link pico" href="#" onclick="forum()">论坛</a>
           </li>
              <li class="nav-item">
             <a class="nav-link pico" href="<%=path%>/queryArticle.html">文章</a>
@@ -396,6 +396,7 @@ String pic = (String)session.getAttribute("pic");
 </c:if>
 </div>
 <br>
+<form id="forum" ><input type="text" hidden="true" name="aab101" id="aab101" value="<%=aab101%>"></form>
 	<SCRIPT language=javascript>
 	 	 function onNext()
 	 	 {
@@ -490,6 +491,13 @@ alert(event.keyCode);
 	      	var id = "no" + i ;
 	      		document.getElementById(id).style.backgroundImage="url(images/"+ image + "_" + i +"."+type+")";	
 	      	}
+	      }
+	      
+	      function forum()
+	      {
+	    	  var form = document.getElementById("forum");
+	    	  form.action = "<%=path%>/forum.html";
+	    	  form.submit();
 	      }
 	</SCRIPT> 
 

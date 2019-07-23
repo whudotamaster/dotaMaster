@@ -1,11 +1,12 @@
 package com.neusoft.web.impl;
 
-public class UpdateHeroMoreServlet extends ArticleControllerSupport
+public class UpdateHeroMoreServlet extends HeroControllerSupport
 {
        @Override
        public String execute() throws Exception
        {
-    	   this.update("unpassArticle", "ÉóºË·ñ¶¨");
-    	   return "readArticle";
+    	   this.update("modifySAT", "ÐÞ¸Ä");
+    	   this.savePageInstance();
+    	   return "updateHero";
        }
 }

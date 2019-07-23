@@ -10,7 +10,7 @@
    <style type="text/css">
      tr
      {
-        height:25px;
+        height:50px;
      }
    </style>
    

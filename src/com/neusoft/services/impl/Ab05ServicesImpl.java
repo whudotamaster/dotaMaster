@@ -66,6 +66,7 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		catch (Exception e) 
 		{
 			map1.put("aab107", "0");
+			System.out.println(aab101);
 		}
 		map1.put("floor", String.valueOf(countFloor("ab05 b",whereSql.toString(),number,paramList.toArray())));
 		map1.put("nowFloor", String.valueOf(nowFloor));
@@ -147,8 +148,9 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 						aab507
 				};
 			Boolean tag = this.executeUpdate(sql.toString(), args) > 0;
-			Tools.completeMission(aab101, 1);
-			Tools.sendMessage("恭喜你完成每日任务_发帖，获得经验5点，M点5点！", aab101);
+			if(Tools.completeMission(aab101, 1)){
+				Tools.sendMessage("恭喜你完成每日任务_发帖，获得经验5点，M点5点！", aab101);
+			};
 			Ab01ServicesImpl ab01=new Ab01ServicesImpl();
 			ab01.addExp(aab101, "addPost");
 			return tag;
@@ -268,8 +270,11 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 								aab501 
 								};
 			tag = this.executeUpdate(sql3.toString(), args2) > 0 && tag;
+			if(Tools.completeMission(aab101, 2)){
+				Tools.sendMessage("恭喜你完成每日任务_回帖，获得经验5点，M点5点！", aab101);
+			}
 			Ab01ServicesImpl ab01=new Ab01ServicesImpl();
-			ab01.addExp(aab101, "addComment");
+			ab01.addExp(aab101, "addPost");
 			return tag;
 		}
 		return false;

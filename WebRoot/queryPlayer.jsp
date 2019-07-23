@@ -98,8 +98,7 @@ ${msg }
 	    <td align="center">
 	       <input type="submit" class="btn btn-secondary  active" name="next" onclick="back()" value="²éÑ¯">
 	        <c:if test="${aab108==2}">
-	       <input type="submit" class="btn btn-secondary  active" name="next" value="Ìí¼Ó" 
-	              formaction="<%=path%>/addPlayer.jsp">
+	      
 	       <input type="submit" class="btn btn-secondary  active" id="del" name="next" value="É¾³ý" 
 	              formaction="<%=path%>/delPlayer.html"  disabled="disabled">
 	       </c:if>

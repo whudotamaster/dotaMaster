@@ -50,7 +50,7 @@ public class Ab10ServicesImpl extends JdbcServicesSupport
 	}
 	
 	//修改任务用户完成状态
-	public void update(Object userId,Object missionId)throws Exception
+	public boolean update(Object userId,Object missionId)throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
 					.append("UPDATE ab10 SET aab1002 = 1 WHERE aab101 = ? AND aab901 = ?")
@@ -60,8 +60,12 @@ public class Ab10ServicesImpl extends JdbcServicesSupport
 		{
 			this.executeUpdate(sql.toString(),args);
 			this.execute(userId, missionId);
+			return true;
 		}
-	
+		else 
+		{
+			return false;
+		}
 	}
 	
 	//读取某一任务某用户完成状态,已完成为true，好像没啥用

@@ -64,9 +64,7 @@ ${msg }
 	       <c:if test="${aab108==2}">
 	       <input type="submit" class="btn btn-secondary  active" name="next" value="Ìí¼Ó" 
 	              formaction="<%=path%>/addHero.jsp">
-	       <input type="submit" id="del" name="next" class="btn btn-secondary  active" value="É¾³ý" 
-	              formaction="<%=path%>/delHero.html"  disabled="disabled">
-	       </c:if>
+	              </c:if>
 	    </td>
 	  </tr>
 	</table>

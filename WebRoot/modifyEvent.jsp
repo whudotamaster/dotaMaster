@@ -60,15 +60,15 @@ ${msg}
    </tr>
    <tr>
      <td colspan="2" align="center">
-       <input type="submit" class="btn btn-secondary  active" name="next" value="返回" 
-              formaction="<%=path%>/queryEvent.html"
-              formnovalidate="formnovalidate">
         <!-- 管理员可见的两个按钮 -->
-		<c:if test="${aab108==2}">
+       <c:if test="${aab108==2}">
 			<input type="submit" class="btn btn-secondary  active" name="next" value="修改" 
               formaction="<%=path%>/modifyEvent.html"
               formnovalidate="formnovalidate">
 		</c:if>
+       <input type="submit" class="btn btn-secondary  active" name="next" value="返回" 
+              formaction="<%=path%>/queryEvent.html"
+              formnovalidate="formnovalidate">
      </td>
    </tr>  
 </table>
