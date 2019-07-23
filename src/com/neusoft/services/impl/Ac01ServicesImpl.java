@@ -144,7 +144,10 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 		 String sql3 ="select aac302,aac303,aac304,aac305,aac306 from ac03 where aac101=? ";
 		 List<Map<String, Object>> rows2=this.queryForList(sql3.toString(), this.get("aac101"));
 		 ins.put("rows2", rows2);
-		 System.out.println(ins);
+		 String sql4 ="select aac601,aac602,aac603 from ac06 where aac101=? ";
+		 List<Map<String, Object>> rows3=this.queryForList(sql4.toString(), this.get("aac101"));
+		 ins.put("rows3", rows3);
+		 
 		 return ins;
 	 }
 	 

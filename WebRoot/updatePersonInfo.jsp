@@ -109,6 +109,7 @@ ${msg }
                 document.getElementById("img").src = "${pageContext.request.contextPath}/pic/" + req.responseText;
             }
         }
+    }
       
         $("#totalCnt").change(function () {
             var totalCnt = $("#totalCnt").val();

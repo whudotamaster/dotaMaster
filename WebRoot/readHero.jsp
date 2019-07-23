@@ -8,6 +8,21 @@
 td {
 	height: 30px;
 }
+  *{
+      margin: 0;
+      padding: 0;
+    }
+
+    .container{
+      width: 100%;
+      padding:20px;
+    }
+    .bigcontainer{
+      width: 70%;
+      border: 2px #D3D3D3  solid;
+      margin:0 auto;
+      background-color:white;	  
+    }
 
 msg {
 	color: #FF0000
@@ -18,99 +33,67 @@ msg {
 	<%@ include file="header.jsp"%>
 	<div class="demo" style="opacity: 0.9"></div>
 	${msg}
-	${ins.rows2}
-	${ins.rows}
+	
 	<br>
 	<br>
 	<form action="<%=path%>/findByIdTeam.html" method="post" id="myform">
-		<table align="center" border="1" style="background-color:#FFFFFF;opacity: 0.9;width:45%">
-		  <tr>
-			<td>
-			<font color="#000000" size="5px">英雄详细信息浏览</font>
-				
-			</td>
-			</tr>
-			<tr>
-				<td colspan="2">英雄</td>
-			</tr>
-			<tr>
-				<td>英雄名</td>
-				<td><e:text name="aac102" readonly="readonly" required="true"
-						defval="${ins.aac102 }" /></td>
-			</tr>
-			<tr>
-				<td>英雄图像</td>
-				<td><img alt="no image" src=<%=path%>/images/${ins.aac112 } style="width: 12%; height: 100%">
-				</td>
-			</tr>
-			<tr>
-			<tr>
-			<td></td>
-			</tr>
-			<tr>
-				<td colspan="2">技能</td>
-			</tr>
-			<c:choose>
-				<c:when test="${ins.rows2!=null }">
-					<!-- 显示实际查询到的数据 -->
-					<c:forEach items="${ins.rows2 }" var="ins" varStatus="vs">
-						<tr>
-							<td>技能图像</td>
-							<td><img alt="no image" src=<%=path%>/images/${ins.aac306 } style="width: 12%; height: 100%">
-							</td>
-						</tr>
-						<tr>
-							<td>技能名</td>
-							<td><e:text name="aac302" readonly="readonly"
-									defval="${ins.aac302 }" /></td>
-						</tr>
-						<tr>
-							<td>技能描述</td>
-							<td><e:text name="aac303" readonly="readonly"
-									defval="${ins.aac303 }" /></td>
-						</tr>
-						<tr>
-							<td>冷却</td>
-							<td><e:text name="aac304" readonly="readonly"
-									defval="${ins.aac304 }" /></td>
-						</tr>
-						<tr>
-							<td>耗蓝</td>
-							<td><e:text name="aac305" readonly="readonly"
-									defval="${ins.aac305 }" /></td>
-						</tr>
-						<tr>
-						<td></td>
-						</tr>
-					</c:forEach>
-				</c:when>
-			</c:choose>
-			<tr>
-				<td colspan="2">天赋</td>
-			</tr>
-			<c:choose>
-				<c:when test="${ins.rows!=null }">
-					<!-- 显示实际查询到的数据 -->
-					<c:forEach items="${ins.rows }" var="ins" varStatus="vs">
-						<tr>
-							<td>天赋等级</td>
+	<div class="bigcontainer" style="opactity:0.95">
+		<div class="container">
+			<div>
+				<img alt="no image" src=<%=path%>/images/${ins.aac112 } style="width: 200px; height: 200px;">
+			</div>
+			<div>
+				${ins.aac102 }
+			</div>
+		</div>
+	
+		<div class="container">
+		  <br>
+		  <font color=black size=5>技能:</font>
+		  <br>
+		  <br>
+		  <div class="row">
+		    <c:forEach items="${ins.rows2 }" var="ins" varStatus="vs">
+		    <div class="col-sm">
+		      <div><div title="${ins.aac303 }"><img alt="no image" src=<%=path%>/images/${ins.aac306 } style="width: 100px; height: 100px"></div></div>
+		      <div><div title="${ins.aac303 }"><font color=black>${ins.aac302 }</font></div></div>  
+		    </div>
+		    </c:forEach>
+		  </div>
+		</div>
+		
+		<div class="container">
+		  <br>
+		  <font color=black size=5>饰品:</font>
+		  <br>
+		  <br>
+		  <div class="row">
+		    <c:forEach items="${ins.rows3 }" var="ins" varStatus="vs">
+		    <div class="col-sm">
+		      <div><img alt="no image" src=<%=path%>/images/${ins.aac603 } style="width: 100px; height: 100px"></div>
+		      <div><font color=black><a href="#" onclick="onEdit2('${ins.aac601}')">${ins.aac602 }</a></font></div>  
+		    </div>
+		    </c:forEach>
+		  </div>
+		</div>
+	</div>
 
-							<td><e:text name="aac202" readonly="readonly"
-									defval="${ins.aac202 }" /></td>
-						</tr>
-						<tr>
-							<td>天赋描述</td>
-							<td><e:text name="aac203" readonly="readonly"
-									defval="${ins.aac203 }" /></td>
-						</tr>
-						
-						<tr>
-						<td></td>
-						</tr>
-					</c:forEach>
-				</c:when>
-			</c:choose>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	   <table width=100%>
 			<tr>
 				<td colspan="2" align="center">
 				<input type="submit" name="next" class="btn btn-secondary  active"
@@ -130,6 +113,14 @@ msg {
       {
     	 var vform = document.getElementById("myform");
     	 vform.action="<%=path%>/findByIdPlayer.html?aac101="+vaac101;
+    	 //alert(vform.action);
+    	 vform.submit();
+      }
+      
+      function onEdit2(vaac601)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/findByIdAcc.html?aac601="+vaac601;
     	 //alert(vform.action);
     	 vform.submit();
       }

@@ -19,117 +19,39 @@ ${msg }
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryHero.html" method="post">
-  <!-- 查询条件区 -->
-	<table align="center" class="table table-striped" style="background-color:#D1DDF4;opacity: 0.9;width:85%">
-	  <tr>
-	    <td colspan="4">查询条件</td>
-	  </tr>
-	  <tr>
-	    <td>英雄名</td>
-	    <td>
-	      <e:text name="qaac102"/>
-	    </td>
-	</table>
-	<!-- 数据迭代区 -->
-	<table align="center" class="table table-striped" style="background-color:#D1DDF4;opacity: 0.9;width:85%">
-	  <tr>
-	    <td></td>
-	    <td>序号</td>
-	    <td>英雄图像</td>
-	    <td>英雄名</td>
-	    <td>力量成长</td>
-	    <td>敏捷成长</td>
-	    <td>智力成长</td>
-	    <td>初始血量</td>
-	    <td>初始蓝量</td>
-	    <td>移速</td>
-	    <td>初始力量</td>
-	    <td>初始敏捷</td>
-	    <td>初始智力</td>
-	    <td></td>
-	  </tr>
-	  <!--
-	         注意事项
-	    1.$及大括号的结束标记 }与双引号之间,不允许出现空格
-	    2.所有的属性之间至少要有一个空格,否则报错
-	    3.var 属性,相当于在页面定义变量名称,因此  ins不允许再用$ {  }
-	   -->
-	   <c:choose>
-	     <c:when test="${rows!=null }">
-	         <!-- 显示实际查询到的数据 -->
-		     <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="11">
-	    	   	  <tr>
-				    <td>
-				      <input type="checkbox" name="idlist" value="${ins.aac101 }"
-				             onclick="onSelect(this.checked)" >
-				    </td>
-				    <td>${vs.count }</td>
-				    <td >
-				       <a href="#" onclick="onRead('${ins.aac101}')">
-				        <img style="width:70%; height:100%" alt="no image" src=<%=path%>/images/${ins.aac112 }></a>
-				     </td>
-				    <td>
-				      <!-- #  空锚 -->
-				      <a href="#" onclick="onEdit('${ins.aac101}')">${ins.aac102 }</a>
-				    </td>
-				    <td>${ins.aac103 }</td>
-				    <td>${ins.aac104 }</td>
-				    <td>${ins.aac105 }</td>
-				    <td>${ins.aac106 }</td>
-				    <td>${ins.aac107 }</td>
-				    <td>${ins.aac108 }</td>
-				    <td>${ins.aac109 }</td>
-				    <td>${ins.aac110 }</td>
-				    <td>${ins.aac111 }</td>
-				    <c:if test="${aab108==2}">
-				    <td>
-				      <a href="#" onclick="onDel('${ins.aac101}')">删除</a>
-				    </td>
-				    </c:if>
-				  </tr>
-		      </c:forEach>
-		      <!-- 补充空行 -->
-		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="11">
-			          <tr>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			          </tr>
-		      </c:forEach>
-	     </c:when>
-	     <c:otherwise>
-	        <c:forEach begin="1" step="1" end="11">
-	           <tr>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	           </tr>
-	        </c:forEach>
-	     </c:otherwise>
-	   </c:choose>
-	</table>
+<div class="container">
+    <font size=5 color=white>所有英雄:</font>
+    <br>
+    <br>
+    <br>
+  <div class="row">
+    <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="5">
+    <div class="col-sm">
+      <c:if test="${aab108==2}">
+      <div><a href="#" onclick="onEditMore('${ins.aac101}')"><img style="width:100px; height:100px" alt="no image" src=<%=path%>/images/${ins.aac112 }></a></div>
+      </c:if>
+
+      <c:if test="${aab108!=2 }">
+      <div><a href="#" onclick="onRead('${ins.aac101}')"><img style="width:100px; height:100px" alt="no image" src=<%=path%>/images/${ins.aac112 }></a></div>
+      </c:if>
+      <div><a href="#" onclick="onEdit('${ins.aac101}')">${ins.aac102 }</a></div>  
+    </div>
+    </c:forEach>
+  </div>
+  <div class="row">
+    <c:forEach items="${rows }" var="ins" varStatus="vs" begin="6" end="10">
+    <div class="col-sm">
+      <c:if test="${aab108==2}">
+      <div><a href="#" onclick="onEditMore('${ins.aac101}')"><img style="width:100px; height:100px" alt="no image" src=<%=path%>/images/${ins.aac112 }></a></div>
+      </c:if>
+      <c:if test="${aab108!=2}">
+      <div><a href="#" onclick="onRead('${ins.aac101}')"><img style="width:100px; height:100px" alt="no image" src=<%=path%>/images/${ins.aac112 }></a></div>
+      </c:if>
+      <div><a href="#" onclick="onEdit('${ins.aac101}')">${ins.aac102 }</a></div>  
+    </div>
+    </c:forEach>
+  </div>
+</div>
 	
 	<!-- 功能按钮区 -->
 	<table  border="0" cellpadding="0" cellspacing="0"  align="center">
@@ -142,10 +64,6 @@ ${msg }
 	       <input type="submit" id="del" name="next" class="btn btn-secondary  active" value="删除" 
 	              formaction="<%=path%>/delHero.html"  disabled="disabled">
 	       </c:if>
-	       <input type="button" class="btn btn-secondary  active" onclick="onBack()" id="backFloor" value="上一页">
-		   <input type="button" class="btn btn-secondary  active" onclick="onNext()" id="nextFloor" value="下一页">
-		   <input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
-		   <e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>
 	  </tr>
 	</table>
@@ -174,7 +92,13 @@ ${msg }
       {
     	 var vform = document.getElementById("myform");
     	 vform.action="<%=path%>/findByIdHeroFM.html?aac101="+vaac101;
-    	 //alert(vform.action);
+    	 vform.submit();
+      }
+      
+      function onEditMore(vaac101)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/findByIdHeroMore.html?aac101="+vaac101;
     	 vform.submit();
       }
       

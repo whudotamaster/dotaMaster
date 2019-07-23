@@ -29,6 +29,81 @@
                 background-position: center 0;
             }
             
+  *{
+      margin: 0;
+      padding: 0;
+    }
+
+    .container{
+      width: 100%;
+    }
+    .list-item{
+      width: 700px;
+      height:400px;
+      margin: 20px auto;
+      border: 2px #D3D3D3  solid;
+      box-sizing: border-box;
+      padding: 5px 0 20px;
+      background-color:white;
+      opacity: 0.95;
+      
+    }
+    .list-item:hover{
+      border-image: linear-gradient(45deg,aqua,blue) 2 2 2 2;
+
+    }
+    .header{
+      text-align: center;
+    }
+    .flex-container{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      height: 250px;
+    }
+    .body{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      height:500px;
+    }
+    .left{
+      flex: 1;
+    }
+    .mid{
+      width: 200px;
+    }
+    .right{
+      flex: 1;
+    }
+    .item-img{
+      width: 70px;
+      height: 70px;
+    }
+    .my-input{
+      width: 50px;
+    }
+    .bet-btn{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: red;
+      color: white;
+      font-size: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      outline: none;
+      border: none;
+    }
+    .vs{
+      font-size: 50px;
+    }
+
+    
+            
     </style>
             
 
@@ -36,7 +111,8 @@
    <script type="text/javascript">    
       function onBet(vaad101,count)
       {
-    	 var vform = document.getElementById("myform");
+    	 var name="myform"+count;
+    	 var vform = document.getElementById(name);
     	 vform.action="<%=path%>/playBet.html?aad101="+vaad101+"&count="+count;
     	 vform.submit();
       } 
@@ -57,104 +133,48 @@
 </head>
 <body>
 
- <div class="demo" ></div>
+
 
 ${msg }
-<br>
-<br>
-<form id="myform" action="<%=path%>/queryBet.html" method="post" >
-	<!-- 数据迭代区 -->
-		
-	<table align="center" class="table table-striped" style="background-color:#CCFFFF;opacity: 0.9;width:90%">
-	   <caption align="left"><font color="white" size="5px">可押注比赛</font> </caption>
 
-	  <tr>
-	    <td>序号</td>
-	    <td>赛事</td>
-	    <td>战队1</td>
-	    <td>战队2</td>
-	    <td>比赛开始时间</td>
-	    <td>战队1押注总额</td>
-	    <td>战队2押注总额</td>
-	    <td>押注战队1</td>
-	    <td>押注战队2</td>
-	    <c:if test="${!empty aab101}">
-	        <td></td>
-	    </c:if>
-	  </tr>
-	  <!--
-	         注意事项
-	    1.$及大括号的结束标记 }与双引号之间,不允许出现空格
-	    2.所有的属性之间至少要有一个空格,否则报错
-	    3.var 属性,相当于在页面定义变量名称,因此  ins不允许再用$ {  }
-	   -->
-	   <c:choose>
-	     <c:when test="${rows!=null }">
-	         <!-- 显示实际查询到的数据 -->
-		     <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="16">
-	    	   	  <tr style="height:45px">
-				    <td>${vs.count }</td>
-				    <td>${ins.aac702 }</td>
-				    <td>${ins.aac1103 }</td>
-				    <td>${ins.aac1104 }</td>
-				    <td>${ins.aac1102 }</td>
-				    <td>${ins.aad102 }</td>
-				    <td>${ins.aad103 }</td>
-				    <td>
-				      <input type="text" name="aad202${vs.count }"  value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
-    onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
-				    </td>
-				    <td>
-				      <input type="text" name="aad203${vs.count }"   value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
-    onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
-				    </td>
-				    <c:if test="${!empty aab101}">
-					    <td>
-					      <a href="#" onclick="onBet('${ins.aad101}','${vs.count }')">下注</a>
-					    </td>
-				    </c:if>
-				  </tr>
-		      </c:forEach>
-		      <!-- 补充空行 -->
-		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="16">
-			           <tr style="height:45px">
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <c:if test="${!empty aab101}">
-			            	<td></td>
-			            </c:if>
-			          </tr>
-		      </c:forEach>
-	     </c:when>
-	     <c:otherwise>
-	        <c:forEach begin="1" step="1" end="16">
-	            <tr style="height:45px">
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <td></td>
-	             <c:if test="${!empty aab101}">
-	             <td></td>
-	             </c:if>
-	           </tr>
-	        </c:forEach>
-	     </c:otherwise>
-	   </c:choose>
-	</table>
-	</div>
+<br>
+<br>
+<div class="demo"></div>
+<div class="container">
+  <c:forEach items="${rows }" var="ins" varStatus="vs">
+   <form id="myform${vs.count }" class="flex-container list-item" >
+      <div class="header"></div>
+      <div class="body">
+        <div class="left flex-container">
+            <img src="<%=path%>/images/${ins.图片 }" alt="${ins.aac1103 }" class="item-img">
+            <p>${ins.aac1103 }</p>
+            <p>下注量：${ins.aad102 }</p>
+            <div>我要下注：<input type="text" name="aad202${vs.count }" class="my-input" value="0"></div>
+        </div>
+        <div class="mid flex-container">
+          <p class="vs">VS</p>
+          <p> ${ins.aac1102 }</p>
+          <p><input type="button" class="bet-btn" value="下注" onclick="onBet('${ins.aad101}','${vs.count }')"></p>
+        </div>
+        <div class="right flex-container">     
+            <img src="http://01.imgmini.eastday.com/mobile/20180413/20180413210854_5981ee25d426a7282b09ae4f344f9adc_2.jpeg" alt="VG" class="item-img">
+            <p>${ins.aac1104 }</p>
+            <p>下注量：${ins.aad103 }</p>
+            <div>我要下注：<input type="text" class="my-input" name="aad203${vs.count }" value="0"></div>
+        </div>
+      </div>
+   
+    <input type="hidden" name="count" value="${vs.count }">
+    <input type="hidden" name="aad101" value="${ins.aad101 }">
+    <input type="hidden" name="aab101" value="<%=aab101 %>">
+    </form>
+  </c:forEach>    
+</div>
+
+	
+<form id="myform" action="<%=path%>/queryBet.html" method="post" >	
 	<!-- 功能按钮区 -->
-	<table border="1"  align="center" >
+	<table width=100% align="center" >
 	  <tr>
 	    <td align="center">
 	   <c:if test="${!empty aab101}">
@@ -162,10 +182,6 @@ ${msg }
 	       <input type="submit" class="btn btn-secondary  active" onclick="back()" name="next" value="查看历史押注" 
 	              formaction="<%=path%>/queryUserBet.html">
 	   </c:if>           
-	              	<input type="button" onclick="betPage();onBack()" class="btn btn-secondary  active"  id="backFloor" value="上一页">
-					<input type="button" onclick="betPage();onNext()" class="btn btn-secondary  active"  id="nextFloor" value="下一页">
-					<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
-					<e:hidden name="floor" defval="${rows[0].floor }"/>
 	    </td>
 	  </tr>
 	</table>
