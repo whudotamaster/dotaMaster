@@ -68,7 +68,7 @@ m{background: #FBB985;
 text-color:black;}
    </style>
 </head>
-<body>
+<body onload="imgOnLoad('TideHunter','jpg');pageOnLoad()">
 <!-- 引入头部导航栏 -->
 
 
