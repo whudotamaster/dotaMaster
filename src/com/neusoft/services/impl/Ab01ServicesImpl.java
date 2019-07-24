@@ -375,7 +375,6 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			    	this.executeUpdate(sql.toString(), paramList.toArray());
 			    	Object userId = this.getUserId(aab103);
 			    	Tools.setMission(userId);
-			    	System.out.println("ab01注册");
 			    	this.setMessage("注册成功，请登录！");
 			    	Tools.sendMessage("欢迎来到DotaMaster综合网站！你可以在本网站进行资讯查询，赛事竞猜，论坛交流，还可以参与互动获得M点，换取精美饰品！", userId);
 			    	return true;

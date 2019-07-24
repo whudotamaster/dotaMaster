@@ -47,7 +47,6 @@ public class Ab10ServicesImpl extends JdbcServicesSupport
     		Object arg[]={userId,a};
     		this.apppendSql(sql.toString(), arg);
     	}
-    	System.out.println("插入任务关联");
     	return executeTransaction();
 	}
 	//修改任务用户完成状态

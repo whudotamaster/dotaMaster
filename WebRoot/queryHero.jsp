@@ -115,12 +115,7 @@ ${msg }
 		</c:forEach>
 	</div>
 </div>
-<<<<<<< Upstream, based on branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
 
-	
-=======
-
->>>>>>> 6f79bec 绔炵寽鎴橀槦澶村儚鏄剧ず,鍑哄敭bug淇
 	<!-- 功能按钮区 -->
 	<table  border="0" cellpadding="0" cellspacing="0"  align="center">
 	  <tr>

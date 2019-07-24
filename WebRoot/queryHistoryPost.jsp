@@ -32,6 +32,22 @@ vertical-align:middle;
   color:black;
   }
 
+<<<<<<< Upstream, based on branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
+=======
+                background: url(images/hc.png);
+
+                background-repeat: no-repeat;
+
+                background-size: cover;
+
+                -webkit-background-size: cover;
+
+                -o-background-size: cover;
+
+                background-position: center 0;
+
+            }
+>>>>>>> 7af174b 整合pull
             .posthidden{
 white-space:nowrap;
 overflow:hidden; 

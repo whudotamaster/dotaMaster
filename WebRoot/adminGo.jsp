@@ -21,22 +21,7 @@ opacity:1;
 	padding-right:300px;
 	padding-top:100px;
 }
- .background{
-                position:fixed;
-                top: 0;
-                left: 0;
-                width:100%;
-                height:100%;
-                min-width: 1000px;
-                z-index:-10;
-                zoom: 1;
-                background: url(images/AdminGo.jpg);
-                background-repeat: no-repeat;
-                background-size: cover;
-                -webkit-background-size: cover;
-                -o-background-size: cover;
-                background-position: center 0;
-            }
+
 </style>
 <script type="text/javascript" src="jquery.js"></script>
 </head>

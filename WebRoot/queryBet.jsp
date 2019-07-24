@@ -123,7 +123,6 @@ ${msg }
 
 <br>
 <br>
-<div class="demo"></div>
 <div class="container">
   <c:forEach items="${rows }" var="ins" varStatus="vs">
    <form id="myform${vs.count }" class="flex-container list-item" >
