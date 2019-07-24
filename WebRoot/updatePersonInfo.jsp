@@ -5,90 +5,150 @@
 <html>
 <head>
 <title>修改我的信息</title>
+   <script src="jquery-3.4.1.min.js"></script>
    <link rel="shortcut icon" href="ico/favicon.ico" />
-
+  <!-- Custom styles for this template -->
+    <link href="css/form-validation.css" rel="stylesheet">
+    <style type="text/css">
+    
+            
+            .k{
+            color:#FFFFFF;
+            background-color:rgba(0,0,0,0.5);
+           }
+    
+    </style>
 </head>
-<body onload="imgOnLoad('AdminGo','jpg');pageOnLoad();a()">
+<body onload="imgOnLoad('DrowRanger','jpg');pageOnLoad();a()">
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
-${msg }
-<br>
-<br>
-<form action="<%=path%>/updtPsnInf.html" method="post">
-<table border="1" align="center" width="45%">
-  <caption>
-       修改我的信息
-       <hr width="160">
-  </caption>
-	 <tr>
-	     <td colspan="2">${ins }</td>
-	 </tr>
-	  <tr>
-	     <td colspan="2">${msg }</td>
-	 </tr>
-	 <tr>
-	 	<td>昵称</td>
-	 	<td>
- 	       <e:text name="aab102" required="true" autofocus="true" defval="${ins.aab102 }" />
-	 	</td>
-	 </tr>
-	 <tr>
-	 	<td>密码</td>
-	 	<td>
- 	      <a href="changePassword.jsp">点我修改密码</a>
-	 	</td>
-	 </tr>
-	  <tr>
-	 	<td>头像</td>
-	 	<td>
- 	      <img id="avatar" src="/Avatar/${ins.aab105 }" style="height:200px;width:200px;" >
- 	  	</td>
-		</tr>
-	 <tr>
-	 <td>当前经验值</td>
-	 	<td>
- 	       <e:text name="aab107" required="true" readonly="true" defval="${ins.aab107 }"/>
-	 	</td>
-	 	</tr>
-	 	 <tr>
-	 <td>当前等级</td>
-	 	<td>
-		 	<fmt:formatNumber value="${(ins.aab107-ins.aab107%100)/100 }" pattern="#" type="number"/>
-	 	</td>
-	 	</tr>
-	 	<tr>
-	 	<td>当前余额</td>
-	 	<td>
- 	       <e:text name="aab106" required="true" readonly="true" defval="${ins.aab106 }"/>
-	 	</td>
-	 </tr>
-	 	 <tr>
-	 	<td>VIP到期时间</td>
-	 	<td>
- 	       <e:text name="aab109" required="true" readonly="true" defval="${ins.aab109 }"/>
-	 	</td>
-	 </tr>
-</table>
-<input  type="hidden" name="aab101" value="<%=aab101%>">
- <input type="submit" name="next"  value="修改">
- <input type="submit" name="Submit" formaction="<%=path%>/mainPage.jsp"  formnovalidate="formnovalidate" value="返回主页">
-</form>
-<form id="form1" action="<%=path%>/uploadUser.htm" method="post" enctype="multipart/form-data">
-   <input  type="hidden" name="aab101" value="<%=aab101%>">
-    <input type="file" name="file" id="file" >
-    <input type="submit" name="next" id="file" value="上传头像">
-</form>
-<form action="<%=path%>/buyVIP.html" method="post">
-<input type="search" name="month" placeholder="输入开通的月数" align="center" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
-    onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
-<input type="submit" name="next" value="开通" align="center">
-<input type="hidden" name="aab101" value="<%=aab101 %>">
-<input type="hidden" name="aab109" value="<%=aab109 %>">
+	<c:if test="${aab101==ins.aab101}">
+	  <div class="container k" >
+ 
+      <div class="py-5 text-center">
+        <img id="avatar" src="/Avatar/${ins.aab105 }" class="pico" style="height:200px;width:200px;border-radius:50%" >
+        <h2>${ins.aab102 }</h2>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 order-md-2 mb-4" style="color:#000;">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">广告预留界面</span>
+          </h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">广告1</h6>
+                <small class="text-muted">宣传标语1</small>
+              </div>
+              <span class="text-muted">价格1</span>
+            </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">广告2</h6>
+                <small class="text-muted">宣传标语2</small>
+              </div>
+              <span class="text-muted">价格2</span>
+            </li>
+             <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">广告3</h6>
+                <small class="text-muted">宣传标语3</small>
+              </div>
+              <span class="text-muted">价格3</span>
+            </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">广告4</h6>
+                <small class="text-muted">宣传标语4</small>
+              </div>
+              <span class="text-muted">价格4</span>
+            </li>
+             <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">广告5</h6>
+                <small class="text-muted">宣传标语5</small>
+              </div>
+              <span class="text-muted">价格5</span>
+            </li>
+          </ul>
+         </div>
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">修改个人信息</h4>
+            <div class="row">
+	              <div class="col-md-6 mb-3">
+		                <label for="firstName">我的账号</label>
+		                 <a><br>${ins.aab103}</a>
+	              </div>
+	              <form id="form1" action="<%=path%>/uploadUser.htm" method="post" enctype="multipart/form-data">
+		             	 <div class="col-md-6 mb-3"  style="display: none;">
+		             		<input class=" btn btn-primary btn-lg btn-block " type="file" style="width:200px"name="file" id="file" />
+		                 </div>
+		                 <div class="col-md-6 mb-3">
+		                 	<input class=" btn btn-primary btn-lg btn-block " type="submit" style="width:200px" name="next" id="tofile" value="修改头像"/ >
+						 </div>
+		              	 <input  type="hidden" name="aab101" value="<%=aab101%>">
+	               </form>
+       	    </div>
+       	    <hr class="mb-4">
+         <form method="post" action="<%=path%>/updtPsnInf.html" >
+       	     <div class="row"> 
+              <div class="col-md-6 mb-3">
+                <label for="lastName">请输入新昵称</label>
+                <input type="text" class="form-control" style="width:200px" id="aab102" name="aab102" placeholder="" value="${ins.aab102 }" required>
+              </div>
+            
+              
+                <div class="col-md-6 mb-3">
+            		 <button class=" btn btn-primary btn-lg btn-block "  style="width:200px;position:absolute;top:25px;" type="submit" >修改昵称</button>
+                </div> 
+                 </div>
+                      <input  type="hidden" name="aab101" value="<%=aab101%>">
+                       </form>
+                  <hr class="mb-4">
+            
+      	 <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">当前经验值：</label>
+                 <a><br>${ins.aab107 }</a>
+              </div>
+               <div class="col-md-6 mb-3">
+                <label for="firstName">当前等级：</label>
+                <br>
+               <fmt:formatNumber value="${(ins.aab107-ins.aab107%100)/100 }" pattern="#" type="number"/>
+              </div>
+          </div>
+         	  <hr class="mb-4">
+              <div class="row">
+	              <div class="col-md-6 mb-3">
+	                <label for="firstName">M币余额：</label>
+	                 <a><br>${ins.aab106 }</a>
+	              </div>
+	               <div class="col-md-6 mb-3">
+	                <label for="firstName">VIP到期时间：</label>
+	                
+	               <a><br>${ins.aab109 }</a>
+	              </div>
+              </div>
+              <hr class="mb-4">  
+              <div class="row">
+              	 <div class="col-md-6 mb-3">
+             	    <form method="post">
+                		 <button class=" btn btn-primary btn-lg btn-block " type="submit" style="width:200px" formaction="<%=path%>/changePassword.jsp" >修改密码</button>
+					</form>
+                 </div>
+              </div>
+        </div>
+      </div>
+   </div>
+   
+   </c:if>
+   
 	<%@include file="footer.jsp" %>
 	<!-- 引入页脚 -->
 </body>
     <script>
-   function a() {
+     function a() {
         document.querySelector("#file").onchange = function () {
             var req = new XMLHttpRequest();
             var form = new FormData(document.getElementById("form1"));
@@ -100,18 +160,30 @@ ${msg }
             }
         }
     }
-        $("#totalCnt").change(function () {
-            var totalCnt = $("#totalCnt").val();
-            if (totalCnt != parseInt(totalCnt)){
-                $.sobox.alert(
-                        '温馨提示',
-                        '请输入正确的正整数',
-                        function () {
-                            $("#totalCnt").val("");
-                        }
-                )
-                return false;
-            }
-        })
+        $(document).ready(function(){
+ 	   $('#avatar').click(function(){
+        $('#file').click();
+    });
+ 	    
+});
+      
+    
     </script>
+    
+<script type="text/javascript" src="jquery-1.7.2.js"></script> /
+<script type="text/javascript">
+$(document).ready(function(){
+	if(${msg=="修改密码成功"})
+	{
+	alert("修改密码成功");
+	}
+	if(${msg=="	修改密码失败"})
+	{
+	alert("修改密码失败");
+	}
+
+	
+})
+</script>
+
 </html>

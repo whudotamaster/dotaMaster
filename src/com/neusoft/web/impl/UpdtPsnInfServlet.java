@@ -12,7 +12,7 @@ public class UpdtPsnInfServlet extends PersonControllerSupport
 	@Override
 	public String execute()throws Exception
 	{
-		this.update("updateUsername");
+		this.update("updateUsername","修改个人信息");
 		this.queryMap("queryPerson");	
 		return "updatePersonInfo";
 	}

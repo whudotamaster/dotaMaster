@@ -1,6 +1,7 @@
 
 package com.neusoft.services.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ public class Ab10ServicesImpl extends JdbcServicesSupport
 	{
 		StringBuilder sql= new StringBuilder()
 				.append("SELECT a.aab901,a.aab902,a.aab903,a.aab904,a.aab905,")
-				.append("		b.aab1001,b.aab1002")
+				.append("		b.aab1001,b.aab1002,b.aab101")
 				.append("  FROM ab09 a,ab10 b")
 				.append(" WHERE b.aab101=? and b.aab901=a.aab901")
 				.append(" ORDER BY b.aab1002")
@@ -48,7 +49,6 @@ public class Ab10ServicesImpl extends JdbcServicesSupport
     	}
     	return executeTransaction();
 	}
-	
 	//修改任务用户完成状态
 	public boolean update(Object userId,Object missionId)throws Exception
 	{
@@ -89,8 +89,10 @@ public class Ab10ServicesImpl extends JdbcServicesSupport
 	//完成任务奖励，修改ab01表
 	private boolean execute(Object userId,Object missionId)throws Exception
 	{
-		Object missionRwd = this.missionQuery(missionId).get("aab904");
-		Object missionExp = this.missionQuery(missionId).get("aab905");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map = this.missionQuery(missionId);
+		Object missionRwd = map.get("aab904");
+		Object missionExp = map.get("aab905");
 		Ab01ServicesImpl ab01 = new Ab01ServicesImpl();
 		return ab01.updateMoney(missionRwd, userId)==true&&ab01.addExp(userId, missionExp)==true;
 	}

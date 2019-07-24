@@ -68,12 +68,12 @@ public class SendMailServlet extends HttpServlet
 	    	        +",\r\n详细信息："+details;
 	        message.setText(text);
 	        // 得到邮差对象
-	        Transport transport = session.getTransport();
-	        // 连接自己的邮箱账户
-	        transport.connect("1655480118@qq.com", "nswouejkahebibag");// 密码为QQ邮箱开通的stmp服务后得到的客户端授权码
-	        // 发送邮件
-	        transport.sendMessage(message, message.getAllRecipients());
-	        transport.close();
+//	        Transport transport = session.getTransport();
+//	        // 连接自己的邮箱账户
+//	        transport.connect("1655480118@qq.com", "oqnkxcsrlqyjcjid");// 密码为QQ邮箱开通的stmp服务后得到的客户端授权码
+//	        // 发送邮件
+//	        transport.sendMessage(message, message.getAllRecipients());
+//	        transport.close();
 	        ins=true; 
 		}
 		catch(Exception e)

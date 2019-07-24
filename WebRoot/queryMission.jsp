@@ -24,7 +24,7 @@
 	     
 	   
 		     <c:forEach items="${rows }" var="ins" >
-		     
+		 	<c:if test="${aab101==ins.aab101}">
 	    	   <div class="card mb-4 box-shadow" style="background:#F6F6F6;opacity:0.9" >
           <div class="card-header">
             <h4 class="my-0 font-weight-normal"     style="opacity:1"><font color="#272636">${ins.aab902 }</font></h4> 
@@ -42,28 +42,29 @@
             <h5><small class="text-muted">Exp:${ins.aab904 }|M点:${ins.aab905 }</small></h5></font>
           </div>
         </div>
-	    	  
+     
+	    	 </c:if>
 		      </c:forEach>
-		      	   <div class="card mb-4 box-shadow" style="background:#F6F6F6;opacity:0.9" >
+		       </c:when>
+	   </c:choose>
+		<c:if test="${aab108!=null}">
+		 <div class="card mb-4 box-shadow" style="background:#F6F6F6;opacity:0.9" >
           <div class="card-header">
             <h4 class="my-0 font-weight-normal"     style="opacity:1"><font color="#272636">${aab102 }</font></h4> 
           </div>
           <div class="card-body">
-        
-          
-     		<img id="havatar" src="/Avatar/${pic}" class="pico" onclick="toUpdate()"style="height:120px;width:120px;border-radius: 50%"  >
-     	
+     		<img id="havatar" src="/Avatar/${pic}" class="pico" onclick="toUpdate()"style="height:120px;width:120px;border-radius: 50%" >
             <font color="#272636"><h5 class="card-title pricing-card-title"><br>会员到期时间<br>${aab109 }</h5> </font>
-            
           </div>
         </div>
-	     </c:when>
-	   </c:choose>
+        </c:if>
+	    
          
          
       </div>
       
 </div>
+
 <!-- 引入脚部导航栏 -->
 <%@ include file="footer.jsp" %>
 </body>

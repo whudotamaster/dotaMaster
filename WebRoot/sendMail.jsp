@@ -16,7 +16,7 @@
   }
 </style>
 </head>
-<body onload="imgOnLoad('complaintAdmin','png');pageOnLoad()">
+<body onload="imgOnLoad('complaintAdmin','png');a();pageOnLoad();">
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
 ${msg}
@@ -77,4 +77,13 @@ ${msg}
 	 <input type="hidden" name="aab101" value="<%=aab101%>">
 </form>
 </body>
+<script type="text/javascript">
+function a() 
+{
+	if(${msg == "提示：已发送至邮箱，请等待网站boss处理"})
+	{
+		alert("提示：已发送至邮箱，请等待网站boss处理");
+	}	
+}
+</script>
 </html>

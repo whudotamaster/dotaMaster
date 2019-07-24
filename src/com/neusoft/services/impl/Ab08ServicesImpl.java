@@ -77,7 +77,7 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	  				.append("	  		  x.aab805,x.aab806 ,y.aab102                      ")     
 	  				.append("  		   from ab08 x ,ab01 y                          ")
 	  				.append("        where x.aab101=y.aab101 and x.aab804 = 1   ")//804待审核为2
-	
+
 	  				;
 	  		
 	  		//参数列表
@@ -178,12 +178,16 @@ public class Ab08ServicesImpl extends JdbcServicesSupport
 	private boolean passArticle()throws Exception
 	{
 		String sql="update ab08 set aab804 = 2 where aab801=?";
+		Tools.completeMission(this.get("aab101"), 7);
+		Tools.sendMessage("恭喜你完成每日任务_发文，获得经验30点，M点10点！",this.get("aab101"));
+		Tools.sendMessage("您的文章<m>"+this.get("aab802")+"</m>通过审核！",this.get("aab101"));
 		return this.executeUpdate(sql, this.get("aab801"))>0;//2==通过
 	}
 	
 	private boolean unpassArticle()throws Exception
 	{
 		String sql="update ab08 set aab804 = 3 where aab801=?";
+		Tools.sendMessage("您的文章<m>"+this.get("aab802")+"</m>未能通过审核！",this.get("aab101"));
 		return this.executeUpdate(sql, this.get("aab801"))>0;//3==不通过 留给后续消息提示用
 	}
 	

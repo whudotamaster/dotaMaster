@@ -266,7 +266,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     				m.get("aab101")
     			};
 			this.apppendSql(sql3.toString(),args);
-			Tools.sendMessage("您有一笔押注公布结果了,您获得的金额是: "+m.get("aad204"),(Object)m.get("aab101"));
+			Tools.sendMessage("您有一笔押注公布结果了,您获得的金额是:<m> "+m.get("aad204")+"</m>",(Object)m.get("aab101"));
 		}
     	return this.executeTransaction();
     }
