@@ -42,10 +42,10 @@ public class BaseServlet extends HttpServlet
      		//获取控制器的前缀名
      		String controllerFirstName=baseName.substring(0,1).toUpperCase()+baseName.substring(1);   	
 
-
      		/***********************************************************
      		 *                        实例化目标类---业务控制器
      		 ***********************************************************/
+     		System.out.println(basePackageName+controllerFirstName+"Servlet");
      		//实例化业务控制器
      		BaseController controller=(BaseController)Class.forName(basePackageName+controllerFirstName+"Servlet").newInstance();
      		

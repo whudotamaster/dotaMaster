@@ -8,6 +8,7 @@ public class UpdtPsnPwdServlet extends PersonControllerSupport
    public String execute() throws Exception
    {
 	   this.update("updatePassword","ÐÞ¸ÄÃÜÂë");
-	   return "changePassword";
+		this.queryMap("queryPerson");	
+	   return "updatePersonInfo";
    }
 }

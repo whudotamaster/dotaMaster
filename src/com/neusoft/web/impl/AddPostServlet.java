@@ -5,6 +5,7 @@ public final class AddPostServlet extends ForumControllerSupport
 	public String execute() throws Exception 
 	{
 		this.update("addPost", "·¢Ìû");
-		return "addPost";
+		this.query("queryPost");
+		return "forum";
 	}
 }

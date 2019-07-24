@@ -14,7 +14,7 @@ public class Ab10ServicesImpl extends JdbcServicesSupport
 	{
 		StringBuilder sql= new StringBuilder()
 				.append("SELECT a.aab901,a.aab902,a.aab903,a.aab904,a.aab905,")
-				.append("		b.aab1001,b.aab1002")
+				.append("		b.aab1001,b.aab1002,b.aab101")
 				.append("  FROM ab09 a,ab10 b")
 				.append(" WHERE b.aab101=? and b.aab901=a.aab901")
 				.append(" ORDER BY b.aab1002")
@@ -48,9 +48,8 @@ public class Ab10ServicesImpl extends JdbcServicesSupport
     	}
     	return executeTransaction();
 	}
-	
 	//修改任务用户完成状态
-	public void update(Object userId,Object missionId)throws Exception
+	public boolean update(Object userId,Object missionId)throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
 					.append("UPDATE ab10 SET aab1002 = 1 WHERE aab101 = ? AND aab901 = ?")
@@ -60,8 +59,12 @@ public class Ab10ServicesImpl extends JdbcServicesSupport
 		{
 			this.executeUpdate(sql.toString(),args);
 			this.execute(userId, missionId);
+			return true;
 		}
-	
+		else 
+		{
+			return false;
+		}
 	}
 	
 	//读取某一任务某用户完成状态,已完成为true，好像没啥用

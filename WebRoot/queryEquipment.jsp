@@ -16,10 +16,9 @@
    
 
 </head>
-<body>
+<body onload="imgOnLoad('EBg','jpg');pageOnLoad()">
 ${msg }
 <%@ include file="header.jsp" %>
-<div class="demoEquipment" style="opacity: 0.9"></div>
 <br>
 
 
@@ -56,8 +55,10 @@ ${msg }
 		     <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="11">
 	    	   	  <tr>
 				    <td>
+				     <c:if test="${aab108==2}">
 				      <input type="checkbox" name="idlist" value="${ins.aac501 }"
 				             onclick="onSelect(this.checked)" >
+				             </c:if>
 				    </td>
 				    <td>${vs.count }</td>
 				     <td >

@@ -14,10 +14,9 @@
   }
 </style>
 </head>
-<body>
+<body onload="imgOnLoad('AccBg','jpg');pageOnLoad()">
 ${msg}
 <%@ include file="header.jsp" %>
-<div class="demoAcc" style="opacity: 0.9"></div>
 <br>
 <br>
 <form action="<%=path%>/findByIdAcc.html" method="post">
@@ -42,7 +41,7 @@ ${msg}
    <tr>
      <td> Œ∆∑πÈ Ù”¢–€√˚</td>
      <td>
-       <e:text name="aac102" required="true" />
+       <e:text name="aac102" required="true" readonly="true" />
      </td>
    </tr>
    <tr>

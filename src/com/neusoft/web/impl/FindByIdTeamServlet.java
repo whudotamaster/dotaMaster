@@ -6,7 +6,7 @@ public class FindByIdTeamServlet extends TeamControllerSupport
 	public String execute() throws Exception
 	{
 
-		this.savePageData("FBIforMore");
+		this.savePageInstance();
 		return "readTeam";
 	}
 

@@ -10,17 +10,16 @@
    <style type="text/css">
      tr
      {
-        height:25px;
+        height:50px;
      }
    </style>
    
 
 </head>
-<body>
+<body onload="imgOnLoad('ta','jpg');pageOnLoad()">
 ${msg }
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
-<div class="demoTa" style="opacity: 0.9"></div>
 <br>
 <br>
     <c:if test="${aab108==2}">

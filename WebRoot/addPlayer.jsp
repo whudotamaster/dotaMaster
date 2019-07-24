@@ -15,11 +15,10 @@
   }
 </style>
 </head>
-<body>
+<body onload="imgOnLoad('PlayerBg','jpg');pageOnLoad()">
 ${msg}
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
-<div class="demoPlayer" style="opacity: 0.9"></div>
 
 <br>
 <br>
@@ -33,7 +32,7 @@ ${msg}
    <tr>
      <td>选手头像</td>
      <td>
-       <e:text name="aac1004"  required="true"   /> 
+       <e:text name="aac1004"  required="true"  value=" " /> 
      </td>
    </tr> 
    <tr>
@@ -51,7 +50,7 @@ ${msg}
    <tr>
      <td>所属战队</td>
      <td>
-       <e:text name="aac902"  required="true"   /> 
+       <e:text name="aac902"  required="true"  readonly="true"   /> 
      </td>
    </tr>  
    <tr>

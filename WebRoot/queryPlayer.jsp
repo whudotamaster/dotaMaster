@@ -14,10 +14,9 @@
      }
    </style>
 </head>
-<body>
+<body onload="imgOnLoad('PlayerBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-<div class="demoPlayer" style="opacity: 0.9"></div>
-
+${msg }
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryPlayer.html" method="post">
@@ -49,8 +48,10 @@
 		     <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="11">
 	    	   	  <tr>
 				    <td>
+				    <c:if test="${aab108==2}">
 				      <input type="checkbox" name="idlist" value="${ins.aac1001 }"
 				             onclick="onSelect(this.checked)" >
+				             </c:if>
 				    </td>
 				    <td>${vs.count }</td>
 				     <td  >
@@ -97,8 +98,7 @@
 	    <td align="center">
 	       <input type="submit" class="btn btn-secondary  active" name="next" onclick="back()" value="²éÑ¯">
 	        <c:if test="${aab108==2}">
-	       <input type="submit" class="btn btn-secondary  active" name="next" value="Ìí¼Ó" 
-	              formaction="<%=path%>/addPlayer.jsp">
+	      
 	       <input type="submit" class="btn btn-secondary  active" id="del" name="next" value="É¾³ý" 
 	              formaction="<%=path%>/delPlayer.html"  disabled="disabled">
 	       </c:if>

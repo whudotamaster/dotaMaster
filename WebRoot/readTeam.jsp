@@ -15,9 +15,8 @@
   }
 </style>
 </head>
-<body>
+<body onload="imgOnLoad('TeamBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-<div class="demoTeam" style="opacity: 0.9"></div>
 ${msg}
 <br>
 <br>
@@ -34,14 +33,14 @@ ${msg}
    <tr>
      <td>战队名</td>
      <td>
-       <e:text name="aac902"  readonly="${aab108!=2}"  required="true"  defval="${rows[0].aac902 }"/> 
+       <e:text name="aac902"  readonly="${aab108!=2}"  required="true"  defval="${ins.aac902 }"/> 
      </td>
    </tr>
    <c:if test="${aab108!=2}">
    <tr >
      <td>战队图片</td>
      <td >
-      <img alt="no image" src=<%=path%>/images/${rows[0].aac903 } style="width:12%; height:100%">
+      <img alt="no image" src=<%=path%>/images/${ins.aac903 } style="width:12%; height:100%">
      </td>
    </tr>  
    </c:if>
@@ -49,9 +48,9 @@ ${msg}
    <tr>
      <td>战队图片链接</td>
      <td >
-       <img alt="no image" src=<%=path%>/images/${rows[0].aac903 } style="width:12%; height:100%" >
+       <img alt="no image" src=<%=path%>/images/${ins.aac903 } style="width:12%; height:100%" >
        <c:if test="${aab108==2}" >
-       <e:text name="aac903"  required="true"  defval="${rows[0].aac903 }" />
+       <e:text name="aac903"  required="true"  defval="${ins.aac903 }" />
        </c:if>
      </td>
    </tr>  
@@ -59,7 +58,7 @@ ${msg}
     <tr>
      <td>战队简介</td>
      <td>
-       <e:textarea rows="5" cols="45" name="aac904" defval="${rows[0].aac904 }"/>
+       <e:textarea rows="5" cols="45" name="aac904" defval="${ins.aac904 }"/>
      </td>
    </tr>
     <c:if test="${aab108==2}" >  
@@ -72,9 +71,9 @@ ${msg}
      <td colspan="2">成员</td>
    </tr>
    <c:choose>
-	     <c:when test="${rows!=null }">
+	     <c:when test="${ins.rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
-		     <c:forEach items="${rows }" var="ins" varStatus="vs">
+		     <c:forEach items="${ins.rows }" var="ins" varStatus="vs">
 	    <tr>
            <td>选手名</td>
             <c:if test="${aab108!=2}" >
@@ -104,13 +103,18 @@ ${msg}
  
    <tr>
      <td colspan="2" align="center">
-       <input type="submit" name="next" value="返回" 
+      <c:if test="${aab108==2}">
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加战队成员" 
+	              formaction="<%=path%>/addPlayer.jsp">
+	            </c:if>
+       <input type="submit" name="next" class="btn btn-secondary  active"  value="返回" 
               formaction="<%=path%>/queryTeam.html"
               formnovalidate="formnovalidate">
+              
      </td>
    </tr>
 </table>
-<input type="hidden" name="aac901" value="${param.aac901 }">
+<input type="hidden" name="aac901" value="${ins.aac901 }">
 </form>
 <!-- 引入脚部导航栏 -->
 <%@ include file="footer.jsp" %>

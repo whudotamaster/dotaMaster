@@ -8,22 +8,21 @@
 <link rel="shortcut icon" href="ico/favicon.ico" />
 <style type="text/css">
   td{
-      height:30px;
+      height:75px;
   }
   msg{
      color:#FF0000
   }
 </style>
 </head>
-<body>
-${msg}
+<body onload="imgOnLoad('complaintAdmin','png');pageOnLoad()">
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
-
+${msg}
 <br>
 <br>
 <form action="<%=path%>/addComplain.html" method="post">
-<table  border="1" align="center" width="45%">
+<table  border="1" align="center" style="background-color:#a09373;opacity: 0.95;width:35%">
     <caption>
           向管理员投诉
       <hr width="160">
@@ -49,14 +48,14 @@ ${msg}
    <tr>
      <td colspan="2" align="center">
    			 <c:if test="${aab101==null}">
-     			<input type="submit" name="next" value="提交"
+     			<input type="submit" class="btn btn-secondary" name="next" value="提交"
              			 formaction="<%=path%>/login.jsp"
              			 formnovalidate="formnovalidate">
              </c:if>
         	<c:if test="${aab101!=null}">
-   				<input type="submit" name="next" value="提交">
+   				<input type="submit" class="btn btn-secondary" name="next" value="提交">
         	 </c:if>
-		        <input type="submit" name="next" value="返回主页" 
+		        <input type="submit" class="btn btn-secondary" name="next" value="返回主页" 
 		                 formaction="<%=path%>/mainPage.jsp"
 		              	 formnovalidate="formnovalidate">
      </td>

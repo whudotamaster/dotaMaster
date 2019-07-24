@@ -141,10 +141,13 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 		 String sql2="select y.aac201,y.aac202,y.aac203 from ac02 y where y.aac101=?";
 		 List<Map<String, Object>> rows=this.queryForList(sql2, this.get("aac101"));
 		 ins.put("rows", rows);
-		 String sql3 ="select aac302,aac303,aac304,aac305,aac306 from ac03 where aac101=? ";
+		 String sql3 ="select aac301,aac302,aac303,aac304,aac305,aac306 from ac03 where aac101=? ";
 		 List<Map<String, Object>> rows2=this.queryForList(sql3.toString(), this.get("aac101"));
 		 ins.put("rows2", rows2);
-		 System.out.println(ins);
+		 String sql4 ="select aac601,aac602,aac603 from ac06 where aac101=? ";
+		 List<Map<String, Object>> rows3=this.queryForList(sql4.toString(), this.get("aac101"));
+		 ins.put("rows3", rows3);
+		 
 		 return ins;
 	 }
 	 
@@ -178,7 +181,84 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	    	
 	    }
 	
-	
+	private boolean modifySAT()throws Exception
+	{
+		String sql1="update ac02 set aac202=?,aac203=? where aac201=?";
+		Object args1[]={
+				this.get("aac2021"),
+				this.get("aac2031"),
+				this.get("aac2011")
+		};
+		this.executeUpdate(sql1, args1);
+		String sql2="update ac02 set aac202=?,aac203=? where aac201=?";
+		Object args2[]={
+				this.get("aac2022"),
+				this.get("aac2032"),
+				this.get("aac2012")
+		};
+		this.executeUpdate(sql2, args2);
+		String sql3="update ac02 set aac202=?,aac203=? where aac201=?";
+		Object args3[]={
+				this.get("aac2023"),
+				this.get("aac2033"),
+				this.get("aac2013")
+		};
+		this.executeUpdate(sql3, args3);
+		String sql4="update ac02 set aac202=?,aac203=? where aac201=?";
+		Object args4[]={
+				this.get("aac2024"),
+				this.get("aac2034"),
+				this.get("aac2014")
+		};
+		this.executeUpdate(sql4, args4);
+		String SQL1="update ac03 set aac302=?,aac303=?,aac304=?,aac305=? where aac301=?";
+		Object args2_1[]={
+				this.get("aac3021"),
+				this.get("aac3031"),
+				this.get("aac3041"),
+				this.get("aac3051"),
+				this.get("aac3011")
+		};
+		this.executeUpdate(SQL1, args2_1);
+		String SQL2="update ac03 set aac302=?,aac303=?,aac304=?,aac305=? where aac301=?";
+		Object args2_2[]={
+				this.get("aac3022"),
+				this.get("aac3032"),
+				this.get("aac3042"),
+				this.get("aac3052"),
+				this.get("aac3012")
+		};
+		this.executeUpdate(SQL2, args2_2);
+		String SQL3="update ac03 set aac302=?,aac303=?,aac304=?,aac305=? where aac301=?";
+		Object args2_3[]={
+				this.get("aac3023"),
+				this.get("aac3033"),
+				this.get("aac3043"),
+				this.get("aac3053"),
+				this.get("aac3013")
+		};
+		this.executeUpdate(SQL3, args2_3);
+		String SQL4="update ac03 set aac302=?,aac303=?,aac304=?,aac305=? where aac301=?";
+		Object args2_4[]={
+				this.get("aac3024"),
+				this.get("aac3034"),
+				this.get("aac3044"),
+				this.get("aac3054"),
+				this.get("aac3014")
+		};
+		this.executeUpdate(SQL4, args2_4);
+		String SQL5="update ac03 set aac302=?,aac303=?,aac304=?,aac305=? where aac301=?";
+		Object args2_5[]={
+				this.get("aac3025"),
+				this.get("aac3035"),
+				this.get("aac3045"),
+				this.get("aac3055"),
+				this.get("aac3015")
+		};
+		this.executeUpdate(SQL5, args2_5);
+		System.out.println(this.get("aac3025"));
+		return this.executeUpdate(SQL5, args2_5)>0;
+	}
 	/**
 	 * µ¥Ò»ÊµÀýÉ¾³ý
 	 * @return

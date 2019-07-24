@@ -14,10 +14,9 @@
   }
 </style>
 </head>
-<body>
+<body onload="imgOnLoad('TeamBg','jpg');pageOnLoad()">
 ${msg}
 <%@ include file="header.jsp" %>
-<div class="demoTeam" style="opacity: 0.9"></div>
 <br>
 <br>
 <form action="<%=path%>/findByIdTeam.html" method="post">

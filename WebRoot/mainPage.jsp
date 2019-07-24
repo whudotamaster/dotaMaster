@@ -37,8 +37,7 @@ setTimeout('refresh()', 1);
 
 
 
-<body>
-<div class="demoLina" style="opacity: 0.9"></div>
+<body onload="imgOnLoad('Lina','png');pageOnLoad()">
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
 

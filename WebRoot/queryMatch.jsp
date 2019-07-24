@@ -14,9 +14,8 @@
      }
    </style>
 </head>
-<body>
+<body onload="imgOnLoad('MatchBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-<div class="demoMatch" style="opacity: 0.9"></div>
 ${msg }
 <br>
 <br>
@@ -51,8 +50,7 @@ ${msg }
 		     <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="11">
 	    	   	  <tr>
 				    <td>
-				      <input type="checkbox" name="idlist" value="${ins.aac1101 }"
-				             onclick="onSelect(this.checked)" >
+				    
 				    </td>
 				    <td>${vs.count }</td>
 				    <td>${ins.aac702 }</td>
@@ -95,10 +93,6 @@ ${msg }
 	  <tr>
 	    <td align="center">
 	       <input type="submit" name="next" class="btn btn-secondary  active" onclick="back()" value="查询">
-	       <c:if test="${aab108==2}">
-	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
-	              formaction="<%=path%>/addMatch.jsp">
-	       </c:if>
 	        <input type="button" class="btn btn-secondary  active" onclick="onBack()" id="backFloor" value="上一页">
 			<input type="button" class="btn btn-secondary  active" onclick="onNext()" id="nextFloor" value="下一页">
 			<input hidden="true" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">

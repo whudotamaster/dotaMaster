@@ -14,10 +14,9 @@
   }
 </style>
 </head>
-<body>
+<body onload="imgOnLoad('EventBg','jpg');pageOnLoad()">
 ${msg}
 <%@ include file="header.jsp" %>
-<div class="demoEvent" style="opacity: 0.9"></div>
 <br>
 <br>
 <form action="<%=path%>/findByIdEvent.html" method="post">
@@ -33,7 +32,7 @@ ${msg}
    <tr>
      <td>ÈüÊÂÃû</td>
      <td>
-       <e:text name="aac702" required="true" autofocus="true" /> 
+       <e:text name="aac702" required="true" readonly="true" autofocus="true" /> 
      </td>
    </tr> 
     <tr>

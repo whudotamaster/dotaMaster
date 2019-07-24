@@ -89,8 +89,18 @@ public class Ac09ServicesImpl extends JdbcServicesSupport
 	 * @throws Exception
 	 */
 
+	public Map<String, Object> findById()throws Exception
+	 {
+		 String sql="select aac901,aac902,aac903,aac904 from ac09 where aac901=?";
+		 Map<String, Object> ins=this.queryForMap(sql, this.get("aac901"));		 
+		 String sql2="select aac1001,aac1002,aac1003,aac1004,aac1005 from ac10 where aac901=?";
+		 List<Map<String, Object>> rows=this.queryForList(sql2, this.get("aac901"));
+		 ins.put("rows", rows);
+		 System.out.println(ins);
+		 return ins;
+	 }
 	    
-	    public List<Map<String,Object>> FBIforMore()throws Exception
+	   /* public List<Map<String,Object>> FBIforMore()throws Exception
 	    {
 	    	StringBuilder sql=new StringBuilder()
 	    	       .append(" select y.aac1001,y.aac1002,y.aac1003,y.aac1004,y.aac1005,  ")
@@ -102,7 +112,7 @@ public class Ac09ServicesImpl extends JdbcServicesSupport
 	    	System.out.println(this.get("aac901"));
 	    	System.out.println(this.queryForList(sql.toString(), this.get("aac901")));
 	    	return this.queryForList(sql.toString(), this.get("aac901"));
-	    }
+	    }*/
 	     
 	     
 	     /**

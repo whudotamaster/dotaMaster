@@ -14,29 +14,13 @@ opacity:0.8;
 opacity:1;
 
 }
- .background{
-                position:fixed;
-                top: 0;
-                left: 0;
-                width:100%;
-                height:100%;
-                min-width: 1000px;
-                z-index:-10;
-                zoom: 1;
-                background: url(images/AdminGo.jpg);
-                background-repeat: no-repeat;
-                background-size: cover;
-                -webkit-background-size: cover;
-                -o-background-size: cover;
-                background-position: center 0;
-            }
+
 </style>
 <script type="text/javascript" src="jquery.js"></script>
 </head>
-<body>
+<body onload="imgOnLoad('AdminGo','jpg');pageOnLoad()">
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
-<div class="background"></div>
 <c:if test="${aab108==2}">
  <div class="container" style="z-index:2" >
       <div class="card-deck mb-3 text-center">

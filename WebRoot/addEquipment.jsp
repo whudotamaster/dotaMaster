@@ -15,10 +15,9 @@
   }
 </style>
 </head>
-<body>
+<body onload="imgOnLoad('EBg','jpg');pageOnLoad()">
 ${msg}
 <%@ include file="header.jsp" %>
-<div class="demoEquipment" style="opacity: 0.9"></div>
 <br>
 <br>
 <form action="<%=path%>/addEmp.html" method="post">
@@ -67,8 +66,10 @@ ${msg}
    </tr>
    <tr>
      <td colspan="2" align="center">
+     <c:if test="${aab108==2}">
        <input type="submit" class="btn btn-secondary  active" name="next" value="${empty param.aac501?'Ìí¼Ó':'ÐÞ¸Ä' }" class="btn" id="btn"
               formaction="<%=path%>/${empty param.aac501?'add':'modify' }Equipment.html">
+              </c:if>
        <input type="submit" class="btn btn-secondary  active" name="next" value="·µ»Ø" 
               formaction="<%=path%>/queryEquipment.html"
               formnovalidate="formnovalidate">

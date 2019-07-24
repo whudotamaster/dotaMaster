@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<title>${empty param.aab801?'文章投稿':${ins.aab802 } }</title>
+<title>文章详情</title>
    <link rel="shortcut icon" href="ico/favicon.ico" />
 
 <style type="text/css">
@@ -15,9 +15,8 @@
   }
 </style>
 </head>
-<body>
+<body onload="imgOnLoad('ta','jpg');pageOnLoad()">
 ${msg}
-<div class="demoTa" style="opacity: 0.9"></div>
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
 <br>

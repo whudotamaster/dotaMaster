@@ -1,3 +1,18 @@
+<div id="no">
+<div id="no0" class="no"></div>
+<div id="no1" class="no"></div>
+<div id="no2" class="no"></div>
+<div style="wider:100% ; height: 100%;">
+<div id="no3" class="no"></div>
+<div id="no4" class="no"></div>
+<div id="no5" class="no"></div>
+<div style="wider:100% ; height: 100%;">
+<div id="no6" class="no"></div>
+<div id="no7" class="no"></div>
+<div id="no8" class="no"></div>
+</div>
+</div>
+</div>
 <%@ page language="java"
     pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
@@ -267,6 +282,10 @@
 	justify-content: center;
 	overflow: hidden;
 }
+       html,body { wider:100% ; height: 100%;margin: 0; padding: 0;}
+
+			#no{width:100%;height:100%;background:black;position:fixed;z-index:-1;}
+			.no{width:calc(100%/3);height:calc(100%/3);float:left;  background-size: 100% 100%;}
     </style>
 </head>
 <%
@@ -297,7 +316,7 @@ String pic = (String)session.getAttribute("pic");
             <a class="nav-link pico" href="<%=path%>/queryAcc.html">饰品</a>
           </li>
              <li class="nav-item">
-            <a class="nav-link pico" href="<%=path%>/forum.html">论坛</a>
+            <a class="nav-link pico"  href="#" onclick="forum()">论坛</a>
           </li>
              <li class="nav-item">
             <a class="nav-link pico" href="<%=path%>/queryArticle.html">文章</a>
@@ -313,6 +332,13 @@ String pic = (String)session.getAttribute("pic");
           </li>
              <li class="nav-item">
             <a class="nav-link pico" href="<%=path%>/queryPlayer.html">选手</a>
+          </li>
+           </li>		
+           <li class="nav-item">
+            <a class="nav-link pico" href="<%=path%>/BuyVip.jsp">VIP</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link pico" href="<%=path%>/BuyCurrency.jsp">虚拟货币</a>
           </li>
           	<c:if test="${aab108==2}">
              <li class="nav-item">
@@ -360,10 +386,11 @@ String pic = (String)session.getAttribute("pic");
 <img id="left"  class="arrow left pico" src="images/others/notice.jpg" onclick="toNotice()" >
 <img id="right" class="arrow right pico" src="images/others/uncomplete.jpg"  onclick="toMission()" >
 <img id="up" class="arrow up pico" src="images/others/person.jpg" onclick="toUpdate()" >
-<img id="down" class="arrow down pico" src="images/others/quit.jpg" onclick="toLogin()" >
+<img id="down" class="arrow down pico" src="images/others/quit.jpg" onclick="toLogout()" >
 </c:if>
 </div>
 <br>
+<form id="forum" ><input type="text" hidden="true" name="aab101" id="aab101" value="<%=aab101%>"></form>
 	<SCRIPT language=javascript>
 	 	 function onNext()
 	 	 {
@@ -385,7 +412,7 @@ String pic = (String)session.getAttribute("pic");
 	     {
 	   	 	document.getElementById("nowFloor").value = 1;
 	     }
-	 	 window.onload = function()
+	 function pageOnLoad()
 	 	 {
 			document.getElementById("nextFloor").disabled = ${!(rows[0].nowFloor < rows[0].floor)};
 	 		document.getElementById("backFloor").disabled = ${!(rows[0].nowFloor > 1)}
@@ -393,6 +420,8 @@ String pic = (String)session.getAttribute("pic");
 	 	function toNotice()
 	 	 {
 	 		  var vform = document.getElementById("formX");
+	 
+	 		
 	 	    	 vform.action="<%=path%>/queryNotice.html";
 	 	    	 vform.submit();
 	 	 }
@@ -400,6 +429,7 @@ String pic = (String)session.getAttribute("pic");
 	 	 {
 	 		  var vform = document.getElementById("formX");
 	 	    	 vform.action="<%=path%>/queryMission.html";
+	 	    	 
 	 	    	 vform.submit();
 	 	 }
 		function toUpdate()
@@ -408,11 +438,25 @@ String pic = (String)session.getAttribute("pic");
 	 	    	 vform.action="<%=path%>/queryPerson.html";
 	 	    	 vform.submit();
 	 	 }
+		function toLogout()
+	 	 {
+	 	
+	 	    	if(confirm("现在登出吗？"))
+	 	    	{
+	 	    	var vform = document.getElementById("formX");
+	 	 	    vform.action="<%=path%>/logout.html";
+	 	    	vform.submit();
+	 	    	}
+	 	 }
 		function toLogin()
 	 	 {
-	 		  var vform = document.getElementById("formX");
-	 	    	 vform.action="<%=path%>/logout.html";
-	 	    	 vform.submit();
+	 	
+	 	    	
+	 	    
+	 	    	var vform = document.getElementById("formX");
+	 	 	    vform.action="<%=path%>/logout.html";
+	 	    	vform.submit();
+	 	    	
 	 	 }
 	 	//鼠标事件*******************************
 	 /*	function test()
@@ -431,6 +475,8 @@ alert(event.button);
 		{
 			var mymenu = document.getElementById("mymenu");
 			mymenu.style.zIndex = 5;
+			mymenu.style.visibility = 'visible';
+
 			mymenu.style.opacity = 1;
 			mymenu.style.left = event.pageX-150+'px';
 			mymenu.style.top= event.pageY-150+'px';
@@ -439,7 +485,8 @@ alert(event.button);
 		{
 			var mymenu = document.getElementById("mymenu");
 			mymenu.style.opacity = 0;
-			mymenu.style.zIndex = 1;
+	
+
 		}
 	}
 /*
@@ -448,4 +495,20 @@ document.onkeydown=function()
 alert(event.keyCode);
 } */
     //鼠标事件结束************************************
+    
+	      function imgOnLoad(image,type)
+	      {
+	      	for(var i = 0 ; i<9;i++)
+	      	{
+	      	var id = "no" + i ;
+	      		document.getElementById(id).style.backgroundImage="url(images/"+ image + "_" + i +"."+type+")";	
+	      	}
+	      }
+	      
+	      function forum()
+	      {
+	    	  var form = document.getElementById("forum");
+	    	  form.action = "<%=path%>/forum.html";
+	    	  form.submit();
+	      }
 	</SCRIPT>

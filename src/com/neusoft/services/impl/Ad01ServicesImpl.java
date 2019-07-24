@@ -15,8 +15,6 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 	//用户进入首页时,查看当前是否有可押注的比赛
 	public List<Map<String, Object>> query()throws Exception
     {
-		int number=15;
-		StringBuilder whereSql = new StringBuilder();
 		StringBuilder sql=new StringBuilder()
   				.append("select d.aad101,d.aad102,d.aad103,c.aac1101,")
   				.append("       c.aac1102,c.aac1103,c.aac1104,e.aac702")
@@ -24,29 +22,8 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
   				.append(" where d.aac1101=c.aac1101 and e.aac701=c.aac701 ")
   				.append("   and now()>d.aad104 and now()<d.aad105 and c.aac1105=0")
   				;
-		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
-		Map<String, Object> map1 = new HashMap<String, Object>();
-    	int nowFloor =  1;
-		if (isNotNull(this.get("nowFloor"))) 
-		{
-			nowFloor = Integer.valueOf((String)this.get("nowFloor"));
-		}
-		whereSql.append("and d.aac1101=c.aac1101 and e.aac701=c.aac701 and now()>d.aad104 and now()<d.aad105");
-		map1.put("floor", String.valueOf(countFloor(" ac11 c,ad01 d,ac07 e ",whereSql.toString(),number,null)));
-		map1.put("nowFloor", String.valueOf(nowFloor));
-		rows.add(map1);
-		
-		
-		sql.append(" limit ?,? ");
-		Object args[]={
-				(nowFloor-1)*number,
-				number
-		};
-		for(Map<String, Object> list:this.queryForList(sql.toString(),args))
-		{
-			rows.add(list);
-		}
-		return rows;
+		return this.queryForList(sql.toString());
+	
     }
 	
 	private boolean isEnough(Object aab101) throws Exception
@@ -65,7 +42,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	{
     		aad203=Integer.parseInt(this.get("aad203"+count).toString());
     	}
-		if(aab106>aad202+aad203)
+		if(aab106>=aad202+aad203)
 			return true;
 		else 
 			return false;
@@ -74,6 +51,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     //用户单次押注时,插入用户押注表并更新竞猜表
     public boolean insertBetLog()throws Exception	
     {	
+    	System.out.println(this.get("aab101"));
     	if(!this.isEnough(this.get("aab101")))
     	{	this.setMessage("金钱不足");
     		return false;
@@ -96,6 +74,8 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	{
     		aad203=Integer.parseInt(this.get("aad203"+count).toString());
     	}
+    	System.out.println("aad202"+count+this.get("aad202"+count));
+    	System.out.println("aad203"+count+this.get("aad203"+count));
     	if(aad202==0&&aad203==0)
     	{
     		this.setMessage("  请至少在一方押注");
@@ -129,7 +109,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     			this.get("aad101")
     	};
     	this.apppendSql(sql2.toString(), args2);
-    	Tools.completeMission(this.get("aab101"), 1);
+    	Tools.completeMission(this.get("aab101"), 4);
     	if(this.executeTransaction())
     	{
     		this.setMessage("押注成功");
@@ -286,7 +266,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     				m.get("aab101")
     			};
 			this.apppendSql(sql3.toString(),args);
-			Tools.sendMessage("您有一笔押注公布结果了,您获得的金额是: "+m.get("aad204"),(Object)m.get("aab101"));
+			Tools.sendMessage("您有一笔押注公布结果了,您获得的金额是:<m> "+m.get("aad204")+"</m>",(Object)m.get("aab101"));
 		}
     	return this.executeTransaction();
     }

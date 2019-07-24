@@ -95,8 +95,20 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		// 2.获取页面idlist数组
 		String idlist[] = this.getIdList("idlist");
 		// 3.执行
+		for(Object postId:idlist)
+		{
+			Map<String,Object> ins = this.getUserId(postId);
+			Tools.sendMessage("您的帖子<m>"+ins.get("aab502")+"</m>已经加精", ins.get("aab101"));
+		}
 		return this.batchUpdate(sql, idlist);
 	}
+	
+	private Map<String,Object> getUserId(Object postId) throws Exception
+	{
+		String sql = "select aab101,aab502 from ab05 where aab501 = ?";
+		return this.queryForMap(sql, postId);
+	}
+
 
 	/**
 	 * 论坛主页帖子刪除
@@ -106,7 +118,11 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 	 */
 	private boolean delPostById() throws Exception 
 	{
+		try
+		{
 		Object aab501 = this.get("aab501");
+		Map<String,Object> ins = this.getUserId(aab501);
+		Tools.sendMessage("您的帖子<m>"+ins.get("aab502")+"</m>已被删除", ins.get("aab101"));		
 		String sql0 = "delete from ab11 where aab501=?";
 		String sql1 = "delete from ab06 where aab501=?";
 		String sql2 = "delete from ab07 where aab501=?";
@@ -115,7 +131,13 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 		this.apppendSql(sql1, aab501);
 		this.apppendSql(sql2, aab501);
 		this.apppendSql(sql3, aab501);
-		return executeTransaction();
+		return this.executeTransaction();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	/**
@@ -268,8 +290,11 @@ public class Ab05ServicesImpl extends JdbcServicesSupport
 								aab501 
 								};
 			tag = this.executeUpdate(sql3.toString(), args2) > 0 && tag;
+			if(Tools.completeMission(aab101, 2)){
+				Tools.sendMessage("恭喜你完成每日任务_回帖，获得经验5点，M点5点！", aab101);
+			}
 			Ab01ServicesImpl ab01=new Ab01ServicesImpl();
-			ab01.addExp(aab101, "addComment");
+			ab01.addExp(aab101, "addPost");
 			return tag;
 		}
 		return false;

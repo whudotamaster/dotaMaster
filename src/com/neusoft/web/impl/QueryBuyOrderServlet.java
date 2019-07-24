@@ -6,7 +6,6 @@ public final class QueryBuyOrderServlet extends UserControllerSupport
 	public String execute() throws Exception 
 	{
 		this.query("queryBuyOrder");
-		System.out.println("queryZHIXING");
 		return "adminQuerySend";
 	}
 }

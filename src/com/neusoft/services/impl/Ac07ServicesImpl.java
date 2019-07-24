@@ -100,25 +100,12 @@ public class Ac07ServicesImpl extends JdbcServicesSupport
 				.append("	     where aac701=?                             ")
 				.append("        and x.aac703=y.fcode and y.fname='aac703' ")
 				;
-		return this.queryForMap(sql.toString(), this.get("aac701"));
-	}
-
-	/**
-	 * 比赛信息点击赛事名字浏览
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public List<Map<String, Object>> FBIforMore() throws Exception
-	{
-		// 1.编写SQL语句
-		StringBuilder sql = new StringBuilder()
-				.append(" select x.aac1101,x.aac701,x.aac1102,x.aac1103,x.aac1104,x.aac1105,y.aac702  ")
-				.append("             from ac11 x , ac07 y                                  ")
-				.append("			 where x.aac701=y.aac701                                ")
-				.append("			 and x.aac701=?                                         ");
-		// 执行查询
-		return this.queryForList(sql.toString(), this.get("aac701"));
+		Map<String, Object> ins=this.queryForMap(sql.toString(), this.get("aac701"));
+		String sql2="select aac1101,aac1102,aac1103,aac1104,aac1105 from ac11 where aac701=?";
+		List<Map<String, Object>> rows=this.queryForList(sql2,this.get("aac701"));
+		ins.put("rows", rows);
+		System.out.println(ins);
+		return ins;
 	}
 
 	/**
