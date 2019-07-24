@@ -42,7 +42,6 @@ color:#000000;
 
 </head>
 <body onload="imgOnLoad('hc','png');pageOnLoad()">
-<div class="demoTimg"></div>
 	<%@ include file="header.jsp" %>
 	<br>
 	<br>

@@ -21,9 +21,8 @@
 <%@ include file="header.jsp" %>
 ${msg}
 <br>
-<br>
 <form action="<%=path%>/findByIdArticle.html" method="post">
-<table  border="1" align="center" style="background-color:#a09373;width:35%">
+<table  border="1" align="center" style="background-color:#a09373;opacity: 0.95;width:35%" >
     <caption>
           向站长投诉
       <hr width="160">
@@ -55,7 +54,7 @@ ${msg}
    <tr>
      <td>详细内容</td>
      <td>
-       <e:textarea rows="5" cols="45" name="details" />
+       <e:textarea rows="5" cols="45" name="details"  style="resize:none" />
      </td>
    </tr>
    <tr>

@@ -27,7 +27,7 @@
    <tr>
      <td>付款金额</td>
      <td>
-       <e:text name="WIDtotal_amount"  required="true" />
+       <e:select   name="WIDtotal_amount" value="1个月:10,2个月:20,3个月:30,6个月:60,12个月:120" defval="10" />
      </td>
    </tr>  
    <tr>

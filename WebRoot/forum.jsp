@@ -201,7 +201,7 @@ color:#000000;
 					</td>
 			</tr>
 		</table>
-		 <e:hidden name="aab101" defval="<%=aab101 %>"/>
+		 <e:hidden name="aab101" defval="${aab101 }"/>
 	</form>
 <%@include file="footer.jsp" %>
 </body>

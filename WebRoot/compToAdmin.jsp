@@ -42,7 +42,7 @@ ${msg}
    <tr>
      <td>ÏêÏ¸ÄÚÈİ</td>
      <td>
-       <e:textarea rows="5" cols="45" name="aad503" />
+       <e:textarea rows="5" cols="45" name="aad503"  style="resize:none" />
      </td>
    </tr>
    <tr>

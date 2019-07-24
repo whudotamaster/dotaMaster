@@ -87,7 +87,7 @@ ${msg}
 				            formnovalidate="formnovalidate" >
 				            </c:if>
 				         <c:if test="${aab101 ==null }">
- 						<input type="button" class="btn btn-secondary  active" value="´òÉÍ" 
+ 						<input type="submit" class="btn btn-secondary  active" value="´òÉÍ" 
 				       		formaction = "login.html"
 				            formnovalidate="formnovalidate" >
 				            </c:if>   

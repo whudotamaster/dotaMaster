@@ -67,7 +67,10 @@
 	}
 	//——请在这里编写您的程序（以上代码仅作参考）——
 %>
-<body>
+<body onload="window.location.href='queryPerson.html?aab101=' + ${aab101}">
 <%@ include file="header.jsp" %>
 </body>
+<script type="text/javascript">
+
+</script>
 </html>

@@ -337,12 +337,14 @@ String pic = (String)session.getAttribute("pic");
              <li class="nav-item">
             <a class="nav-link pico" href="<%=path%>/queryPlayer.html">选手</a>
           </li>		
+          <c:if test="${aab101 != null }">
            <li class="nav-item">
             <a class="nav-link pico" href="<%=path%>/BuyVip.jsp">VIP</a>
           </li>
            <li class="nav-item">
             <a class="nav-link pico" href="<%=path%>/BuyCurrency.jsp">虚拟货币</a>
           </li>
+          </c:if>
           	<c:if test="${aab108==2}">
              <li class="nav-item">
             <a class="nav-link pico" href="<%=path%>/adminGo.html">网站管理</a>
