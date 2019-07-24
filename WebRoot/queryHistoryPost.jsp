@@ -31,18 +31,17 @@ vertical-align:middle;
   {
   color:black;
   }
-
-            .posthidden{
-white-space:nowrap;
-overflow:hidden; 
-text-overflow:ellipsis;
-color:#000000;
-}
+         .posthidden{
+		white-space:nowrap;
+		overflow:hidden; 
+		text-overflow:ellipsis;
+		color:#000000;
+		}
 </style>
 
 </head>
 <body onload="imgOnLoad('hc','png');pageOnLoad()">
-	<%@ include file="header.jsp" %>
+<%@ include file="header.jsp" %>
 	<br>
 	<br>
 	<form id="myform" action="<%=path%>/queryHistoryById.html" method="post">

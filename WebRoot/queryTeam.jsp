@@ -47,7 +47,7 @@ ${msg }
 	    	   	  <tr>
 				    <td style="width:15%; height:15%">${vs.count }</td>
 				     <td  align="center" style="width:15%; height:15%">
-				       <img alt="no image" src=<%=path%>/images/${ins.aac903 } style="width:100%; height:100%">
+				       <img alt="no image" src=<%=path%>/images/${ins.aac903 } style="width:100px; height:100px">
 				     </td>
 				    <td align="center">
 				      <!-- #  ¿ÕÃª -->

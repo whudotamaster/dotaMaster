@@ -20,7 +20,7 @@ ${msg }
 <br>
 <br>
 <br>
-
+<div class="demoTa" style="opacity: 0.9"></div>
 <form action="<%=path%>/buyAcc.html" method="post">
 <table border=2 align="center" class="table" style="background-color:white;opacity: 0.95;width:45%">
       	 <caption align="left"><font color="#000000" size="5px">${empty ins.aad403?'购买饰品':'订单详情' }</font> </caption>
@@ -52,7 +52,7 @@ ${msg }
      <c:choose>
      <c:when test="${empty ins.aad403}">
      <input type="submit"  class="btn btn-secondary" name="next" value="购买"
-              formaction="<%=path%>/buyAcc.html">
+              >
      <input type="submit"  class="btn btn-secondary" name="next" value="返回" 
               formaction="<%=path%>/findByIdAcc.html?aac601=${ins.aac601 }"
               formnovalidate="formnovalidate">

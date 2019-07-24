@@ -17,8 +17,8 @@
 
 </head>
 <body onload="imgOnLoad('addPost','png');pageOnLoad()">
-<%@ include file="header.jsp" %>
 ${msg }
+<%@ include file="header.jsp" %>
 <br>
 <br>
 <form action="<%=path%>/addEmp.html" method="post">

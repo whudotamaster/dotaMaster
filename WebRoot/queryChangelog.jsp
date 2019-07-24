@@ -18,7 +18,6 @@
 <%@ include file="header.jsp" %>
 ${msg }
 <br>
-<%=session.getId() %>
 <br>
 <form id="myform" action="<%=path%>/queryChangelog.html" method="post">
   <!-- 查询条件区 -->

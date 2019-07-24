@@ -16,9 +16,9 @@
 </style>
 </head>
 <body onload="imgOnLoad('ta','jpg');pageOnLoad()">
+<%@ include file="header.jsp" %>
 ${msg}
 <!-- 引入头部导航栏 -->
-<%@ include file="header.jsp" %>
 <br>
 <br>
 <form action="<%=path%>/findByIdArticle.html" method="post">

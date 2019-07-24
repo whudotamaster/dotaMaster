@@ -8,54 +8,114 @@
    <link rel="shortcut icon" href="ico/favicon.ico" />
    
    <style type="text/css">
-     tr
+     .a
      {
-        height:50px;
+		opacity:0.7;
+		cursor: url('ico/favicon2.ico'), default;
      }
+       .a:hover
+        {
+		opacity:1;
+		
+		}
+		.mycontainer
+		{
+			width: 	100%;
+			padding-left:300px;
+			padding-right:300px;
+			padding-top:100px;
+		}
    </style>
 </head>
 
 <body onload="imgOnLoad('bg','png');pageOnLoad()">
-${msg }
 <%@ include file="header.jsp" %>
+${msg }
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryHero.html" method="post">
-<div class="container">
-    <font size=5 color=white>所有英雄:</font>
-    <br>
-    <br>
-    <br>
-  <div class="row">
-    <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="5">
-    <div class="col-sm">
-      <c:if test="${aab108==2}">
-      <div><a href="#" onclick="onEditMore('${ins.aac101}')"><img style="width:100px; height:100px" alt="no image" src=<%=path%>/images/${ins.aac112 }></a></div>
-      </c:if>
+ <div class="mycontainer" style="z-index:2" >
+      <div class="card-deck mb-3 text-center">
+        <c:forEach items="${rows }" var="ins" begin="1" end="5">
+	      <div class="card mb-4 box-shadow a" style="background:#000" >
+	          <div class="card-header">
+	            <h4 class="my-0 font-weight-normal"  style="opacity:1"><font color="white"><a href="#" onclick="onEdit('${ins.aac101}')">${ins.aac102 }</a></font></h4>
+	          </div>
+	          <div class="card-body">
+	          	<c:if test="${aab108==2}">
+      				<div>
+      					<a href="#" onclick="onEditMore('${ins.aac101}')">
+      						<img style="width:150px; height:150px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
+      					</a>
+      				</div>
+      			</c:if>
 
-      <c:if test="${aab108!=2 }">
-      <div><a href="#" onclick="onRead('${ins.aac101}')"><img style="width:100px; height:100px" alt="no image" src=<%=path%>/images/${ins.aac112 }></a></div>
-      </c:if>
-      <div><a href="#" onclick="onEdit('${ins.aac101}')">${ins.aac102 }</a></div>  
-    </div>
-    </c:forEach>
-  </div>
-  <div class="row">
-    <c:forEach items="${rows }" var="ins" varStatus="vs" begin="6" end="10">
-    <div class="col-sm">
-      <c:if test="${aab108==2}">
-      <div><a href="#" onclick="onEditMore('${ins.aac101}')"><img style="width:100px; height:100px" alt="no image" src=<%=path%>/images/${ins.aac112 }></a></div>
-      </c:if>
-      <c:if test="${aab108!=2}">
-      <div><a href="#" onclick="onRead('${ins.aac101}')"><img style="width:100px; height:100px" alt="no image" src=<%=path%>/images/${ins.aac112 }></a></div>
-      </c:if>
-      <div><a href="#" onclick="onEdit('${ins.aac101}')">${ins.aac102 }</a></div>  
-    </div>
-    </c:forEach>
-  </div>
+			    <c:if test="${aab108!=2 }">
+			      	<div>
+			      		<a href="#" onclick="onRead('${ins.aac101}')">
+			      			<img style="width:150px; height:150px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
+			      		</a>
+			      	</div>
+			    </c:if>
+	          </div>
+	        </div>      
+		</c:forEach>
+	</div>
+
+      <div class="card-deck mb-3 text-center">
+        <c:forEach items="${rows }" var="ins" varStatus="vs" begin="6" end="10">
+	      <div class="card mb-4 box-shadow a" style="background:#000" >
+	          <div class="card-header">
+	            <h4 class="my-0 font-weight-normal"  style="opacity:1"><font color="white"><a href="#" onclick="onEdit('${ins.aac101}')">${ins.aac102 }</a></font></h4>
+	          </div>
+	          <div class="card-body">
+	          	<c:if test="${aab108==2}">
+      				<div>
+      					<a href="#" onclick="onEditMore('${ins.aac101}')">
+      						<img style="width:150px; height:150px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
+      					</a>
+      				</div>
+      			</c:if>
+
+			    <c:if test="${aab108!=2 }">
+			      	<div>
+			      		<a href="#" onclick="onRead('${ins.aac101}')">
+			      			<img style="width:150px; height:150px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
+			      		</a>
+			      	</div>
+			    </c:if>
+	          </div>
+	        </div>      
+		</c:forEach>
+	</div>
+	      <div class="card-deck mb-3 text-center">
+        <c:forEach items="${rows }" var="ins" varStatus="vs" begin="11" end="15">
+	      <div class="card mb-4 box-shadow a" style="background:#000" >
+	          <div class="card-header">
+	            <h4 class="my-0 font-weight-normal"  style="opacity:1"><font color="white"><a href="#" onclick="onEdit('${ins.aac101}')">${ins.aac102 }</a></font></h4>
+	          </div>
+	          <div class="card-body">
+	          	<c:if test="${aab108==2}">
+      				<div>
+      					<a href="#" onclick="onEditMore('${ins.aac101}')">
+      						<img style="width:150px; height:150px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
+      					</a>
+      				</div>
+      			</c:if>
+
+			    <c:if test="${aab108!=2 }">
+			      	<div>
+			      		<a href="#" onclick="onRead('${ins.aac101}')">
+			      			<img style="width:150px; height:150px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
+			      		</a>
+			      	</div>
+			    </c:if>
+	          </div>
+	        </div>      
+		</c:forEach>
+	</div>
 </div>
 
-	
 	<!-- 功能按钮区 -->
 	<table  border="0" cellpadding="0" cellspacing="0"  align="center">
 	  <tr>
@@ -64,7 +124,7 @@ ${msg }
 	       <c:if test="${aab108==2}">
 	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
 	              formaction="<%=path%>/addHero.jsp">
-	              </c:if>
+	       </c:if>
 	    </td>
 	  </tr>
 	</table>
