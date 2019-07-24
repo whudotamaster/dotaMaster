@@ -22,19 +22,15 @@
 		}
 		@keyframes bgAnimate {
 			0%{
-				background: url("images/1563522428627.jpg") no-repeat;
-				background-size: 100%;
-			}
-			33%{
 				background:url("images/1563522467238.jpg") no-repeat;
 				background-size: 100%;
 			}
-			66%{
+			50%{
 				background: url("images/156352282667.jpg") no-repeat;
 				background-size: 100%;
 			}
 			100%{
-				background: url("images/1563522428627.jpg") no-repeat;
+				background: url("images/1563522467238.jpg") no-repeat;
 				background-size: 100%;
 			}
 		}

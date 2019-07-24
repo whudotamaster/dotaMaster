@@ -136,7 +136,11 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     			this.get("aad101")
     	};
     	this.apppendSql(sql2.toString(), args2);
-    	Tools.completeMission(this.get("aab101"), 4);
+    	boolean tag=Tools.completeMission(this.get("aab101"), 4);
+    	if(tag)
+    	{
+    		Tools.sendMessage("任务完成", this.get("aab101"));
+    	}
     	if(this.executeTransaction())
     	{
     		this.setMessage("押注成功");

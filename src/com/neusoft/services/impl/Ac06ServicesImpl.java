@@ -86,7 +86,11 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		//先判断能不能买
 		if(allowPurchase(this.get("aac601")))
 		{
-			Tools.completeMission(this.get("aab101"), 6);
+			boolean tag=Tools.completeMission(this.get("aab101"), 6);
+	    	if(tag)
+	    	{
+	    		Tools.sendMessage("任务完成", this.get("aab101"));
+	    	}
 			//插入单次购买事务语句
 			this.buyAccessories(this.get("aac601"));
 			//执行事务
@@ -143,7 +147,17 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 			this.buyAccessories(id);
 		}
 		//执行事务
-		return executeTransaction();
+		if(executeTransaction())
+		{
+			boolean tag=Tools.completeMission(this.get("aab101"), 6);
+	    	if(tag)
+	    	{
+	    		Tools.sendMessage("任务完成", this.get("aab101"));
+	    	}
+			return true;
+		}
+		else 
+			return false;
 	}
 	
 	//出售饰品给网站

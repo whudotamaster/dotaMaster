@@ -477,7 +477,7 @@ alert(event.button);
 			mymenu.style.zIndex = 1;
 		}
 	}
-}
+
 /*
 document.onkeydown=function()
 {

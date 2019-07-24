@@ -20,14 +20,8 @@ ${msg }
 <br>
 <br>
 <br>
-
-<<<<<<< Upstream, based on branch 'dev' of git@github.com:whudotamaster/dotaMaster.git
-
 <div class="demoTa" style="opacity: 0.9"></div>
 <form action="<%=path%>/buyAcc.html" method="post">
-=======
-<form action="<%=path%>/buyAcc.html" method="post" >
->>>>>>> 7af174b 鏁村悎pull
 <table border=2 align="center" class="table" style="background-color:white;opacity: 0.95;width:45%">
       	 <caption align="left"><font color="#000000" size="5px">${empty ins.aad403?'购买饰品':'订单详情' }</font> </caption>
    <tr>
