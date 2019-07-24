@@ -8,12 +8,12 @@
    <link rel="shortcut icon" href="ico/favicon.ico" />
    
    <%@ include file="header.jsp" %>
+   
    <style type="text/css">
    body
   {
   color:black;
   }
-            
   *{
       margin: 0;
       padding: 0;
@@ -53,13 +53,13 @@
       justify-content: center;
       height:500px;
     }
-    .left{
+    .left2{
       flex: 1;
     }
-    .mid{
+    .mid2{
       width: 200px;
     }
-    .right{
+    .right2{
       flex: 1;
     }
     .item-img{
@@ -123,25 +123,24 @@ ${msg }
 
 <br>
 <br>
-<div class="demo"></div>
 <div class="container">
   <c:forEach items="${rows }" var="ins" varStatus="vs">
    <form id="myform${vs.count }" class="flex-container list-item" >
       <div class="header"></div>
       <div class="body">
-        <div class="left flex-container">
-            <img src="<%=path%>/images/${ins.图片 }" alt="${ins.aac1103 }" class="item-img">
+        <div class="left2 flex-container">
+            <img src="<%=path%>/images/${ins.pic1 }" alt="${ins.aac1103 }" class="item-img">
             <p>${ins.aac1103 }</p>
             <p>下注量：${ins.aad102 }</p>
             <div>我要下注：<input type="text" name="aad202${vs.count }" class="my-input" value="0"></div>
         </div>
-        <div class="mid flex-container">
+        <div class="mid2 flex-container">
           <p class="vs">VS</p>
           <p> ${ins.aac1102 }</p>
           <p><input type="button" class="bet-btn" value="下注" onclick="onBet('${ins.aad101}','${vs.count }')"></p>
         </div>
-        <div class="right flex-container">     
-            <img src="http://01.imgmini.eastday.com/mobile/20180413/20180413210854_5981ee25d426a7282b09ae4f344f9adc_2.jpeg" alt="VG" class="item-img">
+        <div class="right2 flex-container">     
+            <img src="<%=path%>/images/${ins.pic2 }" alt="VG" class="item-img">
             <p>${ins.aac1104 }</p>
             <p>下注量：${ins.aad103 }</p>
             <div>我要下注：<input type="text" class="my-input" name="aad203${vs.count }" value="0"></div>

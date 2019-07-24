@@ -316,7 +316,9 @@ String pic = (String)session.getAttribute("pic");
             <a class="nav-link pico" href="<%=path%>/queryAcc.html">饰品</a>
           </li>
              <li class="nav-item">
-            <a class="nav-link pico"  href="#" onclick="forum()">论坛</a>
+             <form id="forum"  action="<%=path%>/forum.html">
+            <a class="nav-link pico" id="forum2"  href="javascript:forum.submit();">论坛</a>
+            </form>
           </li>
              <li class="nav-item">
             <a class="nav-link pico" href="<%=path%>/queryArticle.html">文章</a>
@@ -329,6 +331,9 @@ String pic = (String)session.getAttribute("pic");
           </li>
              <li class="nav-item">
             <a class="nav-link pico"  href="<%=path%>/queryBet.html">竞猜</a>
+          </li>    
+             <li class="nav-item">
+            <a class="nav-link pico" href="<%=path%>/queryTeam.html">战队</a>
           </li>
              <li class="nav-item">
             <a class="nav-link pico" href="<%=path%>/queryPlayer.html">选手</a>
@@ -390,7 +395,6 @@ String pic = (String)session.getAttribute("pic");
 </c:if>
 </div>
 <br>
-<form id="forum" ><input type="text" hidden="true" name="aab101" id="aab101" value="<%=aab101%>"></form>
 	<SCRIPT language=javascript>
 	 	 function onNext()
 	 	 {
@@ -505,10 +509,4 @@ alert(event.keyCode);
 	      	}
 	      }
 	      
-	      function forum()
-	      {
-	    	  var form = document.getElementById("forum");
-	    	  form.action = "<%=path%>/forum.html";
-	    	  form.submit();
-	      }
 	</SCRIPT>

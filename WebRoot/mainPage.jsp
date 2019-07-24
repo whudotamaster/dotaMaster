@@ -1,4 +1,3 @@
-
 <%@ page language="java" 
     pageEncoding="GBK"%>
 
@@ -10,45 +9,66 @@
 	String laab102=(String)request.getAttribute("ins.aab102");
 %>
 
-<Script>
-
-function refresh(){
-    url = location.href;
- console.log(url);
-    var once = url.split("#");
-    if (once[1] != 1) {
-        url += "#1";
-        self.location.replace(url);
-       window.location.reload();
-    }
-}
- 
-setTimeout('refresh()', 1);
-
-</script>
-
-
 <html>
 <head>
 	<title>主页</title>
 <link rel="shortcut icon" href="ico/favicon.ico" />
 </head>
-
-
-
-
-<body onload="imgOnLoad('Lina','png');pageOnLoad()">
-<!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
+<style type="text/css">
+.bg{
+			animation: bgAnimate 8s ease infinite;
+			
+		}
+		@keyframes bgAnimate {
+			0%{
+				background: url("images/picture1.png") no-repeat;
+				background-size: 100%;
+			}
+			50%{
+				background:url("images/picture2.png") no-repeat;
+				background-size: 100%;
+			}
+			100%{
+				background: url("images/picture1.png") no-repeat;
+				background-size: 100%;
+			}
+		}
 
-<div id="main">
+/* body{
+    font-size: 18px;
+}
+div>p{
+    margin-left:155px;
+}
+@font-face {
+    font-family: mySweet;
+    src: url("font/tiantian.ttf")
+}
+
+.sweet{
+    font-family: mySweet;
+    color:#FF891F;
+} */
+
+</style>
+<body style="height:100%">
+
+
+
+<div class="bg" style="height:80%">
 
 
 
 </div>
-<%@include file="footer.jsp" %>
-<!-- 引入页脚 -->
 
+<!-- 引入页脚 -->
+<%@ include file="footer.jsp" %>
 </body>
 
 </html>
+
+
+
+
+
