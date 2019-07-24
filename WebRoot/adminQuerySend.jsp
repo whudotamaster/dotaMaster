@@ -21,6 +21,31 @@
     	 vform.action="<%=path%>/findSendAcc.html?aad401="+vaad401;
     	 vform.submit();
       }
+      function onNext()
+	 	 {
+	 		 document.getElementById("nowFloor").value = parseInt(document.getElementById("nowFloor").value) +1 ;
+	 		 document.getElementById("myform").submit();
+	 	 }
+	 	function onBack()
+		 {
+			 document.getElementById("nowFloor").value = parseInt(document.getElementById("nowFloor").value) -1 ;
+			 document.getElementById("myform").submit();
+		 }
+	 	function onQuery()
+	 	{
+	 		var vform = document.getElementById("myform");
+	 		document.getElementById("nowFloor").value = 1;
+	 		vform.submit();
+	 	}
+	     function back()
+	     {
+	   	 	document.getElementById("nowFloor").value = 1;
+	     }
+	 	 window.onload = function()
+	 	 {
+			document.getElementById("nextFloor").disabled = ${!(rows[0].nowFloor < rows[0].floor)};
+	 		document.getElementById("backFloor").disabled = ${!(rows[0].nowFloor > 1)};
+	 	 }
 
    </script>
 </head>

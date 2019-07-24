@@ -20,13 +20,13 @@ public class Ad04ServicesImpl extends JdbcServicesSupport
 		//1,更新发货状态为已完成
 		String sql="update ad04 set aad403=1 where aad401=?";	
 		
-		String sql2="select aab101 from ad04 where aad401=?";
+		String sql2="select a.aab101,c.aac602 from ad04 a,ac06 c where aad401=? and a.aac601=c.aac601";
 		
 		Map<String, Object> map=this.queryForMap(sql2, this.get("aad401"));
 		
 		//2,发送信息
-		Tools.sendMessage("您的饰品已经发送,请注意查看",map.get("aab101"));
-		
+		Tools.sendMessage("您的饰品<m>"+map.get("aac602")+"</m>已经发送,请注意查看",map.get("aab101"));
+
 		return this.executeUpdate(sql, this.get("aad401"))>0;
 	}
 	//查看待发货列表

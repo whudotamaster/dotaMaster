@@ -27,6 +27,7 @@ public class Tools
 		try
 		{
 			Ab10ServicesImpl ab10 = new Ab10ServicesImpl();
+			System.out.println("toolsµ÷ÓÃ");
 			ab10.insert(userId);
 		}
 		catch(Exception e)

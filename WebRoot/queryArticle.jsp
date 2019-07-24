@@ -24,7 +24,7 @@ ${msg }
 <br>
 <form id="myform" action="<%=path%>/queryArticle.html" method="post">
   <!-- 查询条件区 -->
-	<table align="center" class="table table-striped" style="background-color:#7F8BB3;opacity: 0.9;width:85%">
+	<table align="center" class="table table-striped" style="background-color:#CCDDFF;opacity: 0.9;width:85%">
 	  
 	  </caption>
 	  <tr>
@@ -37,7 +37,7 @@ ${msg }
 	    </td>
 	</table>
 	<!-- 数据迭代区 -->
-	<table align="center" class="table table-striped" style="background-color:#7F8BB3;opacity: 0.9;width:85%">
+	<table align="center" class="table table-striped" style="background-color:#CCDDFF;opacity: 0.9;width:85%">
 	  <tr>
 	  
 	    <td>序号</td>

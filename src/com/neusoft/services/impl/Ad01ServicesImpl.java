@@ -17,12 +17,29 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     {
 		StringBuilder sql=new StringBuilder()
   				.append("select d.aad101,d.aad102,d.aad103,c.aac1101,")
-  				.append("       c.aac1102,c.aac1103,c.aac1104,e.aac702")
-  				.append("  from ac11 c,ad01 d,ac07 e")
+  				.append("       c.aac1102,c.aac1103,c.aac1104,e.aac702,a.aac903 as pic1")
+  				.append("  from ac11 c,ad01 d,ac07 e,ac09 a")
   				.append(" where d.aac1101=c.aac1101 and e.aac701=c.aac701 ")
+  				.append("   and a.aac902=c.aac1103 ")
   				.append("   and now()>d.aad104 and now()<d.aad105 and c.aac1105=0")
   				;
-		return this.queryForList(sql.toString());
+		StringBuilder sql2=new StringBuilder()
+  				.append("select a.aac903 as pic2")
+  				.append("  from ac11 c,ad01 d,ac07 e,ac09 a ")
+  				.append(" where d.aac1101=c.aac1101 and e.aac701=c.aac701 ")
+  				.append("   and a.aac902=c.aac1104 ")
+  				.append("   and now()>d.aad104 and now()<d.aad105 and c.aac1105=0")
+  				;
+		
+		List<Map<String, Object>> result=this.queryForList(sql.toString());
+		List<Map<String, Object>> temp=this.queryForList(sql2.toString());
+
+		for(int i=0;i<result.size();i++)
+		{
+			result.get(i).put("pic2", temp.get(i).get("pic2"));
+		}
+		
+		return result;
 	
     }
 	
@@ -74,8 +91,6 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	{
     		aad203=Integer.parseInt(this.get("aad203"+count).toString());
     	}
-    	System.out.println("aad202"+count+this.get("aad202"+count));
-    	System.out.println("aad203"+count+this.get("aad203"+count));
     	if(aad202==0&&aad203==0)
     	{
     		this.setMessage("  请至少在一方押注");
@@ -90,8 +105,20 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
     	this.apppendSql(sql1.toString(), args1);
     	//扣除用户金额
     	int aab106=0-aad202-aad203;
-    	Ab01ServicesImpl ab01=new Ab01ServicesImpl();
-    	ab01.updateMoney(aab106, this.get("aab101"));
+   	
+    	StringBuilder sql3=new StringBuilder()
+    			.append("update ab01 a")
+    			.append("   set a.aab106=a.aab106+?")
+    			.append(" where a.aab101=?")
+    			;
+    	
+    	Object args[]=
+    		{
+    			aab106,
+    			this.get("aab101")	
+    		};
+    	
+    	this.apppendSql(sql3.toString(), args);
     	
     	//通过竞猜ID查找竞猜相关信息并放入dto中
     	this.findDataById();

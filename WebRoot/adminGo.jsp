@@ -14,7 +14,29 @@ opacity:0.8;
 opacity:1;
 
 }
-
+.mycontainer
+{
+	width: 	100%;
+	padding-left:300px;
+	padding-right:300px;
+	padding-top:100px;
+}
+ .background{
+                position:fixed;
+                top: 0;
+                left: 0;
+                width:100%;
+                height:100%;
+                min-width: 1000px;
+                z-index:-10;
+                zoom: 1;
+                background: url(images/AdminGo.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                background-position: center 0;
+            }
 </style>
 <script type="text/javascript" src="jquery.js"></script>
 </head>
@@ -22,17 +44,19 @@ opacity:1;
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
 <c:if test="${aab108==2}">
- <div class="container" style="z-index:2" >
+ <div class="mycontainer" style="z-index:2" >
       <div class="card-deck mb-3 text-center">
-       <div class="card mb-4 box-shadow a" onclick="toHero()" style="background:#000" >
+        <div class="card mb-4 box-shadow a" onclick="toHero()" style="background:#000" >
           <div class="card-header">
-            <h4 class="my-0 font-weight-normal"     style="opacity:1"><font color="white">版本更新</font></h4>
+            <h4 class="my-0 font-weight-normal"  style="opacity:1"><font color="white">版本更新</font></h4>
           </div>
           <div class="card-body">
      		<img id="havatar" src="images/equip/XLZR.jpg"  style="height:150px;width:150px;"  >
             <font color="white"><h1 class="card-title pricing-card-title">英雄<small class="text-muted">/ 装备</small></h1> </font>
           </div>
-        </div>
+        </div>                      
+        
+        
          <div class="card mb-4 box-shadow a" onclick="toArticle()" style="background:#000" >
           <div class="card-header">
             <h4 class="my-0 font-weight-normal"  style="opacity:1"><font color="white">审核文章</font></h4>

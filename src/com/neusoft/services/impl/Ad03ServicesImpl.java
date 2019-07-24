@@ -34,6 +34,7 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 		//1,更新收货状态为已完成
 		String sql="update ad03 set aad303=1 where aad301=? ";
 		
+		this.apppendSql(sql, this.get("aad301"));
 		
 		//1.2根据订单找到用户id
 		String sql2="select aab101 from ad03 where aad301=?";
@@ -46,17 +47,27 @@ public class Ad03ServicesImpl extends JdbcServicesSupport
 		Object price=acc.get("aac604");
 		
 		//3,更新用户金额
-		Ab01ServicesImpl ab01=new Ab01ServicesImpl();
-		ab01.updateMoney(price,map.get("aab101"));
-		
+    	StringBuilder sql3=new StringBuilder()
+    			.append("update ab01 a")
+    			.append("   set a.aab106=a.aab106+?")
+    			.append(" where a.aab101=?")
+    			;
+    	
+    	Object args[]=
+    		{
+    			price,
+    			map.get("aab101")	
+    		};
+    	this.apppendSql(sql3.toString(), args);
+				
 		//4,更新库存
-		String sql3="update ac06 set aac606=aac606+1 where aac601=?";
-		this.apppendSql(sql3, this.get("aac601"));
+		String sql4="update ac06 set aac606=aac606+1 where aac601=?";
+		this.apppendSql(sql4, this.get("aac601"));
 		
 		//4,发送信息
-		Tools.sendMessage("您的饰品已经收到,您获得的金额是"+price,map.get("aab101"));
+		Tools.sendMessage("您的饰品已经收到,您获得的金额是:<m>"+price+"</m>",map.get("aab101"));
 		
-		return this.executeUpdate(sql, this.get("aad301"))>0;
+		return this.executeTransaction();
 	}
 	
 	//查看所有待收货列表中未完成的订单

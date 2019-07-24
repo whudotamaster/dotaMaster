@@ -23,7 +23,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	 */
 	public List<Map<String,Object>> query()throws Exception
 	  {
-		int number = 10;
+		int number = 100;
 	  		//还原页面查询条件
 	  		Object aac102=this.get("qaac102");     //姓名  模糊查询
 	  	

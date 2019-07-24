@@ -62,7 +62,7 @@ ${msg }
 				    </td>
 				    <td>${vs.count }</td>
 				     <td >
-				       <img alt="no image" src=<%=path%>/images/${ins.aac505 } style="width:30%; height:100%">
+				       <img alt="no image" src=<%=path%>/images/${ins.aac505 } style="width:100px; height:100px">
 				     </td>
 				    <td>
 				      <!-- #  ¿ÕÃª -->
@@ -74,17 +74,6 @@ ${msg }
 				    </td>
 				    </c:if>
 				  </tr>
-		      </c:forEach>
-		      <!-- ²¹³ä¿ÕÐÐ -->
-		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="11">
-			          <tr>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			         
-			          </tr>
 		      </c:forEach>
 	     </c:when>
 	     <c:otherwise>

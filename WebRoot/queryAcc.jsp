@@ -62,7 +62,7 @@ ${msg }
 				    </td>
 				    <td>${vs.count }</td>
 				     <td  style="width:15%; height:15%">
-				       <img alt="no image" src=<%=path%>/images/${ins.aac603 } style="width:50%; height:100%">
+				       <img alt="no image" src=<%=path%>/images/${ins.aac603 } style="width:100px; height:100px">
 				     </td>
 				    <td>
 				      <a href="#" onclick="onEdit('${ins.aac601}')">${ins.aac602 }</a>
@@ -75,20 +75,6 @@ ${msg }
 
 				    
 				  </tr>
-		      </c:forEach>
-		      <!-- ²¹³ä¿ÕÐÐ -->
-		      <c:forEach begin="${fn:length(rows)+1 }" step="1" end="11">
-			          <tr>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			            <td></td>
-			        <c:if test="${aab108==2}">
-				    <td>
-				    </td>
-				    </c:if>
-			            
-			          </tr>
 		      </c:forEach>
 	     </c:when>
 	     <c:otherwise>
