@@ -19,7 +19,7 @@
     
     </style>
 </head>
-<body onload="imgOnLoad('DrowRanger','jpg');pageOnLoad();a()">
+<body onload="imgOnLoad('DrowRanger','jpg');pageOnLoad();">
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
 	<c:if test="${aab101==ins.aab101}">
@@ -172,15 +172,7 @@
     
 <script type="text/javascript" src="jquery-1.7.2.js"></script> /
 <script type="text/javascript">
-$(document).ready(function(){
-	if(${msg=="修改密码成功"})
-	{
-	alert("修改密码成功");
-	}
-	if(${msg=="	修改密码失败"})
-	{
-	alert("修改密码失败");
-	}
+
 
 	
 })

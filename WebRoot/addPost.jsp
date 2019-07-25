@@ -17,7 +17,7 @@
 
 </head>
 <body onload="imgOnLoad('addPost','png');pageOnLoad()">
-${msg }
+
 <%@ include file="header.jsp" %>
 <br>
 <br>
@@ -88,7 +88,7 @@ ${msg }
             // 监控变化，同步更新到 textarea
             $text1.val(html)
         }
-        if(${ins.aab107 > 200}){
+        if(${ins.aab107 > 200 || tag}){
         
        
         editor.customConfig.menus = [

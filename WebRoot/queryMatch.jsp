@@ -16,7 +16,7 @@
 </head>
 <body onload="imgOnLoad('MatchBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-${msg }
+
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryMatch.html" method="post">

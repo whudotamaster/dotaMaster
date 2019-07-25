@@ -1,7 +1,6 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%String path=request.getContextPath();%>
 <html>
 <head>
 <title>Insert title here</title>
@@ -15,19 +14,17 @@
   }
 </style>
 </head>
-<body>
-${msg}
+<body onload="imgOnLoad('MatchBg','jpg');pageOnLoad()">
+<%@ include file="header.jsp" %>
 <br>
 <br>
 <form action="<%=path%>/findByIdChangelog.html" method="post">
-<table  border="1" align="center" width="45%">
-    <caption>
-                更新日志添加
-      <hr width="160">
-    </caption>
+<table align="center" class="table table-striped" style="background-color:#DFDCD1;opacity: 0.9;width:45%">
    <tr>
-     <td colspan="2">更新日志</td>
-   </tr>
+    <td>
+        <font color="#000000" size="5px"> 更新日志添加</font>
+   </td>
+    </tr>
    <tr>
      <td>版本号</td>
      <td>
@@ -43,14 +40,16 @@ ${msg}
    <tr>
      <td>更新时间</td>
      <td>
-       <e:text name="aac1204"  required="true" />
+        <input name="aac1204" required="required"  type="datetime-local" />
      </td>
    </tr>
    <tr>
      <td colspan="2" align="center">
-     <input type="submit" name="next" value="添加"
+     <c:if test="${aab108==2}">
+     <input type="submit" class="btn btn-secondary  active" name="next" value="添加"
               formaction="<%=path%>/addChangelog.html">
-       <input type="submit" name="next" value="返回" 
+              </c:if>
+       <input type="submit" class="btn btn-secondary  active" name="next" value="返回" 
               formaction="<%=path%>/queryChangelog.html"
               formnovalidate="formnovalidate">
      </td>

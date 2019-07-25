@@ -43,7 +43,7 @@ color:#000000;
 </head>
 <body onload="imgOnLoad('hc','png');pageOnLoad()">
 <%@ include file="header.jsp" %>
-	${msg }
+	
 	<br>
 	<br>
 	<form id="myform" action="<%=path%>/queryCollection.html" method="post">

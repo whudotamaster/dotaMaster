@@ -15,6 +15,7 @@ public class LogonServlet extends UserControllerSupport
 	public String execute()throws Exception 
 	{
 		this.update("insert");
+	
 		return "login";
 	}
 }

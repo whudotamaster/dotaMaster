@@ -7,7 +7,8 @@ public class ModifyMatchServlet extends MatchControllerSupport {
 	@Override
 	public String execute() throws Exception 
 	{
-		this.update("modifyMatch", "ÐÞ¸Ä");;
+		this.update("modifyMatch", "ÐÞ¸Ä");
+		this.savePageInstance();
 		return "readMatch";
 	}
 

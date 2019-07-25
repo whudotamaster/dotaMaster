@@ -17,7 +17,7 @@
 </head>
 <body onload="imgOnLoad('EventBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-${msg}
+
 <br>
 <br>
 <form action="<%=path%>/findByIdTeam.html" method="post" id="myform">

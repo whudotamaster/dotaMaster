@@ -107,8 +107,11 @@ public class Ac11ServicesImpl extends JdbcServicesSupport
 	    			.append("	    			       and x.aac1101=?       ")        
 	    			;
 	    	//÷¥––≤È—Ø
-	    	System.out.println(this.queryForMap(sql.toString(), this.get("aac1101")));
-	    	return this.queryForMap(sql.toString(), this.get("aac1101"));
+	    	Map<String, Object> ins=this.queryForMap(sql.toString(), this.get("aac1101"));
+	    	Object aac1102=ins.get("aac1102").toString().replace(" ", "T");
+	        aac1102=aac1102.toString().replace(":00.0", "");
+	    	ins.put("aac1102", aac1102);
+	    	return ins;
 	    }
 	 
 	 

@@ -1,6 +1,7 @@
 package com.neusoft.services.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,13 +33,34 @@ public class Ad05ServicesImpl extends JdbcServicesSupport
 		public List<Map<String, Object>> query()throws Exception
 		{
 		  		//定义SQL主体
+			int number = 15 ;
 		  		StringBuilder sql=new StringBuilder()		  			
 		  				.append("  SELECT a.aad501,a.aab101,a.aad502,a.aad503,a.aad504,a.aad505,b.aab102  ")  
 		  				.append("    FROM ad05 a ,ab01 b")
 		  				.append("   WHERE a.aad504=1 and b.aab101=a.aab101 ")//504待审核为1
 	  			    	.append(" ORDER BY a.aad505 DESC")//按照投诉时间降序排列
 		  				;
-		  		return this.queryForList(sql.toString());  	
+		  		
+		  		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+				Map<String, Object> map1 = new HashMap<String, Object>();
+		    	int nowFloor =  1;
+				if (isNotNull(this.get("nowFloor"))) 
+				{
+					nowFloor = Integer.valueOf((String)this.get("nowFloor"));
+				}
+				map1.put("floor", String.valueOf(countFloor("ad05 a","and a.aad504=1",number,null)));
+				map1.put("nowFloor", String.valueOf(nowFloor));
+				rows.add(map1);
+				sql.append(" limit ?,? ");
+				Object args[]={
+						(nowFloor-1)*number,
+						number
+						};
+				for(Map<String, Object> list:this.queryForList(sql.toString(), args))
+				{
+					rows.add(list);
+				}
+		  		return rows;  	
 		  }
 	//findbyid展示投诉页面
 		public Map<String, Object> findById()throws Exception

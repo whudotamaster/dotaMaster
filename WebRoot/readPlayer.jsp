@@ -17,7 +17,7 @@
 </head>
 <body onload="imgOnLoad('PlayerBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-${msg}
+
 <br>
 <br>
 <form action="<%=path%>/findByIdPlayer.html" method="post">

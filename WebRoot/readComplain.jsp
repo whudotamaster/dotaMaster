@@ -16,15 +16,16 @@ msg {
 }
 </style>
 </head>
-<body>
-	${msg}
-	${ins.aad501 }
+<body onload="imgOnLoad('dota2','png');pageOnLoad()">
+<!-- 引入头部导航栏 -->
+<%@ include file="header.jsp" %>
+
 	<!-- 引入头部导航栏 -->
-	<%@ include file="header.jsp"%>
+
 	<br>
 	<br>
 	<form method="post">
-		<table border="1" align="center" width="45%">
+		<table  align="center" class="table table-striped" style="background-color:#DCDCDC;opacity: 0.9;width:45%">
 			<caption>
 				投诉详细内容
 				<hr width="160">
@@ -78,5 +79,7 @@ msg {
 		<input type="hidden" name="aad501" value="${ins.aad501 }">
 
 	</form>
+	<!-- 引入脚部导航栏 -->
+<%@ include file="footer.jsp" %>
 </body>
 </html>

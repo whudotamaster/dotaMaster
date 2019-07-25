@@ -16,7 +16,7 @@
 </style>
 </head>
 <body onload="imgOnLoad('ta','jpg');pageOnLoad()">
-${msg }
+
 <br>
 <br>
 <br>

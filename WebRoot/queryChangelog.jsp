@@ -14,17 +14,14 @@
      }
    </style>
 </head>
-<body>
+<body onload="imgOnLoad('MatchBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-${msg }
+
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryChangelog.html" method="post">
   <!-- 查询条件区 -->
-	<table border="1" width="35%" align="center">
-	  <caption>
-	                更新日志
-	  </caption>
+	<table align="center" class="table table-striped" style="background-color:#DFDCD1;opacity: 0.9;width:35%">
 	  <tr>
 	    <td colspan="4">查询条件</td>
 	  </tr>
@@ -36,7 +33,7 @@ ${msg }
 	  </tr>	 
 	</table>
 	<!-- 数据迭代区 -->
-	<table border="1" width="35%" align="center">
+	<table align="center" class="table table-striped" style="background-color:#DFDCD1;opacity: 0.9;width:35%">
 	  <tr>
 	    <td></td>
 	    <td>序号</td>
@@ -50,8 +47,7 @@ ${msg }
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
 	    	   	  <tr>
 				    <td>
-				      <input type="checkbox" name="idlist" value="${ins.aac1201 }"
-				             onclick="onSelect(this.checked)" >
+				      	
 				    </td>
 				    <td>${vs.count }</td>
 				    <td>
@@ -86,12 +82,12 @@ ${msg }
 	   </c:choose>
 	</table>
 	<!-- 功能按钮区 -->
-	<table border="1" width="35%" align="center">
+	<table width="35%" align="center">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="查询">
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="查询">
 	       <c:if test="${aab108==2}">
-	       <input type="submit" name="next" value="添加" 
+	       <input type="submit" class="btn btn-secondary  active" name="next" value="添加" 
 	              formaction="<%=path%>/addChangelog.jsp">
 	       </c:if>
 	    </td>

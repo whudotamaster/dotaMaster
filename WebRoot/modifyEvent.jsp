@@ -16,7 +16,7 @@
 </head>
 <body onload="imgOnLoad('EventBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-${msg}
+
 <!-- 引入头部导航栏 -->
 <br>
 <br>

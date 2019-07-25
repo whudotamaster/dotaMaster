@@ -18,7 +18,7 @@
 </head>
 <body onload="imgOnLoad('ta','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-${msg }
+
 <!-- 引入头部导航栏 -->
 <br>
 <br>
@@ -151,9 +151,8 @@ ${msg }
       {
     	 var vform = document.getElementById("myform");
     	 vform.action="<%=path%>/delByIdArticle.html?aab801="+vaab801;
-    	 alert(vform.action);
     	 vform.submit();
       } 
-      
+  
    </script>
 </html>

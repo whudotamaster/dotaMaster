@@ -36,9 +36,7 @@
 		}
 
 </style>
-<body  class="bg" onload="u()">
-
-
+<body  class="bg" onload="z()">
   <div id="login" style="margin:0 auto; width=800px" >
 	<form id="myform" action="<%=path%>/login.html" method="post" class="form-signin">
 		<table>
@@ -72,19 +70,10 @@
 <script>
 function u()
 {
-	if(${msg=="提示：登陆失败！"})
+	if(${msg!=null})
 		{
-		alert("登陆失败，账号密码错误");
+		alert('${msg }');
 		}
-	
-	if(${msg=="	输入的用户名过长，最多可输入15位"})
-	{
-	alert("注册失败：输入用户名过长");
-	}
-	if(${msg=="	注册失败，用户名重复！"})
-	{
-	alert("注册失败，用户名重复");
-	}
 	}
 
 </script>

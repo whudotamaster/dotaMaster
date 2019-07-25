@@ -16,7 +16,7 @@
 </head>
 <body onload="imgOnLoad('EventBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-${msg }
+
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryEvent.html" method="post">

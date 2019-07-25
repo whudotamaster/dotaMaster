@@ -16,12 +16,11 @@
 </style>
 </head>
 <body onload="imgOnLoad('ta','jpg');pageOnLoad()">
-${msg}
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
 <br>
 <br>
-<form action="<%=path%>/findByIdArticle.html" method="post">
+<form action="<%=path%>/findByIdArticle.html" id="myform" method="post">
 <table  align="center" class="table table-striped" style="background-color:#7F8BB3;opacity: 0.9;width:45%">
    <tr>
     <td colspan="2">

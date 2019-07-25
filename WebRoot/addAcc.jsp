@@ -16,7 +16,6 @@
 </head>
 <body onload="imgOnLoad('AccBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-${msg}
 <br>
 <br>
 <form action="<%=path%>/findByIdAcc.html" method="post">

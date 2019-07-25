@@ -10,7 +10,7 @@
    <style type="text/css">
      .a
      {
-		opacity:0.7;
+		opacity:0.9;
 		cursor: url('ico/favicon2.ico'), default;
      }
        .a:hover
@@ -30,7 +30,7 @@
 
 <body onload="imgOnLoad('bg','png');pageOnLoad()">
 <%@ include file="header.jsp" %>
-${msg }
+
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryHero.html" method="post">
@@ -45,7 +45,7 @@ ${msg }
 	          	<c:if test="${aab108==2}">
       				<div>
       					<a href="#" onclick="onEditMore('${ins.aac101}')">
-      						<img style="width:150px; height:150px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
+      						<img style="width:120px; height:120px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
       					</a>
       				</div>
       			</c:if>
@@ -53,7 +53,7 @@ ${msg }
 			    <c:if test="${aab108!=2 }">
 			      	<div>
 			      		<a href="#" onclick="onRead('${ins.aac101}')">
-			      			<img style="width:150px; height:150px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
+			      			<img style="width:120px; height:120px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
 			      		</a>
 			      	</div>
 			    </c:if>
@@ -72,7 +72,7 @@ ${msg }
 	          	<c:if test="${aab108==2}">
       				<div>
       					<a href="#" onclick="onEditMore('${ins.aac101}')">
-      						<img style="width:150px; height:150px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
+      						<img style="width:120px; height:120px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
       					</a>
       				</div>
       			</c:if>
@@ -80,7 +80,7 @@ ${msg }
 			    <c:if test="${aab108!=2 }">
 			      	<div>
 			      		<a href="#" onclick="onRead('${ins.aac101}')">
-			      			<img style="width:150px; height:150px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
+			      			<img style="width:120px; height:120px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
 			      		</a>
 			      	</div>
 			    </c:if>
@@ -98,7 +98,7 @@ ${msg }
 	          	<c:if test="${aab108==2}">
       				<div>
       					<a href="#" onclick="onEditMore('${ins.aac101}')">
-      						<img style="width:150px; height:150px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
+      						<img style="width:120px; height:120px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
       					</a>
       				</div>
       			</c:if>
@@ -106,7 +106,7 @@ ${msg }
 			    <c:if test="${aab108!=2 }">
 			      	<div>
 			      		<a href="#" onclick="onRead('${ins.aac101}')">
-			      			<img style="width:150px; height:150px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
+			      			<img style="width:120px; height:120px" alt="no image" src=<%=path%>/images/${ins.aac112 }>
 			      		</a>
 			      	</div>
 			    </c:if>

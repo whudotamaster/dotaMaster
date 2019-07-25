@@ -570,8 +570,10 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			this.apppendSql(sql2, paab101);
 			Boolean tag = this.executeTransaction();
 			this.setMessage(tag ? "打赏成功,当前余額为"+ getMoney(aab101) : "发生了未知错误,当前余額为" + getMoney(aab101));
-			Tools.completeMission(aab101, 1);
+			if(Tools.completeMission(aab101, 3))
+			{
 			Tools.sendMessage("恭喜你完成每日任务_打赏，获得经验5点，M点5点！", aab101);
+			}
 			return tag;
 		}
 		else 
@@ -657,6 +659,13 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
     	return this.queryForMap(sql.toString(), this.get("aab101"));
     }
       
+    public Map<String,Object> articleFindById()throws Exception
+    {
+		Object aab801 =  this.get("aab801");
+		Ab08ServicesImpl ab08 =new Ab08ServicesImpl();
+    	return ab08.findById(aab801);
+    }
+    
       /**
        * 不定条件查询
        * @return

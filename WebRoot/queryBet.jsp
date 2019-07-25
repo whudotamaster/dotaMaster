@@ -119,7 +119,7 @@
 <body onload="imgOnLoad('bg','png');pageOnLoad()">
 
 
-${msg }
+
 
 <br>
 <br>

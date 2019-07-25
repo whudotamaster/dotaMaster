@@ -14,7 +14,7 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
-${msg }
+
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryHero.html" method="post">

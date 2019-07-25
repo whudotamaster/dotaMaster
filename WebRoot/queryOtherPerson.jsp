@@ -124,6 +124,7 @@ top:5px;
               <div class="row">
               	 <div class="col-md-6 mb-3">
              	    <form method="post">
+             	    	<e:hidden name="aab101" defval="${aab101 }"/>
                 		 <button class=" btn btn-primary btn-lg btn-block " type="submit" style="width:200px" formaction="<%=path%>/forum.html"  >返回论坛</button>
 					</form>
                  </div>
@@ -169,7 +170,9 @@ top:5px;
       </div>
    </div>
 <br>
-<form id="myform" name="myform" method="post"></form>
+<form id="myform" name="myform" method="post">
+<e:hidden name="aab101" defval="${aab101 }"/>
+</form>
 	<%@include file="footer.jsp" %>
 	<!-- 引入页脚 -->
 </body>

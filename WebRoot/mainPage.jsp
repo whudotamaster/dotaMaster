@@ -9,12 +9,12 @@
 	String laab102=(String)request.getAttribute("ins.aab102");
 %>
 
-<html>
+<html style="height:100%">
 <head>
 	<title>主页</title>
 <link rel="shortcut icon" href="ico/favicon.ico" />
 </head>
-<%@ include file="header.jsp" %>
+
 <style type="text/css">
 .bg{
 			animation: bgAnimate 8s ease infinite;
@@ -52,18 +52,21 @@ div>p{
 } */
 
 </style>
-<body style="height:100%">
+<body style="height:100%;  background:#000">
+<%@ include file="header.jsp" %>
+<div class="bg" style="height:85%">
 
-
-
-<div class="bg" style="height:80%">
-
-
+<div style="width:100%;position:absolute;bottom:30px;" align="center">
+<!-- 引入页脚 -->
+<%@ include file="footer.jsp" %>
+</div>
 
 </div>
 
-<!-- 引入页脚 -->
-<%@ include file="footer.jsp" %>
+
+
+
+
 </body>
 
 </html>

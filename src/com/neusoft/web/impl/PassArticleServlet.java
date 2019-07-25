@@ -16,7 +16,7 @@ public class PassArticleServlet extends ArticleControllerSupport
        public String execute() throws Exception
        {
     	   this.update("passArticle", "…Û∫À");
-    	   return "readArticle";
+    	   return "adminQueryArticle";
        }
 
 

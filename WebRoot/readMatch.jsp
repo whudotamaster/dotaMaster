@@ -16,9 +16,10 @@
 </style>
 </head>
 <body onload="imgOnLoad('MatchBg','jpg');pageOnLoad()">
-${msg}
+
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
+
 <br>
 <br>
  <c:if test="${ aab108==2 }">
@@ -39,7 +40,7 @@ ${msg}
    <tr>
      <td>比赛开始时间</td>
      <td>
-         <e:text name="aac1102"  required="true"  readonly="${aab108!=2 }"  defval="${ins.aac1102 }"/>
+         <input name="aac1102" required="required"  type="datetime-local" value="${ins.aac1102 }" />
      </td>
    </tr>
    

@@ -7,6 +7,7 @@ public class ModifyChangelogServlet extends ChangelogControllerSupport {
 	public String execute() throws Exception 
 	{
 		this.update("modifyChangelog", "ÐÞ¸Ä");
+		this.savePageInstance();
 		return "readChangelog";
 	}
 

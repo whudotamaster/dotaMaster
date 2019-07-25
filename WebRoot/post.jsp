@@ -43,7 +43,7 @@ vertical-align:middle;
 <body onload="imgOnLoad('timg','png');pageOnLoad()">
 <%@ include file="header.jsp" %>
 <br>
-${msg }
+
 <br>
 <form id="myform" action="<%=path%>/addComment.html?aab501=${param.aab501 }" method="post">
   <!-- 查询条件区 -->
@@ -70,7 +70,7 @@ ${msg }
 								onclick="onEdit('${rows[1].aab101}')">
 								</div>
 				    </td>
-				    <c:if test="${(rows[0].aab107)/100 >= rows[1].aab507+0 || rows[1].aab101 == aab101}">
+				    <c:if test="${(rows[0].aab107)/100 >= rows[1].aab507+0 || rows[1].aab101 == aab101 ||tag}">
 				    <td><div style="min-height: 80px">${rows[1].aab503 }</div>
 				     <div style="text-align:right;vertical-align:bottom;">
 				     <c:choose>
@@ -100,7 +100,7 @@ ${msg }
 					</div>
 				    </td>
 				    </c:if>
-				    <c:if test="${(rows[0].aab107)/100 < rows[1].aab507+0 && rows[1].aab101 != aab101}">
+				    <c:if test="${(rows[0].aab107)/100 < rows[1].aab507+0 && rows[1].aab101 != aab101 && !tag}">
 				     <td><a style="color:#FF2222 ">------该帖要${rows[1].aab507}級或以上才能观看该帖子------</a></td>
 				     <td><a style="color:#FF2222 ">------该帖要${rows[1].aab507}級或以上才能观看该帖子------</a></td>
 				    </c:if>
@@ -125,7 +125,7 @@ ${msg }
 			          </tr>
 		      </c:forEach>
 		      </c:if>
-	   <c:if test="${(rows[0].aab107)/100 >=  rows[1].aab507+0 || rows[1].aab101 == aab101}">
+	   <c:if test="${(rows[0].aab107)/100 >=  rows[1].aab507+0 || rows[1].aab101 == aab101 || tag}">
 	     <tr>
      <td colspan="2">
 		<div id="editor" style="width:100%;height:200px;text-align:left;vertical-align:middle;background-color: #ffffff;opacity:1;"></div>
@@ -177,7 +177,7 @@ ${msg }
             // 监控变化，同步更新到 textarea
             $text1.val(html)
         }
-        if(${rows[0].aab107 > 200}){
+        if(${rows[0].aab107 > 200 || tag}){
         editor.customConfig.menus = [
     'head',  // 标题
     'bold',  // 粗体

@@ -16,7 +16,7 @@
 </head>
 <body onload="imgOnLoad('PlayerBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-${msg }
+
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryPlayer.html" method="post">

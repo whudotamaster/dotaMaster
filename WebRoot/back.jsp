@@ -6,7 +6,7 @@
 <link rel="shortcut icon" href="ico/favicon.ico" />
 </head>
 <body>
-${msg }
+
 <br>
 <br>
 <!-- 查询条件区 -->

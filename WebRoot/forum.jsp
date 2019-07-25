@@ -112,10 +112,10 @@ color:#000000;
 							<td style="width:40%">
 							<!-- #  空锚 --> 
 							<div class="posthidden" style="width:80%">
-							<c:if test="${(rows[0].aab107)/100 >= ins.aab507 || ins.aab101 == aab101}">
+							<c:if test="${(rows[0].aab107)/100 >= ins.aab507 || ins.aab101 == aab101 || aab108 == 2}">
 							<a href="#" onclick="onVisit('${ins.aab501 }','${ins.aab507 }')" style="color:#000000;text-decoration:underline">${ins.aab502 }</a>
 							</c:if>
-							<c:if test="${(rows[0].aab107)/100 < ins.aab507 && ins.aab101 != aab101 }">
+							<c:if test="${(rows[0].aab107)/100 < ins.aab507 && ins.aab101 != aab101 && aab108!= 2}">
 							<a href="#" onclick="alert('该帖要${ins.aab507}級或以上才能观看该帖子');" style="color:#FF2222;text-decoration:underline ">------该帖要${ins.aab507}級或以上才能观看该帖子------</a>
 							</c:if>
 							</div>
@@ -237,12 +237,14 @@ color:#000000;
       
 
       function onDel(vaab501)
-      {
+      {if(confirm("确认删除？"))
+   	{
     	 var vform = document.getElementById("myform");
     	 vform.action="<%=path%>/delPostById.html?aab501=" + vaab501;
     	 //alert(vform.action);
     	 vform.submit();
       } 
+      }
       
    </script>
 </html>

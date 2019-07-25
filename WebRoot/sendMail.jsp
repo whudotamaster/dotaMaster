@@ -19,7 +19,7 @@
 <body onload="imgOnLoad('complaintAdmin','png');a();pageOnLoad();">
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
-${msg}
+
 <br>
 <form action="<%=path%>/findByIdArticle.html" method="post">
 <table  border="1" align="center" style="background-color:#a09373;opacity: 0.95;width:35%" >

@@ -16,7 +16,7 @@
 </head>
 <body onload="imgOnLoad('TeamBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-${msg }
+
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryTeam.html" method="post">

@@ -42,7 +42,7 @@
    </script>
 </head>
 <body onload="imgOnLoad('Lina2','jpg');pageOnLoad()">
-${msg }
+
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryComp.html" method="post">

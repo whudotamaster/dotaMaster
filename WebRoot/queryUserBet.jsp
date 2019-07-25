@@ -17,7 +17,7 @@
 <%@ include file="header.jsp" %>
 <body onload="imgOnLoad('bg','png');pageOnLoad()">
 
-${msg }
+
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryUserBet.html" method="post">

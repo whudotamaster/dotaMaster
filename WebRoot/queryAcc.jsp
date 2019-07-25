@@ -20,7 +20,7 @@
 
 </head>
 <body onload="imgOnLoad('AccBg','jpg');pageOnLoad()">
-${msg }
+
 <br>
 <br>
 <form id="myform" action="<%=path%>/queryAcc.html" method="post" >

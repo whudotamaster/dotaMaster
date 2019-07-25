@@ -17,7 +17,7 @@
 </style>
 </head>
 <body onload="imgOnLoad('ta','jpg');pageOnLoad()">
-${msg }
+
 <br>
 <br>
 <form name="form" action="<%=path%>/sellAcc.html" method="post">

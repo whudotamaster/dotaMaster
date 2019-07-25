@@ -51,7 +51,7 @@
 </head>
 <body onload="imgOnLoad('dota2','png');pageOnLoad()">
 <font color="white">
-${msg }
+
 </font>
 <br>
 <br>

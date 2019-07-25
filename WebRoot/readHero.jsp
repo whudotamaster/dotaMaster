@@ -33,7 +33,7 @@ msg {
 </head>
 <body onload="imgOnLoad('bg','png');pageOnLoad()">
 	<%@ include file="header.jsp"%>
-	${msg}
+	
 	<br>
 	<br>
 	<form action="<%=path%>/findByIdTeam.html" method="post" id="myform">

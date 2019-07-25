@@ -285,7 +285,7 @@
             } 
              html,body { wider:100% ; height: 100%;margin: 0; padding: 0;}
 
-			#no{width:100%;height:100%;background:black;position:fixed;z-index:-1;}
+			#no{width:100%;height:100%;position:fixed;z-index:-1;}
 			.no{width:calc(100%/3);height:calc(100%/3);float:left;  background-size: 100% 100%;}
     </style>
 </head>
@@ -338,6 +338,9 @@ String pic = (String)session.getAttribute("pic");
             <a class="nav-link pico" href="<%=path%>/queryPlayer.html">选手</a>
           </li>		
            <li class="nav-item">
+            <a class="nav-link pico" href="<%=path%>/queryChangelog.html">更新日志</a>
+          </li>
+           <li class="nav-item">
             <a class="nav-link pico" href="<%=path%>/BuyVip.jsp">VIP</a>
           </li>
            <li class="nav-item">
@@ -380,7 +383,7 @@ String pic = (String)session.getAttribute("pic");
 		</span>
 			</div>
 </div>
-<form id="formX"> 	<input type="hidden" name="aab101" value="<%=aab101%>"></form>
+<form id="formX" method="post"> 	<input type="hidden" name="aab101" value="<%=aab101%>"></form>
 <div id="mymenu" class="mymenu">
 <c:if test="${aab108==null}">
 <img id="left"  class="arrow left pico" src="images/others/notice.jpg" onclick="toLogin()" >
@@ -392,11 +395,13 @@ String pic = (String)session.getAttribute("pic");
 <img id="left"  class="arrow left pico" src="images/others/notice.jpg" onclick="toNotice()" >
 <img id="right" class="arrow right pico" src="images/others/uncomplete.jpg"  onclick="toMission()" >
 <img id="up" class="arrow up pico" src="images/others/person.jpg" onclick="toUpdate()" >
-<img id="down" class="arrow down pico" src="images/others/quit.jpg" onclick="toLogin()" >
+<img id="down" class="arrow down pico" src="images/others/quit.jpg" onclick="toLogout()" >
 </c:if>
 </div>
 <br>
-<form id="forum" ><input type="text" hidden="true" name="aab101" id="aab101" value="<%=aab101%>"></form>
+<form id="forum" action="<%=path%>/forum.html" method="post">
+<input type="text" hidden="true" name="aab101" id="aab101" value="<%=aab101%>">
+</form>
 	<SCRIPT language=javascript>
 	 	 function onNext()
 	 	 {
@@ -449,6 +454,16 @@ String pic = (String)session.getAttribute("pic");
 	 	    	 vform.action="<%=path%>/logout.html";
 	 	    	 vform.submit();
 	 	 }
+		function toLogout()
+	 	 {
+	 	
+	 	    	if(confirm("现在登出吗？"))
+	 	    	{
+	 	    	var vform = document.getElementById("formX");
+	 	 	    vform.action="<%=path%>/logout.html";
+	 	    	vform.submit();
+	 	    	}
+	 	 }
 	 	//鼠标事件*******************************
 	 /*	function test()
 {
@@ -467,6 +482,7 @@ alert(event.button);
 			var mymenu = document.getElementById("mymenu");
 			mymenu.style.zIndex = 5;
 			mymenu.style.opacity = 1;
+			mymenu.style.visibility = 'visible' ;
 			mymenu.style.left = event.pageX-150+'px';
 			mymenu.style.top= event.pageY-150+'px';
 		}
@@ -491,7 +507,9 @@ alert(event.keyCode);
 	      	{
 	      	var id = "no" + i ;
 	      		document.getElementById(id).style.backgroundImage="url(images/"+ image + "_" + i +"."+type+")";	
+
 	      	}
+	       u();
 	      }
 	      
 	      function forum()
@@ -500,4 +518,12 @@ alert(event.keyCode);
 	    	  form.action = "<%=path%>/forum.html";
 	    	  form.submit();
 	      }
+	      function u()
+	      {
+	    		if(${msg!=null})
+	      		{
+	      		alert('${msg}');
+	      		}
+	      	}
+	      
 	</SCRIPT> 

@@ -8,7 +8,7 @@ public class DoneByIdComplainServlet extends ComplainControllerSupport
 	public String execute()throws Exception
 	{
 		this.update("doneById","完成处理");
-		this.query("queryPerson");
+		this.savePageData();
 		return "adminQueryComplain";
 	}
 }

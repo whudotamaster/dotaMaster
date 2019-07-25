@@ -16,16 +16,19 @@
 </style>
 </head>
 <body>
+<body onload="imgOnLoad('EventBg','jpg');pageOnLoad()">
 <%@ include file="header.jsp" %>
-${msg}
+
+${ins.aac1204 }
 <br>
 <br>
 <form action="<%=path%>/findByIdPlayer.html" method="post">
-<table  border="1" align="center" width="45%">
-    <caption>
-               更新日志${aab108!=2?'浏览':'修改' }
-      <hr width="160">
-    </caption>
+<table align="center" class="table table-striped" style="background-color:#DFDCD1;opacity: 0.9;width:45%">
+    <tr>
+      <td>
+              <font color="#000000" size="5px">更新日志${aab108!=2?'浏览':'修改' }   </font>
+         </td>
+      </tr>
    <tr>
      <td colspan="2">更新日志</td>
    </tr>
@@ -38,22 +41,22 @@ ${msg}
    <tr>
      <td>更新内容</td>
      <td>
-       <e:textarea rows="5" cols="45" name="aac1203" readonly="${aab108!=2}"  defval="${ins.aac1203 }"/>
+       <e:textarea rows="5" cols="45" name="aac1203" required="true" readonly="${aab108!=2}"  defval="${ins.aac1203 }"/>
      </td>
    </tr>
    <tr>
      <td>更新时间</td>
      <td>
-       <e:text name="aac1204"   readonly="${aab108!=2}"  required="true"  defval="${ins.aac1204 }"/> 
+       <input name="aac1204" required="required"  type="datetime-local" value="${ins.aac1204 }" /> 
      </td>
    </tr>  
    <tr>
      <td colspan="2" align="center">
-       <input type="submit" name="next" value="返回" 
+       <input type="submit" class="btn btn-secondary  active" name="next" value="返回" 
               formaction="<%=path%>/queryChangelog.html"
               formnovalidate="formnovalidate">
         <c:if test="${aab108==2}" >      
-        <input type="submit" name="next" value="修改" formaction="<%=path%>/modifyChangelog.html" formnovalidate="formnovalidate" >  
+        <input type="submit" class="btn btn-secondary  active" name="next" value="修改" formaction="<%=path%>/modifyChangelog.html" formnovalidate="formnovalidate" >  
        </c:if>
      </td>
    </tr>

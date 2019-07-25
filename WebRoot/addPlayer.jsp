@@ -18,7 +18,7 @@
 <body onload="imgOnLoad('PlayerBg','jpg');pageOnLoad()">
 <!-- 引入头部导航栏 -->
 <%@ include file="header.jsp" %>
-${msg}
+
 
 <br>
 <br>

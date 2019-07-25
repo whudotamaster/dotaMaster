@@ -84,7 +84,7 @@ text-color:black;}
 </div>
    <c:choose>
 	     <c:when test="${rows!=null }">
-		     <c:forEach items="${rows }" var="ins" varStatus="vs">
+		     <c:forEach items="${rows }" var="ins" varStatus="vs" begin="1" end="15">
 		     	<c:if test="${aab101==ins.aab101}">
 	    	   	<ul>
 	    	   	<c:if test="${vs.count%2==0 }">
@@ -92,7 +92,7 @@ text-color:black;}
 	    	   
 	    	   	    <c:if test="${ins.aad604==0 }">
 	    	   	      <blockquote class="blockquote text-left" >
-				  <p class="mb-0">${vs.count} ${ins.aad602 }</p>
+				  <p class="mb-0">${vs.count + (rows[0].nowFloor-1)*15} ${ins.aad602 }</p>
 				  <footer class="blockquote-footer text-right">${ins.aad603 }</footer>
 				</blockquote>
 	    	   	   <hr>
@@ -102,7 +102,7 @@ text-color:black;}
 				  
 				     <c:if test="${ins.aad604==1 }">
 				   	 <blockquote class="blockquote text-left">
-				  <p class="mb-0"><del> ${vs.count} ${ins.aad602 }</del></p>
+				  <p class="mb-0"><del> ${vs.count + (rows[0].nowFloor-1)*15} ${ins.aad602 }</del></p>
 				  <footer class="blockquote-footer text-right ">${ins.aad603 }</footer>
 				    	</blockquote>
 				     <hr>
@@ -114,7 +114,7 @@ text-color:black;}
 	    	   	<div class="noticebar1">
 	    	   	    <c:if test="${ins.aad604==0 }">
 	    	   	      <blockquote class="blockquote text-left" >
-				  <p class="mb-0">${vs.count} ${ins.aad602 }</p>
+				  <p class="mb-0">${vs.count + (rows[0].nowFloor-1)*15} ${ins.aad602 }</p>
 				  <footer class="blockquote-footer text-right">${ins.aad603 }</footer>
 				</blockquote>
 	    	   	   <hr>
@@ -122,7 +122,7 @@ text-color:black;}
 				    </c:if>
 				     <c:if test="${ins.aad604==1 }">
 	    	   	 <blockquote class="blockquote text-left">
-				  <p class="mb-0"><del>${vs.count} ${ins.aad602 }</del></p>
+				  <p class="mb-0"><del>${vs.count + (rows[0].nowFloor-1)*15} ${ins.aad602 }</del></p>
 				  <footer class="blockquote-footer text-right ">${ins.aad603 }</footer>
 				    	</blockquote>
 				     <hr>
@@ -138,8 +138,15 @@ text-color:black;}
 	     </c:when>
 	
 	   </c:choose>
-
-
+	   <form id="myform" action="<%=path%>/queryNotice.html" method="post">
+	   <div align="center">
+					<input type="button" class="btn btn-secondary  active" onclick="onBack()" id="backFloor" value="上一页">
+					<input type="button" class="btn btn-secondary  active" onclick="onNext()" id="nextFloor" value="下一页">
+					<input hidden="true" class="btn btn-secondary  active" type="text" name="nowFloor" id="nowFloor" value="${rows[0].nowFloor }">
+					<e:hidden name="floor" defval="${rows[0].floor }"/>
+					</div>
+<input type="text" hidden="true" name="aab101" id="aab101" value="<%=aab101%>">
+</form>
 
 </div>
 <!-- 引入脚部导航栏 -->

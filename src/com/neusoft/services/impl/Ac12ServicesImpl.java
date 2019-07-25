@@ -12,7 +12,6 @@ public class Ac12ServicesImpl extends JdbcServicesSupport
 	public List<Map<String, Object>> query()throws Exception
 	{
 		Object aac1202=this.get("qaac1202");
-		System.out.println(aac1202);
 		StringBuilder sql=new StringBuilder()
 				.append("select aac1201,aac1202,aac1204 from ac12")
 				;
@@ -26,7 +25,14 @@ public class Ac12ServicesImpl extends JdbcServicesSupport
   		}
   				
   		sql.append(" order by aac1202");
-		return this.queryForList(sql.toString(),paramList.toArray());
+  		List<Map<String, Object>> rows= new ArrayList<>();
+  		for(Map<String, Object> ins:this.queryForList(sql.toString(),paramList.toArray()))
+		{
+			String aac1204=ins.get("aac1204").toString().replace(":00.0", " ");
+			ins.put("aac1204", aac1204);
+			rows.add(ins);
+		}
+		return rows;
 	}
 	
 	
@@ -65,8 +71,15 @@ public class Ac12ServicesImpl extends JdbcServicesSupport
 	  				.append("		 from ac12 ")
 	    			.append(" where aac1201=?")
 	    			;
+	    	
 	    	//÷¥––≤È—Ø
-	    	return this.queryForMap(sql.toString(), this.get("aac1201"));
+	    	Map<String,Object> ins= this.queryForMap(sql.toString(), this.get("aac1201"));
+	    	Object aac1204=ins.get("aac1204").toString().replace(" ", "T");
+	        aac1204=aac1204.toString().replace(":00.0", "");
+	    	ins.put("aac1204", aac1204);
+	    	System.out.println(ins);
+	    	System.out.println(ins.get("aac1204"));
+	    	return ins;
 	 }
 	 
 	 

@@ -15,7 +15,7 @@
 </style>
 </head>
 <body onload="imgOnLoad('bg','png');pageOnLoad()">
-${msg}
+
 <%@ include file="header.jsp" %>
 <br>
 <br>
